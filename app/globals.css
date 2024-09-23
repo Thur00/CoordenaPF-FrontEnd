@@ -74,3 +74,45 @@ a {
     width: 30%;
   }
 }
+
+Header{
+  color:#ffffff;
+  background-color: #ff1100;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  height: 7vh;
+  align-items: center;
+  }
+  
+  .Header div{
+    width: 10%;
+  }
+  
+  .icon{
+  font-size:xx-large;  
+  color:#ffffff;
+  margin: 0 3% 0;
+  }
+  
+  .icon2{
+    font-size:xx-large;  
+    margin: 10%
+  }
+  
+  @media only screen and (max-width:800px){
+    .icon{
+      font-size: x-large;
+      margin:0 1% 0
+    }
+    .icon2{
+      font-size: x-large;
+      margin:10%
+    }
+    .Header{
+      font-size:small;
+    }
+    .Header div{
+      width: 20%;
+    }
+  }
