@@ -1,0 +1,120 @@
+
+  .h1{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: black;
+    margin-left: 5%;
+   
+   
+  }
+
+  
+  
+  
+  .bt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 15%;
+    
+  }
+
+
+  
+ 
+  
+  .b1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size:24px;
+    background-color: #ff1100;
+    border: 5px;
+    border-radius: 15px;
+    justify-content: space-between;
+    color: white;
+    padding: 10px;
+    font-size: 150%;
+    cursor: pointer;
+    margin-left: 15%;
+  }
+ 
+
+  .b2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ff1100;
+    font-size:15px;
+    border: 5px;
+    border-radius: 15px;
+    justify-content: space-between;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 70%;
+  }
+
+  .b3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ff1100;
+    font-size:15px;
+    border: 5px;
+    border-radius: 15px;
+    justify-content: space-between;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 80%;
+   
+  }
+ 
+  
+  .caixas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+    margin-left: 15%;
+  }
+ 
+  
+ .caixa1{
+  display: flex;
+  flex-direction: row;
+  border: 5px solid #ff1100;
+  border-radius: 15px;
+  padding:10px;
+  margin: 3%;
+  width: 80%;
+  margin-right: 20%;
+
+ }
+
+ .caixa2{
+  display: flex;
+  flex-direction: row;
+  border: 5px solid #ff1100;
+  border-radius: 15px;
+  padding:10px;
+  margin: 3%;
+  width: 80%;
+  margin-right: 20%;
+
+ }
+
+
+ .p{
+  display: flex;
+  justify-content:space-between;
+  color: black;
+  font-size: 98%;
+ 
+ }
+
+
+ 
