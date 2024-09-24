@@ -160,3 +160,9 @@
     font-size: xx-large;
     font-weight: bolder;
 }
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

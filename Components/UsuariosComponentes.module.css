@@ -108,4 +108,10 @@
  }
 
 
- 
+ .footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 140%;
+  margin-right: 15%;
+}

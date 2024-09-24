@@ -34,7 +34,11 @@ export default function Home() {
     <button type="button" className={styles.b2}>Gerenciar</button>
     
 </div>
+
+<div className={styles.footer}>
 <Footer></Footer>  
+</div>
+
 </div>
 </div>
  

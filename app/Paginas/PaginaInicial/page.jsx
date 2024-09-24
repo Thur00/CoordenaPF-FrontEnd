@@ -31,12 +31,14 @@ const inicial = () => {
 
 
 
-
+<div className={styles.footer}>
 <Footer></Footer>
-
+</div>
 
            
         </div>
+
+
 
     )
 }
