@@ -4,7 +4,7 @@
     justify-content: space-between;
     flex-direction: row;
     color: black;
-    margin-left: 5%;
+    margin-left: 8%;
    
    
   }
@@ -14,7 +14,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-right: 15%;
+    
     
   }
 
@@ -22,16 +22,16 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size:24px;
+    font-size: 1.5rem;
     background-color: #ff1100;
     border: 5px;
     border-radius: 15px;
-    justify-content: space-between;
     color: white;
     padding: 10px;
-    font-size: 150%;
     cursor: pointer;
-    margin-left: 15%;
+    width: 17%;
+    margin-right: 8%;
+    
   }
  
 
@@ -62,7 +62,8 @@
     color: white;
     padding: 10px;
     cursor: pointer;
-    margin-left: 80%;
+    margin-left: 84%;
+    
    
   }
  
@@ -81,31 +82,30 @@
   border-radius: 15px;
   padding:10px;
   margin: 3%;
-  width: 80%;
+  width: 100%;
   margin-right: 20%;
 
  }
 
- .caixa2{
-  display: flex;
-  flex-direction: row;
-  border: 5px solid #ff1100;
-  border-radius: 15px;
-  padding:10px;
-  margin: 3%;
-  width: 80%;
-  margin-right: 20%;
 
- }
 
 
  .p{
   display: flex;
   justify-content:space-between;
   color: black;
-  font-size: 98%;
+  font-size: 110%;
  
  }
+
+ .p1{
+  display: flex;
+  justify-content:space-between;
+  color: black;
+  font-size: 1rem;
+ 
+ }
+
 
 
  .footer{
