@@ -24,10 +24,11 @@ const inicial = () => {
 <br></br>
 <br></br>
 
+<div className={styles.tudo}>
 <h2 className={styles.h4}>Notificações</h2>
 <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-<div className={styles.tudo}>
+
 <InicialOcorrencia></InicialOcorrencia>
 </div>
 
