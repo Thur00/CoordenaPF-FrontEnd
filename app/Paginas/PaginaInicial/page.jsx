@@ -16,8 +16,8 @@ const inicial = () => {
 
             <div className={styles.bt}>
     <button  className={styles.b1}>Criar ocorrência </button>
-    <button  className={styles.b2}>Ocorrência </button> 
-    <button  className={styles.b3}>Editar Dados </button>    
+    <button  className={styles.b1}>Ocorrência </button> 
+    <button  className={styles.b1}>Editar Dados </button>    
          
 </div>
 
@@ -28,8 +28,11 @@ const inicial = () => {
 <h2 className={styles.h4}>Notificações</h2>
 <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-
+<div className={styles.boxTodasOcor}>
 <InicialOcorrencia></InicialOcorrencia>
+<InicialOcorrencia></InicialOcorrencia>
+<InicialOcorrencia></InicialOcorrencia>
+</div>
 </div>
 
 
