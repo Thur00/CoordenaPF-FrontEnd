@@ -26,7 +26,6 @@ function InicialOcorrencia() {
                 </div>
             </div>
             </Link>
-            
 
             <Link className={styles.boxOcor2} href="https://quizizz.com/">
             <div className={styles.a}>
@@ -111,9 +110,7 @@ function InicialOcorrencia() {
                     </div>
                 </div>
             </div>
-            </Link>   
-
-                                 
+            </Link>                        
         </div>
         </>
     )
