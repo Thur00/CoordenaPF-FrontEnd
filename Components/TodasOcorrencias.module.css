@@ -1,5 +1,7 @@
 .titulo{
-    padding: 2%;
+    padding: 1%;
+    margin-top: 2%;
+    margin-left: 2%;
 }
 
 .boxTodasOcor{
@@ -27,6 +29,11 @@
     padding: 27px;
     margin: 1% 0;
     width: 30%;
+    transition-duration: 0.4s;
+}
+
+.boxOcor:hover{
+    background-color: rgba(255, 0, 0, 0.636);
 }
 
 .boxOcor2{
@@ -40,6 +47,11 @@
     padding: 27px;
     margin: 1% 0;
     width: 30%;
+    transition-duration: 0.4s;
+}
+
+.boxOcor2:hover{
+    background-color: rgba(251, 255, 0, 0.581);
 }
 
 .boxOcor3{
@@ -53,7 +65,11 @@
     padding: 27px;
     margin: 1% 0;
     width: 30%;
+    transition-duration: 0.4s;
+}
 
+.boxOcor3:hover{
+    background-color: rgba(103, 240, 45, 0.63);
 }
 
 .titletematurma{
@@ -97,4 +113,62 @@
 .icons{
     font-size: xx-large;
     font-weight: bolder;
+}
+
+.pesquisa {
+    border: 2px solid #000;
+    border-radius: 20px;
+    width: 40%;
+    margin: 1%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.pesquisa>input {
+    border: 2px solid #000;
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 10px 14px;
+}
+
+.pesquisa>button {
+    position: absolute;
+    height: fit-content;
+    border: none;
+    background-color: transparent;
+    right: 6px;
+    font-size: larger;
+}
+
+.pesquisafiltro{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.filtro{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.butfiltro{
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    width: 18vh;
+    background-color: #fff;
+    transition-duration: 0.4s;
+}
+
+.butfiltro:hover{
+    background-color: #e0e0e0;
 }
