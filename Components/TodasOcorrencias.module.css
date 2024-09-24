@@ -5,6 +5,7 @@
 .boxTodasOcor{
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     flex-wrap:wrap;
 }
 
@@ -23,8 +24,9 @@
     border: 2px solid red;
     background-color: rgba(255, 0, 0, 0.426);
     border-radius: 20px;
-    margin: 2%;
-    width: 40%;
+    padding: 27px;
+    margin: 1% 0;
+    width: 30%;
 }
 
 .boxOcor2{
@@ -35,9 +37,9 @@
     border: 2px solid rgb(251, 255, 0);
     background-color: rgba(251, 255, 0, 0.214);
     border-radius: 20px;
-    margin: 2%;
     padding: 27px;
-    width: 40%;
+    margin: 1% 0;
+    width: 30%;
 }
 
 .boxOcor3{
@@ -48,9 +50,9 @@
     border: 2px solid rgb(104, 240, 45);
     background-color: rgba(103, 240, 45, 0.282);
     border-radius: 20px;
-    margin: 2%;
     padding: 27px;
-    width: 40%;
+    margin: 1% 0;
+    width: 30%;
 
 }
 
