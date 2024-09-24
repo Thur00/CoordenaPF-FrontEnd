@@ -172,3 +172,65 @@
 .butfiltro:hover{
     background-color: #e0e0e0;
 }
+
+@media only screen and (max-width:800px) {
+    .main{
+        margin: 1%;
+    }
+
+    .boxTodasOcor{
+        flex-direction: column;
+    }
+
+    .boxOcor{
+        width: 98%;
+        margin: 1%;
+        margin-bottom: 2%;
+    }
+
+    .boxOcor2{
+        width: 98%;
+        margin: 1%;
+        margin-bottom: 2%;
+    }
+
+    .boxOcor3{
+        width: 98%;
+        margin: 1%;
+        margin-bottom: 2%;
+    }
+
+    .urgencia1{
+        font-size: 0.7rem;
+    }
+
+    .urgencia2{
+        font-size: 0.7rem;
+    }
+
+    .urgencia3{
+        font-size: 0.7rem;
+    }
+
+    .titulo{
+        text-align: center;
+    }
+
+    .pesquisafiltro{
+        flex-direction: column;
+    }
+
+    .pesquisa {
+        width: 100%;
+    }
+
+    .butfiltro{
+        padding: 5px;
+        margin-left: 0.5%;
+        margin-right: 0.5%;
+        margin-bottom: 3%;
+        width: 7.3vh;
+        font-size: 0.6rem;
+    }
+
+}

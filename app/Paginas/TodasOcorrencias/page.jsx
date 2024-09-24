@@ -9,7 +9,7 @@ import { IoSearch } from "react-icons/io5";
 
 export default function TodasOcor() {
     return (
-        <main>
+        <main className={styles.main}>
             <Header />
             <h1 className={styles.titulo} > Todas as ocorrências </h1>
             <br></br>
@@ -27,7 +27,17 @@ export default function TodasOcor() {
                     <button className={styles.butfiltro}> URGÊNCIA </button>
                 </div>
             </div>
-            <Ocorrencia />
+            <div className={styles.boxTodasOcor}>
+                <Ocorrencia />
+                <Ocorrencia />
+                <Ocorrencia />
+                <Ocorrencia />
+                <Ocorrencia />
+                <Ocorrencia />
+                <Ocorrencia />
+                <Ocorrencia />
+                <Ocorrencia />
+            </div>
             <br></br>
             <Link href="https://quizizz.com/" ><button className="botaovoltar"> Voltar </button></Link>
             <Footer />
