@@ -32,10 +32,10 @@ const inicial = () => {
 
 
 
+<Footer></Footer>
 
 
-
-            <Footer></Footer>
+           
         </div>
 
     )
