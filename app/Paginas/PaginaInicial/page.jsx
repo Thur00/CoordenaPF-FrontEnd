@@ -5,7 +5,10 @@ import React from "react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import InicialOcorrencia from "@/Components/InicialOcorrencias";
+import AndamentoOcorrencias from "@/Components/AndamentoOcorrencias";
 import Link from "next/link";
+import { CgAdd } from "react-icons/cg";
+import { CgFileDocument } from "react-icons/cg";
 
 
 const inicial = () => {
@@ -16,11 +19,12 @@ const inicial = () => {
             <br></br>
 
             <div className={styles.bt}>
-            <Link href="https://quizizz.com/" ><button  className={styles.b1}>Criar ocorrência </button></Link>
-            <Link href="https://quizizz.com/" ><button  className={styles.b1}>Ocorrência </button></Link>
-            <Link href="https://quizizz.com/" ><button  className={styles.b1}>Editar Dados </button></Link>
-   
+
+    <Link href="https://quizizz.com/" ><button  className={styles.b1}><CgAdd className={styles.icon}></CgAdd>Criar ocorrência </button></Link>
+    <Link href="https://quizizz.com/" ><button  className={styles.b1}><CgFileDocument className={styles.icon}></CgFileDocument>Ocorrência </button></Link>
+    <Link href="https://quizizz.com/" ><button  className={styles.b1}><CgAdd className={styles.icon}></CgAdd>Editar Dados </button></Link>
          
+          
 </div>
 
 <br></br>
@@ -32,7 +36,8 @@ const inicial = () => {
 
 <div className={styles.boxTodasOcor}>
 <InicialOcorrencia></InicialOcorrencia>
-
+<h2 className={styles.h4}>Andamento:</h2>
+<AndamentoOcorrencias></AndamentoOcorrencias>
 
 </div>
 </div>
