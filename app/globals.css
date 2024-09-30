@@ -41,31 +41,100 @@ a {
   }
 }
 
+<<<<<<< HEAD
 .Header{
   color:#ffffff;
+=======
+.Header {
+  color: #ffffff;
+>>>>>>> af11e72f9043c197e8a695ed3b2a98eb33355528
   background-color: #ff1100;
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content: space-between;
   height: 7vh;
   align-items: center;
-  }
-  
-  .Header div{
-    width: 10%;
-  }
-  
-  .icon{
-  font-size:xx-large;  
-  color:#ffffff;
+}
+
+.Header div {
+  width: 10%;
+}
+
+.icon {
+  font-size: xx-large;
   margin: 0 3% 0;
+}
+
+.icon2 {
+  font-size: xx-large;
+  margin: 10%
+}
+
+.footbox {
+  height: 10vh;
+  width: 120%;
+  background-color: #BC1016;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2vh 2vh;
+  position: fixed;
+  bottom: 0;
+}
+
+.textBox {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text1 {
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.text2 {
+  color: #ffffff;
+  width: 20%;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.botaovoltar {
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 100px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: large;
+}
+
+.botaovoltar:hover {
+  background-color: #BC1016;
+}
+
+@media only screen and (max-width:800px) {
+  .icon {
+    font-size: x-large;
+    margin: 0 1% 0
   }
-  
-  .icon2{
-    font-size:xx-large;  
+
+  .icon2 {
+    font-size: x-large;
     margin: 10%
   }
 
+<<<<<<< HEAD
   .footbox {
     height: 10vh;
     width: 100%;
@@ -75,63 +144,29 @@ a {
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
+=======
+  .Header {
+    font-size: small;
+>>>>>>> af11e72f9043c197e8a695ed3b2a98eb33355528
   }
-  
+
+  .Header div {
+    width: 20%;
+  }
+
+  .footbox {
+    height: 13vh;
+    width: 100%;
+  }
+
   .textBox {
     height: 100%;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
   }
-  
-  .text1 {
-    color: #ffffff;
-    font-size: 0.9rem;
-    text-align: center;
-  }
-  
+
   .text2 {
-    color: #ffffff;
-    width: 20%;
-    font-size: 0.9rem;
-    text-align: center;
-    font-weight: bold;
+    width: 30%;
   }
-  
-  @media only screen and (max-width:800px){
-    .icon{
-      font-size: x-large;
-      margin:0 1% 0
-    }
-    
-    .icon2{
-      font-size: x-large;
-      margin:10%
-    }
-
-    .Header{
-      font-size:small;
-    }
-
-    .Header div{
-      width: 20%;
-    }
-
-    .footbox {
-      height: 13vh;
-      width: 100%;
-    }
-  
-    .textBox {
-      height: 100%;
-      width: 100%;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-  
-    .text2 {
-      width: 30%;
-    }
-  }
+}
