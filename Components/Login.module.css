@@ -1,11 +1,14 @@
-.main{
+.main {
     background-image: url("../public/BackgroundImage.jpg");
     background-size: cover;
     background-position: center;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.box{
+.box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,35 +39,41 @@
     border: 2px solid #000;
     border-radius: 20px;
     border: none;
-    width: 100%;
+    width: 90%;
     height: 100%;
-    padding: 10px 14px;
+    padding: 10px 2px;
 }
 
-.pesquisa>button {
-    position: absolute;
+.pesquisa>input:focus {
+    outline: none;
+}
+
+.pesquisa>svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: fit-content;
     border: none;
     background-color: transparent;
-    left: 6px;
+    margin: 0 5px 0 7px;
     font-size: larger;
 }
 
-.titulobox{
+.titulobox {
     display: flex;
     flex-direction: row;
 }
 
-.texto1{
+.texto1 {
     font-weight: bold;
     margin-right: 5px;
 }
 
-.texto2{
+.texto2 {
     color: #ff1100;
 }
 
-.botao{
+.botao {
     margin: 2%;
     background-color: #ff1100;
     padding: 10px;
@@ -75,8 +84,8 @@
     color: white;
     transition-duration: 0.4s;
     font-size: large;
-  }
-  
-  .botao:hover{
-    background-color:#BC1016;
-  }
+}
+
+.botao:hover {
+    background-color: #BC1016;
+}
