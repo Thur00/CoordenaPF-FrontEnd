@@ -10,16 +10,24 @@
     margin-right: 82%;
   }
 
+.icon{
+  font-size: 120%;
+  margin-right: 5%;
+  
+}
+
   .bt{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
     align-items: center;
-
+    margin-right: 2%;
+    margin-left: 0%;
   
     
   }
+
 
   .b1{
     margin: 2%;
@@ -32,6 +40,11 @@
     color: white;
     transition-duration: 0.4s;
     font-size: large;
+    width: 110%;
+    align-items: center;
+ 
+    
+    
   }
 
   .b1:hover{
@@ -68,6 +81,14 @@
   font-size: 150%;
 }
 
+
+.titulo2{
+  padding: 1%;
+  margin-top: 2%;
+  margin-right: 2%;
+  font-size: 150%;
+}
+
 .boxTodasOcor{
   display: flex;
   flex-direction: row;
@@ -75,6 +96,7 @@
   flex-wrap:wrap;
 
 }
+
 
 .a{
   display: flex;
@@ -153,6 +175,20 @@
 
 .urgencia1{
   border: 2px solid red;
+  padding: 10px;
+  margin-bottom: 5%;
+  border-radius: 10px;
+}
+
+.urgencia2{
+  border: 2px solid yellow;
+  padding: 10px;
+  margin-bottom: 5%;
+  border-radius: 10px;
+}
+
+.urgencia3{
+  border: 2px solid green;
   padding: 10px;
   margin-bottom: 5%;
   border-radius: 10px;
@@ -257,7 +293,7 @@
   .b1{
     font-size: 1rem;
     padding: 5px;
-    width: 25%;
+    width: 100%;
 
   }
 
