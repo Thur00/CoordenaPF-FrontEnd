@@ -17,7 +17,7 @@ export default function Home() {
 <br></br>
  <div className={styles.bt}>
  <h1 className={styles.h1}>Usuário</h1>   
- <Link href="../Paginas/AdicionarUsuario" ><button className={styles.b1} >Adicionar usuário</button></Link>
+ <Link href="/Paginas/AdicionarUsuario" ><button className={styles.b1} >Adicionar usuário</button></Link>
 </div>
 
 <div className={styles.caixas}>
