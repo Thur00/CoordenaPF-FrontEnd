@@ -18,7 +18,7 @@
     
   }
 
-  .b1 {
+  /* .b1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -33,10 +33,52 @@
     margin-right: 8%;
     align-items: center;
     text-align: center;
+  } */
+
+  .b1 {
+    margin: 2%;
+    background-color: #ff1100;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    transition-duration: 0.4s;
+    font-size: large;
+    width: 70%;
+    margin-right: 8%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .b1:hover{
+    background-color:#BC1016;
+  }
+
+
+  .b2 {
+    margin: 2%;
+    background-color: #ff1100;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    transition-duration: 0.4s;
+    font-size: large;
+    margin-left: 510%;
+    
+
+  }
+
+  .b2:hover{
+    background-color:#BC1016;
   }
  
 
-  .b2 {
+  /* .b2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -49,7 +91,7 @@
     padding: 10px;
     cursor: pointer;
     margin-left: 70%;
-  }
+  } */
 
  
   .caixas{

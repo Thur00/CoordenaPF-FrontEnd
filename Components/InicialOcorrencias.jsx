@@ -25,6 +25,40 @@ function InicialOcorrencia() {
                 </div>
             </div>
             </Link>
+
+            <Link className={styles.boxOcor2} href="https://quizizz.com/">
+            <div className={styles.a}>
+                <div className={styles.titletematurma}>
+                    <p> Samara te solicitou nessa ocorrência </p>
+                    <p> Tema: Cyberbullying </p>
+                    <p> Turma: 9º ano A </p>
+                </div>
+                <div className={styles.urgenciadatastatus}>
+                    <div className={styles.urgencia1}><p> Pouco Urgente </p></div>
+                    <div className={styles.datastatus}>
+                        <p> 03/09/24 </p>
+                        <CiClock2 className={styles.icons}/>
+                    </div>
+                </div>
+            </div>
+            </Link>
+
+            <Link className={styles.boxOcor3} href="https://quizizz.com/">
+            <div className={styles.a}>
+                <div className={styles.titletematurma}>
+                    <p> Samara te solicitou nessa ocorrência </p>
+                    <p> Tema: Cyberbullying </p>
+                    <p> Turma: 9º ano A </p>
+                </div>
+                <div className={styles.urgenciadatastatus}>
+                    <div className={styles.urgencia1}><p> Urgente </p></div>
+                    <div className={styles.datastatus}>
+                        <p> 03/09/24 </p>
+                        <CiCircleAlert className={styles.icons}/>
+                    </div>
+                </div>
+            </div>
+            </Link>
         </>
     )
 }

@@ -20,8 +20,26 @@
   
     
   }
+
+  .b1{
+    margin: 2%;
+    background-color: #ff1100;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    transition-duration: 0.4s;
+    font-size: large;
+  }
+
+  .b1:hover{
+    background-color:#BC1016;
+  }
   
-  .b1 {
+  
+  /* .b1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,12 +49,17 @@
     color: white;
     padding: 14px;
     font-size:1.5rem;
+    transition-duration: 0.4s;
     cursor: pointer;
     width: 15%;
    
     
   }
 
+  .b1:hover{
+    background-color:#BC1016;
+  }
+   */
 
 .titulo{
   padding: 1%;

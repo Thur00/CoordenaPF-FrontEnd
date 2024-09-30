@@ -5,6 +5,7 @@ import React from "react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import InicialOcorrencia from "@/Components/InicialOcorrencias";
+import Link from "next/link";
 
 
 const inicial = () => {
@@ -15,9 +16,10 @@ const inicial = () => {
             <br></br>
 
             <div className={styles.bt}>
-    <button  className={styles.b1}>Criar ocorrência </button>
-    <button  className={styles.b1}>Ocorrência </button> 
-    <button  className={styles.b1}>Editar Dados </button>    
+            <Link href="https://quizizz.com/" ><button  className={styles.b1}>Criar ocorrência </button></Link>
+            <Link href="https://quizizz.com/" ><button  className={styles.b1}>Ocorrência </button></Link>
+            <Link href="https://quizizz.com/" ><button  className={styles.b1}>Editar Dados </button></Link>
+   
          
 </div>
 
@@ -30,8 +32,8 @@ const inicial = () => {
 
 <div className={styles.boxTodasOcor}>
 <InicialOcorrencia></InicialOcorrencia>
-<InicialOcorrencia></InicialOcorrencia>
-<InicialOcorrencia></InicialOcorrencia>
+
+
 </div>
 </div>
 
