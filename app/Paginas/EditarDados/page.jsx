@@ -12,28 +12,29 @@ function EditarDados() {
         <div>
             <Header></Header>
             <br></br>
+            <br></br>
 
             <h1 className={styles.title}>Editar Dados</h1>
 
             <div className={styles.divbutton}>
         <button className={styles.button}>
-        <Link href="/editaraluno">Editar Aluno</Link>
+        <Link href="/Paginas/AdicionarAluno">Editar Aluno</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/editaraspecto">Editar Aspecto</Link>
+        <Link href="/Paginas/AdicionarAspecto">Editar Aspecto</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/editartema">Editar Tema</Link>
+        <Link href="/Paginas/AdicionarTema">Editar Tema</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/editarstatus">Editar Status</Link>
+        <Link href="/Paginas/AdicionarStatus">Editar Status</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/editarurgencia">Editar Urgência</Link>
+        <Link href="/Paginas/AdicionarUrgencia">Editar Urgência</Link>
         </button>
 
         </div>
@@ -41,7 +42,10 @@ function EditarDados() {
         <br></br>
         <br></br>
         <br></br>
-
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <Footer></Footer>
 
         </div>
