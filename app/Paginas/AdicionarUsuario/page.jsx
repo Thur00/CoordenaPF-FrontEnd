@@ -55,7 +55,7 @@ const Usuarios = [
           <div className={styles.div1}>
           <h1 className={styles.h1}>Adicionar Usuário</h1>
           <button className={styles.voltar}>
-          <Link href="/Paginas/EditarDados">Voltar</Link>
+          <Link href="/Paginas/usuarios">Voltar</Link>
           </button>
           </div>
           <br></br>
