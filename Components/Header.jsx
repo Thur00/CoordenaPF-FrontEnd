@@ -12,7 +12,7 @@ function Header(props) {
                 <h1 className="tit">Coordena SESI</h1>
                 <div>
                     <Link className="icon2" href="https://quizizz.com/">
-                        <i class="fa-regular fa-bell"></i>
+                        <i class="fa-solid fa-bell"></i>
                     </Link>
 
                     <Link className="icon2" href="https://www.youtube.com/?app=desktop&hl=pt">

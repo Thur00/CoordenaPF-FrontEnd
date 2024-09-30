@@ -41,7 +41,7 @@ a {
   }
 }
 
-Header{
+.Header{
   color:#ffffff;
   background-color: #ff1100;
   display: flex;
@@ -75,7 +75,7 @@ Header{
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
-    position: relative;
+    position: fixed;
     bottom: 0;
   }
   
