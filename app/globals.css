@@ -41,13 +41,8 @@ a {
   }
 }
 
-<<<<<<< HEAD
 .Header{
   color:#ffffff;
-=======
-.Header {
-  color: #ffffff;
->>>>>>> af11e72f9043c197e8a695ed3b2a98eb33355528
   background-color: #ff1100;
   display: flex;
   flex-direction: row;
@@ -134,7 +129,6 @@ a {
     margin: 10%
   }
 
-<<<<<<< HEAD
   .footbox {
     height: 10vh;
     width: 100%;
@@ -144,10 +138,6 @@ a {
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
-=======
-  .Header {
-    font-size: small;
->>>>>>> af11e72f9043c197e8a695ed3b2a98eb33355528
   }
 
   .Header div {
