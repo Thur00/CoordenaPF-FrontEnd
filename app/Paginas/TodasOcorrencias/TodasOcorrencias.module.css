@@ -138,6 +138,9 @@
 }
 
 .pesquisa>button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     height: fit-content;
     border: none;
