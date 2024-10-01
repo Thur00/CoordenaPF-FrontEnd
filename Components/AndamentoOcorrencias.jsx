@@ -9,7 +9,7 @@ import { CiCircleAlert } from "react-icons/ci";
 function AndamentoOcorrencias() {
  return (
         <>
-            <Link className={styles.boxOcor} href="/Paginas/CriarOcorrencia">
+            <Link className={styles.boxOcor} href="/Paginas/TodasOcorrencias">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>
