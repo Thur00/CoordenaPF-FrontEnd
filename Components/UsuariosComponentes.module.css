@@ -12,8 +12,10 @@
   .bt {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    margin-right: 8%;
+    margin-left: 1%;
+
     
     
   }
@@ -46,10 +48,8 @@
     color: white;
     transition-duration: 0.4s;
     font-size: large;
-    width: 70%;
-    margin-right: 8%;
-    align-items: center;
-    text-align: center;
+    width: 100%;
+  
   }
 
   .b1:hover{

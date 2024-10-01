@@ -1,23 +1,24 @@
 "use client"
 
-import styles from "@/Components/UsuariosComponentes.module.css"
+import styles from "@/Components/UsuariosComponentes.module.css";
 import React from "react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import Usuario from "@/Components/UsuariosSamaraComponentes";
 import UsuarioAle from "@/Components/UsuarioAlessandraComponents";
-import Link from "next/link";
+import BotaoAdicionarUsuario from "@/Components/BotaoAdicionarUsuario";
 
 
-export default function Home() {
+export default function Usuario() {
   return (
 <div >
   
 <Header></Header>
 <br></br>
  <div className={styles.bt}>
- <h1 className={styles.h1}>Usuário</h1>   
- <Link href="/Paginas/AdicionarUsuario" ><button className={styles.b1} >Adicionar usuário</button></Link>
+
+<BotaoAdicionarUsuario></BotaoAdicionarUsuario>
+
 </div>
 
 <div className={styles.caixas}>
