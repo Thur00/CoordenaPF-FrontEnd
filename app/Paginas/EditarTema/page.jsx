@@ -9,8 +9,13 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-    { id: 1, tema: "bullying" },
-    { id: 2, tema: "merda" },
+    { id: 1, tema: "Comportamental" },
+    { id: 2, tema: "Emocional" },
+    { id: 3, tema: "Dano ao patrimônio" },
+    { id: 4, tema: "Escutativa" },
+    { id: 5, tema: "Processo de ensino e aprendizagem" },
+    
+
 ];
 
 const Tabela = () => {
@@ -107,9 +112,8 @@ const Tabela = () => {
                             name="tema"
                             value={formData.tema}
                             onChange={handleInputChange}
-                            placeholder="tema"
+                            placeholder="Tema"
                         />
-                        <br></br>
 
                     </div>
 

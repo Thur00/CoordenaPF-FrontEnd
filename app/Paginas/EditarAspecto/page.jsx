@@ -7,13 +7,14 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  { id: 1, nome: "Alice"},
-  { id: 2, nome: "Bob"},
+  { id: 1, tipodeaspecto: "Pedagógico"},
+  { id: 2, tipodeaspecto: "Disciplinar"},
+  { id: 3, tipodeaspecto: "Administrativo"},
 ];
 
 const Tabela = () => {
   const [data, setData] = useState(initialData);
-  const [formData, setFormData] = useState({ id: "", nome: ""});
+  const [formData, setFormData] = useState({ id: "", tipodeaspecto: ""});
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -26,7 +27,7 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", nome: "",});
+    setFormData({ id: "", tipodeaspecto: "",});
   };
 
   const handleEdit = (item) => {
@@ -45,12 +46,12 @@ const Tabela = () => {
       setData([...data, { ...formData, id: Number(formData.id) }]);
     }
     setShowForm(false);
-    setFormData({ id: "", nome: "" });
+    setFormData({ id: "", tipodeaspecto: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", nome: ""});
+    setFormData({ id: "", tipodeaspecto: ""});
   };
 
   return (
@@ -69,14 +70,14 @@ const Tabela = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NOME</th>
+              <th>Tipo de Aspecto</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.nome}</td>
+                <td>{item.tipodeaspecto}</td>
               </tr>
             ))}
           </tbody>
@@ -101,10 +102,10 @@ const Tabela = () => {
           <div className={styles.divinput}>
           <input
             type="text"
-            name="nome"
-            value={formData.nome}
+            name="tipodeaspecto"
+            value={formData.tipodeaspecto}
             onChange={handleInputChange}
-            placeholder="Nome"
+            placeholder="tipodeaspecto"
           />
           <br></br>
 
