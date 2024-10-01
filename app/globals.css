@@ -129,6 +129,10 @@ a {
     margin: 10%
   }
 
+  .tit{
+    font-size: 25px;
+  }
+
   .footbox {
     height: 10vh;
     width: 100%;
