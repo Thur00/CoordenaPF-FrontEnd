@@ -3,7 +3,7 @@
 import Footer from "@/Components/Footer"
 import Header from "@/Components/Header"
 import Ocorrencia from "@/Components/Ocorrencia"
-import styles from "@/Components/TodasOcorrencias.module.css"
+import styles from "./TodasOcorrencias.module.css"
 import Link from "next/link"
 import { IoSearch } from "react-icons/io5";
 
@@ -34,9 +34,7 @@ export default function TodasOcor() {
                 <Ocorrencia />
                 <Ocorrencia />
                 <Ocorrencia />
-                <Ocorrencia />
-                <Ocorrencia />
-                <Ocorrencia />
+                
             </div>
             <br></br>
             <Link href="https://quizizz.com/" ><button className="botaovoltar"> Voltar </button></Link>
