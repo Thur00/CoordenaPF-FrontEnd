@@ -9,13 +9,12 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  { rm: 25, nome: "Alice" , turma: "2 ano", ano: 2024},
-  { rm: 30, nome: "Bob", turma: "wsert", ano:1234  },
+  { id: 1, encaminhamento: "Alice"},
 ];
 
 const Tabela = () => {
   const [data, setData] = useState(initialData);
-  const [formData, setFormData] = useState({ rm: "", nome: "", turma: "", ano:"" });
+  const [formData, setFormData] = useState({ id: "", encaminhamento: ""});
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -28,7 +27,7 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ rm: "", nome: "", turma: "", ano:""  });
+    setFormData({ id: "", encaminhamento: ""});
   };
 
   const handleEdit = (item) => {
@@ -41,18 +40,18 @@ const Tabela = () => {
   const handleSave = () => {
     if (isEditing) {
       setData(
-        data.map((item) => (item.rm === editingItem.rm ? formData : item))
+        data.map((item) => (item.id === editingItem.id ? formData : item))
       );
     } else {
-      setData([...data, { ...formData, rm: Number(formData.rm) }]);
+      setData([...data, { ...formData, id: Number(formData.id) }]);
     }
     setShowForm(false);
-    setFormData({ rm: "", nome: "" , turma: "", ano:"" });
+    setFormData({ id: "", encaminhamento: ""});
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ rm: "", nome: "", turma: "", ano:"" });
+    setFormData({ id: "", encaminhamento: ""});
   };
 
   return (
@@ -61,7 +60,7 @@ const Tabela = () => {
         <br></br>
       <div>
       <div className={styles.div1}>
-         <h1 className={styles.h1}>Adicionar Aluno</h1>
+         <h1 className={styles.h1}>Adicionar Encaminhamento</h1>
                   <button className={styles.voltar}>
         <Link href="/Paginas/EditarDados">Voltar</Link>
         </button>         </div>
@@ -70,19 +69,15 @@ const Tabela = () => {
         <table border="1" className={styles.table}>
           <thead>
             <tr>
-              <th>RM</th>
-              <th>NOME</th>
-              <th>TURMA</th>
-              <th>ANO</th>
+              <th>ID</th>
+              <th>ENCAMINHAMENTO</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
-              <tr key={item.rm}>
-                <td>{item.rm}</td>
-                <td>{item.nome}</td>
-                <td>{item.turma}</td>
-                <td>{item.ano}</td>
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.encaminhamento}</td>
               </tr>
             ))}
           </tbody>
@@ -90,7 +85,7 @@ const Tabela = () => {
 
         <div className={styles.buttonContainer}>
           {data.map((item) => (
-            <button className={styles.editarbutton} key={item.rm} onClick={() => handleEdit(item)}>
+            <button className={styles.editarbutton} key={item.id} onClick={() => handleEdit(item)}>
               Editar
             </button>
           ))}
@@ -106,38 +101,13 @@ const Tabela = () => {
           <br></br>
           <div className={styles.divinput}>
           <input
-            type="number"
-            name="rm"
-            value={formData.rm}
-            onChange={handleInputChange}
-            placeholder="RM"
-          />
-          <br></br>
-          <input
             type="text"
-            name="nome"
-            value={formData.nome}
+            name="encaminhamento"
+            value={formData.encaminhamento}
             onChange={handleInputChange}
-            placeholder="Nome"
+            placeholder="Nome do encaminhamento"
           />
           <br></br>
-
-          <input
-            type="text"
-            name="turma"
-            value={formData.turma}
-            onChange={handleInputChange}
-            placeholder="Turma"
-          />
-          <br></br>
-
-<input
-            type="number"
-            name="ano"
-            value={formData.ano}
-            onChange={handleInputChange}
-            placeholder="Ano"
-          />
 
           </div>
 

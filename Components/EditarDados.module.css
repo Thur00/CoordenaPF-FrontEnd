@@ -32,6 +32,17 @@
 
 @media only screen and (max-width:800px) {
     .title {
+        margin-top: 12%;
+        font-size: x-large;
+    }
+
+    .button{
         font-size: larger;
+        margin-top: 10%;
+        width: 60%;
+    }
+
+    .divbutton {
+        margin-top: 12%;
     }
 }
