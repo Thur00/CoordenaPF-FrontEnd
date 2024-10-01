@@ -1,140 +1,127 @@
-"use client"
 
-import React from "react";
-import Link from "next/link";
-import styles from "@/Components/Adicionar.module.css";
+
+"use client";
+
+import { useState } from "react";
+import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Header from "@/Components/Header";
+import Link from "next/link"
 import Footer from "@/Components/Footer";
 
+const initialData = [
+    { id: 1, tema: "bullying" },
+    { id: 2, tema: "merda" },
+];
 
-const AddTema = () => {
+const Tabela = () => {
+    const [data, setData] = useState(initialData);
+    const [formData, setFormData] = useState({ id: "", tema: "" });
+    const [isEditing, setIsEditing] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [editingItem, setEditingItem] = useState(null);
 
-    function mostrar(elemento){
-        var display = document.getElementById(elemento).style.display;
-          if(display == "none"){
-              document.getElementById(elemento).style.display = 'block';
-          }else{
-              document.getElementById(elemento).style.display = 'none';
-          }    
-      }
-    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleAdd = () => {
+        setShowForm(true);
+        setIsEditing(false);
+        setFormData({ id: "", tema: "" });
+    };
+
+    const handleEdit = (item) => {
+        setShowForm(true);
+        setIsEditing(true);
+        setFormData(item);
+        setEditingItem(item);
+    };
+
+    const handleSave = () => {
+        if (isEditing) {
+            setData(
+                data.map((item) => (item.id === editingItem.id ? formData : item))
+            );
+        } else {
+            setData([...data, { ...formData, rm: Number(formData.rm) }]);
+        }
+        setShowForm(false);
+        setFormData({ id: "", tema: "" });
+    };
+
+    const handleCancel = () => {
+        setShowForm(false);
+        setFormData({ id: "", tema: "" });
+    };
+
     return (
         <div>
             <Header></Header>
             <br></br>
             <div>
-                <h1 className={styles.title}>Adicionar Tema</h1>
+                <div className={styles.div1}>
+                    <h1 className={styles.h1}>Editar Tema</h1>
+                    <button className={styles.voltar}>
+                        <Link href="/Paginas/EditarDados">Voltar</Link>
+                    </button>         </div>
                 <br></br>
-                <br></br>
+                <div className={styles.div2}>
+                    <table border="1" className={styles.table}>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TEMA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((item) => (
+                                <tr key={item.id}>
+                                    <td>{item.id}</td>
+                                    <td>{item.tema}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
 
-<div className={styles.divt}>
-    <div className={styles.table}>
-            <table>
-                <th>ID</th>
-                <th>TEMA</th>
-            </table>
+                    <div className={styles.buttonContainer}>
+                        {data.map((item) => (
+                            <button className={styles.editarbutton} key={item.rm} onClick={() => handleEdit(item)}>
+                                Editar
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
-    <br></br>
 
-<div className={styles.diveditar}> 
-        <button className={styles.editarbutton}>
-        <Link href="/editarrm">Editar</Link>
-        </button>
+            <button className={styles.addbutton} onClick={handleAdd}>Adicionar</button>
 
-        <button className={styles.editarbutton}>
-        <Link href="/editarnome">Editar</Link>
-        </button>
+            {showForm && (
+                <div>
+                    <h3>{isEditing ? "" : ""}</h3>
+                    <br></br>
+                    <div className={styles.divinput}>
 
-        <button className={styles.editarbutton}>
-        <Link href="/editarstatus">Editar</Link>
-        </button>
+                        <input
+                            type="text"
+                            name="tema"
+                            value={formData.tema}
+                            onChange={handleInputChange}
+                            placeholder="tema"
+                        />
+                        <br></br>
 
-        <button className={styles.editarbutton}>
-        <Link href="/editarurgencia">Editar</Link>
-        </button>
+                    </div>
 
-        <button className={styles.editarbutton}>
-        <Link href="/editarrm">Editar</Link>
-        </button>
-
-        <button className={styles.editarbutton}>
-        <Link href="/editarnome">Editar</Link>
-        </button>
-
-        <button className={styles.editarbutton}>
-        <Link href="/editarstatus">Editar</Link>
-        </button>
-
-        <button className={styles.editarbutton}>
-        <Link href="/editarurgencia">Editar</Link>
-        </button>
-
-        <button className={styles.editarbutton}>
-        <Link href="/editarrm">Editar</Link>
-        </button>
-
-        <button className={styles.editarbutton}>
-        <Link href="/editarnome">Editar</Link>
-        </button>
-
-        <button className={styles.editarbutton}>
-        <Link href="/editarstatus">Editar</Link>
-        </button>
-
-        <button className={styles.editarbutton}>
-        <Link href="/editarurgencia">Editar</Link>
-        </button>
+                    <div className={styles.salecanbutton}>
+                        <button className={styles.salvarbutton} onClick={handleSave}>Salvar</button>
+                        <button className={styles.cancelarbutton} onClick={handleCancel}>Cancelar</button>
+                    </div>
+                </div>
+            )}
+            <Footer></Footer>
         </div>
+    );
+};
 
-        </div>
-    <br></br>
-    <br></br>
-
-
-        <div>
-        <button onclick={mostrar}>Adicionar</button>
-        </div>
-        <form method="post" className={styles.seuformulario}>
-        <input className={styles.input} type="number" id="rm" placeholder="RM" />
-
-        <input className={styles.input} type="text" id="nome" placeholder="Nome" />
-
-        <input className={styles.input} type="text" id="turma" placeholder="Turma" />
-
-        <input className={styles.input} type="text" id="responsável" placeholder="Responsável" />
-
-        <input className={styles.input} type="number" id="ano" placeholder="Ano" />
-        </form>
-        <br></br>
-
-
-        <div className={styles.divinput}>
-        <input className={styles.input} type="text" id="rm" placeholder="Nome do Tema" />
-        </div>
-        <br></br>
-<br></br>
-
-
-        <div>
-        <button className={styles.salvarbutton}>
-        <Link href="/editaraluno">Salvar</Link>
-        </button>
-
-        <button className={styles.cancelarbutton}>
-        <Link href="/editaraluno">Cancelar</Link>
-        </button>
-        </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        </div>
-
-        <Footer></Footer>
-
-        </div>
-
-
-    )
-}
-
-export default AddTema;
+export default Tabela;

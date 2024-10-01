@@ -18,7 +18,7 @@ function EditarDados() {
 
             <div className={styles.divbutton}>
         <button className={styles.button}>
-        <Link href="/Paginas/AdicionarAluno">Editar Aluno</Link>
+        <Link href="/Paginas/EditarAluno">Editar Aluno</Link>
         </button>
 
         <button className={styles.button}>

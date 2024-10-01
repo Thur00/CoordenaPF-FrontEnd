@@ -7,13 +7,13 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  { id: 1, nome: "Alice"},
-  { id: 2, nome: "Bob"},
+  { rm: 25, nome: "Alice" , turma: "2 ano", ano: 2024},
+  { rm: 30, nome: "Bob", turma: "wsert", ano:1234  },
 ];
 
 const Tabela = () => {
   const [data, setData] = useState(initialData);
-  const [formData, setFormData] = useState({ id: "", nome: ""});
+  const [formData, setFormData] = useState({ rm: "", nome: "", turma: "", ano:"" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -26,7 +26,7 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", nome: "",});
+    setFormData({ rm: "", nome: "", turma: "", ano:""  });
   };
 
   const handleEdit = (item) => {
@@ -39,18 +39,18 @@ const Tabela = () => {
   const handleSave = () => {
     if (isEditing) {
       setData(
-        data.map((item) => (item.id === editingItem.id ? formData : item))
+        data.map((item) => (item.rm === editingItem.rm ? formData : item))
       );
     } else {
-      setData([...data, { ...formData, id: Number(formData.id) }]);
+      setData([...data, { ...formData, rm: Number(formData.rm) }]);
     }
     setShowForm(false);
-    setFormData({ id: "", nome: "" });
+    setFormData({ rm: "", nome: "" , turma: "", ano:"" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", nome: ""});
+    setFormData({ rm: "", nome: "", turma: "", ano:"" });
   };
 
   return (
@@ -59,7 +59,7 @@ const Tabela = () => {
         <br></br>
       <div>
       <div className={styles.div1}>
-         <h1 className={styles.h1}>Editar Aspecto</h1>
+         <h1 className={styles.h1}>Editar Aluno</h1>
                   <button className={styles.voltar}>
         <Link href="/Paginas/EditarDados">Voltar</Link>
         </button>         </div>
@@ -68,15 +68,19 @@ const Tabela = () => {
         <table border="1" className={styles.table}>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>RM</th>
               <th>NOME</th>
+              <th>TURMA</th>
+              <th>ANO</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
+              <tr key={item.rm}>
+                <td>{item.rm}</td>
                 <td>{item.nome}</td>
+                <td>{item.turma}</td>
+                <td>{item.ano}</td>
               </tr>
             ))}
           </tbody>
@@ -84,7 +88,7 @@ const Tabela = () => {
 
         <div className={styles.buttonContainer}>
           {data.map((item) => (
-            <button className={styles.editarbutton} key={item.id} onClick={() => handleEdit(item)}>
+            <button className={styles.editarbutton} key={item.rm} onClick={() => handleEdit(item)}>
               Editar
             </button>
           ))}
@@ -100,6 +104,14 @@ const Tabela = () => {
           <br></br>
           <div className={styles.divinput}>
           <input
+            type="number"
+            name="rm"
+            value={formData.rm}
+            onChange={handleInputChange}
+            placeholder="RM"
+          />
+          <br></br>
+          <input
             type="text"
             name="nome"
             value={formData.nome}
@@ -107,6 +119,23 @@ const Tabela = () => {
             placeholder="Nome"
           />
           <br></br>
+
+          <input
+            type="text"
+            name="turma"
+            value={formData.turma}
+            onChange={handleInputChange}
+            placeholder="Turma"
+          />
+          <br></br>
+
+<input
+            type="number"
+            name="ano"
+            value={formData.ano}
+            onChange={handleInputChange}
+            placeholder="Ano"
+          />
 
           </div>
 

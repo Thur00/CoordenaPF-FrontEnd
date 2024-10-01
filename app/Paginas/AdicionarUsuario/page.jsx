@@ -13,7 +13,7 @@ const Usuarios = [
   
   const Input = () => {
     const [data, setData] = useState(Usuarios);
-    const [focargoData, setFocargoData] = useState({ cargo: "", nome: "", email: "", ano: "" });
+    const [focargoData, setFocargoData] = useState({ cargo: "", nome: "", email: "", ano: "", senha: "", cpf: "" });
     const [isEditing, setIsEditing] = useState(false);
     const [showFocargo, setShowFocargo] = useState(false);
   
@@ -25,7 +25,7 @@ const Usuarios = [
     const handleAdd = () => {
       setShowFocargo(true);
       setIsEditing(false);
-      setFocargoData({ cargo: "", nome: "", email: "", ano: ""});
+      setFocargoData({ cargo: "", nome: "", email: "", ano: "", senha: "", cpf: ""});
     };
   
     const handleEdit = (item) => {
@@ -45,7 +45,7 @@ const Usuarios = [
   
     const handleCancel = () => {
       setShowFocargo(false);
-      setFocargoData({ cargo: "", nome: "", email: "", ano: ""});
+      setFocargoData({ cargo: "", nome: "", email: "", senha: "", cpf: ""});
     };
   
     return (
@@ -95,7 +95,7 @@ const Usuarios = [
             <input
               type="text"
               name="senha"
-              value={focargoData.email}
+              value={focargoData.senha}
               onChange={handleInputChange}
               placeholder="Senha"
             />
@@ -103,7 +103,7 @@ const Usuarios = [
   <input
               type="number"
               name="cpf"
-              value={focargoData.ano}
+              value={focargoData.cpf}
               onChange={handleInputChange}
               placeholder="CPF"
             />
