@@ -9,7 +9,7 @@ import UsuarioAle from "@/Components/UsuarioAlessandraComponents";
 import BotaoAdicionarUsuario from "@/Components/BotaoAdicionarUsuario";
 
 
-export default function Usuario() {
+export default function Usu() {
   return (
 <div >
   
