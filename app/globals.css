@@ -41,8 +41,8 @@ a {
   }
 }
 
-.Header {
-  color: #ffffff;
+.Header{
+  color:#ffffff;
   background-color: #ff1100;
   display: flex;
   flex-direction: row;
@@ -67,7 +67,7 @@ a {
 
 .footbox {
   height: 10vh;
-  width: 120%;
+  width: 110%;
   background-color: #BC1016;
   display: flex;
   flex-direction: row;
@@ -129,8 +129,15 @@ a {
     margin: 10%
   }
 
-  .Header {
-    font-size: small;
+  .footbox {
+    height: 10vh;
+    width: 100%;
+    background-color: #BC1016;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2vh 2vh;
   }
 
   .Header div {

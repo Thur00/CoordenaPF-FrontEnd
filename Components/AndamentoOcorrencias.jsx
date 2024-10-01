@@ -9,7 +9,7 @@ import { CiCircleAlert } from "react-icons/ci";
 function AndamentoOcorrencias() {
  return (
         <>
-            <Link className={styles.boxOcor} href="https://quizizz.com/">
+            <Link className={styles.boxOcor} href="/Paginas/CriarOcorrencia">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>
@@ -26,7 +26,7 @@ function AndamentoOcorrencias() {
             </div>
             </Link>
 
-            <Link className={styles.boxOcor2} href="https://quizizz.com/">
+            <Link className={styles.boxOcor2} href="/Paginas/CriarOcorrencia">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>
@@ -43,7 +43,7 @@ function AndamentoOcorrencias() {
             </div>
             </Link>
 
-            <Link className={styles.boxOcor3} href="https://quizizz.com/">
+            <Link className={styles.boxOcor3} href="/Paginas/CriarOcorrencia">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>

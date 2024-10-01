@@ -2,33 +2,55 @@
 
 import React from "react";
 import Link from "next/link";
+import Footer from "@/Components/Footer";
+import Header from "@/Components/Header";
+import styles from "@/Components/EditarDados.module.css"
 
 
-const EditarDados = () => {
+function EditarDados() {
     return (
         <div>
-        <button>
-        <Link href="/editaraluno">Editar Aluno</Link>
+            <Header></Header>
+            <br></br>
+            <br></br>
+
+            <h1 className={styles.title}>Editar Dados</h1>
+
+            <div className={styles.divbutton}>
+        <button className={styles.button}>
+        <Link href="/Paginas/EditarAluno">Editar Aluno</Link>
         </button>
 
-        <button>
-        <Link href="/editaraspecto">Editar Aspecto</Link>
+        <button className={styles.button}>
+        <Link href="/Paginas/AdicionarAspecto">Editar Aspecto</Link>
         </button>
 
-        <button>
-        <Link href="/editartema">Editar Tema</Link>
+        <button className={styles.button}>
+        <Link href="/Paginas/AdicionarTema">Editar Tema</Link>
         </button>
 
-        <button>
-        <Link href="/editarstatus">Editar Status</Link>
+        <button className={styles.button}>
+        <Link href="/Paginas/AdicionarStatus">Editar Status</Link>
         </button>
 
-        <button>
-        <Link href="/editarurgencia">Editar Urgência</Link>
+        <button className={styles.button}>
+        <Link href="/Paginas/AdicionarUrgencia">Editar Urgência</Link>
         </button>
-
 
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <Footer></Footer>
+
+        </div>
+
+
 
     )
 }
