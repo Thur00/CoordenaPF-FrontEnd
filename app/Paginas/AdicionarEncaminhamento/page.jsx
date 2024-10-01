@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { useState } from "react";
@@ -7,13 +9,12 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  { id: 1, nome: "Alice"},
-  { id: 2, nome: "Bob"},
+  { id: 1, encaminhamento: "Alice"},
 ];
 
 const Tabela = () => {
   const [data, setData] = useState(initialData);
-  const [formData, setFormData] = useState({ id: "", nome: ""});
+  const [formData, setFormData] = useState({ id: "", encaminhamento: ""});
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -26,7 +27,7 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", nome: "",});
+    setFormData({ id: "", encaminhamento: ""});
   };
 
   const handleEdit = (item) => {
@@ -45,12 +46,12 @@ const Tabela = () => {
       setData([...data, { ...formData, id: Number(formData.id) }]);
     }
     setShowForm(false);
-    setFormData({ id: "", nome: "" });
+    setFormData({ id: "", encaminhamento: ""});
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", nome: ""});
+    setFormData({ id: "", encaminhamento: ""});
   };
 
   return (
@@ -59,7 +60,7 @@ const Tabela = () => {
         <br></br>
       <div>
       <div className={styles.div1}>
-         <h1 className={styles.h1}>Editar Aspecto</h1>
+         <h1 className={styles.h1}>Adicionar Encaminhamento</h1>
                   <button className={styles.voltar}>
         <Link href="/Paginas/EditarDados">Voltar</Link>
         </button>         </div>
@@ -69,14 +70,14 @@ const Tabela = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NOME</th>
+              <th>ENCAMINHAMENTO</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.nome}</td>
+                <td>{item.encaminhamento}</td>
               </tr>
             ))}
           </tbody>
@@ -101,10 +102,10 @@ const Tabela = () => {
           <div className={styles.divinput}>
           <input
             type="text"
-            name="nome"
-            value={formData.nome}
+            name="encaminhamento"
+            value={formData.encaminhamento}
             onChange={handleInputChange}
-            placeholder="Nome"
+            placeholder="Nome do encaminhamento"
           />
           <br></br>
 
