@@ -18,23 +18,23 @@ function EditarDados() {
 
             <div className={styles.divbutton}>
         <button className={styles.button}>
-        <Link href="/Paginas/AdicionarAluno">Editar Aluno</Link>
+        <Link href="/Paginas/EditarAluno">Editar Aluno</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/Paginas/AdicionarAspecto">Editar Aspecto</Link>
+        <Link href="/Paginas/EditarAspecto">Editar Aspecto</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/Paginas/AdicionarTema">Editar Tema</Link>
+        <Link href="/Paginas/EditarTema">Editar Tema</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/Paginas/AdicionarStatus">Editar Status</Link>
+        <Link href="/Paginas/EditarStatus">Editar Status</Link>
         </button>
 
         <button className={styles.button}>
-        <Link href="/Paginas/AdicionarUrgencia">Editar Urgência</Link>
+        <Link href="/Paginas/EditarUrgencia">Editar Urgência</Link>
         </button>
 
         </div>
