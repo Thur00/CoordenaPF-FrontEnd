@@ -13,6 +13,7 @@ function Login() {
                     <h1 className={styles.texto2}>SESI</h1>
                 </div>
 
+                <div className={styles.divPesquisa}>
 
                 <div className={styles.pesquisa}>
                     <IoMdPerson />
@@ -22,6 +23,8 @@ function Login() {
                 <div className={styles.pesquisa}>
                     <PiLockKeyFill />
                     <input  type="password" name="senha" id="senha" placeholder="Senha" />
+                
+                </div>
                 
                 </div>
 
