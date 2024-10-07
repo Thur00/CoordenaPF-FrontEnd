@@ -7,8 +7,8 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  {  id: 2, urgencia: "fumou um beck com a secretaria", cor: "verde" },
-  {  id: 1, urgencia: "chupou o proprio pau", cor: "vermelho"  },
+  {  id: 1, urgencia: "Pouco Importante", cor: "verde" },
+  {  id: 2, urgencia: "Muito Importante", cor: "vermelho"  },
 ];
 
 const Tabela = () => {
