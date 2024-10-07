@@ -56,7 +56,6 @@ const Tabela = () => {
 
   return (
     <div>
-        <Header></Header>
         <br></br>
       <div>
       <div className={styles.div1}>
@@ -117,7 +116,6 @@ const Tabela = () => {
           </div>
         </div>
       )}
-      <Footer></Footer>
     </div>
   );
 };

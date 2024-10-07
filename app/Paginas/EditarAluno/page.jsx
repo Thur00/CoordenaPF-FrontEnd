@@ -3,12 +3,17 @@
 import { useEffect, useState } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Header from "@/Components/Header";
-import Link from "next/link"
+import Link from "next/link";
 import Footer from "@/Components/Footer";
 
 const Tabela = () => {
   const [data, setData] = useState([]);
-  const [formData, setFormData] = useState({ rm: "", nome: "", turma: "", ano: "" });
+  const [formData, setFormData] = useState({
+    rm: "",
+    nome: "",
+    turma: "",
+    ano: "",
+  });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -17,22 +22,19 @@ const Tabela = () => {
 
   useEffect(() => {
     const getAlunos = async () => {
-
       try {
-        const resposta = await fetch(
-          `http://localhost:3001/alunos`
-        )
-        const data1 = await resposta.json()
+        const resposta = await fetch(`http://localhost:3001/alunos`);
+        const data1 = await resposta.json();
+        console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
         setData(data1);
-        setError(null)
+        setError(null);
       } catch (error) {
-        console.error("Erro na busca alunos", error)
-        setError("Falha na busca alunos. Tente novamente.")
+        console.error("Erro na busca alunos", error);
+        setError("Falha na busca alunos. Tente novamente.");
       }
     };
     getAlunos();
-  }, [])
-
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,14 +73,14 @@ const Tabela = () => {
 
   return (
     <div>
-      <Header></Header>
       <br></br>
       <div>
         <div className={styles.div1}>
           <h1 className={styles.h1}>Editar Aluno</h1>
           <button className={styles.voltar}>
             <Link href="/Paginas/EditarDados">Voltar</Link>
-          </button>         </div>
+          </button>{" "}
+        </div>
         <br></br>
         <div className={styles.div2}>
           <table border="1" className={styles.table}>
@@ -91,20 +93,30 @@ const Tabela = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => (
-                <tr key={item.rm}>
-                  <td>{item.rm}</td>
-                  <td>{item.nome}</td>
-                  <td>{item.turma}</td>
-                  <td>{item.ano}</td>
+              {data.length > 0 ? (
+                data.map((item) => (
+                  <tr key={item.RM}>
+                    <td>{item.RM}</td>
+                    <td>{item.Nome}</td>
+                    <td>{item.Turma}</td>
+                    <td>{item.Ano}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">Nenhum aluno encontrado.</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
 
           <div className={styles.buttonContainer}>
             {data.map((item) => (
-              <button className={styles.editarbutton} key={item.rm} onClick={() => handleEdit(item)}>
+              <button
+                className={styles.editarbutton}
+                key={item.rm}
+                onClick={() => handleEdit(item)}
+              >
                 Editar
               </button>
             ))}
@@ -112,7 +124,9 @@ const Tabela = () => {
         </div>
       </div>
 
-      <button className={styles.addbutton} onClick={handleAdd}>Adicionar</button>
+      <button className={styles.addbutton} onClick={handleAdd}>
+        Adicionar
+      </button>
 
       {showForm && (
         <div>
@@ -152,16 +166,18 @@ const Tabela = () => {
               onChange={handleInputChange}
               placeholder="Ano"
             />
-
           </div>
 
           <div className={styles.salecanbutton}>
-            <button className={styles.salvarbutton} onClick={handleSave}>Salvar</button>
-            <button className={styles.cancelarbutton} onClick={handleCancel}>Cancelar</button>
+            <button className={styles.salvarbutton} onClick={handleSave}>
+              Salvar
+            </button>
+            <button className={styles.cancelarbutton} onClick={handleCancel}>
+              Cancelar
+            </button>
           </div>
         </div>
       )}
-      <Footer></Footer>
     </div>
   );
 };
