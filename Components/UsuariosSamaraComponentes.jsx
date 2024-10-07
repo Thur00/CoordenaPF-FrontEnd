@@ -5,7 +5,7 @@ import Link from "next/link";
 
 
 
-export default function Usuario() {
+export default function UsuSamara() {
     return (
     
 

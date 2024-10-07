@@ -7,13 +7,13 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  { id: 1, nome: "Alice"},
-  { id: 2, nome: "Bob"},
+  {  id: 2, urgencia: "fumou um beck com a secretaria", cor: "verde" },
+  {  id: 1, urgencia: "chupou o proprio pau", cor: "vermelho"  },
 ];
 
 const Tabela = () => {
   const [data, setData] = useState(initialData);
-  const [formData, setFormData] = useState({ id: "", nome: ""});
+  const [formData, setFormData] = useState({ id: "", urgencia: "", cor: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -26,7 +26,7 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", nome: "",});
+    setFormData({ id: "", urgencia: "", cor: "" });
   };
 
   const handleEdit = (item) => {
@@ -45,12 +45,12 @@ const Tabela = () => {
       setData([...data, { ...formData, id: Number(formData.id) }]);
     }
     setShowForm(false);
-    setFormData({ id: "", nome: "" });
+    setFormData({ id: "", urgencia: "" , cor: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", nome: ""});
+    setFormData({ id: "", urgencia: "", cor: "" });
   };
 
   return (
@@ -59,7 +59,7 @@ const Tabela = () => {
         <br></br>
       <div>
       <div className={styles.div1}>
-         <h1 className={styles.h1}>Editar Aspecto</h1>
+         <h1 className={styles.h1}>Editar Aluno</h1>
                   <button className={styles.voltar}>
         <Link href="/Paginas/EditarDados">Voltar</Link>
         </button>         </div>
@@ -69,14 +69,16 @@ const Tabela = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NOME</th>
+              <th>URGENCIA</th>
+              <th>COR</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.nome}</td>
+                <td>{item.urgencia}</td>
+                <td>{item.cor}</td>
               </tr>
             ))}
           </tbody>
@@ -101,10 +103,19 @@ const Tabela = () => {
           <div className={styles.divinput}>
           <input
             type="text"
-            name="nome"
-            value={formData.nome}
+            name="urgencia"
+            value={formData.urgencia}
             onChange={handleInputChange}
-            placeholder="Nome"
+            placeholder="Urgencia"
+          />
+          <br></br>
+
+          <input
+            type="text"
+            name="cor"
+            value={formData.cor}
+            onChange={handleInputChange}
+            placeholder="Cor"
           />
           <br></br>
 

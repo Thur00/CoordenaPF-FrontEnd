@@ -51,7 +51,7 @@
     display: flex;
     justify-content: center;
     background-color: #ff1100;
-    margin-top: 3%;
+    margin-top: 2%;
     margin-left: 10%;
     border-radius: 10px;
     border: 2px;
@@ -80,7 +80,7 @@
 
 .salvarbutton {
     background-color: #ff1100;
-    margin-top: 3%;
+    margin-top: 2%;
     border-radius: 10px;
     border: 2px;
     width: 10%;
@@ -94,7 +94,7 @@
 
 .cancelarbutton {
     background-color: #ff1100;
-    margin-top: 3%;
+    margin-top: 2%;
     border-radius: 10px;
     border: 2px;
     width: 10%;
@@ -114,7 +114,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 0.5%;
     font-size: large;
-    margin-left: 64%;
+    margin-left: 68%;
 
 }
 

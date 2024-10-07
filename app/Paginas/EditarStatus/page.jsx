@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useState } from "react";
@@ -9,13 +7,13 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-    { id: 1, tema: "bullying" },
-    { id: 2, tema: "merda" },
+    { id: 1, categoria: "concluido", icone: "sla" },
+    { id: 2, categoria: "em andamento", icone: "naosei" },
 ];
 
 const Tabela = () => {
     const [data, setData] = useState(initialData);
-    const [formData, setFormData] = useState({ id: "", tema: "" });
+    const [formData, setFormData] = useState({ id: "", categoria: "", icone: "" });
     const [isEditing, setIsEditing] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [editingItem, setEditingItem] = useState(null);
@@ -28,7 +26,7 @@ const Tabela = () => {
     const handleAdd = () => {
         setShowForm(true);
         setIsEditing(false);
-        setFormData({ id: "", tema: "" });
+        setFormData({ id: "", categoria: "", icone: "" });
     };
 
     const handleEdit = (item) => {
@@ -44,15 +42,15 @@ const Tabela = () => {
                 data.map((item) => (item.id === editingItem.id ? formData : item))
             );
         } else {
-            setData([...data, { ...formData, rm: Number(formData.rm) }]);
+            setData([...data, { ...formData, id: Number(formData.id) }]);
         }
         setShowForm(false);
-        setFormData({ id: "", tema: "" });
+        setFormData({ id: "", categoria: "", icone: "" });
     };
 
     const handleCancel = () => {
         setShowForm(false);
-        setFormData({ id: "", tema: "" });
+        setFormData({ id: "", categoria: "", icone: "" });
     };
 
     return (
@@ -61,7 +59,7 @@ const Tabela = () => {
             <br></br>
             <div>
                 <div className={styles.div1}>
-                    <h1 className={styles.h1}>Editar Tema</h1>
+                    <h1 className={styles.h1}>Editar Aluno</h1>
                     <button className={styles.voltar}>
                         <Link href="/Paginas/EditarDados">Voltar</Link>
                     </button>         </div>
@@ -71,14 +69,16 @@ const Tabela = () => {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>TEMA</th>
+                                <th>CATEGORIA</th>
+                                <th>ICONE</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data.map((item) => (
                                 <tr key={item.id}>
                                     <td>{item.id}</td>
-                                    <td>{item.tema}</td>
+                                    <td>{item.categoria}</td>
+                                    <td>{item.icone}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -86,7 +86,7 @@ const Tabela = () => {
 
                     <div className={styles.buttonContainer}>
                         {data.map((item) => (
-                            <button className={styles.editarbutton} key={item.rm} onClick={() => handleEdit(item)}>
+                            <button className={styles.editarbutton} key={item.id} onClick={() => handleEdit(item)}>
                                 Editar
                             </button>
                         ))}
@@ -101,13 +101,22 @@ const Tabela = () => {
                     <h3>{isEditing ? "" : ""}</h3>
                     <br></br>
                     <div className={styles.divinput}>
+                        <br></br>
+                        <input
+                            type="text"
+                            name="categoria"
+                            value={formData.categoria}
+                            onChange={handleInputChange}
+                            placeholder="Categoria"
+                        />
+                        <br></br>
 
                         <input
                             type="text"
-                            name="tema"
-                            value={formData.tema}
+                            name="icone"
+                            value={formData.icone}
                             onChange={handleInputChange}
-                            placeholder="tema"
+                            placeholder="Icone"
                         />
                         <br></br>
 
