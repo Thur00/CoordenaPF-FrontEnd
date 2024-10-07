@@ -55,8 +55,36 @@
   background-color: #BC1016;
 }
 
+.link {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .b2 {
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: large;
+  margin-left: 1030%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.b2:hover {
+  background-color: #BC1016;
+}
+
+
+.b21 {
   margin: 2%;
   background-color: #ff1100;
   padding: 10px;
@@ -71,6 +99,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .b2:hover {
@@ -174,5 +203,11 @@
     font-size: 1rem;
   }
 
+  .b21 {
+    margin-left: 15%;
+    width: 85%;
+    font-size: 1rem;
+    margin-top: 0.8rem;
+  }
 
 }
