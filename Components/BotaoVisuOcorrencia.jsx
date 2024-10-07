@@ -8,8 +8,8 @@ function BotaoVisualizar() {
  return (
         <>
            
-    <Link href="/Paginas/AdicionarStatus" ><button  className={styles.b1}>Mudar Status</button></Link>
-    <Link href="/Paginas/Usuario" ><button  className={styles.b1}>Solicitar</button></Link>
+    <Link href="/Paginas/EditarStatus" ><button  className={styles.b1}>Mudar Status</button></Link>
+    <Link href="/Paginas/Usuarios" ><button  className={styles.b1}>Solicitar</button></Link>
 
          
           
