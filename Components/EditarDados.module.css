@@ -40,9 +40,10 @@
         font-size: larger;
         margin-top: 10%;
         width: 60%;
+        padding: 3%;
     }
 
     .divbutton {
-        margin-top: 12%;
+        margin-top: 5%;
     }
 }
