@@ -108,7 +108,7 @@ const Usuarios = [
               placeholder="CPF:"
             />
             <div className={styles.salecanbutton}>
-            <button className={styles.cancelarbutton} onClick={handleSave}>Salvar</button>
+            <button className={styles.cancelarbutton} onClick={handleAdd}>Salvar</button>
             <button className={styles.cancelarbutton} onClick={handleCancel}>Cancelar</button>
           
             </div>

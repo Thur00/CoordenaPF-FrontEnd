@@ -7,8 +7,6 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  { rm: 25, nome: "Alice" , turma: "2 ano", ano: 2024},
-  { rm: 30, nome: "Bob", turma: "wsert", ano:1234  },
 ];
 
 const Tabela = () => {
