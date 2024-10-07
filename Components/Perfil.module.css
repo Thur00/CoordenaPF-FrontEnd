@@ -1,0 +1,20 @@
+.tit{
+    margin: 3%;
+}
+
+.botao {
+    margin: 2%;
+    background-color: #ff1100;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 100px;
+    border: none;
+    color: white;
+    transition-duration: 0.4s;
+    font-size: large;
+}
+
+.botao:hover {
+    background-color: #BC1016;
+}
