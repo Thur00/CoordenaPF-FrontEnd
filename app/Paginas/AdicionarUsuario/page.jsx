@@ -70,7 +70,7 @@ const Usuarios = [
               name="cargo"
               value={focargoData.cargo}
               onChange={handleInputChange}
-              placeholder="Cargo"
+              placeholder="Cargo:"
             />
             <br></br>
   
@@ -79,7 +79,7 @@ const Usuarios = [
               name="nome"
               value={focargoData.nome}
               onChange={handleInputChange}
-              placeholder="Nome"
+              placeholder="Nome:"
             />
             <br></br>
   
@@ -88,7 +88,7 @@ const Usuarios = [
               name="email"
               value={focargoData.email}
               onChange={handleInputChange}
-              placeholder="E-mail"
+              placeholder="E-mail:"
             />
             <br></br>
   
@@ -97,7 +97,7 @@ const Usuarios = [
               name="senha"
               value={focargoData.senha}
               onChange={handleInputChange}
-              placeholder="Senha"
+              placeholder="Senha:"
             />
             <br></br>
   <input
@@ -105,10 +105,10 @@ const Usuarios = [
               name="cpf"
               value={focargoData.cpf}
               onChange={handleInputChange}
-              placeholder="CPF"
+              placeholder="CPF:"
             />
             <div className={styles.salecanbutton}>
-            <button className={styles.cancelarbutton} onClick={handleAdd}>Salvar</button>
+            <button className={styles.cancelarbutton} onClick={handleSave}>Salvar</button>
             <button className={styles.cancelarbutton} onClick={handleCancel}>Cancelar</button>
           
             </div>
