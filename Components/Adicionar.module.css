@@ -1,6 +1,7 @@
 .h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: 10%;
+    font-size: x-large;
 }
 
 .table {
@@ -128,7 +129,8 @@
 
 @media only screen and (max-width:800px) {
     .h1 {
-        font-size: medium;
+        font-size: large;
+        margin-top: 2%;
     }
 
     .table th,
@@ -140,8 +142,10 @@
     }
 
     .editarbutton {
-        width: 80%;
+        width: 100%;
         font-size: medium;
+        padding: 15%;
+
     }
 
     .div1{
@@ -152,21 +156,28 @@
     .voltar {
         width: 22%;
         font-size: medium;
-        margin-left: 33%;
+        margin-left: 39%;
+        padding: 1.5%;
+
     }
 
     .addbutton {
         width: 22%;
         font-size: medium;
+        padding: 1.5%;
     }
 
     .salvarbutton {
         width: 22%;
         font-size: medium;
+        padding: 1.5%;
+
     }
 
     .cancelarbutton {
         width: 22%;
         font-size: medium;
+        padding: 1.5%;
+
     }
 }

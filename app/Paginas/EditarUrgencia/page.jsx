@@ -7,8 +7,8 @@ import Link from "next/link"
 import Footer from "@/Components/Footer";
 
 const initialData = [
-  {  id: 2, urgencia: "fumou um beck com a secretaria", cor: "verde" },
-  {  id: 1, urgencia: "chupou o proprio pau", cor: "vermelho"  },
+  {  id: 1, urgencia: "Pouco Urgente", cor: "verde" },
+  {  id: 2, urgencia: "Muito Urgente", cor: "vermelho"  },
 ];
 
 const Tabela = () => {
@@ -59,7 +59,7 @@ const Tabela = () => {
         <br></br>
       <div>
       <div className={styles.div1}>
-         <h1 className={styles.h1}>Editar Aluno</h1>
+         <h1 className={styles.h1}>Editar Urgência</h1>
                   <button className={styles.voltar}>
         <Link href="/Paginas/EditarDados">Voltar</Link>
         </button>         </div>

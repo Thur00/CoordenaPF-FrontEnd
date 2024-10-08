@@ -11,7 +11,7 @@ export default function UsuSamara() {
 
 <div className={styles.caixa1}>
     <p className={styles.p}>Samara - Coordenadora Pedagógica</p>
-    <Link href="https://quizizz.com/" ><button type="button" className={styles.b2}>Gerenciar</button></Link>
+    <Link href="../Paginas/GerenciarUsuEspec" className={styles.link}><button type="button" className={styles.b2}>Gerenciar</button></Link>
     
 </div>
 

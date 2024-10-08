@@ -1,26 +1,26 @@
+.h1 {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  color: black;
+  margin-left: 8%;
+  margin-top: 0.3rem;
 
-  .h1{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    color: black;
-    margin-left: 8%;
-   
-   
-  }
 
-  .bt {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-right: 8%;
-    margin-left: 1%;
+}
 
-    
-    
-  }
+.bt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 8%;
+  margin-left: 1%;
 
-  /* .b1 {
+
+
+}
+
+/* .b1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -37,48 +37,78 @@
     text-align: center;
   } */
 
-  .b1 {
-    margin: 2%;
-    background-color: #ff1100;
-    padding: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-radius: 15px;
-    border: none;
-    color: white;
-    transition-duration: 0.4s;
-    font-size: large;
-    width: 100%;
+.b1 {
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: large;
+  width: 100%;
+
+}
+
+.b1:hover {
+  background-color: #BC1016;
+}
+
+.link {
   
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .b1:hover{
-    background-color:#BC1016;
-  }
+.b2 {
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: large;
+  margin-left: 1010%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.b2:hover {
+  background-color: #BC1016;
+}
 
 
-  .b2 {
-    margin: 2%;
-    background-color: #ff1100;
-    padding: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-radius: 15px;
-    border: none;
-    color: white;
-    transition-duration: 0.4s;
-    font-size: large;
-    margin-left: 510%;
-    
+.b21 {
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: large;
+  margin-left: 500%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
 
-  }
+.b2:hover {
+  background-color: #BC1016;
+}
 
-  .b2:hover{
-    background-color:#BC1016;
-  }
- 
 
-  /* .b2 {
+/* .b2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -93,49 +123,50 @@
     margin-left: 70%;
   } */
 
- 
-  .caixas{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:space-between;
-    margin-left: 15%;
-  }
- 
- .caixa1{
+
+.caixas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 15%;
+}
+
+.caixa1 {
   display: flex;
   flex-direction: row;
   border: 5px solid #ff1100;
   border-radius: 15px;
-  padding:10px;
+  padding: 10px;
   margin: 3%;
   width: 100%;
   margin-right: 20%;
 
- }
+}
 
 
 
 
- .p{
+.p {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   color: black;
   font-size: 110%;
- 
- }
+  margin-top: 1%;
 
- .p1{
+}
+
+.p1 {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   color: black;
   font-size: 1rem;
- 
- }
+
+}
 
 
 
- .footer{
+.footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -144,15 +175,16 @@
 }
 
 @media only screen and (max-width:800px) {
-  .main{
-      margin: 1%;
+  .main {
+    margin: 1%;
   }
 
-  .h1{
-  font-size: 1.6rem;
+  .h1 {
+    font-size: 1.6rem;
+    margin-top: 3%;
   }
 
-  .b1{
+  .b1 {
     font-size: 1rem;
     padding: 5px;
     width: 90%;
@@ -160,17 +192,23 @@
 
   }
 
-  .h4{
+  .h4 {
     font-size: 1.6rem;
     margin-left: 3%;
-    
+
   }
 
-  .b2{
+  .b2 {
     margin-left: 15%;
     width: 85%;
     font-size: 1rem;
   }
 
+  .b21 {
+    margin-left: 15%;
+    width: 85%;
+    font-size: 1rem;
+    margin-top: 0.8rem;
+  }
 
 }

@@ -2,28 +2,36 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Header from "@/Components/Header";
 import Link from "next/link"
 import Footer from "@/Components/Footer";
 
-const initialData = [
-    { id: 1, tema: "Comportamental" },
-    { id: 2, tema: "Emocional" },
-    { id: 3, tema: "Dano ao patrimônio" },
-    { id: 4, tema: "Escutativa" },
-    { id: 5, tema: "Processo de ensino e aprendizagem" },
-    
-
-];
 
 const Tabela = () => {
-    const [data, setData] = useState(initialData);
+    const [data, setData] = useState([]);
     const [formData, setFormData] = useState({ id: "", tema: "" });
     const [isEditing, setIsEditing] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [editingItem, setEditingItem] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const getTema = async () => {
+          try {
+            const resposta = await fetch(`http://localhost:3001/temas`);
+            const data1 = await resposta.json();
+            console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+            setData(data1);
+            setError(null);
+          } catch (error) {
+            console.error("Erro na busca alunos", error);
+            setError("Falha na busca alunos. Tente novamente.");
+          }
+        };
+        getTema();
+      }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -80,12 +88,18 @@ const Tabela = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((item) => (
-                                <tr key={item.id}>
-                                    <td>{item.id}</td>
-                                    <td>{item.tema}</td>
-                                </tr>
-                            ))}
+                        {data.length > 0 ? (
+                data.map((item) => (
+                  <tr key={item.Tema_id}>
+                    <td>{item.Tema_id}</td>
+                    <td>{item.Nome_tema}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">Nenhum tema encontrado.</td>
+                </tr>
+              )}
                         </tbody>
                     </table>
 

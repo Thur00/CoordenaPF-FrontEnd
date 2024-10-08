@@ -2,19 +2,116 @@
     margin: 3%;
 }
 
+.link {
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
 .botao {
     margin: 2%;
     background-color: #ff1100;
     padding: 10px;
     padding-left: 40px;
     padding-right: 40px;
-    border-radius: 100px;
+    border-radius: 10px;
     border: none;
     color: white;
     transition-duration: 0.4s;
     font-size: large;
+    height: 5vh;
 }
+
+.botao2{
+    margin: 2%;
+    background-color: #ff1100;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    transition-duration: 0.4s;
+    font-size: large;
+    height: 5vh;
+    width: 25vw;
+}
+
+
 
 .botao:hover {
     background-color: #BC1016;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
+    width: 50%;
+}
+
+.body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.botoes{
+    display: flex;
+    flex-direction:row;
+    margin-top: 2%;
+    justify-content:center;
+}
+
+.um{
+    display: flex;
+    margin-top:3%;
+    border-radius: 10px;
+    height: 5vh;
+    border:1px solid gray
+}
+
+.tit2{
+    margin-top: 3%;
+    margin-bottom: 0.5%
+};
+
+.p{
+    margin-top: 0.1%;
+}
+
+
+@media only screen and (max-width:800px) {
+
+    .botoes{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .botao2{
+        width: 65vw;
+        height: 5vh;
+        margin-top: 6%;
+       
+    }
+
+    .botao{
+        width: 65vw;
+        margin-top: 6%;
+    }
+
+    .input{
+        width: 70vw;
+    }
+
+    .body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 10%;
+    }
+
+    
 }

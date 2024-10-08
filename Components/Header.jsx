@@ -1,8 +1,6 @@
 "use client"
 import Link from "next/link"
-import { FaHouseChimney } from "react-icons/fa6";
-import { FaBell } from "react-icons/fa";
-import { IoPersonSharp } from "react-icons/io5";
+
 
 function Header(props) {
     return (
@@ -28,4 +26,4 @@ function Header(props) {
         </main>
     )
 }
-export default Header
+export default Header;
