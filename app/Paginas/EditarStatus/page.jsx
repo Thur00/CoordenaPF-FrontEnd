@@ -96,6 +96,7 @@ const Tabela = () => {
 
             <button className={styles.addbutton} onClick={handleAdd}>Adicionar</button>
 
+<br></br>
             {showForm && (
                 <div>
                     <h3>{isEditing ? "" : ""}</h3>

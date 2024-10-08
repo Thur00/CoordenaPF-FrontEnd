@@ -3,6 +3,7 @@
 import Footer from "@/Components/Footer"
 import Header from "@/Components/Header"
 import styles from "@/Components/exibirocorrencia.module.css"
+import Link from "next/link";
 
 function exibiroco() {
 
@@ -87,7 +88,7 @@ function exibiroco() {
 
           <div className={styles.salecanbutton}>
           <button className={styles.cancelarbutton} onClick={handleSave}>Gerar Documento</button>
-          <button  className={styles.cancelarbutton} onClick={handleCancel}>Voltar</button>
+         <Link  href="/Paginas/PaginaInicial" ><button  className={styles.cancelarbutton} onClick={handleCancel}>Voltar</button></Link>
           </div>
         
 <br></br>

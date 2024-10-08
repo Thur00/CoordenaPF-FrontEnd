@@ -37,7 +37,7 @@ export default function TodasOcor() {
                 
             </div>
             <br></br>
-            <Link href="https://quizizz.com/" ><button className="botaovoltar"> Voltar </button></Link>
+            <Link href="/Paginas/PaginaInicial" ><button className="botaovoltar"> Voltar </button></Link>
             <Footer />
         </main>
     )

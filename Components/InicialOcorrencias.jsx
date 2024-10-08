@@ -9,7 +9,7 @@ import { CiCircleAlert } from "react-icons/ci";
 function InicialOcorrencia() {
  return (
         <>
-            <Link className={styles.boxOcor} href="/Paginas/CriarOcorrencia">
+            <Link className={styles.boxOcor} href="/Paginas/VisualizarOcorrencia">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>
@@ -26,7 +26,7 @@ function InicialOcorrencia() {
             </div>
             </Link>
 
-            <Link className={styles.boxOcor2} href="/Paginas/CriarOcorrencia">
+            <Link className={styles.boxOcor2} href="/Paginas/VisualizarOcorrencia">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>
@@ -43,7 +43,7 @@ function InicialOcorrencia() {
             </div>
             </Link>
 
-            <Link className={styles.boxOcor3} href="/Paginas/CriarOcorrencia">
+            <Link className={styles.boxOcor3} href="/Paginas/VisualizarOcorrencia">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>

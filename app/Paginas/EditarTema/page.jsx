@@ -77,7 +77,9 @@ const Tabela = () => {
                     <h1 className={styles.h1}>Editar Tema</h1>
                     <button className={styles.voltar}>
                         <Link href="/Paginas/EditarDados">Voltar</Link>
-                    </button>         </div>
+                    </button>    
+                    
+                         </div>
                 <br></br>
                 <div className={styles.div2}>
                     <table border="1" className={styles.table}>
@@ -114,7 +116,7 @@ const Tabela = () => {
             </div>
 
             <button className={styles.addbutton} onClick={handleAdd}>Adicionar</button>
-
+<br></br>
             {showForm && (
                 <div>
                     <h3>{isEditing ? "" : ""}</h3>

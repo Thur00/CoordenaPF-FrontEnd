@@ -1,6 +1,7 @@
 "use client"
 
 import styles from "@/Components/Login.module.css"
+import Link from "next/link";
 import { IoMdPerson } from "react-icons/io";
 
 export default function TodasOcor() {
@@ -21,7 +22,7 @@ export default function TodasOcor() {
                     <input type="text" placeholder="E-mail" />
                 </div>
 
-                <button className={styles.botao}> Enviar </button>
+               <Link href="../User/RedefinirSenha2"><button className={styles.botao}> Enviar </button></Link>
 
             </div>
             

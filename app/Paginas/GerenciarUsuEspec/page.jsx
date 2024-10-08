@@ -3,8 +3,12 @@
 import Header from "@/Components/Header"
 import Footer from "@/Components/Footer"
 import styles from "@/Components/Perfil.module.css"
+import Link from "next/link"
 
 export default function Usuario(){
+
+   
+
     return(
         <>
 
@@ -21,8 +25,9 @@ export default function Usuario(){
         
         </div>
         <div className={styles.botoes}>
-        <button className={styles.botao}> Voltar </button>
-        <button className={styles.botao}> Desligar </button>
+       <Link  href="/Paginas/Usuarios" ><button className={styles.botao}> Voltar </button></Link>
+        <button className={styles.botao} > Desligar </button>
+     
         </div></div>
 
         <Footer/>
@@ -30,3 +35,4 @@ export default function Usuario(){
         </>
     )
 }
+

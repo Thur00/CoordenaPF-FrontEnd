@@ -6,20 +6,20 @@ function Header(props) {
     <div className="Header">
       <Link
         className="icon"
-        href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons"
+        href="/Paginas/PaginaInicial"
       >
         <i class="fa-solid fa-house-chimney"></i>
       </Link>
 
       <h1 className="tit">Coordena SESI</h1>
       <div>
-        <Link className="icon2" href="https://quizizz.com/">
+        <Link className="icon2" href="/Paginas/Notificacao">
           <i class="fa-solid fa-bell"></i>
         </Link>
 
         <Link
           className="icon2"
-          href="https://www.youtube.com/?app=desktop&hl=pt"
+          href="/Paginas/Usuarios"
         >
           <i class="fa-solid fa-user"></i>
         </Link>
