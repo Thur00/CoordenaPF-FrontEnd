@@ -1,5 +1,6 @@
-import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
+import Header from "@/Components/Header";
+import Footer from "@/Components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,7 +16,11 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main className="container">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
