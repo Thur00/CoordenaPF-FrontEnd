@@ -37,13 +37,8 @@ function EditarDados() {
         </button>
       </div>
       <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+    
+     
       <Footer></Footer>
     </div>
   );
