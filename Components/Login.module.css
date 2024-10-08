@@ -94,6 +94,28 @@
     background-color: #BC1016;
 }
 
+.referencia{
+    font-size: x-small;
+    color:gray;
+}
+
+.olho{
+    background: none;
+    border: none;
+    font-size: large;
+    margin-right: 3%;
+}
+
+.cadeado{
+    font-size: medium;
+    margin: 0 5px 0 7px;
+}
+
+.error{
+    font-size: 0.9rem;
+    color: #ff1100;
+}
+
 @media only screen and (max-width:800px) {
     .main {
         background-image: url("../public/planodefundo-redwhite.jpg");
@@ -110,5 +132,5 @@
     .divPesquisa {
         width: 80%;
     }
-    
+
 }
