@@ -2,6 +2,13 @@
     margin: 3%;
 }
 
+.link {
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
 .botao {
     margin: 2%;
     background-color: #ff1100;

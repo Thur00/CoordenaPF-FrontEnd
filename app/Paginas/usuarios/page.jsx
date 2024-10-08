@@ -2,7 +2,7 @@
 
 import styles from "@/Components/UsuariosComponentes.module.css";
 import React from "react";
-import Header from "@/Components/Header";
+// import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import Usuario from "@/Components/UsuariosSamaraComponentes";
 import UsuarioAle from "@/Components/UsuarioAlessandraComponents";
@@ -13,7 +13,7 @@ export default function Usu() {
   return (
 <div >
   
-<Header></Header>
+{/* <Header></Header> */}
 <br></br>
  <div className={styles.bt}>
 
