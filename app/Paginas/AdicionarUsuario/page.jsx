@@ -127,7 +127,7 @@ const Usuarios = [
 
 const Usuarios = [{ cargo: "", nome: "", email: "", senha: "", cpf: "" }];
 
-const Inputt = () => {
+const Input = () => {
   const [data, setData] = useState(Usuarios);
   const [focargoData, setFocargoData] = useState({
     cargo: "",
