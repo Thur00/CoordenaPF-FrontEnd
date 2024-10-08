@@ -9,7 +9,7 @@ import Footer from "@/Components/Footer";
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const Tabela = () => {
-    const [data, setData] = useState(initialData);
+    const [data, setData] = useState([]);
     const [formData, setFormData] = useState({ id: "", categoria: "", icone: "" });
     const [isEditing, setIsEditing] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -79,7 +79,7 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Categoria: formData.categoria }),
+          body: JSON.stringify({ Categoria: formData.categoria, Icone: formData.icone }),
         });
 
         // Atualiza a lista de temas após a edição
