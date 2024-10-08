@@ -1,18 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import {useState } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
-import Header from "@/Components/Header";
-import Link from "next/link"
-import Footer from "@/Components/Footer";
+import Link from "next/link";
 
-const initialData = [
-  {  id: 1, urgencia: "Pouco Urgente", cor: "verde" },
-  {  id: 2, urgencia: "Muito Urgente", cor: "vermelho"  },
-];
+const API_URL = "http://localhost:3001"; // Adicione a URL da API
+
 
 const Tabela = () => {
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
   const [formData, setFormData] = useState({ id: "", urgencia: "", cor: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -32,85 +28,139 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData(item);
+    setFormData({Urgencia_id : item.urgencia});  
     setEditingItem(item);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (isEditing) {
-      setData(
-        data.map((item) => (item.id === editingItem.id ? formData : item))
-      );
+      try {
+        // Faz uma requisição PUT para a API de temas para atualizar o item
+        await fetch(`${API_URL}/urgencias/${editingItem.Urgencia_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ Tipo_urgencia: formData.urgencia, Tipo_urgencia: formData.cor }), // Ajuste aqui o objeto para corresponder ao que a API espera
+        });
+
+        // Atualiza a lista de temas após a edição
+        getUrgencia();
+
+        // Limpa a seleção e o formulário
+        setEditingItem(null);
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Erro ao atualizar o urgência:", error);
+      }
     } else {
-      setData([...data, { ...formData, id: Number(formData.id) }]);
+      try {
+        // Faz uma requisição POST para a API de temas
+        const response = await fetch(`${API_URL}/urgencias`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // Envia o corpo da requisição em formato JSON
+          body: JSON.stringify({ Tipo_urgencia: formData.urgencia }),
+        });
+
+        // Atualiza a lista de temas após a edição
+        getUrgencia();
+
+        // Converte a resposta para JSON
+        const data = await response.json();
+
+        // Atualiza o estado de 'data' com o novo tema adicionado
+        setData((prevData) => [...prevData, data]);
+
+        // Limpa os campos de entrada
+        setFormData({ id: "", urgencia: "", cor: "" });
+        setShowForm(false);
+      } catch (error) {
+        // Loga erros no console
+        console.error("Erro ao adicionar urgencia:", error);
+      }
     }
     setShowForm(false);
-    setFormData({ id: "", urgencia: "" , cor: "" });
+    setFormData({ id: "",  urgencia: "" , cor: ""  });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", urgencia: "", cor: "" });
+    setFormData({ id: "",  urgencia: "" , cor: "" });
   };
 
   return (
     <div>
-        <Header></Header>
-        <br></br>
+      <br></br>
       <div>
-      <div className={styles.div1}>
-         <h1 className={styles.h1}>Editar Urgência</h1>
-                  <button className={styles.voltar}>
-        <Link href="/Paginas/EditarDados">Voltar</Link>
-        </button>         </div>
+        <div className={styles.div1}>
+          <h1 className={styles.h1}>Editar Urgência</h1>
+          <button className={styles.voltar}>
+            <Link href="/Paginas/EditarDados">Voltar</Link>
+          </button>
+        </div>
         <br></br>
-    <div className={styles.div2}>
-        <table border="1" className={styles.table}>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>URGENCIA</th>
-              <th>COR</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item.id}>
+        <div className={styles.div2}>
+          <table border="1" className={styles.table}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Urgência</th>
+                <th>Cor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.length > 0 ? (
+                data.map((item) => (
+                  <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.urgencia}</td>
                 <td>{item.cor}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="2">Nenhum urgência encontrado.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
 
-        <div className={styles.buttonContainer}>
-          {data.map((item) => (
-            <button className={styles.editarbutton} key={item.id} onClick={() => handleEdit(item)}>
-              Editar
-            </button>
-          ))}
+          <div className={styles.buttonContainer}>
+            {data.map((item) => (
+              <button
+                className={styles.editarbutton}
+                key={item.id}
+                onClick={() => handleEdit(item)}
+              >
+                Editar
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      <button  className={styles.addbutton} onClick={handleAdd}>Adicionar</button>
+      <button className={styles.addbutton} onClick={handleAdd}>
+        Adicionar
+      </button>
 
       {showForm && (
         <div>
-          <h3>{isEditing ? "" : ""}</h3>
-          <br></br>
+          <h3 className={styles.titleinput}>
+            {isEditing ? "Editar" : "Adicionar"}
+          </h3>
           <div className={styles.divinput}>
-          <input
-            type="text"
-            name="urgencia"
-            value={formData.urgencia}
-            onChange={handleInputChange}
-            placeholder="Urgencia"
-          />
-          <br></br>
+            <input
+              type="text"
+              name="urgencia"
+              value={formData.urgencia}
+              onChange={handleInputChange}
+              placeholder="Urgencia"
+            />
 
-          <input
+<input
             type="text"
             name="cor"
             value={formData.cor}
@@ -118,16 +168,18 @@ const Tabela = () => {
             placeholder="Cor"
           />
           <br></br>
-
           </div>
 
           <div className={styles.salecanbutton}>
-          <button className={styles.salvarbutton} onClick={handleSave}>Salvar</button>
-          <button  className={styles.cancelarbutton} onClick={handleCancel}>Cancelar</button>
+            <button className={styles.salvarbutton} onClick={handleSave}>
+              Salvar
+            </button>
+            <button className={styles.cancelarbutton} onClick={handleCancel}>
+              Cancelar
+            </button>
           </div>
         </div>
       )}
-      <Footer></Footer>
     </div>
   );
 };
