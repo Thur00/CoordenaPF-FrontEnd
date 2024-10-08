@@ -17,8 +17,6 @@ const Tabela = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
-  const [aluno, setAluno] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getAlunos = async () => {
