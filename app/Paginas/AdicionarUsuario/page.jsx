@@ -7,12 +7,12 @@ import styles from "@/Components/AddUsuario.module.css";
 import Link from "next/link";
 
 
-const Usuarios = [
-    { cargo: "", nome: "", email: "", senha: "", cpf: ""},
+const Usuarios1 = [
+    { cargo: "", nome: "", email: "", senha: "", cpf: ""}
   ];
   
-  const Input = () => {
-    const [data, setData] = useState(Usuarios);
+  const Input1 = () => {
+    const [data, setData] = useState(Usuarios1);
     const [focargoData, setFocargoData] = useState({ cargo: "", nome: "", email: "", ano: "", senha: "", cpf: "" });
     const [isEditing, setIsEditing] = useState(false);
     const [showFocargo, setShowFocargo] = useState(false);
@@ -259,4 +259,4 @@ const Input = () => {
   );
 };
 
-export default Input;
+export default Input1;
