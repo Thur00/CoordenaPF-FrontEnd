@@ -6,7 +6,7 @@ import Footer from "@/Components/Footer";
 import styles from "@/Components/AddUsuario.module.css";
 import Link from "next/link";
 
-<<<<<<< HEAD
+
 const Usuarios = [
     { cargo: "", nome: "", email: "", senha: "", cpf: ""},
   ];
@@ -123,11 +123,11 @@ const Usuarios = [
       </div>
       
   
-    );
-=======
+    );}
+
 const Usuarios = [{ cargo: "", nome: "", email: "", senha: "", cpf: "" }];
 
-const Input = () => {
+const Inputt = () => {
   const [data, setData] = useState(Usuarios);
   const [focargoData, setFocargoData] = useState({
     cargo: "",
@@ -143,7 +143,7 @@ const Input = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFocargoData({ ...focargoData, [name]: value });
->>>>>>> 648936d8ec37b481234aebf6cebe2a3d9a30533c
+
   };
 
   const handleAdd = () => {
@@ -190,7 +190,7 @@ const Input = () => {
       <div className={styles.div1}>
         <h1 className={styles.h1}>Adicionar Usuário</h1>
         <button className={styles.voltar}>
-          <Link href="/Paginas/usuarios">Voltar</Link>
+          <Link href="/Paginas/Usuarios">Voltar</Link>
         </button>
       </div>
       <br></br>
