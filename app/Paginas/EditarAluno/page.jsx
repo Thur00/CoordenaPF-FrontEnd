@@ -28,7 +28,6 @@ const Tabela = () => {
         setError(null);
       } catch (error) {
         console.error("Erro na busca alunos", error);
-        setError("Falha na busca alunos. Tente novamente.");
       }
     };
     getAlunos();
@@ -77,7 +76,7 @@ const Tabela = () => {
           <h1 className={styles.h1}>Editar Aluno</h1>
           <button className={styles.voltar}>
             <Link href="/Paginas/EditarDados">Voltar</Link>
-          </button>{" "}
+          </button>
         </div>
         <br></br>
         <div className={styles.div2}>
