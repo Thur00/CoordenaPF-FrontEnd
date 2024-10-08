@@ -4,25 +4,28 @@ import { useEffect, useState } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Link from "next/link";
 
+const API_URL = "http://localhost:3001"; // Adicione a URL da API
+
 const Tabela = () => {
   const [data, setData] = useState([]);
-  const [formData, setFormData] = useState({ id: "", tipoaspecto: "" });
+  const [formData, setFormData] = useState({ id: "", tema: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
 
+  const getAspectos = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/aspectos`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+      setError(null);
+    } catch (error) {
+      console.error("Erro na busca alunos", error);
+    }
+  };
+
   useEffect(() => {
-    const getAspectos = async () => {
-      try {
-        const resposta = await fetch(`http://localhost:3001/aspectos`);
-        const data1 = await resposta.json();
-        console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
-        setData(data1);
-        setError(null);
-      } catch (error) {
-        console.error("Erro na busca alunos", error);
-      }
-    };
     getAspectos();
   }, []);
 
@@ -40,17 +43,59 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData(item);
+    setFormData({ tipoaspecto: item.Nome });  
     setEditingItem(item);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (isEditing) {
-      setData(
-        data.map((item) => (item.id === editingItem.id ? formData : item))
-      );
+      try {
+        // Faz uma requisição PUT para a API de temas para atualizar o item
+        await fetch(`${API_URL}/aspecto/${editingItem.Aspecto_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ Nome: formData.tipoaspecto }), // Ajuste aqui o objeto para corresponder ao que a API espera
+        });
+
+        // Atualiza a lista de temas após a edição
+        getAspectos();
+
+        // Limpa a seleção e o formulário
+        setEditingItem(null);
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Erro ao atualizar o aspecto:", error);
+      }
     } else {
-      setData([...data, { ...formData, id: Number(formData.id) }]);
+      try {
+        // Faz uma requisição POST para a API de temas
+        const response = await fetch(`${API_URL}/aspectos`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // Envia o corpo da requisição em formato JSON
+          body: JSON.stringify({ Nome: formData.tipoaspecto }),
+        });
+
+        // Atualiza a lista de temas após a edição
+        getAspectos();
+
+        // Converte a resposta para JSON
+        const data = await response.json();
+
+        // Atualiza o estado de 'data' com o novo tema adicionado
+        setData((prevData) => [...prevData, data]);
+
+        // Limpa os campos de entrada
+        setFormData({ id: "", tipoaspecto: "" });
+        setShowForm(false);
+      } catch (error) {
+        // Loga erros no console
+        console.error("Erro ao adicionar tema:", error);
+      }
     }
     setShowForm(false);
     setFormData({ id: "", tipoaspecto: "" });
@@ -84,13 +129,13 @@ const Tabela = () => {
               {data.length > 0 ? (
                 data.map((item) => (
                   <tr key={item.Aspecto_id}>
-                    <td>{item.Aspecto_id}</td>
-                    <td>{item.Nome}</td>
+                  <td>{item.Aspecto_id}</td>
+                  <td>{item.Nome}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">Nenhum aluno encontrado.</td>
+                  <td colSpan="2">Nenhum aspecto encontrado.</td>
                 </tr>
               )}
             </tbody>
@@ -116,15 +161,16 @@ const Tabela = () => {
 
       {showForm && (
         <div>
-          <h3>{isEditing ? "" : ""}</h3>
-          <br></br>
+          <h3 className={styles.titleinput}>
+            {isEditing ? "Editar" : "Adicionar"}
+          </h3>
           <div className={styles.divinput}>
             <input
               type="text"
-              name="tipoaspecto"
-              value={formData.tipoaspecto}
+              name="tema"
+              value={formData.tema}
               onChange={handleInputChange}
-              placeholder="tipoaspecto"
+              placeholder="tema"
             />
           </div>
 
