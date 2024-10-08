@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Header from "@/Components/Header";
 import Link from "next/link";
