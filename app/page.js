@@ -5,6 +5,7 @@ import { PiLockKeyFill } from "react-icons/pi";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import React, { useState } from 'react';
+import Link from "next/link";
 
 const Login = () => {
     const [password, setPassword] = useState('');
@@ -49,9 +50,9 @@ const Login = () => {
                 
                 </div>
 
-                <a href="">Esqueceu sua senha?</a>
+                <Link href="./User/RedefinirSenha">Esqueceu sua senha?</Link>
 
-                <button className={styles.botao} type="submit">Acessar</button>
+                <button className={styles.botao} type="submit" >Acessar</button>
                 
                 <a className={styles.referencia} href="https://pt.vecteezy.com/vetor-gratis/vermelho">Vermelho Vetores por Vecteezy</a>
                 
