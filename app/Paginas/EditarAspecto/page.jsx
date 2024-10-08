@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Tabela = () => {
   const [data, setData] = useState([]);
-  const [formData, setFormData] = useState({ id: "", tipodeaspecto: "" });
+  const [formData, setFormData] = useState({ id: "", tipoaspecto: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -34,7 +34,7 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", tipodeaspecto: "" });
+    setFormData({ id: "", tipoaspecto: "" });
   };
 
   const handleEdit = (item) => {
@@ -53,12 +53,12 @@ const Tabela = () => {
       setData([...data, { ...formData, id: Number(formData.id) }]);
     }
     setShowForm(false);
-    setFormData({ id: "", tipodeaspecto: "" });
+    setFormData({ id: "", tipoaspecto: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", tipodeaspecto: "" });
+    setFormData({ id: "", tipoaspecto: "" });
   };
 
   return (
@@ -77,26 +77,23 @@ const Tabela = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Tipo de Aspecto</th>
+                <th>Aspecto</th>
               </tr>
             </thead>
             <tbody>
               {data.length > 0 ? (
                 data.map((item) => (
-                  <tr key={item.RM}>
-                    <td>{item.RM}</td>
+                  <tr key={item.Aspecto_id}>
+                    <td>{item.Aspecto_id}</td>
                     <td>{item.Nome}</td>
-                    <td>{item.Turma}</td>
-                    <td>{item.Ano}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5">Nenhum aluno encontrado.</td>
+                  <td colSpan="2">Nenhum aluno encontrado.</td>
                 </tr>
               )}
             </tbody>
-            \
           </table>
 
           <div className={styles.buttonContainer}>
@@ -124,12 +121,11 @@ const Tabela = () => {
           <div className={styles.divinput}>
             <input
               type="text"
-              name="tipodeaspecto"
-              value={formData.tipodeaspecto}
+              name="tipoaspecto"
+              value={formData.tipoaspecto}
               onChange={handleInputChange}
-              placeholder="tipodeaspecto"
+              placeholder="tipoaspecto"
             />
-            <br></br>
           </div>
 
           <div className={styles.salecanbutton}>
