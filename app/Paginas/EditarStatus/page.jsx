@@ -79,7 +79,7 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Categoria: formData.categoria }),
+          body: JSON.stringify({ Categoria: formData.categoria, Icone: formData.icone }),
         });
 
         // Atualiza a lista de temas após a edição
