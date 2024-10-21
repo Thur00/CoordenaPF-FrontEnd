@@ -1,7 +1,10 @@
 "use client"
 
+
+import { useState } from "react";
 import styles from "@/Components/Login.module.css"
 import { PiLockKeyFill } from "react-icons/pi";
+
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import React, { useState } from 'react';
@@ -59,7 +62,7 @@ const RedefinirSenha = () => {
                     </div>
 
                     <div className={styles.pesquisa}>
-                        <div className={styles.cadeado}><PiLockKeyFill /></div>
+                    <div className={styles.cadeado}><PiLockKeyFill /></div>
                         <input
                             type={isVisible2 ? 'text' : 'password'}
                             value={confirmaPassword}
@@ -74,16 +77,15 @@ const RedefinirSenha = () => {
                     </div>
                 </div>
 
+
                 {error && <p className={styles.error}>{error}</p>}
 
-                <button className={styles.botao} onClick={ValidaSenha} > Salvar </button>
+<button className={styles.botao} onClick={ValidaSenha} > Salvar </button>
 
-                <a className={styles.referencia} href="https://pt.vecteezy.com/vetor-gratis/vermelho">Vermelho Vetores por Vecteezy</a>
+<a className={styles.referencia} href="https://pt.vecteezy.com/vetor-gratis/vermelho">Vermelho Vetores por Vecteezy</a>
+
 
             </div>
         </main>
     )
-
 };
-
-export default RedefinirSenha;

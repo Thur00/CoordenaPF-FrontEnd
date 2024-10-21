@@ -1,5 +1,6 @@
 "use client"
 import styles from "@/Components/Login.module.css"
+import Link from "next/link";
 import { IoMdPerson } from "react-icons/io";
 import { PiLockKeyFill } from "react-icons/pi";
 
@@ -28,9 +29,9 @@ function Login() {
                 
                 </div>
 
-                <a href="https://www.w3schools.com/css/css_form.asp">Esqueceu sua senha?</a>
+                <Link href="/User/RedefinirSenha">Esqueceu sua senha?</Link>
 
-                <button className={styles.botao} type="submit">Acessar</button>
+               <Link href="../Paginas/PaginaInicial"><button className={styles.botao} type="submit">Acessar</button></Link>
             </div>
 
         </main>

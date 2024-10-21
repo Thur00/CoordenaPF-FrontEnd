@@ -3,6 +3,7 @@
 import Header from "@/Components/Header"
 import Footer from "@/Components/Footer"
 import styles from "@/Components/Perfil.module.css"
+import Link from "next/link"
 
 export default function MeuPerfil(){
     return(
@@ -20,8 +21,8 @@ export default function MeuPerfil(){
         
         </div>
         <div className={styles.botoes}>
-        <button className={styles.botao}> Voltar </button>
-        <button className={styles.botao}> Editar </button>
+       <Link href="/Paginas/PaginaInicial"><button className={styles.botao}> Voltar </button></Link>
+        <button className={styles.botao} onClick={edi}> Editar </button>
         </div></div>
 
         <Footer/>

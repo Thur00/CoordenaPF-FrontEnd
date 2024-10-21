@@ -28,7 +28,7 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({Urgencia_id : item.urgencia});  
+    setFormData({Urgencia_id: item.urgencia, Cor: item.cor});  
     setEditingItem(item);
   };
 
@@ -41,7 +41,7 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Tipo_urgencia: formData.urgencia, Tipo_urgencia: formData.cor }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({ Tipo_urgencia: formData.urgencia, Cor: formData.cor }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -62,7 +62,7 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Tipo_urgencia: formData.urgencia }),
+          body: JSON.stringify({ Tipo_urgencia: formData.urgencia , Cor: formData.cor}),
         });
 
         // Atualiza a lista de temas após a edição
@@ -146,6 +146,7 @@ const Tabela = () => {
         Adicionar
       </button>
 
+<br></br>
       {showForm && (
         <div>
           <h3 className={styles.titleinput}>

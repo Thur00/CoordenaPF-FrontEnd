@@ -9,7 +9,7 @@ import { CiCircleAlert } from "react-icons/ci";
 function Ocorrencia() {
     return (
         <>
-            <Link className={styles.boxOcor3} href="https://quizizz.com/">
+            <Link className={styles.boxOcor3} href="/Paginas/PaginaInicial">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
                     <p> Samara te solicitou nessa ocorrência </p>

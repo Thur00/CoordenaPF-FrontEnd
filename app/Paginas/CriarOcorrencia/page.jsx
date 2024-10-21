@@ -118,8 +118,8 @@ function criaroco() {
                 </form>
                 <div className={styles.botao}>
                 <div className={styles.responsi}>
-                <Link href="https://quizizz.com/" ><button className={styles.botaovoltar}> Voltar</button></Link>
-                 <Link href="https://quizizz.com/" ><button className={styles.botaovoltar}> Salvar </button></Link></div>
+                <Link href="../Paginas/PaginaInicial" ><button className={styles.botaovoltar}> Voltar</button></Link>
+                <button className={styles.cancelarbutton} onClick={handleAdd}> Salvar</button></div>
                 <Link href="https://quizizz.com/" ><button className={styles.botaovoltar}> Gerar documento </button></Link>
                
                 </div>

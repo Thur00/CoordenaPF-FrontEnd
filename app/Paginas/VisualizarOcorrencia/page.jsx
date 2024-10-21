@@ -134,6 +134,7 @@ export default function Visualizar(){
     <div>
     <SegundoBotaoVisualizar></SegundoBotaoVisualizar>
     </div>
+    
    <Footer></Footer>
 </div>
             

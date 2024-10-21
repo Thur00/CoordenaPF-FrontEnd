@@ -20,9 +20,9 @@ export default function MeuPerfil(){
        
         <div className={styles.botoes}>
         
-        <button className={styles.botao}> Voltar </button>
+        <Link href="/Paginas/PaginaInicial"><button className={styles.botao}> Voltar </button></Link>
         <button className={styles.botao}> Editar </button>
-        <button className={styles.botao2}> Gerenciar Usuários </button>
+        <Link href="/Paginas/Usuarios"><button className={styles.botao2}> Gerenciar Usuários </button></Link>
         </div></div>
         <Footer/>
         </>
