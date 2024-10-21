@@ -2,18 +2,37 @@
 
 import styles from "@/Components/UsuariosComponentes.module.css";
 import React from "react";
-// import Header from "@/Components/Header";
-import Footer from "@/Components/Footer";
 import Usuario from "@/Components/UsuariosSamaraComponentes";
 import UsuarioAle from "@/Components/UsuarioAlessandraComponents";
 import BotaoAdicionarUsuario from "@/Components/BotaoAdicionarUsuario";
+import { useEffect, useState } from "react";
+
+const API_URL = "http://localhost:3001";
 
 
 export default function Usu() {
+
+  const [data, setData] = useState([]);
+
+  const getUsuarios = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/usuarios`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+      setError(null);
+    } catch (error) {
+      console.error("Erro na busca usuario", error);
+    }
+  };
+
+  useEffect(() => {
+    getUsuarios();
+  }, []);
+
   return (
 <div >
   
-{/* <Header></Header> */}
 <br></br>
  <div className={styles.bt}>
 
@@ -27,9 +46,7 @@ export default function Usu() {
 
 <UsuarioAle></UsuarioAle>
 
-<div className={styles.footer}>
-<Footer></Footer>  
-</div>
+
 
 </div>
 </div>
