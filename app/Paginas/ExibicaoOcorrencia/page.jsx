@@ -5,7 +5,6 @@ import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Link from "next/link";
 import Footer from "@/Components/Footer"
 import Header from "@/Components/Header"
-import styles from "@/Components/exibirocorrencia.module.css"
 
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
