@@ -85,7 +85,7 @@ const Tabela = () => {
         });
 
         // Atualiza a lista de temas após a edição
-        getTema();
+        getAlunos();
 
         // Converte a resposta para JSON
         const data = await response.json();

@@ -111,7 +111,7 @@ const Tabela = () => {
       <br></br>
       <div>
         <div className={styles.div1}>
-          <h1 className={styles.h1}>Editar Aspecto</h1>
+          <h1 className={styles.h1}>Editar Tema</h1>
           <button className={styles.voltar}>
             <Link href="/Paginas/EditarDados">Voltar</Link>
           </button>

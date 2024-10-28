@@ -1,254 +1,258 @@
-.form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 50%;
-    flex-wrap: wrap;
-    margin-left: 25%;
-    margin-right: 20%;
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  flex-wrap: wrap;
+  margin-left: 25%;
+  margin-right: 20%;
 }
-.main{
-    width: 100%;
-}
-
-.tit{
-    display: flex;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-left: 10%;
-    font-size: medium;
-
+.main {
+  width: 100%;
 }
 
-.datatime{
-margin-bottom: 2%;
-    display: flex;
-    width: 150%;
-    justify-content:space-between ;
-margin-right: 10%;
+.tit {
+  display: flex;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 10%;
+  font-size: medium;
 }
 
-.init{
-    margin-bottom: 2%;
-    display: flex;
-    width: 100%;
-    justify-content:space-between ;
+.datatime {
+  margin-bottom: 2%;
+  display: flex;
+  width: 150%;
+  justify-content: space-between;
+  margin-right: 10%;
 }
 
-.tema{
-    margin-bottom: 2%;
-    display: flex;
-    width: 100%;
-    justify-content:space-between ;
-    
+.init {
+  margin-bottom: 2%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.aluno{
-    margin-bottom: 2%;
-    display: flex;
-    width: 100%;
-    justify-content:space-between ;
+.tema {
+  margin-bottom: 2%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.resp{
-    margin-bottom: 2%;
-    display: flex;
-    width: 150%;
-    justify-content:space-between ;
+.aluno {
+  margin-bottom: 2%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.mes{
-    margin-bottom: 2%;
-    display: flex;
-    width: 150%;
-    justify-content:space-between ;
-    margin-right: 40%;
+.resp {
+  margin-bottom: 2%;
+  display: flex;
+  width: 150%;
+  justify-content: space-between;
 }
 
-.input{
-    width: 20vw;}
-
-    .input2{
-        width: 18.5vw;
-    }
-
-    .input3{
-        width: 50vw;
-    }
-
-    .input4{
-        width: 20.37vw;
-    }
-
-    .input5{
-        width: 23vw;
-    }
-
-    .input6{
-        width: 26vw;
-    }
-    .input7, .imput8, .input9{
-        width: 20vw;
-    }
-    .botao{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 50%;
-        margin-left: 25%;
-        margin-top: 2%;
-    
-    }
-    .botaovoltar{
-        width: 100%;
-        margin: 2%;
-        background-color: #ff1100;
-        padding: 10px;
-        padding-left: 40px;
-        padding-right: 40px;
-        border-radius: 100px;
-        border: none;
-        color: white;
-        transition-duration: 0.4s;
-        font-size: medium;
-      }
-      
-      .botaovoltar:hover{
-        background-color:#BC1016;
-      }
-
-
-
-      .salecanbutton {
-        display: flex;
-        justify-content: space-between;
-    }
-
-
-    .salvarbutton {
-        background-color: #ff1100;
-        border-radius: 10px;
-        border: 2px;
-        width: 25%;
-        color: white;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: large;
-        padding: 0.5%;
-        margin-left: 10%;
-        margin-right: 10%;
-    
-    }
-    
-    .cancelarbutton {
-        background-color: #ff1100;
-        margin-top: 2%;
-        border-radius: 10px;
-        border: 2px;
-        width: 15%;
-        color: white;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: large;
-        padding: 0.5%;
-        margin-right: 10%;
-        margin-left: 10%;
-    }
-
-
-    .divinput {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        margin-left: 10%;
-        margin-right: 25%;
-        width: 80%;
-    }
-
-
-
-    @media only screen and (max-width:760px){
-    .tit{
-        margin-left: 10%;
-        font-size: x-small;
-        margin-top: 5%;
-    }
-
-    .form{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .datatime, .init, .tema, .aluno, .resp, .mes{
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 5%;
-    }
-    
-    .um, .dois, .tres, .quat, .cinc, .seis{
-        margin-bottom:5% ;
-    }
-.input4{
-    width: 39.3vw;
+.mes {
+  margin-bottom: 2%;
+  display: flex;
+  width: 150%;
+  justify-content: space-between;
+  margin-right: 40%;
 }
 
-.botao{
-   display: flex; 
-   flex-direction: column;
-}
-.responsi{
-    display: flex;
-    flex-direction: row;
-    align-content: space-around;
+.input {
+  width: 20vw;
 }
 
-.botaovoltar{
-    margin:1%;
-    width: 100%;
-    font-size: small;
-}
-.input{
-    width: 34.6vw;
+.input2 {
+  width: 18.5vw;
 }
 
-.input2{
-    width: 32vw;
+.input3 {
+  width: 50vw;
 }
 
-.input7{
-width: 33vw;
-    }
-.input8{
-width: 37.8vw ;    
+.input4 {
+  width: 20.37vw;
 }
 
-.input9{
-    width: 31.5vw;
+.input5 {
+  width: 23vw;
 }
 
-.input10{
-    width: 49.6vw;
-}
-.input11{
-    width: 50vw;
+.input6 {
+  width: 26vw;
 }
 
-.input5{
-    width:24.7vw
+.input7,
+.imput8,
+.input9 {
+  width: 20vw;
+}
+
+.botao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 2%;
+}
+
+.botaovoltar {
+  width: 100%;
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 100px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: medium;
+}
+
+.botaovoltar:hover {
+  background-color: #bc1016;
+}
+
+.salecanbutton {
+  display: flex;
+  justify-content: space-between;
 }
 
 .salvarbutton {
+  background-color: #ff1100;
+  border-radius: 10px;
+  border: 2px;
+  width: 25%;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+  padding: 0.5%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.cancelarbutton {
+  background-color: #ff1100;
+  margin-top: 2%;
+  border-radius: 10px;
+  border: 2px;
+  width: 15%;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+  padding: 0.5%;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.divinput {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 10%;
+  margin-right: 25%;
+  width: 80%;
+}
+
+@media only screen and (max-width: 760px) {
+  .tit {
+    margin-left: 10%;
+    font-size: x-small;
+    margin-top: 5%;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .datatime,
+  .init,
+  .tema,
+  .aluno,
+  .resp,
+  .mes {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+  }
+
+  .um,
+  .dois,
+  .tres,
+  .quat,
+  .cinc,
+  .seis {
+    margin-bottom: 5%;
+  }
+  .input4 {
+    width: 39.3vw;
+  }
+
+  .botao {
+    display: flex;
+    flex-direction: column;
+  }
+  .responsi {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+  }
+
+  .botaovoltar {
+    margin: 1%;
+    width: 100%;
+    font-size: small;
+  }
+  .input {
+    width: 34.6vw;
+  }
+
+  .input2 {
+    width: 32vw;
+  }
+
+  .input7 {
+    width: 33vw;
+  }
+  .input8 {
+    width: 37.8vw;
+  }
+
+  .input9 {
+    width: 31.5vw;
+  }
+
+  .input10 {
+    width: 49.6vw;
+  }
+  .input11 {
+    width: 50vw;
+  }
+
+  .input5 {
+    width: 24.7vw;
+  }
+
+  .salvarbutton {
     font-size: medium;
     padding: 0.5%;
     width: 30%;
     margin-top: 5%;
-}
+  }
 
-.cancelarbutton {
+  .cancelarbutton {
     font-size: small;
     padding: 1%;
-width: 30%;
-margin-top: 5%;
-}
-    
-    
+    width: 30%;
+    margin-top: 5%;
+  }
 }
