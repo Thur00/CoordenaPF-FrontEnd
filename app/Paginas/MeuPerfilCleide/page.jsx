@@ -1,13 +1,13 @@
 "use client"
 
-import Header from "@/Components/Header"
-import Footer from "@/Components/Footer"
+
 import styles from "@/Components/Perfil.module.css"
+import Link from "next/link"
 
 export default function MeuPerfil(){
     return(
         <>
-        <Header/>
+  
         <div className={styles.body}>
         <h1 className={styles.tit}> Meu perfil </h1>
 
@@ -24,7 +24,7 @@ export default function MeuPerfil(){
         <button className={styles.botao}> Editar </button>
         <Link href="/Paginas/Usuarios"><button className={styles.botao2}> Gerenciar Usuários </button></Link>
         </div></div>
-        <Footer/>
+    
         </>
     )
 }

@@ -4,9 +4,7 @@
 
 import { useState } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
-import Header from "@/Components/Header";
 import Link from "next/link"
-import Footer from "@/Components/Footer";
 
 const Tabela = () => {
   const [data, setData] = useState(initialData);
@@ -52,7 +50,6 @@ const Tabela = () => {
 
   return (
     <div>
-      <Header></Header>
       <br></br>
       <div>
         <div className={styles.div1}>
@@ -111,7 +108,6 @@ const Tabela = () => {
           </div>
         </div>
       )}
-      <Footer></Footer>
     </div>
   );
 };

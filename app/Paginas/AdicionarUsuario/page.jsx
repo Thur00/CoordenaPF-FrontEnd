@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "@/Components/Header";
-import Footer from "@/Components/Footer";
 import styles from "@/Components/AddUsuario.module.css";
 import Link from "next/link";
 
@@ -50,7 +48,7 @@ const Usuarios1 = [
   
     return (
       <div>
-          <Header></Header>
+          
           <br></br>
           <div className={styles.div1}>
           <h1 className={styles.h1}>Adicionar Usuário</h1>
@@ -119,7 +117,7 @@ const Usuarios1 = [
         <br></br>
         <br></br>
        
-        <Footer></Footer>
+       
       </div>
       
   

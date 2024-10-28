@@ -1,15 +1,35 @@
 "use client"
 
-import Footer from "@/Components/Footer"
-import Header from "@/Components/Header"
+import { useState } from "react";
 import styles from "@/Components/criaroco.module.css"
 import Link from "next/link"
 
 function criaroco() {
+    const [data, setData] = useState("");
+    const [formData, setFormData] = useState({ id: "", encaminhamento: "" });
+    const [isEditing, setIsEditing] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [editingItem, setEditingItem] = useState(null);
+  
+   
+  
+    const handleSave = () => {
+      if (isEditing) {
+        setData(
+          data.map((item) => (item.id === editingItem.id ? formData : item))
+        );
+      } else {
+        setData([...data, { ...formData, id: Number(formData.id) }]);
+      }
+      setShowForm(false);
+      setFormData({ id: "", encaminhamento: "" });
+    };
+  
+  
     return (
         <main className={styles.main}>
             <div>
-                <Header />
+               
                 <div className={styles.tit}>
                 <h1>Criar nova ocorrência</h1></div>
 
@@ -116,16 +136,16 @@ function criaroco() {
                         </div>
                        
                 </form>
-                <div className={styles.botao}>
-                <div className={styles.responsi}>
+                <div >
+              
                 <Link href="../Paginas/PaginaInicial" ><button className={styles.botaovoltar}> Voltar</button></Link>
-                <button className={styles.cancelarbutton} onClick={handleAdd}> Salvar</button></div>
+                <button className={styles.botaovoltar} onClick={handleSave}> Salvar</button></div>
                 <Link href="https://quizizz.com/" ><button className={styles.botaovoltar}> Gerar documento </button></Link>
                
                 </div>
-            </div>
 
-            <Footer/>
+
+          
         </main>
     )
 }

@@ -87,29 +87,24 @@ margin-bottom: 2%;
     .input7, .imput8, .input9{
         width: 20vw;
     }
-    .botao{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 50%;
-        margin-left: 25%;
-        margin-top: 2%;
-    
-    }
+
     .botaovoltar{
-        width: 100%;
         margin: 2%;
-        background-color: #ff1100;
-        padding: 10px;
-        padding-left: 40px;
-        padding-right: 40px;
-        border-radius: 100px;
-        border: none;
-        color: white;
-        transition-duration: 0.4s;
-        font-size: medium;
+    background-color: #ff1100;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    transition-duration: 0.4s;
+    font-size: large;
+    height: 5vh;
+    margin-top: 0%;
       }
+
+     
+     
       
       .botaovoltar:hover{
         background-color:#BC1016;

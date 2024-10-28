@@ -1,7 +1,6 @@
 "use client"
 
-import Footer from "@/Components/Footer"
-import Header from "@/Components/Header"
+
 import styles from "@/Components/exibirocorrencia.module.css"
 import Link from "next/link";
 
@@ -24,7 +23,6 @@ function exibiroco() {
     return (
         <main className={styles.main}>
             <div>
-                <Header />
                 <div className={styles.tit}>
                 <h1>Ocorrência</h1>
                 
@@ -97,7 +95,6 @@ function exibiroco() {
                
             </div>
 
-            <Footer/>
         </main>
     )
 }

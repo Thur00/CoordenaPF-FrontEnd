@@ -2,14 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
-import Footer from "@/Components/Footer";
-import Header from "@/Components/Header";
 import styles from "@/Components/EditarDados.module.css";
 
 function EditarDados() {
   return (
     <div>
-      <Header></Header>
+     
       <br></br>
       <br></br>
 
@@ -39,7 +37,7 @@ function EditarDados() {
       <br></br>
     2
      
-      <Footer></Footer>
+    
     </div>
   );
 }
