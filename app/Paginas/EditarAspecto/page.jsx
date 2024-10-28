@@ -8,7 +8,7 @@ const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const Tabela = () => {
   const [data, setData] = useState([]);
-  const [formData, setFormData] = useState({ id: "", tema: "" });
+  const [formData, setFormData] = useState({ id: "", tipoaspecto: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -21,7 +21,7 @@ const Tabela = () => {
       setData(data1);
       setError(null);
     } catch (error) {
-      console.error("Erro na busca alunos", error);
+      console.error("Erro na busca aspectos", error);
     }
   };
 
@@ -43,7 +43,7 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ tipoaspecto: item.Nome });  
+    setFormData({ tipoaspecto: item.Nome });
     setEditingItem(item);
   };
 
@@ -51,7 +51,7 @@ const Tabela = () => {
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/aspecto/${editingItem.Aspecto_id}`, {
+        await fetch(`${API_URL}/aspectos/${editingItem.Aspecto_id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -129,8 +129,8 @@ const Tabela = () => {
               {data.length > 0 ? (
                 data.map((item) => (
                   <tr key={item.Aspecto_id}>
-                  <td>{item.Aspecto_id}</td>
-                  <td>{item.Nome}</td>
+                    <td>{item.Aspecto_id}</td>
+                    <td>{item.Nome}</td>
                   </tr>
                 ))
               ) : (
