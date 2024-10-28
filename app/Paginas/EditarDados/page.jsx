@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import styles from "@/Components/EditarDados.module.css";
 
-function EditarDados() {
+function EditarDados() { 
   return (
     <div>
      
