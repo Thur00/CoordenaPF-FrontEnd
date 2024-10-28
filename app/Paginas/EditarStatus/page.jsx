@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
-import Header from "@/Components/Header";
 import Link from "next/link";
-import Footer from "@/Components/Footer";
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
@@ -110,7 +108,6 @@ const Tabela = () => {
 
   return (
     <div>
-        <Header></Header>
       <br></br>
       <div>
         <div className={styles.div1}>
@@ -197,7 +194,6 @@ const Tabela = () => {
           </div>
         </div>
       )}
-      <Footer></Footer>
     </div>
   );
 };
