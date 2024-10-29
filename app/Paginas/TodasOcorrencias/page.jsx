@@ -1,7 +1,5 @@
 "use client"
 
-import Footer from "@/Components/Footer"
-import Header from "@/Components/Header"
 import Ocorrencia from "@/Components/Ocorrencia"
 import styles from "./TodasOcorrencias.module.css"
 import Link from "next/link"
@@ -10,7 +8,7 @@ import { IoSearch } from "react-icons/io5";
 export default function TodasOcor() {
     return (
         <main className={styles.main}>
-            <Header />
+          
             <h1 className={styles.titulo} > Todas as ocorrências </h1>
             <br></br>
             <div className={styles.pesquisafiltro}>
@@ -38,7 +36,6 @@ export default function TodasOcor() {
             </div>
             <br></br>
             <Link href="/Paginas/PaginaInicial" ><button className="botaovoltar"> Voltar </button></Link>
-            <Footer />
         </main>
     )
 }
