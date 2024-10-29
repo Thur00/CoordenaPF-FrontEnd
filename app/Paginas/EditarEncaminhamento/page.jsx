@@ -7,7 +7,7 @@ import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Link from "next/link"
 
 const Tabela = () => {
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
   const [formData, setFormData] = useState({ id: "", encaminhamento: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
