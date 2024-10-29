@@ -44,6 +44,7 @@ a {
   justify-content: space-between;
   height: 7vh;
   align-items: center;
+  
 }
 
 .Header div {
@@ -137,6 +138,7 @@ a {
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
+    
   }
 
   .Header div {
