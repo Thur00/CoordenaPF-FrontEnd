@@ -71,7 +71,7 @@ a {
   justify-content: space-around;
   padding: 2vh 2vh;
   position: relative;
-  bottom: 0;
+  bottom: 0%;
 }
 
 .textBox {
@@ -130,15 +130,15 @@ a {
   }
 
   .footbox {
-    height: 10vh;
-    width: 100%;
+    
     background-color: #bc1016;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
-    
+    position: relative;
+
   }
 
   .Header div {
