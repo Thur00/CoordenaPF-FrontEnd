@@ -183,7 +183,6 @@ const Input = () => {
 
   return (
     <div>
-      <Header></Header>
       <br></br>
       <div className={styles.div1}>
         <h1 className={styles.h1}>Adicionar Usuário</h1>
@@ -252,7 +251,6 @@ const Input = () => {
       <br></br>
       <br></br>
 
-      <Footer></Footer>
     </div>
   );
 };
