@@ -17,9 +17,11 @@ const Tabela = () => {
     try {
       const resposta = await fetch(`${API_URL}/urgencias`);
       const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
+      setError(null);
     } catch (error) {
-      console.error("Erro na busca de urgencias", error);
+      console.error("Erro na busca aspectos", error);
     }
   };
 
@@ -42,9 +44,9 @@ const Tabela = () => {
     setShowForm(true);
     setIsEditing(true);
     setFormData({
-      id: item.id,
-      urgencia: item.urgencia,
-      cor: item.cor,
+      Urgencia_id: item.urgencia,
+      Tipo_urgencia: item.urgencia,
+      Cor: item.cor,
     });
     setEditingItem(item);
   };
@@ -53,7 +55,7 @@ const Tabela = () => {
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/urgencias/${editingItem.id}`, {
+        await fetch(`${API_URL}/urgencias/${editingItem.Urgencia_id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -145,7 +147,7 @@ const Tabela = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">Nenhum urgência encontrado.</td>
+                  <td colSpan="2">Nenhuma urgência encontrado.</td>
                 </tr>
               )}
             </tbody>
@@ -169,7 +171,6 @@ const Tabela = () => {
         Adicionar
       </button>
 
-      <br></br>
       {showForm && (
         <div>
           <h3 className={styles.titleinput}>
@@ -183,7 +184,6 @@ const Tabela = () => {
               onChange={handleInputChange}
               placeholder="Urgencia"
             />
-
             <input
               type="text"
               name="cor"
@@ -191,7 +191,6 @@ const Tabela = () => {
               onChange={handleInputChange}
               placeholder="Cor"
             />
-            <br></br>
           </div>
 
           <div className={styles.salecanbutton}>
