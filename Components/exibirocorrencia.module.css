@@ -162,7 +162,7 @@
   width: 80%;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 800px) {
   .tit {
     margin-left: 10%;
     font-size: x-small;
