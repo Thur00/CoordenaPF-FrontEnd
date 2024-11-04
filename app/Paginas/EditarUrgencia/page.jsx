@@ -1,11 +1,10 @@
 "use client";
 
-import {useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Link from "next/link";
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
-
 
 const Tabela = () => {
   const [data, setData] = useState([]);
@@ -13,6 +12,20 @@ const Tabela = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+
+  const getUrgencia = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/urgencias`);
+      const data1 = await resposta.json();
+      setData(data1);
+    } catch (error) {
+      console.error("Erro na busca de urgencias", error);
+    }
+  };
+
+  useEffect(() => {
+    getUrgencia();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +41,11 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({Urgencia_id: item.urgencia, Cor: item.cor});  
+    setFormData({
+      id: item.id,
+      urgencia: item.urgencia,
+      cor: item.cor,
+    });
     setEditingItem(item);
   };
 
@@ -36,12 +53,15 @@ const Tabela = () => {
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/urgencias/${editingItem.Urgencia_id}`, {
+        await fetch(`${API_URL}/urgencias/${editingItem.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Tipo_urgencia: formData.urgencia, Cor: formData.cor }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({
+            tipo_urgencia: formData.urgencia,
+            cor: formData.cor,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -62,7 +82,10 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Tipo_urgencia: formData.urgencia , Cor: formData.cor}),
+          body: JSON.stringify({
+            tipo_urgencia: formData.urgencia,
+            cor: formData.cor,
+          }),
         });
 
         // Atualiza a lista de temas após a edição
@@ -83,12 +106,12 @@ const Tabela = () => {
       }
     }
     setShowForm(false);
-    setFormData({ id: "",  urgencia: "" , cor: ""  });
+    setFormData({ id: "", urgencia: "", cor: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "",  urgencia: "" , cor: "" });
+    setFormData({ id: "", urgencia: "", cor: "" });
   };
 
   return (
@@ -114,10 +137,10 @@ const Tabela = () => {
             <tbody>
               {data.length > 0 ? (
                 data.map((item) => (
-                  <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.urgencia}</td>
-                <td>{item.cor}</td>
+                  <tr key={item.Urgencia_id}>
+                    <td>{item.Urgencia_id}</td>
+                    <td>{item.Tipo_urgencia}</td>
+                    <td>{item.Cor}</td>
                   </tr>
                 ))
               ) : (
@@ -146,7 +169,7 @@ const Tabela = () => {
         Adicionar
       </button>
 
-<br></br>
+      <br></br>
       {showForm && (
         <div>
           <h3 className={styles.titleinput}>
@@ -161,14 +184,14 @@ const Tabela = () => {
               placeholder="Urgencia"
             />
 
-<input
-            type="text"
-            name="cor"
-            value={formData.cor}
-            onChange={handleInputChange}
-            placeholder="Cor"
-          />
-          <br></br>
+            <input
+              type="text"
+              name="cor"
+              value={formData.cor}
+              onChange={handleInputChange}
+              placeholder="Cor"
+            />
+            <br></br>
           </div>
 
           <div className={styles.salecanbutton}>
