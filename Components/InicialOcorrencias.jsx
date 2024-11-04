@@ -7,7 +7,7 @@ import { CiClock2 } from "react-icons/ci";
 import { CiCircleAlert } from "react-icons/ci";
 
 function InicialOcorrencia(props) {
-const{nome, tema, turma, urgencia} = props 
+const{nome, tema, turma, data, urgencia} = props 
 
  return (
         <>
@@ -21,7 +21,7 @@ const{nome, tema, turma, urgencia} = props
                 <div className={styles.urgenciadatastatus}>
                     <div className={styles.urgencia1}><p> {urgencia} </p></div>
                     <div className={styles.datastatus}>
-                        <p> 03/09/24 </p>
+                        <p>{data} </p>
                         <CiCircleCheck className={styles.icons}/>
                     </div>
                 </div>
