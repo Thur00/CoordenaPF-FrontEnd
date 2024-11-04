@@ -6,6 +6,7 @@ import Usuario from "@/Components/UsuariosSamaraComponentes";
 import UsuarioAle from "@/Components/UsuarioAlessandraComponents";
 import BotaoAdicionarUsuario from "@/Components/BotaoAdicionarUsuario";
 import { useEffect, useState } from "react";
+import BotaoVoltar from "@/Components/BotaoVoltar";
 
 const API_URL = "http://localhost:3001";
 
@@ -31,26 +32,24 @@ export default function Usu() {
   }, []);
 
   return (
-<div >
-  
-<br></br>
- <div className={styles.bt}>
+    <div >
 
-<BotaoAdicionarUsuario></BotaoAdicionarUsuario>
+      <br></br>
+      <div className={styles.bt}>
 
-</div>
+        <BotaoAdicionarUsuario></BotaoAdicionarUsuario>
+        <BotaoVoltar link="/Paginas/MeuPerfilCleide" />
 
-<div className={styles.caixas}>
+      </div>
 
-<Usuario></Usuario>
+      <div className={styles.caixas}>
 
-<UsuarioAle></UsuarioAle>
+        <Usuario></Usuario>
 
+        <UsuarioAle></UsuarioAle>
 
-
-</div>
-</div>
- 
+      </div>
+    </div>
 
   );
 }

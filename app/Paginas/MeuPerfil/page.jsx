@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "@/Components/Perfil.module.css";
-import Link from "next/link";
+import BotaoVoltar from "@/Components/BotaoVoltar";
 
 export default function MeuPerfil() {
   return (
@@ -16,9 +16,7 @@ export default function MeuPerfil() {
           <input className={styles.um} type="text" placeholder="CPF:" />
         </div>
         <div className={styles.botoes}>
-          <Link href="/Paginas/PaginaInicial">
-            <button className={styles.botao}> Voltar </button>
-          </Link>
+        <BotaoVoltar link= "/Paginas/PaginaInicial" />
           <button className={styles.botao}> Editar </button>
         </div>
       </div>
