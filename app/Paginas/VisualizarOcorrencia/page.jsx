@@ -11,12 +11,12 @@ export default function Visualizar() {
         <div>
 
             <div className={styles.tudo}>
-                <h1>Ocorrencia</h1>
+                <h1>Ocorrência</h1>
                 <p className={styles.data}>Data: 01/10/2024</p>
                 <p className={styles.urgencia1}> Muito Urgente </p>
             </div>
 
-            <div>
+            <div className={styles.botoes}>
                 <BotaoVisualizar></BotaoVisualizar>
             </div>
 
@@ -123,8 +123,7 @@ export default function Visualizar() {
 
             </form>
 
-
-            <div>
+            <div className={styles.botoes}>
                 <SegundoBotaoVisualizar></SegundoBotaoVisualizar>
             </div>
 
