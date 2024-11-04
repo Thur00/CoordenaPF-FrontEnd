@@ -8,7 +8,7 @@ const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const Tabela = () => {
   const [data, setData] = useState([]);
-  const [formData, setFormData] = useState({ id: "", tipoaspecto: "" });
+  const [formData, setFormData] = useState({ id: "", Nome: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -37,13 +37,13 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", tipoaspecto: "" });
+    setFormData({ id: "", Nome: "" });
   };
 
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ tipoaspecto: item.Nome });
+    setFormData({ Aspecto_id: item.id, Nome: item.Nome });
     setEditingItem(item);
   };
 
@@ -56,7 +56,7 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Nome: formData.tipoaspecto }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({ nome: formData.Nome }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -77,7 +77,7 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Nome: formData.tipoaspecto }),
+          body: JSON.stringify({ nome: formData.Nome }),
         });
 
         // Atualiza a lista de temas após a edição
@@ -90,7 +90,7 @@ const Tabela = () => {
         setData((prevData) => [...prevData, data]);
 
         // Limpa os campos de entrada
-        setFormData({ id: "", tipoaspecto: "" });
+        setFormData({ id: "", Nome: "" });
         setShowForm(false);
       } catch (error) {
         // Loga erros no console
@@ -98,12 +98,12 @@ const Tabela = () => {
       }
     }
     setShowForm(false);
-    setFormData({ id: "", tipoaspecto: "" });
+    setFormData({ id: "", Nome: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", tipoaspecto: "" });
+    setFormData({ id: "", Nome: "" });
   };
 
   return (
@@ -167,10 +167,10 @@ const Tabela = () => {
           <div className={styles.divinput}>
             <input
               type="text"
-              name="tema"
-              value={formData.tema}
+              name="Nome"
+              value={formData.Nome}
               onChange={handleInputChange}
-              placeholder="tema"
+              placeholder="Aspecto"
             />
           </div>
 
