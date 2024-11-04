@@ -68,6 +68,7 @@ a {
   align-items: center;
   justify-content: space-around;
   padding: 2vh 2vh;
+  margin-top: 13%;
 }
 
 .textBox {
@@ -133,7 +134,7 @@ a {
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
-   margin-top: 70%;
+   margin-top: 10%;
     height: 13vh;
     width: 100%;
 

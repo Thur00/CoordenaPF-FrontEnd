@@ -57,7 +57,7 @@ const inicial = () => {
           <InicialOcorrencia></InicialOcorrencia>
           <h2 className={styles.h4}>Andamento:</h2>
           <AndamentoOcorrencias></AndamentoOcorrencias>
-          
+         
 
         </div>
       </div>
