@@ -147,16 +147,16 @@ function criaroco() {
             <option value="adm">Suspensão de 01 dia</option>
           </select>
         </div>
+        <div className={styles.divBut}>
+          <Link href="../Paginas/PaginaInicial">
+            <button className={styles.botaovoltar}> Voltar</button>
+          </Link>
+          <Link href="https://quizizz.com/">
+            <button className={styles.botaovoltar}> Gerar documento </button>
+          </Link>
+          <button type="" className={styles.botaovoltar}> Salvar</button>
+        </div>
       </form>
-      <div className={styles.divBut}>
-        <Link href="../Paginas/PaginaInicial">
-          <button className={styles.botaovoltar}> Voltar</button>
-        </Link>
-        <Link href="https://quizizz.com/">
-          <button className={styles.botaovoltar}> Gerar documento </button>
-        </Link>
-        <button className={styles.botaovoltar}> Salvar</button>
-      </div>
     </main>
   );
 }

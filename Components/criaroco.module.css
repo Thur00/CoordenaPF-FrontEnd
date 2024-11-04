@@ -90,9 +90,9 @@
 }
 
 .divBut {
-    width: 60%;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 2% 0;
 }
 
