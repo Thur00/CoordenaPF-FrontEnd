@@ -1,90 +1,81 @@
-.tudo{
+.tudo {
   align-items: center;
-
 }
 
-  .h4{
-    text-align: center;
-    color: rgb(0, 0, 0);
-    font-size: 190%;
-    margin-right: 82%;
-  }
+.h4 {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 190%;
+  margin-right: 82%;
+}
 
-.icon{
+.icon {
   font-size: 130%;
   margin-right: 5%;
-  
 }
 
-  .bt{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    margin-right: 2%;
-    margin-left: 0%;
-  
-    
-  }
+.bt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  margin-right: 4%;
+  margin-left: 2%;
+}
 
 
-  .b1{
-    margin: 2%;
-    background-color: #ff1100;
-    padding: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-radius: 15px;
-    border: none;
-    color: white;
-    transition-duration: 0.4s;
-    font-size: large;
-    width: 110%;
-    align-items: center;
- 
-    
-    
-  }
+.b1 {
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: large;
+  width: 110%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  .b1:hover{
-    background-color:#BC1016;
-  }
-  
- 
+.b1:hover {
+  background-color: #BC1016;
+}
 
-.titulo{
+.titulo {
   padding: 1%;
   margin-top: 2%;
   margin-left: 2%;
   font-size: 150%;
 }
 
-
-.titulo2{
+.titulo2 {
   padding: 1%;
   margin-top: 2%;
   margin-right: 2%;
   font-size: 150%;
 }
 
-.boxTodasOcor{
+.boxTodasOcor {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 
 }
 
-
-.a{
+.a {
   display: flex;
   flex-direction: row;
   align-items: center;
   border-radius: 20px;
 }
 
-.boxOcor{
+.boxOcor {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -98,11 +89,11 @@
   transition-duration: 0.4s;
 }
 
-.boxOcor:hover{
+.boxOcor:hover {
   background-color: rgba(255, 0, 0, 0.636);
 }
 
-.boxOcor2{
+.boxOcor2 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -116,11 +107,11 @@
   transition-duration: 0.4s;
 }
 
-.boxOcor2:hover{
+.boxOcor2:hover {
   background-color: rgba(251, 255, 0, 0.581);
 }
 
-.boxOcor3{
+.boxOcor3 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -134,16 +125,16 @@
   transition-duration: 0.4s;
 }
 
-.boxOcor3:hover{
+.boxOcor3:hover {
   background-color: rgba(103, 240, 45, 0.63);
 }
 
-.titletematurma{
-  font-weight: bold;  
+.titletematurma {
+  font-weight: bold;
   margin-right: 1rem
 }
 
-.datastatus{
+.datastatus {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -152,33 +143,32 @@
 }
 
 
-.urgencia1{
+.urgencia1 {
   border: 2px solid red;
   padding: 10px;
   margin-bottom: 5%;
   border-radius: 10px;
 }
 
-.urgencia2{
+.urgencia2 {
   border: 2px solid yellow;
   padding: 10px;
   margin-bottom: 5%;
   border-radius: 10px;
 }
 
-.urgencia3{
+.urgencia3 {
   border: 2px solid green;
   padding: 10px;
   margin-bottom: 5%;
   border-radius: 10px;
 }
 
-.p1{
-    font-size: 0.9rem;
+.p1 {
+  font-size: 0.9rem;
 }
 
-
-.urgencia2{
+.urgencia2 {
   border: 2px solid rgb(251, 255, 0);
   padding: 5px;
   margin-bottom: 5%;
@@ -188,14 +178,14 @@
   padding-right: 25px;
 }
 
-.urgencia3{
+.urgencia3 {
   border: 2px solid rgb(104, 240, 45);
   padding: 5px;
   margin-bottom: 5%;
   border-radius: 10px;
 }
 
-.icons{
+.icons {
   font-size: xx-large;
   font-weight: bolder;
 }
@@ -231,20 +221,20 @@
   font-size: larger;
 }
 
-.pesquisafiltro{
+.pesquisafiltro {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
 }
 
-.filtro{
+.filtro {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.butfiltro{
+.butfiltro {
   padding: 10px;
   border-radius: 10px;
   margin-right: 2%;
@@ -254,89 +244,89 @@
   transition-duration: 0.4s;
 }
 
-.butfiltro:hover{
+.butfiltro:hover {
   background-color: #e0e0e0;
 }
 
-.footer{
+.footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 @media only screen and (max-width:800px) {
-  .main{
-      margin: 1%;
+  .main {
+    margin: 1%;
   }
 
-  .b1{
+  .b1 {
     font-size: 1rem;
     padding: 5px;
     width: 100%;
 
   }
 
-  .h4{
+  .h4 {
     font-size: 1.6rem;
     margin-left: 3%;
-    
+
   }
 
-  .boxTodasOcor{
-      flex-direction: column;
+  .boxTodasOcor {
+    flex-direction: column;
   }
 
-  .boxOcor{
-      width: 98%;
-      margin: 1%;
-      margin-bottom: 2%;
+  .boxOcor {
+    width: 98%;
+    margin: 1%;
+    margin-bottom: 2%;
   }
 
-  .boxOcor2{
-      width: 98%;
-      margin: 1%;
-      margin-bottom: 2%;
+  .boxOcor2 {
+    width: 98%;
+    margin: 1%;
+    margin-bottom: 2%;
   }
 
-  .boxOcor3{
-      width: 98%;
-      margin: 1%;
-      margin-bottom: 2%;
+  .boxOcor3 {
+    width: 98%;
+    margin: 1%;
+    margin-bottom: 2%;
   }
 
-  .urgencia1{
-      font-size: 0.7rem;
+  .urgencia1 {
+    font-size: 0.7rem;
   }
 
-  .urgencia2{
-      font-size: 0.7rem;
+  .urgencia2 {
+    font-size: 0.7rem;
   }
 
-  .urgencia3{
-      font-size: 0.7rem;
+  .urgencia3 {
+    font-size: 0.7rem;
   }
 
-  .titulo{
-      text-align: center;
-      font-size: 1rem;
-      margin-right: 55%;
+  .titulo {
+    text-align: center;
+    font-size: 1rem;
+    margin-right: 55%;
   }
 
-  .pesquisafiltro{
-      flex-direction: column;
+  .pesquisafiltro {
+    flex-direction: column;
   }
 
   .pesquisa {
-      width: 100%;
+    width: 100%;
   }
 
-  .butfiltro{
-      padding: 5px;
-      margin-left: 0.5%;
-      margin-right: 0.5%;
-      margin-bottom: 3%;
-      width: 7.3vh;
-      font-size: 0.6rem;
+  .butfiltro {
+    padding: 5px;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-bottom: 3%;
+    width: 7.3vh;
+    font-size: 0.6rem;
   }
 
 }
