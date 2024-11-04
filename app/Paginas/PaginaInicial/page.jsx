@@ -3,7 +3,6 @@
 import styles from "@/Components/InicialComponentes.module.css"
 import React from "react";
 import InicialOcorrencia from "@/Components/InicialOcorrencias";
-import AndamentoOcorrencias from "@/Components/AndamentoOcorrencias";
 import BotaoInicial from "@/Components/BotaoInicial";
 import { useEffect, useState } from "react";
 
@@ -54,9 +53,13 @@ const inicial = () => {
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
         <div className={styles.boxTodasOcor}>
-          <InicialOcorrencia></InicialOcorrencia>
+          <InicialOcorrencia />
+          <InicialOcorrencia />
+          <InicialOcorrencia />
           <h2 className={styles.h4}>Andamento:</h2>
-          <AndamentoOcorrencias></AndamentoOcorrencias>
+          <InicialOcorrencia />
+          <InicialOcorrencia />
+          <InicialOcorrencia />
          
 
         </div>

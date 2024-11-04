@@ -1,6 +1,6 @@
 "use client"
 
-import Ocorrencia from "@/Components/Ocorrencia"
+import InicialOcorrencia from "@/Components/InicialOcorrencias"
 import styles from "./TodasOcorrencias.module.css"
 import { IoSearch } from "react-icons/io5";
 import BotaoVoltar from "@/Components/BotaoVoltar";
@@ -29,12 +29,12 @@ export default function TodasOcor() {
                 </div>
             </div>
             <div className={styles.boxTodasOcor}>
-                <Ocorrencia />
-                <Ocorrencia />
-                <Ocorrencia />
-                <Ocorrencia />
-                <Ocorrencia />
-                <Ocorrencia />
+                <InicialOcorrencia/>
+                <InicialOcorrencia/>
+                <InicialOcorrencia/>
+                <InicialOcorrencia/>
+                <InicialOcorrencia/>
+                <InicialOcorrencia/>
 
             </div>
         </main>

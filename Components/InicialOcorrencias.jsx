@@ -14,9 +14,9 @@ const{nome, tema, turma, urgencia} = props
             <Link className={styles.boxOcor} href="/Paginas/VisualizarOcorrencia">
             <div className={styles.a}>
                 <div className={styles.titletematurma}>
-                    <p> {nome}: te solicitou nessa ocorrência </p>
-                    <p> {tema}: Cyberbullying </p>
-                    <p> {turma}: 9º ano A </p>
+                    <p> {nome} te solicitou nessa ocorrência </p>
+                    <p> Tema: {tema} </p>
+                    <p> Turma: {turma} </p>
                 </div>
                 <div className={styles.urgenciadatastatus}>
                     <div className={styles.urgencia1}><p> {urgencia} </p></div>
@@ -26,41 +26,7 @@ const{nome, tema, turma, urgencia} = props
                     </div>
                 </div>
             </div>
-            </Link>
-
-            <Link className={styles.boxOcor2} href="/Paginas/VisualizarOcorrencia">
-            <div className={styles.a}>
-                <div className={styles.titletematurma}>
-                    <p> Samara te solicitou nessa ocorrência </p>
-                    <p> Tema: Cyberbullying </p>
-                    <p> Turma: 9º ano A </p>
-                </div>
-                <div className={styles.urgenciadatastatus}>
-                    <div className={styles.urgencia2}><p> Pouco Urgente </p></div>
-                    <div className={styles.datastatus}>
-                        <p> 03/09/24 </p>
-                        <CiClock2 className={styles.icons}/>
-                    </div>
-                </div>
-            </div>
-            </Link>
-
-            <Link className={styles.boxOcor3} href="/Paginas/VisualizarOcorrencia">
-            <div className={styles.a}>
-                <div className={styles.titletematurma}>
-                    <p> Samara te solicitou nessa ocorrência </p>
-                    <p> Tema: Cyberbullying </p>
-                    <p> Turma: 9º ano A </p>
-                </div>
-                <div className={styles.urgenciadatastatus}>
-                    <div className={styles.urgencia3}><p> Urgente </p></div>
-                    <div className={styles.datastatus}>
-                        <p> 03/09/24 </p>
-                        <CiCircleAlert className={styles.icons}/>
-                    </div>
-                </div>
-            </div>
-            </Link>
+            </Link>            
         </>
     )
 }
