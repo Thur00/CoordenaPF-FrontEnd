@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "@/Components/exibirocorrencia.module.css";
-import Link from "next/link";
+import BotaoVoltar from "@/Components/BotaoVoltar";
 
 function exibiroco() {
   const handleSave = () => {
@@ -63,9 +63,8 @@ function exibiroco() {
             Gerar Documento
           </button>
 
-          <button className={styles.cancelarbutton} onClick={handleCancel}>
-            <Link href="/Paginas/PaginaInicial">Voltar</Link>
-          </button>
+          <BotaoVoltar link= "/Paginas/PaginaInicial" />
+
         </div>
 
         <br></br>

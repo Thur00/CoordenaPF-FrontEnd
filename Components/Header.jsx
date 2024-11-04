@@ -19,7 +19,7 @@ function Header(props) {
                     <FaBell />
                     </Link>
 
-                    <Link className="icon2" href="/Paginas/Usuarios">
+                    <Link className="icon2" href="/Paginas/MeuPerfil">
                     <IoPersonSharp />
                     </Link>
                 </div>

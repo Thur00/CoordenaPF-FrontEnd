@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "@/Components/criaroco.module.css";
 import Link from "next/link";
+import BotaoVoltar from "@/Components/BotaoVoltar";
 
 function criaroco() {
   const [data, setData] = useState("");
@@ -149,13 +150,15 @@ function criaroco() {
         </div>
       </form>
       <div className={styles.divBut}>
-        <Link href="../Paginas/PaginaInicial">
-          <button className={styles.botaovoltar}> Voltar</button>
-        </Link>
+
+      <BotaoVoltar link= "/Paginas/PaginaInicial" />
+
         <Link href="https://quizizz.com/">
           <button className={styles.botaovoltar}> Gerar documento </button>
         </Link>
+
         <button className={styles.botaovoltar}> Salvar</button>
+
       </div>
     </main>
   );

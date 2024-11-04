@@ -2,14 +2,17 @@
 
 import Ocorrencia from "@/Components/Ocorrencia"
 import styles from "./TodasOcorrencias.module.css"
-import Link from "next/link"
 import { IoSearch } from "react-icons/io5";
+import BotaoVoltar from "@/Components/BotaoVoltar";
 
 export default function TodasOcor() {
     return (
         <main className={styles.main}>
-          
-            <h1 className={styles.titulo} > Todas as ocorrências </h1>
+
+            <div className={styles.divtitulo}>
+                <h1 className={styles.titulo} > Todas as ocorrências </h1>
+                <BotaoVoltar link= "/Paginas/PaginaInicial" />
+            </div>
             <br></br>
             <div className={styles.pesquisafiltro}>
                 <div className={styles.pesquisa}>
@@ -32,10 +35,8 @@ export default function TodasOcor() {
                 <Ocorrencia />
                 <Ocorrencia />
                 <Ocorrencia />
-                
+
             </div>
-            <br></br>
-            <Link href="/Paginas/PaginaInicial" ><button className="botaovoltar"> Voltar </button></Link>
         </main>
     )
 }
