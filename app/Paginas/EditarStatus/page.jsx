@@ -16,9 +16,9 @@ const Tabela = () => {
   const getStatus = async () => {
     try {
       const resposta = await fetch(`${API_URL}/status`);
-      const data1 = await resposta.json();
-      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
-      setData(data1);
+      const data = await resposta.json();
+      console.log("Dados recebidos:", data); // Adicione esta linha para verificar os dados
+      setData(data);
       setError(null);
     } catch (error) {
       console.error("Erro na busca", error);
@@ -56,7 +56,7 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Categoria: formData.categoria, Icone: formData.icone }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({ categoria: formData.categoria, icone: formData.icone }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -77,17 +77,20 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Categoria: formData.categoria, Icone: formData.icone }),
+          body: JSON.stringify({ categoria: formData.categoria, icone: formData.icone }),
         });
 
         // Atualiza a lista de temas após a edição
+        console.log("icone ",formData.icone);
         getStatus();
+
 
         // Converte a resposta para JSON
         const data = await response.json();
 
         // Atualiza o estado de 'data' com o novo tema adicionado
         setData((prevData) => [...prevData, data]);
+        console.log('data',data)
 
         // Limpa os campos de entrada
         setFormData({ id: "", categoria: "", icone: "" });
@@ -132,7 +135,7 @@ const Tabela = () => {
                   <tr key={item.Status_id}>
                     <td>{item.Status_id}</td>
                     <td>{item.Categoria}</td>
-                    <td>{item.icone}</td>
+                    <td>{item.Icone}</td>
                   </tr>
                 ))
               ) : (
