@@ -2,7 +2,7 @@
 
 import styles from "@/Components/InicialComponentes.module.css"
 import React from "react";
-import Ocorrencia from "@/Components/Ocorrencias"
+import Ocorrencia from "@/Components/Ocorrencia"
 import BotaoInicial from "@/Components/BotaoInicial";
 import { useEffect, useState } from "react";
 
