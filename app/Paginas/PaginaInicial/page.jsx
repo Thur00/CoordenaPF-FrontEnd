@@ -52,7 +52,7 @@ const inicial = () => {
         <h2 className={styles.h4}>Notificações</h2>
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-        <div className={styles.boxTodasOcor}>
+        
           
         <div className={styles.boxTodasOcor}>
         {data.length > 0 ?(
@@ -76,7 +76,7 @@ const inicial = () => {
 
         </div>
       </div>
-    </div>
+
   )
 }
 
