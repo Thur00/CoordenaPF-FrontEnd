@@ -7,12 +7,12 @@ import Link from "next/link";
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
-const Usuarios1 = [{ login_id:"", cargo: "", nome: "", email: "", senha: "", cpf: "" }];
+const Usuarios1 = [{ login_id: "", cargo: "", nome: "", email: "", senha: "", cpf: "" }];
 
 const Input = () => {
   const [data, setData] = useState(Usuarios1);
   const [formData, setFormData] = useState({
-    login_id:"",
+    login_id: "",
     cargo: "",
     nome: "",
     email: "",
@@ -56,7 +56,7 @@ const Input = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Cargo: formData.cargo, Nome: formData.nome, Email: formData.email, Senha: formData.senha, CPF: formData.cpf  }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({ cargo: formData.cargo, nome: formData.nome, email: formData.email, senha: formData.senha, cpf: formData.cpf }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -77,7 +77,7 @@ const Input = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Login_id: formData.login_id }),
+          body: JSON.stringify({ id: formData.login_id, cargo: formData.cargo, nome: formData.nome, email: formData.email, senha: formData.senha, cpf: formData.cpf }),
         });
 
         // Atualiza a lista de temas após a edição
@@ -90,13 +90,15 @@ const Input = () => {
         setData((prevData) => [...prevData, data]);
 
         // Limpa os campos de entrada
-        setFormData({ login_id:"",
+        setFormData({
+          login_id: "",
           cargo: "",
           nome: "",
           email: "",
           ano: "",
           senha: "",
-          cpf: "",});
+          cpf: "",
+        });
         setShowForm(false);
       } catch (error) {
         // Loga erros no console
@@ -104,13 +106,15 @@ const Input = () => {
       }
     }
     setShowForm(false);
-    setFormData({login_id:"",
+    setFormData({
+      login_id: "",
       cargo: "",
       nome: "",
       email: "",
       ano: "",
       senha: "",
-      cpf: "",});
+      cpf: "",
+    });
   };
 
   const handleCancel = () => {
@@ -124,7 +128,7 @@ const Input = () => {
       <br></br>
       <div className={styles.body}>
         <h1 className={styles.tit}>Adicionar Usuário</h1>
-       
+
       </div>
 
 
@@ -134,50 +138,50 @@ const Input = () => {
 
         <input className={styles.um}
           type="text"
-          name="cargo"
-          value={formData.cargo}
-          onChange={handleInputChange}
-          placeholder="Cargo:"
-        />
-        <br></br>
-
-        <input className={styles.um}
-          type="text"
           name="nome"
           value={formData.nome}
           onChange={handleInputChange}
-          placeholder="Nome:"
+          placeholder="Nome"
         />
-        <br></br>
+
+<input className={styles.um}
+          type="text"
+          name="cargo"
+          value={formData.cargo}
+          onChange={handleInputChange}
+          placeholder="Cargo"
+        />
+        
+      
 
         <input className={styles.um}
           type="text"
           name="email"
           value={formData.email}
           onChange={handleInputChange}
-          placeholder="E-mail:"
+          placeholder="E-mail"
         />
-        <br></br>
+      
 
         <input className={styles.um}
           type="text"
           name="senha"
           value={formData.senha}
           onChange={handleInputChange}
-          placeholder="Senha:"
+          placeholder="Senha"
         />
-        <br></br>
-        <input className={styles.um}
+        
+         <input className={styles.um}
           type="number"
           name="cpf"
           value={formData.cpf}
           onChange={handleInputChange}
-          placeholder="CPF:"
+          placeholder="CPF"
         />
         <div className={styles.botoes}>
-        <button className={styles.botao}>
-          <Link href="/Paginas/Usuarios">Voltar</Link>
-        </button>
+          <button className={styles.botao}>
+            <Link href="/Paginas/Usuarios">Voltar</Link>
+          </button>
           <button className={styles.botao} onClick={handleSave}>
             Salvar
           </button>
@@ -187,8 +191,7 @@ const Input = () => {
         </div>
       </div>
 
-      <br></br>
-      <br></br>
+     
     </div>
   );
 };
