@@ -32,7 +32,7 @@ function criaroco() {
         <div className={styles.datatime}>
           <div className={styles.um}>
             <label>Data: </label>
-            <input className={styles.input4} type="date" name="date" />
+            <input className={styles.input4} type="date" name="date" min="2020-01-01"/>
           </div>
 
           <div>
@@ -44,7 +44,7 @@ function criaroco() {
         <div className={styles.init}>
           <div className={styles.dois}>
             <label for="iniciativa">Iniciativa: </label>
-            <select className={styles.input2} id="iniciativa" name="iniciativa">
+            <select className={styles.input2} id="iniciativa" name="iniciativa" >
               <option value="null"></option>
               <option value="fam/resp">Família/Responsáveis</option>
               <option value="profsaude">Profissionais da saúde</option>
