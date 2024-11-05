@@ -6,10 +6,13 @@ import BotaoVoltar from "@/Components/BotaoVoltar";
 import { useEffect, useState } from "react";
 import Ocorrencia from "@/Components/Ocorrencia";
 
+const API_URL = "http://localhost:3001";
+
+
 export default function TodasOcor() {
   const [data, setData] = useState([]);
 
-  const getOcorrencias = async () => {
+  const getocorrencias = async () => {
     try {
       debugger
       const resposta = await fetch(`${API_URL}/ocorrencias`);
@@ -23,7 +26,7 @@ export default function TodasOcor() {
   };
 
   useEffect(() => {
-    getOcorrencias();
+    getocorrencias();
   }, []);
 
   return (
