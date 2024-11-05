@@ -14,25 +14,27 @@ function EditarDados() {
       <h1 className={styles.title}>Editar Dados</h1>
 
       <div className={styles.divbutton}>
-        <button className={styles.button}>
-          <Link href="/Paginas/EditarAluno">Editar Aluno</Link>
-        </button>
+       <Link className={styles.button} href="/Paginas/EditarAluno">Editar Aluno <button>
+          </button></Link>
+        
 
-        <button className={styles.button}>
-          <Link href="/Paginas/EditarAspecto">Editar Aspecto</Link>
-        </button>
+        <Link className={styles.button} href="/Paginas/EditarAspecto">Editar Aspecto<button className={styles.but}>
+         </button> </Link>
+        
 
-        <button className={styles.button}>
-          <Link href="/Paginas/EditarTema">Editar Tema</Link>
-        </button>
+        <Link  className={styles.button} href="/Paginas/EditarTema">Editar Tema<button className={styles.but}>
+         </button> </Link>
+        
 
-        <button className={styles.button}>
-          <Link href="/Paginas/EditarStatus">Editar Status</Link>
-        </button>
+       <Link className={styles.button} href="/Paginas/EditarStatus">Editar Status <button className={styles.but}>
+            </button></Link>
+      
 
-        <button className={styles.button}>
-          <Link href="/Paginas/EditarUrgencia">Editar Urgência</Link>
-        </button>
+          <Link className={styles.button} href="/Paginas/EditarUrgencia">Editar Urgência<button className={styles.but}>
+          </button></Link>
+      
+          <Link className={styles.button}href="/Paginas/EditarEncaminhamento">Editar Encaminhamento<button className={styles.but}>
+          </button></Link>
       </div>
       <br></br>
     2

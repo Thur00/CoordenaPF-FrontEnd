@@ -30,6 +30,14 @@
     font-size: large;
 }
 
+.but{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: medium;
+}
+
 @media only screen and (max-width:800px) {
     .title {
         margin-top: 12%;
