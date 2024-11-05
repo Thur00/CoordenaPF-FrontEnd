@@ -3,10 +3,9 @@
 import styles from "@/Components/InicialComponentes.module.css"
 import Link from "next/link";
 import { CiCircleCheck } from "react-icons/ci";
-import { CiClock2 } from "react-icons/ci";
-import { CiCircleAlert } from "react-icons/ci";
 
-function InicialOcorrencia(props) {
+
+function Ocorrencia(props) {
 const{nome, tema, turma, data, urgencia} = props 
 
  return (
@@ -31,4 +30,4 @@ const{nome, tema, turma, data, urgencia} = props
     )
 }
 
-export default InicialOcorrencia
+export default Ocorrencia

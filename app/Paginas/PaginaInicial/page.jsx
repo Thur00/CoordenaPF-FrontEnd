@@ -2,7 +2,7 @@
 
 import styles from "@/Components/InicialComponentes.module.css"
 import React from "react";
-import InicialOcorrencia from "@/Components/InicialOcorrencias";
+import Ocorrencia from "@/Components/Ocorrencia";
 import BotaoInicial from "@/Components/BotaoInicial";
 import { useEffect, useState } from "react";
 
@@ -14,21 +14,21 @@ const inicial = () => {
 
   const [data, setData] = useState([]);
 
-
-  const getInicial = async () => {
+  const getOcorrencias = async () => {
     try {
-      const resposta = await fetch(`${API_URL}/alunos`);
+      debugger
+      const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
       setError(null);
     } catch (error) {
-      console.error("Erro na busca alunos", error);
+      console.error("Erro na busca da ocorrência", error);
     }
   };
 
   useEffect(() => {
-    getInicial();
+    getOcorrencias();
   }, []);
 
 
@@ -53,14 +53,26 @@ const inicial = () => {
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
         <div className={styles.boxTodasOcor}>
-          <InicialOcorrencia />
-          <InicialOcorrencia />
-          <InicialOcorrencia />
+          
+        <div className={styles.boxTodasOcor}>
+        {data.length > 0 ?(
+          data.map((item) => (
+            <Ocorrencia nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
+          ))
+        ) : (<p>Nenhuma ocorrência encontrada</p>)} 
+ 
+         </div>
+          
           <h2 className={styles.h4}>Andamento:</h2>
-          <InicialOcorrencia />
-          <InicialOcorrencia />
-          <InicialOcorrencia />
-         
+
+          <div className={styles.boxTodasOcor}>
+        {data.length > 0 ?(
+          data.map((item) => (
+            <Ocorrencia nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
+          ))
+        ) : (<p>Nenhuma ocorrência encontrada</p>)} 
+ 
+         </div>
 
         </div>
       </div>
