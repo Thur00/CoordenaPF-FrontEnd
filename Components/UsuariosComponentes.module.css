@@ -16,7 +16,16 @@
   margin-right: 17.5%;
   margin-left: 1%;
 margin-top: 2%;
+margin-bottom: 5%;
 
+
+}
+
+.p{
+  display: flex;
+  align-items: center;
+  color: black;
+  margin-right: 19%;
 
 }
 

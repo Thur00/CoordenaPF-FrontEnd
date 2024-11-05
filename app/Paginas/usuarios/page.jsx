@@ -3,7 +3,6 @@
 import styles from "@/Components/UsuariosComponentes.module.css";
 import React from "react";
 import Usuario from "@/Components/UsuariosSamaraComponentes";
-import UsuarioAle from "@/Components/UsuarioAlessandraComponents";
 import BotaoAdicionarUsuario from "@/Components/BotaoAdicionarUsuario";
 import { useEffect, useState } from "react";
 
@@ -22,13 +21,14 @@ export default function Usu() {
       setData(data1);
       setError(null);
     } catch (error) {
-      console.error("Erro na busca usuario", error);
+      console.error("Erro na busca usuário", error);
     }
   };
 
   useEffect(() => {
     getUsuarios();
   }, []);
+
 
   return (
 <div >
@@ -42,9 +42,13 @@ export default function Usu() {
 
 <div className={styles.caixas}>
 
-<Usuario></Usuario>
 
-<UsuarioAle></UsuarioAle>
+{data.length > 0 ? (
+          data.map((item) => (
+            <Usuario cargo={item.cargo} nome={item.nome} email={item.email} senha={item.senha} cpf={item.cpf} />
+          ))
+        ) : (<p className={styles.p}>Nenhum usuário encontrado</p>)}
+
 
 
 
