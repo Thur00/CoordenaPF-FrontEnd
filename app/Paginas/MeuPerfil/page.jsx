@@ -1,8 +1,14 @@
 "use client"
 
-
+import { useState } from "react";
 import styles from "@/Components/Perfil.module.css"
 import Link from "next/link"
+
+const API_URL = "http://localhost:3001"; // Adicione a URL da API
+
+
+
+
 
 export default function MeuPerfil(){
     return(
