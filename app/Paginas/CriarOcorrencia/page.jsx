@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/Components/criaroco.module.css";
 import Link from "next/link";
 
+const API_URL = "http://localhost:3001"; // Adicione a URL da API
+
 function criaroco() {
   const [data, setData] = useState("");
-  const [formData, setFormData] = useState({ id: "", encaminhamento: "" });
-  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({ id: "", criaroco: "" });
   const [showForm, setShowForm] = useState(false);
-  const [editingItem, setEditingItem] = useState(null);
+
 
   const handleSave = () => {
     if (isEditing) {
@@ -20,8 +21,63 @@ function criaroco() {
       setData([...data, { ...formData, id: Number(formData.id) }]);
     }
     setShowForm(false);
-    setFormData({ id: "", encaminhamento: "" });
+    setFormData({ id: "", criaroco: "" });
   };
+
+  const getAspecto = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/aspectos`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+    } catch (error) {
+      console.error("Erro na busca de aspecto", error);
+    }
+  };
+
+  const getTema = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/temas`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+    } catch (error) {
+      console.error("Erro na busca de tema", error);
+    }
+  };
+
+  
+  const getUrgencia = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/urgencias`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+    } catch (error) {
+      console.error("Erro na busca de urgência", error);
+    }
+  };
+
+  const getEncaminhamento = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/encaminhamentos`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+    } catch (error) {
+      console.error("Erro na busca de encaminhamento", error);
+    }
+  };
+
+  
+
+  useEffect(() => {
+    getAspecto();
+    getTema();
+    getUrgencia()
+    getEncaminhamento()
+  }, []);
+
 
   return (
     <main className={styles.main}>
@@ -58,9 +114,13 @@ function criaroco() {
             <label for="aspecto">Aspecto: </label>
             <select className={styles.input7} id="aspecto" name="aspecto">
               <option value="null"></option>
-              <option value="ped">Pedagógico</option>
-              <option value="disc">Disciplinar</option>
-              <option value="adm">Administrativo</option>
+              {data.length > 0 ? (
+                data.map((item) => (
+                  <option value={item.Aspecto_id}>{item.Nome}</option>
+                ))
+              ) : (<option>Nenhum aspecto encontrado  </option>)}
+
+
             </select>
           </div>
         </div>
@@ -70,19 +130,24 @@ function criaroco() {
             <label for="tema">Tema: </label>
             <select className={styles.input8} name="tema" id="tema">
               <option value="null"></option>
-              <option value="comp">Comportamental</option>
-              <option value="emocional">Emocional</option>
-              <option value="dano">Dano ao patrimônio</option>
+              {data.length > 0 ? (
+                data.map((item) => (
+                  <option value={item.Tema_id}>{item.Nome_tema}</option>
+                ))
+              ) : (<option>Nenhum tema encontrado  </option>)}
             </select>
           </div>
 
           <div>
             <label for="urgencia">Urgência: </label>
             <select className={styles.input9} name="urgencia" id="urgencia">
-              <option value="null"></option>
-              <option value="mturg">Muito urgente</option>
-              <option value="urg">Urgente</option>
-              <option value="pcurg">Pouco urgente</option>
+            <option value="null"></option>
+              {data.length > 0 ? (
+                data.map((item) => (
+                  <option value={item.Urgencia_id}>{item.Tipo_urgencia}</option>
+                ))
+              ) : (<option>Nenhuma urgencia encontrada  </option>)}
+    
             </select>
           </div>
         </div>
@@ -142,21 +207,25 @@ function criaroco() {
           <label for="enc">Encaminhamento: </label>
           <select className={styles.input3} id="enc" name="enc">
             <option value="null"></option>
-            <option value="ped">Advertência verbal</option>
-            <option value="disc">Advertência escrita</option>
-            <option value="adm">Suspensão de 01 dia</option>
+            {data.length > 0 ? (
+                data.map((item) => (
+                  <option value={item.Urgencia_id}>{item.Tipo_urgencia}</option>
+                ))
+              ) : (<option>Nenhuma urgencia encontrada  </option>)}
+    
+            
           </select>
         </div>
-        <div className={styles.divBut}>
-          <Link href="../Paginas/PaginaInicial">
-            <button className={styles.botaovoltar}> Voltar</button>
-          </Link>
-          <Link href="https://quizizz.com/">
-            <button className={styles.botaovoltar}> Gerar documento </button>
-          </Link>
-          <button type="" className={styles.botaovoltar}> Salvar</button>
-        </div>
       </form>
+      <div className={styles.divBut}>
+        <Link href="../Paginas/PaginaInicial">
+          <button className={styles.botaovoltar}> Voltar</button>
+        </Link>
+        <Link href="https://quizizz.com/">
+          <button className={styles.botaovoltar}> Gerar documento </button>
+        </Link>
+        <button className={styles.botaovoltar} onClick={handleSave}> Salvar</button>
+      </div>
     </main>
   );
 }
