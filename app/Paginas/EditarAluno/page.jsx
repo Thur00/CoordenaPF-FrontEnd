@@ -9,10 +9,11 @@ const API_URL = "http://localhost:3001"; // Adicione a URL da API
 const Tabela = () => {
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
-     rm: "",
+    rm: "",
     nome: "",
     turma: "",
-    ano: "", });
+    ano: ""
+  });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -25,7 +26,7 @@ const Tabela = () => {
       setData(data1);
       setError(null);
     } catch (error) {
-      console.error("Erro na busca alunos", error);
+      console.error("Erro ao buscar alunos", error);
     }
   };
 
@@ -47,7 +48,7 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ Nome: item.nome, Turma: item.turma, Ano: item.ano });  
+    setFormData({ RM: item.rm, Nome: item.nome, Turma: item.turma, Ano: item.ano });
     setEditingItem(item);
   };
 
@@ -60,7 +61,7 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Nome: formData.nome, Turma: formData.turma, Ano: formData.ano, }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({ rm: formData.rm, turma: formData.turma, nome: formData.nome, ano: formData.ano }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -81,7 +82,7 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ RM: formData.rm }),
+          body: JSON.stringify({ rm: formData.rm, turma: formData.turma, nome: formData.nome, ano: formData.ano }),
         });
 
         // Atualiza a lista de temas após a edição
@@ -125,7 +126,7 @@ const Tabela = () => {
           <table border="1" className={styles.table}>
             <thead>
               <tr>
-              <th>RM</th>
+                <th>RM</th>
                 <th>NOME</th>
                 <th>TURMA</th>
                 <th>ANO</th>
@@ -135,23 +136,16 @@ const Tabela = () => {
               {data.length > 0 ? (
                 data.map((item) => (
                   <tr key={item.RM}>
-                  <td>{item.RM}</td>
-                  <td>{item.Nome}</td>
-                  <td>{item.Turma}</td>
-                  <td>{item.Ano}</td>
+                    <td>{item.RM}</td>
+                    <td>{item.Nome}</td>
+                    <td>{item.Turma}</td>
+                    <td>{item.Ano}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td>1876</td>
-                  <td>Gabrielly Vitória Cocielli Cavalcante</td>
-                  <td>3° Ano EM</td>
-                  <td>2024</td>
-                  
-
+                  <td colSpan="2">Nenhum aluno encontrado.</td>
                 </tr>
-                
-            
               )}
             </tbody>
           </table>
@@ -182,10 +176,40 @@ const Tabela = () => {
           <div className={styles.divinput}>
             <input
               type="text"
+              name="rm"
+              value={formData.rm}
+              onChange={handleInputChange}
+              placeholder="RM"
+            />
+
+            <br></br>
+
+            <input
+              type="text"
               name="nome"
               value={formData.nome}
               onChange={handleInputChange}
               placeholder="Nome"
+            />
+
+              <br></br>
+
+            <input
+              type="text"
+              name="turma"
+              value={formData.turma}
+              onChange={handleInputChange}
+              placeholder="Turma"
+            />
+
+              <br></br>
+
+            <input
+              type="text"
+              name="ano"
+              value={formData.ano}
+              onChange={handleInputChange}
+              placeholder="Ano"
             />
           </div>
 
