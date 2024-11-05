@@ -5,7 +5,7 @@ import styles from "@/Components/AddUsuario.module.css";
 import Link from "next/link";
 
 const Input = () => {
-  const [data, setData] = useState(Usuarios);
+  const [data, setData] = useState([]);
   const [focargoData, setFocargoData] = useState({
     cargo: "",
     nome: "",
@@ -61,73 +61,71 @@ const Input = () => {
 
   return (
     <div>
-      <br></br>
-      <div className={styles.div1}>
-        <h1 className={styles.h1}>Adicionar Usuário</h1>
-        <button className={styles.voltar}>
-          <Link href="/Paginas/Usuarios">Voltar</Link>
-        </button>
+      <div className={styles.body}>
+        <h1 className={styles.tit}>Adicionar Usuário</h1>
       </div>
-      <br></br>
+      
 
-      <div className={styles.divinput}>
+      <div className={styles.input}>
         <h3>{isEditing ? "" : ""}</h3>
-        <br></br>
+        
 
-        <input
+        <input className={styles.um}
           type="text"
           name="cargo"
           value={focargoData.cargo}
           onChange={handleInputChange}
           placeholder="Cargo:"
         />
-        <br></br>
+     
 
-        <input
+        <input className={styles.um}
           type="text"
           name="nome"
           value={focargoData.nome}
           onChange={handleInputChange}
           placeholder="Nome:"
         />
-        <br></br>
+       
 
-        <input
+        <input className={styles.um}
           type="text"
           name="email"
           value={focargoData.email}
           onChange={handleInputChange}
           placeholder="E-mail:"
         />
-        <br></br>
+       
 
-        <input
+        <input className={styles.um}
           type="text"
           name="senha"
           value={focargoData.senha}
           onChange={handleInputChange}
           placeholder="Senha:"
         />
-        <br></br>
-        <input
+       
+        <input className={styles.um}
           type="number"
           name="cpf"
           value={focargoData.cpf}
           onChange={handleInputChange}
           placeholder="CPF:"
         />
-        <div className={styles.salecanbutton}>
-          <button className={styles.cancelarbutton} onClick={handleAdd}>
+        <div className={styles.botoes}>
+        <button className={styles.botao}>
+          <Link href="/Paginas/Usuarios">Voltar</Link>
+        </button>
+          <button className={styles.botao} onClick={handleAdd}>
             Salvar
           </button>
-          <button className={styles.cancelarbutton} onClick={handleCancel}>
+          <button className={styles.botao} onClick={handleCancel}>
             Cancelar
           </button>
         </div>
       </div>
 
-      <br></br>
-      <br></br>
+     
 
     </div>
   );
