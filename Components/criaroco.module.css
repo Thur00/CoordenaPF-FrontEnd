@@ -90,10 +90,10 @@
 }
 
 .divBut {
-    width: 60%;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
-    margin: 2% 0;
+    justify-content: space-between;
+    margin: 5% 0 0;
 }
 
 .botaovoltar {
