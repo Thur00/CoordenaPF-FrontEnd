@@ -22,7 +22,8 @@ export default function MeuPerfil(){
         
         <Link href="/Paginas/PaginaInicial"><button className={styles.botao}> Voltar </button></Link>
         <button className={styles.botao}> Editar </button>
-        <Link href="/Paginas/Usuarios"><button className={styles.botao2}> Gerenciar Usuários </button></Link>
+        <Link href="/Paginas/Usuarios"><button className={styles.botao2}> Gerenciar Usuários 
+            </button></Link>
         </div></div>
     
         </>
