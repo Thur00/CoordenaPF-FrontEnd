@@ -54,15 +54,16 @@ export default function TodasOcor() {
 
       </div>
       <div className={styles.boxTodasOcor}>
-      {data.length > 0 ? (
-  data.map((item) => (
-    <Ocorrencia key={item.id} nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
-  ))
-) : (
-  <p>Nenhuma ocorrência encontrada</p>
-)}
+          {data.length > 0 ? (
+            data.map((item) => (
+              <>
+                <Ocorrencia nome={item.Criador} turma={item.Turma} tema={item.Tema} data={item.Data} status={item.Status} urgencia={item.Urgencia} />
+              </>
+            ))
+          ) : (<p>Nenhuma ocorrência encontrada</p>)}
 
-      </div>
+        </div>
+
     </main>
   )
 }
