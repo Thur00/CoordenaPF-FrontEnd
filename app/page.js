@@ -12,6 +12,7 @@ export default function Login() {
     const [cpf, setCpf] = useState('');
     const [senha, setSenha] = useState('');
     const [error, setError] = useState('');
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,6 +34,7 @@ export default function Login() {
             setError(data.message);
         }
     };
+
     const [password, setPassword] = useState('');
     const [isVisible, setIsVisible] = useState(false);
 
