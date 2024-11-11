@@ -11,7 +11,6 @@ const API_URL = "http://localhost:3001";
 
 
 const inicial = () => {
-debugger
   const [data, setData] = useState([]);
 
   const getocorrencias = async () => {
@@ -51,30 +50,32 @@ debugger
         <h2 className={styles.h4}>Notificações</h2>
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-        
-          
-        <div className={styles.boxTodasOcor}>
-        {data.length > 0 ?(
-          data.map((item) => (
-            <Ocorrencia nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
-          ))
-        ) : (<p>Nenhuma ocorrência encontrada</p>)} 
- 
-         </div>
-          
-          <h2 className={styles.h4}>Andamento:</h2>
 
-          <div className={styles.boxTodasOcor}>
-        {data.length > 0 ?(
-          data.map((item) => (
-            <Ocorrencia nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
-          ))
-        ) : (<p>Nenhuma ocorrência encontrada</p>)} 
- 
-         </div>
+
+        <div className={styles.boxTodasOcor}>
+          {data.length > 0 ? (
+            data.map((item) => (
+              <>
+                <Ocorrencia nome={item.Criador} turma={item.Turma} tema={item.Tema} data={item.Data} status={item.Status} urgencia={item.Urgencia} />
+              </>
+            ))
+          ) : (<p>Nenhuma ocorrência encontrada</p>)}
 
         </div>
+
+        <h2 className={styles.h4}>Andamento:</h2>
+
+        <div className={styles.boxTodasOcor}>
+          {data.length > 0 ? (
+            data.map((item) => (
+              <Ocorrencia nome={item.Criador} turma={item.Turma} tema={item.Tema} data={item.Data} status={item.Status} urgencia={item.Urgencia} />
+            ))
+          ) : (<p>Nenhuma ocorrência encontrada</p>)}
+
+        </div>
+
       </div>
+    </div>
 
   )
 }
