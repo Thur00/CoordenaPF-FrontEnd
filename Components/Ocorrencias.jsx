@@ -8,6 +8,12 @@ import { CiCircleCheck } from "react-icons/ci";
 function Ocorrencia(props) {
 const{nome, tema, turma, data, urgencia} = props 
 
+const formattedDate = new Date(data).toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+});
+
  return (
         <>
             <Link className={styles.boxOcor} href="/Paginas/VisualizarOcorrencia">
@@ -20,7 +26,7 @@ const{nome, tema, turma, data, urgencia} = props
                 <div className={styles.urgenciadatastatus}>
                     <div className={styles.urgencia1}><p> {urgencia} </p></div>
                     <div className={styles.datastatus}>
-                        <p>{data} </p>
+                        <p>{formattedDate} </p>
                         <CiCircleCheck className={styles.icons}/>
                     </div>
                 </div>

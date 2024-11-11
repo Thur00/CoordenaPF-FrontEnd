@@ -4,7 +4,7 @@ import styles from "./TodasOcorrencias.module.css"
 import { IoSearch } from "react-icons/io5";
 import BotaoVoltar from "@/Components/BotaoVoltar";
 import { useEffect, useState } from "react";
-import Ocorrencia from "@/Components/Ocorrencia"
+import Ocorrencia from "@/Components/Ocorrencias";
 
 const API_URL = "http://localhost:3001";
 
