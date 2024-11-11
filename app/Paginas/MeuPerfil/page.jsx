@@ -1,7 +1,5 @@
 "use client";
 
-import Header from "@/Components/Header";
-import Footer from "@/Components/Footer";
 import styles from "@/Components/Perfil.module.css";
 import BotaoVoltar from "@/Components/BotaoVoltar";
 

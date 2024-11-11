@@ -15,7 +15,12 @@
   justify-content: space-between;
   margin-right: 8%;
   margin-left: 1%;
-  margin-top: 2%;
+margin-top: 2%;
+
+.buts{
+  display: flex;
+  flex-direction: row;
+  width: 20%;
 }
 
 .buts{
@@ -24,22 +29,6 @@
   width: 20%;
 }
 
-/* .b1 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 1.2rem;
-    background-color: #ff1100;
-    border: 5px;
-    border-radius: 15px;
-    color: white;
-    padding: 15px;
-    cursor: pointer;
-    width: 12%;
-    margin-right: 8%;
-    align-items: center;
-    text-align: center;
-  } */
 
 .b1 {
   margin: 2%;
@@ -78,7 +67,7 @@
   color: white;
   transition-duration: 0.4s;
   font-size: large;
-  margin-left: 1010%;
+  margin-left: 910%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,10 +86,10 @@
   padding-right: 40px;
   border-radius: 15px;
   border: none;
-  color: white;
+  color:rgb(255, 255, 255);
   transition-duration: 0.4s;
   font-size: large;
-  margin-left: 500%;
+  margin-left: 450%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,21 +100,6 @@
   background-color: #BC1016;
 }
 
-
-/* .b2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #ff1100;
-    font-size:15px;
-    border: 5px;
-    border-radius: 15px;
-    justify-content: space-between;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    margin-left: 70%;
-  } */
 
 
 .caixas {
@@ -144,12 +118,11 @@
   border-radius: 15px;
   padding: 10px;
   margin: 3%;
-  width: 100%;
+  width: 250%;
   margin-right: 20%;
 
+
 }
-
-
 
 
 .p {

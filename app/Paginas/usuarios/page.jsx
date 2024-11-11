@@ -2,8 +2,7 @@
 
 import styles from "@/Components/UsuariosComponentes.module.css";
 import React from "react";
-import Usuario from "@/Components/UsuariosSamaraComponentes";
-import UsuarioAle from "@/Components/UsuarioAlessandraComponents";
+import Usuarios from "@/Components/UsuariosComponentes";
 import BotaoAdicionarUsuario from "@/Components/BotaoAdicionarUsuario";
 import { useEffect, useState } from "react";
 import BotaoVoltar from "@/Components/BotaoVoltar";
@@ -47,9 +46,7 @@ export default function Usu() {
 
       <div className={styles.caixas}>
 
-        <Usuario></Usuario>
-
-        <UsuarioAle></UsuarioAle>
+        <Usuarios></Usuarios>
 
       </div>
     </div>

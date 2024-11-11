@@ -6,7 +6,7 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x:hidden;
   margin: 0;
 }
 
@@ -20,8 +20,6 @@ body {
 }
 
 .container {
-  width: 100%;
-  height: 100%;
   flex-grow: 1;
 }
 
@@ -66,12 +64,11 @@ a {
   width: 110%;
   background-color: #bc1016;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   padding: 2vh 2vh;
-  position: relative;
-  bottom: 0%;
+  margin-top: 13%;
 }
 
 .textBox {
@@ -133,11 +130,13 @@ a {
     
     background-color: #bc1016;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
-    position: relative;
+   margin-top: 10%;
+    height: 13vh;
+    width: 100%;
 
   }
 
@@ -145,11 +144,7 @@ a {
     width: 20%;
   }
 
-  .footbox {
-    height: 13vh;
-    width: 100%;
-  }
-
+ 
   .textBox {
     height: 100%;
     width: 100%;
