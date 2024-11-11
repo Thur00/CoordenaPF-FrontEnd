@@ -15,9 +15,13 @@
   justify-content: space-between;
   margin-right: 8%;
   margin-left: 1%;
-margin-top: 2%;
+  margin-top: 2%;
+}
 
-
+.buts{
+  display: flex;
+  flex-direction: row;
+  width: 20%;
 }
 
 /* .b1 {
@@ -57,7 +61,7 @@ margin-top: 2%;
 }
 
 .link {
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,7 +104,7 @@ margin-top: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 .b2:hover {
@@ -130,7 +134,7 @@ margin-top: 2%;
   align-items: center;
   justify-content: space-between;
   margin-left: 15%;
-  
+
 }
 
 .caixa1 {

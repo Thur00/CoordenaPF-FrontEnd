@@ -32,13 +32,16 @@ export default function Usu() {
   }, []);
 
   return (
-    <div >
+    <div>
 
       <br></br>
-      <div className={styles.bt}>
 
-        <BotaoAdicionarUsuario></BotaoAdicionarUsuario>
-        <BotaoVoltar link="/Paginas/MeuPerfilCleide" />
+      <div className={styles.bt}>
+        <h1 className={styles.h1}>Usuário</h1>
+        <div className={styles.buts}>
+          <BotaoAdicionarUsuario></BotaoAdicionarUsuario>
+          <BotaoVoltar link="/Paginas/MeuPerfilCleide" />
+        </div>
 
       </div>
 
