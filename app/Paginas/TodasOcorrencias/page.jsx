@@ -12,21 +12,20 @@ const API_URL = "http://localhost:3001";
 export default function TodasOcor() {
   const [data, setData] = useState([]);
 
-  const getocorrencias = async () => {
+  const getOcorrencias = async () => {
     try {
       debugger
       const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
-      setError(null);
     } catch (error) {
       console.error("Erro na busca da ocorrência", error);
     }
   };
 
   useEffect(() => {
-    getocorrencias();
+    getOcorrencias();
   }, []);
 
   return (
@@ -55,11 +54,13 @@ export default function TodasOcor() {
 
       </div>
       <div className={styles.boxTodasOcor}>
-        {data.length > 0 ? (
-          data.map((item) => (
-            <Ocorrencia nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
-          ))
-        ) : (<p>Nenhuma ocorrência encontrada</p>)}
+      {data.length > 0 ? (
+  data.map((item) => (
+    <Ocorrencia key={item.id} nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
+  ))
+) : (
+  <p>Nenhuma ocorrência encontrada</p>
+)}
 
       </div>
     </main>

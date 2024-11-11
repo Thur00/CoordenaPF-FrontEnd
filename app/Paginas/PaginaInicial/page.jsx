@@ -11,7 +11,7 @@ const API_URL = "http://localhost:3001";
 
 
 const inicial = () => {
-
+debugger
   const [data, setData] = useState([]);
 
   const getocorrencias = async () => {
