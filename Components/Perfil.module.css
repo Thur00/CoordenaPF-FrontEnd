@@ -3,7 +3,6 @@
 }
 
 .link {
-  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,7 +23,6 @@
     margin-top: 0%;
 }
 
-
 .botao2{
     margin: 2%;
     background-color: #ff1100;
@@ -41,8 +39,6 @@
     margin-top: 0%;
 }
 
-
-
 .botao:hover {
     background-color: #BC1016;
 }
@@ -58,7 +54,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-
 }
 
 .botoes{
@@ -66,7 +61,6 @@
     flex-direction:row;
     margin-top: 2%;
     justify-content:space-between;
-    
 }
 
 .um{
@@ -117,5 +111,4 @@
         margin-top: 10%;
     }
 
-    
 }
