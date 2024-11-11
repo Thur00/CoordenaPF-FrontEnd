@@ -5,7 +5,6 @@ import styles from "@/Components/Login.module.css"
 import { PiLockKeyFill } from "react-icons/pi";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import React, { useState } from "react";
 
 const RedefinirSenha = () => {
   const [password, setPassword] = useState("");
