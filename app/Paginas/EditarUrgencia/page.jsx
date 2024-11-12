@@ -185,7 +185,7 @@ const Tabela = () => {
               placeholder="Urgencia"
             />
             <input
-              type="text"
+              type="color"
               name="cor"
               value={formData.cor}
               onChange={handleInputChange}
