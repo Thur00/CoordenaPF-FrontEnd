@@ -180,9 +180,10 @@ const GerenciarUsuEsp = () => {
             </div>
             
           )}
-</div>
           <Link href="/Paginas/PaginaInicial"><button className={styles.botao}> Voltar </button></Link>
           <Link href="/Paginas/Usuarios"><button className={styles.botao2}> Gerenciar Usuários </button></Link>
+</div>
+          
         </div></div >
 
     </>
