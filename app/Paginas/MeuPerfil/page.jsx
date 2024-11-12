@@ -67,37 +67,7 @@ const MeuPerfil = () => {
         console.error("Erro ao atualizar o usuário:", error);
       }
     }
-    // } else {
-    //   try {
-    //     // Faz uma requisição POST para a API de temas
-    //     const response = await fetch(`${API_URL}/usuarios`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       // Envia o corpo da requisição em formato JSON
-    //       body: JSON.stringify(
-    //         {Login_id: formData.Login_id, Nome: formData.Nome, Cargo: formData.Cargo, Email: formData.Email, Senha: formData.Senha, CPF: formData.CPF}
-    //       ),
-    //     });
 
-    //     // Atualiza a lista de temas após a edição
-    //     getAll();
-
-    //     // Converte a resposta para JSON
-    //     const data = await response.json();
-
-    //     // Atualiza o estado de 'data' com o novo tema adicionado
-    //     setData((prevData) => [...prevData, data]);
-
-    //     // Limpa os campos de entrada
-    //     setFormData({ Login_id: "", Nome: "", Cargo: "", Email: "", Senha: "", CPF: "" });
-    //     setShowForm(false);
-    //   } catch (error) {
-    //     // Loga erros no console
-    //     console.error("Erro ao adicionar usuário:", error);
-    //   }
-    // }
     setShowForm(false);
     setFormData({ Login_id: "", Nome: "", Cargo: "", Email: "", Senha: "", CPF: "" });
   };
@@ -112,65 +82,8 @@ const MeuPerfil = () => {
 
       <div className={styles.body}>
         <h1 className={styles.tit}> Meu perfil </h1>
-        <h1>{formData.Nome}</h1>
 
         <div className={styles.input}>
-
-          {/* {data.length > 0 ? (
-    data.map((item) => (
-      <div key={item.Login_id} className="form-row">
-        <div >
-          <input className={styles.um}
-            type="text"
-            id={`Nome-${item.Login_id}`}
-            name="Nome"
-            value={item.Nome}
-            readOnly
-          />
-        </div>
-        <div >
-          <input className={styles.um}
-            type="text"
-            id={`Cargo-${item.Login_id}`}
-            name="Cargo"
-            value={item.Cargo}
-            readOnly
-          />
-        </div>
-        <div >
-          <input className={styles.um}
-            type="email"
-            id={`Email-${item.Login_id}`}
-            name="Email"
-            value={item.Email}
-            readOnly
-          />
-        </div>
-        <div >
-          <input className={styles.um}
-            type="password"
-            id={`Senha-${item.Login_id}`}
-            name="Senha"
-            value={item.Senha}
-            readOnly
-          />
-        </div>
-        <div >
-          <input className={styles.um}
-            type="text"
-            id={`CPF-${item.Login_id}`}
-            name="CPF"
-            value={item.CPF}
-            readOnly
-          />
-        </div>
-      </div>
-    ))
-  ) : (
-    <div className="form-row">
-      <p>Nenhum usuário encontrado.</p>
-    </div>
-  )} */}
 
 
           {data.map((item) => (
@@ -193,13 +106,6 @@ const MeuPerfil = () => {
           {data.map((item) => (
             <input className={styles.um} key={item.Login_id} type="text" value={item.CPF} onChange={handleInputChange} />
           ))}
-
-
-          {/* <input className={styles.um} type="text" value={formData.Nome} onChange={handleInputChange}  placeholder="Nome:" />
-        <input className={styles.um} type="text" value={formData.Cargo} onChange={handleInputChange}  placeholder="Cargo:" />
-        <input className={styles.um} type="text" value={formData.Email} onChange={handleInputChange}  placeholder="E-mail:" />
-        <input className={styles.um} type="text" value={formData.Senha} onChange={handleInputChange}  placeholder="Senha:" />
-        <input className={styles.um} type="text" value={formData.CPF} onChange={handleInputChange}  placeholder="CPF:" /> */}
 
         </div>
 
