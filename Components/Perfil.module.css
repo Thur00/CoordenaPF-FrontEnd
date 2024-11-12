@@ -46,8 +46,7 @@
 .input{
     display: flex;
     flex-direction: column;
-    align-items:stretch;
-    width: 50%;
+    margin-left: 10%;    
 }
 
 .body{
@@ -68,7 +67,9 @@
     margin-top:3%;
     border-radius: 10px;
     height: 5vh;
-    border:1px solid gray
+    border:1px solid gray;
+    width: 250%;
+    font-size: 1.5rem;
 }
 
 .tit2{

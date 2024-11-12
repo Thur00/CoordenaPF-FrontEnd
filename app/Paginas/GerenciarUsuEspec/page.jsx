@@ -86,29 +86,41 @@ const GerenciarUsuEsp = () => {
         <p className={styles.p}>{data[0]?.Cargo}</p>
 
         <div className={styles.input}>
-
           {data.map((item) => (
-            <input className={styles.um} key={item.Login_id} type="text" value={item.Nome} onChange={handleInputChange} />
+            <div key={item.Login_id}>
+              <input
+                className={styles.um}
+                type="text"
+                value={item.Nome}
+                readOnly
+              />
+              <input
+                className={styles.um}
+                type="text"
+                value={item.Cargo}
+                readOnly
+              />
+              <input
+                className={styles.um}
+                type="text"
+                value={item.Email}
+                readOnly
+              />
+              <input
+                className={styles.um}
+                type="text"
+                value={item.Senha}
+                readOnly
+              />
+              <input
+                className={styles.um}
+                type="text"
+                value={item.CPF}
+                readOnly
+              />
+
+            </div>
           ))}
-
-          {data.map((item) => (
-            <input className={styles.um} key={item.Login_id} type="text" value={item.Cargo} onChange={handleInputChange} />
-
-          ))}
-
-          {data.map((item) => (
-            <input className={styles.um} key={item.Login_id} type="text" value={item.Email} onChange={handleInputChange} />
-          ))}
-
-          {data.map((item) => (
-            <input className={styles.um} key={item.Login_id} type="text" value={item.Senha} onChange={handleInputChange} />
-          ))}
-
-          {data.map((item) => (
-            <input className={styles.um} key={item.Login_id} type="text" value={item.CPF} onChange={handleInputChange} />
-          ))}
-
-
         </div>
 
         <div >
