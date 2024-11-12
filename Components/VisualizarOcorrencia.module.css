@@ -17,8 +17,21 @@
   margin: 2%;
   background-color: #ff1100;
   padding: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: large;
+  width: 28vh;
+}
+
+.b2 {
+  background-color: #ff1100;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
   border-radius: 15px;
   border: none;
   color: white;
@@ -36,6 +49,15 @@
   justify-content: space-evenly;
   margin: 2%;
 }
+
+
+.botoes2{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2%;
+}
+
+
 
 .titulo {
   padding: 1%;
@@ -114,7 +136,7 @@
 .resp {
   margin-bottom: 2%;
   display: flex;
-  width: 100%;
+  width: 110%;
   justify-content: space-between;
 }
 
@@ -122,7 +144,7 @@
   margin-bottom: 2%;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .input {
@@ -142,7 +164,7 @@
 }
 
 .input5 {
-  width: 23vw;
+  width: 22vw;
 }
 
 .input6 {
