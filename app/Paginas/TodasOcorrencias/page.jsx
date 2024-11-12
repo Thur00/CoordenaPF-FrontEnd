@@ -12,7 +12,7 @@ const API_URL = "http://localhost:3001";
 export default function TodasOcor() {
   const [data, setData] = useState([]);
 
-  const getocorrencias = async () => {
+  const getOcorrencias = async () => {
     try {
       debugger
       const resposta = await fetch(`${API_URL}/ocorrencias`);
@@ -25,7 +25,7 @@ export default function TodasOcor() {
   };
 
   useEffect(() => {
-    getocorrencias();
+    getOcorrencias();
   }, []);
 
   return (
@@ -54,15 +54,18 @@ export default function TodasOcor() {
 
       </div>
       <div className={styles.boxTodasOcor}>
-          {data.length > 0 ? (
-            data.map((item) => (
-              <>
-                <Ocorrencia nome={item.Criador} turma={item.Turma} tema={item.Tema} data={item.Data} status={item.Status} urgencia={item.Urgencia} />
-              </>
-            ))
-          ) : (<p>Nenhuma ocorrência encontrada</p>)}
+        {data.length > 0 ? (
+          data.map((item) => (
+            <>
+              <Ocorrencia nome={item.Criador} turma={item.Turma} tema={item.Tema} data={item.Data} status={item.Status} 
+              urgencia={item.Urgencia} cor={item.Cor}          
+              />
 
-        </div>
+            </>
+          ))
+        ) : (<p>Nenhuma ocorrência encontrada</p>)}
+
+      </div>
 
     </main>
   )

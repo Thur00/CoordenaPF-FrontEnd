@@ -16,6 +16,7 @@
 
 }
 
+
 .bt {
   display: flex;
   flex-direction: row;
@@ -90,7 +91,7 @@
   align-items: center;
   justify-content: center;
   border: 2px solid red;
-  background-color: rgba(255, 0, 0, 0.426);
+  background-color: rgba(255, 17, 0, 0.1);
   border-radius: 20px;
   padding: 27px;
   margin: 1% 0;
@@ -99,7 +100,7 @@
 }
 
 .boxOcor:hover {
-  background-color: rgba(255, 0, 0, 0.636);
+  background-color: var(--custom-ncolor);
 }
 
 .boxOcor2 {
