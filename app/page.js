@@ -81,7 +81,7 @@ export default function Login() {
 
                     <Link href="./User/RedefinirSenha">Esqueceu sua senha?</Link>
 
-                    <button className={styles.botao} type="submit" >Acessar</button>
+                    <Link href="./Paginas/PaginaInicial" > <button className={styles.botao} type="submit" >Acessar</button> </Link>
                 </form>
 
                 <a className={styles.referencia} href="https://pt.vecteezy.com/vetor-gratis/vermelho" target="blank">Vermelho Vetores por Vecteezy</a>
