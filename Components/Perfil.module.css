@@ -51,8 +51,9 @@
 
 .body{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
+    margin-left: 18%;
 }
 
 .botoes{
@@ -73,12 +74,17 @@
 }
 
 .tit2{
-    margin-top: 3%;
-    margin-bottom: 0.5%
+
+    margin-bottom: 0.5%;
+    text-align: center;
 };
 
-.p{
-    margin-top: 0.1%;
+.tit22{
+    text-align: center;
+    display: flex;
+}
+.teste{
+    margin-top: 3%;
 }
 
 

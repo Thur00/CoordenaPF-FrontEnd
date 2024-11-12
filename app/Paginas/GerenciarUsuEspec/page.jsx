@@ -21,6 +21,7 @@ const GerenciarUsuEsp = () => {
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
+    //   setError(null);
     } catch (error) {
       console.error("Erro na busca usuário", error);
     }
@@ -39,7 +40,7 @@ const GerenciarUsuEsp = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ Login_id: item.Login_id, Nome: item.Nome, Cargo: item.Cargo, Email: item.Email, Senha: item.Senha, CPF: item.CPF });
+    setFormData({ Nome: item.Nome, Cargo: item.Cargo, Email: item.Email, Senha: item.Senha, CPF: item.CPF });
     setEditingItem(item);
   };
 
@@ -53,7 +54,7 @@ const GerenciarUsuEsp = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(
-            { Login_id: formData.Login_id, Nome: formData.Nome, Cargo: formData.Cargo, Email: formData.Email, Senha: formData.Senha, CPF: formData.CPF }
+            {  Nome: formData.Nome, Cargo: formData.Cargo, Email: formData.Email, Senha: formData.Senha, CPF: formData.CPF }
           ), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
@@ -69,21 +70,21 @@ const GerenciarUsuEsp = () => {
     }
     
     setShowForm(false);
-    setFormData({ Login_id: "", Nome: "", Cargo: "", Email: "", Senha: "", CPF: "" });
+    setFormData({ Nome: "", Cargo: "", Email: "", Senha: "", CPF: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ Login_id: "", Nome: "", Cargo: "", Email: "", Senha: "", CPF: "" });
+    setFormData({ Nome: "", Cargo: "", Email: "", Senha: "", CPF: "" });
   };
 
   return (
     <>
+<div  className={styles.teste}>
+<h1 className={styles.tit2}>{data[0]?.Nome}</h1>
+<p className={styles.tit2}>{data[0]?.Cargo}</p>
 
       <div className={styles.body}>
-        
-        <h1 className={styles.tit2}>{data[0]?.Nome}</h1>
-        <p className={styles.p}>{data[0]?.Cargo}</p>
 
         <div className={styles.input}>
           {data.map((item) => (
@@ -196,7 +197,7 @@ const GerenciarUsuEsp = () => {
           <Link href="/Paginas/Usuarios"><button className={styles.botao2}> Gerenciar Usuários </button></Link>
 </div>
           
-        </div></div >
+        </div></div ></div>
 
     </>
   )
