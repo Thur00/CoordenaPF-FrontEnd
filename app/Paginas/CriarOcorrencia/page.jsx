@@ -7,29 +7,32 @@ import Link from "next/link";
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 function criaroco() {
-  const [data, setData] = useState("");
-  const [formData, setFormData] = useState({ id: "", criaroco: "" });
-  const [showForm, setShowForm] = useState(false);
-
-
-  const handleSave = () => {
-    if (isEditing) {
-      setData(
-        data.map((item) => (item.id === editingItem.id ? formData : item))
-      );
-    } else {
-      setData([...data, { ...formData, id: Number(formData.id) }]);
-    }
-    setShowForm(false);
-    setFormData({ id: "", criaroco: "" });
-  };
+  const [dataAsp, setDataAsp] = useState([]);
+  const [dataTem, setDataTem] = useState([]);
+  const [dataUrg, setDataUrg] = useState([]);
+  const [dataEnc, setDataEnc] = useState([]);
+  const [formData, setFormData] = useState({
+    criador: "",
+    dataoc: "",
+    hora: "",
+    iniciatica: "",
+    aspecto: "",
+    urgencia: "",
+    tema: "",
+    rm: "",
+    turma: "",
+    responsavel: "",
+    descricao: "",
+    encaminhamento: "",
+    status: "",
+  });
 
   const getAspecto = async () => {
     try {
       const resposta = await fetch(`${API_URL}/aspectos`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
-      setData(data1);
+      setDataAsp(data1);
     } catch (error) {
       console.error("Erro na busca de aspecto", error);
     }
@@ -40,19 +43,18 @@ function criaroco() {
       const resposta = await fetch(`${API_URL}/temas`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
-      setData(data1);
+      setDataTem(data1);
     } catch (error) {
       console.error("Erro na busca de tema", error);
     }
   };
 
-  
   const getUrgencia = async () => {
     try {
       const resposta = await fetch(`${API_URL}/urgencias`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
-      setData(data1);
+      setDataUrg(data1);
     } catch (error) {
       console.error("Erro na busca de urgência", error);
     }
@@ -63,31 +65,95 @@ function criaroco() {
       const resposta = await fetch(`${API_URL}/encaminhamentos`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
-      setData(data1);
+      setDataEnc(data1);
     } catch (error) {
       console.error("Erro na busca de encaminhamento", error);
     }
   };
 
-  
-
   useEffect(() => {
     getAspecto();
     getTema();
-    getUrgencia()
-    getEncaminhamento()
+    getUrgencia();
+    getEncaminhamento();
   }, []);
 
+  const handleSave = async () => {
+    try {
+      console.log("DAta2: " + formData.dataoc);
+      // Faz uma requisição POST para a API de temas
+      const response = await fetch(`${API_URL}/ocorrencias`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // Envia o corpo da requisição em formato JSON
+        body: JSON.stringify({
+          Criador: 3,
+          Data_ocorrencia: formData.dataoc,
+          Hora: formData.hora,
+          Iniciativa: formData.iniciatica,
+          Aspecto: formData.aspecto,
+          Urgencia: formData.urgencia,
+          Tema: formData.tema,
+          Rm_aluno: formData.rm,
+          Turma: formData.turma,
+          Responsavel: formData.responsavel,
+          Descricao: formData.descricao,
+          Encaminhamento: formData.encaminhamento,
+          Status: formData.status,
+        }),
+      });
+
+      // Converte a resposta para JSON
+      // const data = await response.json();
+
+      // Limpa os campos de entrada
+      setFormData({
+        criador: "",
+        dataoc: "",
+        hora: "",
+        iniciatica: "",
+        aspecto: "",
+        urgencia: "",
+        tema: "",
+        rm: "",
+        turma: "",
+        responsavel: "",
+        descricao: "",
+        encaminhamento: "",
+        status: "",
+      });
+    } catch (error) {
+      // Loga erros no console
+      console.error("Erro ao criar ocorrencia:", error);
+    }
+    setFormData({
+      criador: "",
+      dataoc: "",
+      hora: "",
+      iniciatica: "",
+      aspecto: "",
+      urgencia: "",
+      tema: "",
+      rm: "",
+      turma: "",
+      responsavel: "",
+      descricao: "",
+      encaminhamento: "",
+      status: "",
+    });
+  };
 
   return (
     <main className={styles.main}>
       <h1 className={styles.tit}>Criar nova ocorrência</h1>
 
-      <form className={styles.form}>
+      <div className={styles.form}>
         <div className={styles.datatime}>
           <div className={styles.um}>
             <label>Data: </label>
-            <input className={styles.input4} type="date" name="date" />
+            <input className={styles.input4} type="date" name="data" />
           </div>
 
           <div>
@@ -114,13 +180,15 @@ function criaroco() {
             <label for="aspecto">Aspecto: </label>
             <select className={styles.input7} id="aspecto" name="aspecto">
               <option value="null"></option>
-              {data.length > 0 ? (
-                data.map((item) => (
-                  <option value={item.Aspecto_id}>{item.Nome}</option>
+              {dataAsp.length > 0 ? (
+                dataAsp.map((item) => (
+                  <option key={item.Aspecto_id} value={item.Aspecto_id}>
+                    {item.Nome}
+                  </option>
                 ))
-              ) : (<option>Nenhum aspecto encontrado  </option>)}
-
-
+              ) : (
+                <option>Nenhum aspecto encontrado </option>
+              )}
             </select>
           </div>
         </div>
@@ -130,24 +198,31 @@ function criaroco() {
             <label for="tema">Tema: </label>
             <select className={styles.input8} name="tema" id="tema">
               <option value="null"></option>
-              {data.length > 0 ? (
-                data.map((item) => (
-                  <option value={item.Tema_id}>{item.Nome_tema}</option>
+              {dataTem.length > 0 ? (
+                dataTem.map((item) => (
+                  <option key={item.Tema_id} value={item.Tema_id}>
+                    {item.Nome_tema}
+                  </option>
                 ))
-              ) : (<option>Nenhum tema encontrado  </option>)}
+              ) : (
+                <option>Nenhum tema encontrado </option>
+              )}
             </select>
           </div>
 
           <div>
             <label for="urgencia">Urgência: </label>
             <select className={styles.input9} name="urgencia" id="urgencia">
-            <option value="null"></option>
-              {data.length > 0 ? (
-                data.map((item) => (
-                  <option value={item.Urgencia_id}>{item.Tipo_urgencia}</option>
+              <option value="null"></option>
+              {dataUrg.length > 0 ? (
+                dataUrg.map((item) => (
+                  <option key={item.Urgencia_id} value={item.Urgencia_id}>
+                    {item.Tipo_urgencia}
+                  </option>
                 ))
-              ) : (<option>Nenhuma urgencia encontrada  </option>)}
-    
+              ) : (
+                <option>Nenhuma urgencia encontrada </option>
+              )}
             </select>
           </div>
         </div>
@@ -170,13 +245,18 @@ function criaroco() {
               type="text"
               id="turma"
               name="turma"
-              disabled
+              // disabled
             />
           </div>
 
           <div>
             <label for="rm">RM: </label>
-            <input type="text" id="rm" name="rm" disabled />
+            <input
+              type="text"
+              id="rm"
+              name="rm"
+              // disabled
+            />
           </div>
         </div>
 
@@ -198,35 +278,47 @@ function criaroco() {
         </div>
 
         <div className={styles.mes}>
-          <textarea name="message" rows="10" cols="110">
-            Descrição da ocorrência
-          </textarea>
+          <textarea
+            name="message"
+            rows="10"
+            cols="110"
+            placeholder="Descrição da ocorrência"
+          />
         </div>
 
         <div className={styles.enc}>
           <label for="enc">Encaminhamento: </label>
           <select className={styles.input3} id="enc" name="enc">
             <option value="null"></option>
-            {data.length > 0 ? (
-                data.map((item) => (
-                  <option value={item.Urgencia_id}>{item.Tipo_urgencia}</option>
-                ))
-              ) : (<option>Nenhuma urgencia encontrada  </option>)}
-    
-            
+            {dataEnc.length > 0 ? (
+              dataEnc.map((item) => (
+                <option
+                  key={item.Encaminhamento_id}
+                  value={item.Encaminhamento_id}
+                >
+                  {item.Nome_encaminhamento}
+                </option>
+              ))
+            ) : (
+              <option>Nenhuma urgencia encontrada </option>
+            )}
           </select>
         </div>
-      </form>
-      <div className={styles.divBut}>
-        <Link href="../Paginas/PaginaInicial">
-          <button className={styles.botaovoltar}> Voltar</button>
-        </Link>
-        <Link href="https://quizizz.com/">
-          <button className={styles.botaovoltar}> Gerar documento </button>
-        </Link>
-        <button className={styles.botaovoltar} onClick={handleSave}> Salvar</button>
+
+        <div className={styles.divBut}>
+          <Link href="../Paginas/PaginaInicial">
+            <button className={styles.botaovoltar}> Voltar</button>
+          </Link>
+          <Link href="https://quizizz.com/">
+            <button className={styles.botaovoltar}> Gerar documento </button>
+          </Link>
+          <button className={styles.botaovoltar} onClick={handleSave}>
+            Salvar
+          </button>
+        </div>
       </div>
     </main>
   );
 }
+
 export default criaroco;
