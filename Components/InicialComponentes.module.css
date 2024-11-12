@@ -1,6 +1,5 @@
 .tudo {
   align-items: center;
-
 }
 
 .h4 {
@@ -13,9 +12,7 @@
 .icon {
   font-size: 130%;
   margin-right: 5%;
-
 }
-
 
 .bt {
   display: flex;
@@ -23,10 +20,8 @@
   justify-content: space-between;
   text-align: center;
   align-items: center;
-  margin-right: 2%;
-  margin-left: 0%;
-
-
+  margin-right: 4%;
+  margin-left: 2%;
 }
 
 
@@ -42,17 +37,14 @@
   transition-duration: 0.4s;
   font-size: large;
   width: 110%;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-
-
-
 }
 
 .b1:hover {
   background-color: #BC1016;
 }
-
-
 
 .titulo {
   padding: 1%;
@@ -60,7 +52,6 @@
   margin-left: 2%;
   font-size: 150%;
 }
-
 
 .titulo2 {
   padding: 1%;
@@ -77,7 +68,6 @@
 
 }
 
-
 .a {
   display: flex;
   flex-direction: row;
@@ -91,7 +81,7 @@
   align-items: center;
   justify-content: center;
   border: 2px solid red;
-  background-color: rgba(255, 17, 0, 0.1);
+  background-color: rgba(255, 0, 0, 0.426);
   border-radius: 20px;
   padding: 27px;
   margin: 1% 0;
@@ -100,7 +90,7 @@
 }
 
 .boxOcor:hover {
-  background-color: var(--custom-ncolor);
+  background-color: rgba(255, 0, 0, 0.636);
 }
 
 .boxOcor2 {
@@ -141,8 +131,7 @@
 
 .titletematurma {
   font-weight: bold;
-  width: 100%;
-  margin-right: 10%;
+  margin-right: 1rem
 }
 
 .datastatus {
@@ -155,14 +144,14 @@
 
 
 .urgencia1 {
-  border: 2px solid red;
+  border: 2px solid rgb(14, 13, 13);
   padding: 5px;
   margin-bottom: 15%;
   border-radius: 10px;
   font-size: 90%;
 }
 
-.urgencia2 {
+/* .urgencia2 {
   border: 2px solid yellow;
   padding: 10px;
   margin-bottom: 5%;
@@ -174,12 +163,11 @@
   padding: 10px;
   margin-bottom: 5%;
   border-radius: 10px;
-}
+} */
 
 .p1 {
   font-size: 0.9rem;
 }
-
 
 .urgencia2 {
   border: 2px solid rgb(251, 255, 0);
