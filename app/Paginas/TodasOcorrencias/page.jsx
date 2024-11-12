@@ -18,21 +18,19 @@ export default function TodasOcor() {
     const [status, setStatus] = useState(false)
     const [urgencia, setUrgencia] = useState(false)
 
-    const getocorrencias = async () => {
+    const getOcorrencias = async () => {
         try {
-            debugger
             const resposta = await fetch(`${API_URL}/ocorrencias`);
             const data1 = await resposta.json();
             console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
             setData(data1);
-            setError(null);
         } catch (error) {
             console.error("Erro na busca da ocorrência", error);
         }
     };
 
     useEffect(() => {
-        getocorrencias();
+        getOcorrencias();
     }, []);
 
     function EscondePesquisa(param) {
@@ -173,15 +171,12 @@ export default function TodasOcor() {
                 )}
 
             </div>
-
-
             <div className={styles.boxTodasOcor}>
                 {data.length > 0 ? (
                     data.map((item) => (
-                        <Ocorrencia nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
+                        <Ocorrencia nome={item.Criador} tema={item.Tema} data={item.Data} status={item.Status} urgencia={item.Urgencia} cor={item.Cor} />
                     ))
                 ) : (<p>Nenhuma ocorrência encontrada</p>)}
-
             </div>
         </main>
     )
