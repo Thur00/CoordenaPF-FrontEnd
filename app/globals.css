@@ -61,7 +61,7 @@ a {
   margin: 10%;
 }
 
-.footbox {
+/* .footbox {
   height: 10vh;
   width: 110%;
   background-color: #bc1016;
@@ -71,6 +71,17 @@ a {
   justify-content: space-around;
   padding: 2vh 2vh;
   margin-top: 100%;
+} */
+
+.footbox {
+  background-color: #bc1016; /* Cor de fundo do footer */
+  color: white; /* Cor do texto */
+  text-align: center; /* Centraliza o texto */
+  padding: 1em; /* Espaçamento interno */
+  position: fixed; /* Fixa o footer na tela */
+  bottom: 0; /* Posiciona na parte inferior */
+  left: 0; /* Alinha à esquerda */
+  right: 0; /* Alinha à direita */
 }
 
 .textBox {
