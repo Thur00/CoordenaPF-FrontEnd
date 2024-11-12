@@ -4,7 +4,7 @@ import styles from "./TodasOcorrencias.module.css"
 import { IoSearch } from "react-icons/io5";
 import BotaoVoltar from "@/Components/BotaoVoltar";
 import { useEffect, useState } from "react";
-import Ocorrencia from "@/Components/Ocorrencias"
+import Ocorrencia from "@/Components/Ocorrencias";
 
 const API_URL = "http://localhost:3001";
 
@@ -19,7 +19,6 @@ export default function TodasOcor() {
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
-      setError(null);
     } catch (error) {
       console.error("Erro na busca da ocorrência", error);
     }
@@ -55,13 +54,16 @@ export default function TodasOcor() {
 
       </div>
       <div className={styles.boxTodasOcor}>
-        {data.length > 0 ? (
-          data.map((item) => (
-            <Ocorrencia nome={item.nome} tema={item.tema} data={item.data} status={item.status} urgencia={item.urgencia} />
-          ))
-        ) : (<p>Nenhuma ocorrência encontrada</p>)}
+          {data.length > 0 ? (
+            data.map((item) => (
+              <>
+                <Ocorrencia nome={item.Criador} turma={item.Turma} tema={item.Tema} data={item.Data} status={item.Status} urgencia={item.Urgencia} />
+              </>
+            ))
+          ) : (<p>Nenhuma ocorrência encontrada</p>)}
 
-      </div>
+        </div>
+
     </main>
   )
 }
