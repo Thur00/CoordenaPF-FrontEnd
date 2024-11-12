@@ -143,7 +143,88 @@ function criaroco() {
       encaminhamento: "",
       status: "",
     });
+
+    
   };
+
+  const handleDataChange = (e) => {
+    console.log('Data changed:', e.target.value);
+    setFormData(e.target.value);
+  
+};
+
+const handleHorarioChange = (e) => {
+  console.log('Horário changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleIniciativaChange = (e) => {
+  console.log('Iniciativa changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleAspectoChange = (e) => {
+  console.log('Aspecto changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleTemaChange = (e) => {
+  console.log('Tema changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleUrgenciaChange = (e) => {
+  console.log('Urgência changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleEstudanteChange = (e) => {
+  console.log('Estudante changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleTurmaChange = (e) => {
+  console.log('Turma changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleRMChange = (e) => {
+  console.log('RM changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleResponsavelChange = (e) => {
+  console.log('Responsável changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleEspecialistaChange = (e) => {
+  console.log('Especialista changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleDescChange = (e) => {
+  console.log('Descrição changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+
+const handleEncaminhamentoChange = (e) => {
+  console.log('Encaminhamento changed:', e.target.value);
+  setFormData(e.target.value);
+
+};
+  
 
   return (
     <main className={styles.main}>
@@ -153,7 +234,7 @@ function criaroco() {
         <div className={styles.datatime}>
           <div className={styles.um}>
             <label>Data: </label>
-            <input className={styles.input4} type="date" name="data" />
+            <input className={styles.input4} type="date" name="data" value={formData.dataoc} onChange={handleDataChange}/>
           </div>
 
           <div>
