@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import styles from "@/Components/Login.module.css"
+import styles from "@/Components/Login.module.css";
 import { PiLockKeyFill } from "react-icons/pi";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import React from "react";
 
 const RedefinirSenha = () => {
   const [password, setPassword] = useState("");
@@ -46,8 +45,7 @@ const RedefinirSenha = () => {
             <div className={styles.cadeado}>
               <PiLockKeyFill />
             </div>
-        
-    
+
             <input
               type={isVisible1 ? "text" : "password"}
               value={password}
