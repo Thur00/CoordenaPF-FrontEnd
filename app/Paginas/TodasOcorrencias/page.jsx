@@ -41,7 +41,6 @@ export default function TodasOcor() {
             <IoSearch />{" "}
           </button>
         </div>
-
         <div className={styles.filtro}>
           <button className={styles.butfiltro}> RM </button>
           <button className={styles.butfiltro}> NOME </button>

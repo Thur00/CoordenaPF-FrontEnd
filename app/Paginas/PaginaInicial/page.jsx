@@ -2,7 +2,7 @@
 
 import styles from "@/Components/InicialComponentes.module.css";
 import React from "react";
-import Ocorrencia from "@/Components/Ocorrencia";
+import Ocorrencia from "@/Components/Ocorrencias";
 import BotaoInicial from "@/Components/BotaoInicial";
 import { useEffect, useState } from "react";
 
@@ -10,14 +10,13 @@ const API_URL = "http://localhost:3001";
 
 const inicial = () => {
   const [data, setData] = useState([]);
-
   const getOcorrencias = async () => {
     try {
+      debugger;
       const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
-      setError(null);
     } catch (error) {
       console.error("Erro na busca da ocorrência", error);
     }
