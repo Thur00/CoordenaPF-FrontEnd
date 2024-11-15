@@ -1,134 +1,355 @@
-"Use Client"
+"use client";
 
+import { useEffect, useState } from "react";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
 import BotaoVisualizar from "@/Components/BotaoVisuOcorrencia";
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
 import BotaoVoltar from "@/Components/BotaoVoltar";
 
-export default function Visualizar() {
+const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
-    return (
+const VisualizarOcorrencia = () => {
+  const [data, setData] = useState([]);
 
-        <div>
+  const getOcorrencia = async () => {
+    debugger;
+    try {
+      const resposta = await fetch(`${API_URL}/ocorrencias`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+    } catch (error) {
+      console.error("Erro na vizualização da ocorrência", error);
+    }
+  };
 
-            <div className={styles.tudo}>
-                <h1>Ocorrencia</h1>
-                <p className={styles.data}>Data: 01/10/2024</p>
-                <p className={styles.urgencia1}> Muito Urgente </p>
-            </div>
+  useEffect(() => {
+    getOcorrencia();
+  }, []);
 
-            <div>
-                <BotaoVisualizar></BotaoVisualizar>
-            </div>
+  const formattedDate = new Date(data[0]?.Data).toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
-            <form className={styles.form}>
-                <div className={styles.datatime}>
+  const formattedTime = new Date(data[0]?.Data).toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
-                    <div className={styles.um}>
-                        <label>Data: </label>
-                        <input className={styles.input4} type="date" name="date" />
-                    </div>
+  return (
+    <div>
+      <div className={styles.tudo}>
+        <h1>Ocorrência</h1>
+        <p className={styles.data}>
+          Data:
+          {data.length > 0 ? formattedDate : <span>Data não encontrada</span>}
+        </p>
+        <p className={styles.urgencia1}>
+          {data.length > 0 ? (
+            data[0]?.Urgencia
+          ) : (
+            <span>Urgencia não encontrada</span>
+          )}
+        </p>
+      </div>
 
-                    <div>
-                        <label>Horário: </label>
-                        <input className={styles.input} type="time" name="hora" />
-                    </div></div>
+      <div className={styles.botoes}>
+        <BotaoVisualizar></BotaoVisualizar>
+      </div>
 
-                <div className={styles.init}>
+      <form className={styles.form}>
+        <div className={styles.datatime}>
+          <div className={styles.um}>
+            <label>Data:</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input4}
+                type="text"
+                name="date"
+                value={formattedDate}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input4}
+                type="text"
+                name="date"
+                value={"Data não encontrada"}
+                disabled
+              />
+            )}
+          </div>
 
-                    <div className={styles.dois}>
-                        <label for="iniciativa">Iniciativa: </label>
-                        <select className={styles.input2} id="iniciativa" name="iniciativa">
-                            <option value="null"></option>
-                            <option value="fam/resp">Família/Responsáveis</option>
-                            <option value="profsaude">Profissionais da saúde</option>
-                            <option value="DES">DES</option>
-                            <option value="CP">CP</option>
-                            <option value="OE">OE</option>
-                            <option value="CP">CP</option></select>
-                    </div>
-
-                    <div>
-                        <label for="aspecto">Aspecto: </label>
-                        <select className={styles.input7} id="aspecto" name="aspecto">
-                            <option value="null"></option>
-                            <option value="ped">Pedagógico</option>
-                            <option value="disc">Disciplinar</option>
-                            <option value="adm">Administrativo</option></select>
-                    </div></div>
-
-                <div className={styles.tema}>
-
-                    <div className={styles.tres}>
-                        <label for="tema">Tema: </label>
-                        <select className={styles.input8} name="tema" id="tema">
-                            <option value="null"></option>
-                            <option value="comp">Comportamental</option>
-                            <option value="emocional">Emocional</option>
-                            <option value="dano">Dano ao patrimônio</option>
-                        </select></div>
-
-                    <div>
-                        <label for="urgencia">Urgência: </label>
-                        <select className={styles.input9} name="urgencia" id="urgencia">
-                            <option value="null"></option>
-                            <option value="mturg">Muito urgente</option>
-                            <option value="urg">Urgente</option>
-                            <option value="pcurg">Pouco urgente</option>
-                        </select>
-                    </div></div>
-
-                <div className={styles.aluno}>
-
-                    <div className={styles.quat}>
-                        <label for="aluno">Estudante(s): </label>
-                        <input className={styles.input10} type="text" id="aluno" name="aluno" /></div>
-
-
-                    <div className={styles.cinc}>
-                        <label for="turma">Turma: </label>
-                        <input className={styles.input11} type="text" id="turma" name="turma" disabled /></div>
-
-
-                    <div>
-                        <label for="rm">RM: </label>
-                        <input type="text" id="rm" name="rm" disabled />
-                    </div></div>
-
-
-                <div className={styles.resp}>
-
-                    <div className={styles.seis}>
-                        <label for="resp">Responsável: </label>
-                        <input className={styles.input5} type="text" id="resp" name="resp" /></div>
-
-
-                    <div>
-                        <label for="esp">Especialista: </label>
-                        <input className={styles.input6} type="text" id="esp" name="esp" />
-                    </div></div>
-
-                <div className={styles.mes}>
-                    <textarea name="message" rows="10" cols="110">Descrição da ocorrência</textarea>
-                </div>
-
-
-                <div className={styles.enc}>
-                    <label for="enc">Encaminhamento: </label>
-                    <select className={styles.input3} id="enc" name="enc">
-                        <option value="null"></option>
-                        <option value="ped">Advertência verbal</option>
-                        <option value="disc">Advertência escrita</option>
-                        <option value="adm">Suspensão de 01 dia</option></select>
-                </div>
-
-            </form>
-
-            <div>
-                <SegundoBotaoVisualizar></SegundoBotaoVisualizar>
-            </div>
-
+          <div>
+            <label>Horário: </label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input}
+                type="text"
+                name="hora"
+                value={formattedTime}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input}
+                type="text"
+                name="hora"
+                value={"Hora não encontrado"}
+                disabled
+              />
+            )}
+          </div>
         </div>
 
-    )
-}
+        <div className={styles.init}>
+          <div className={styles.dois}>
+            <label for="iniciativa">Iniciativa:</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input2}
+                type="text"
+                name="iniciativa"
+                value={data[0]?.Iniciativa}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input2}
+                type="text"
+                name="iniciativa"
+                value={"Iniciativa não encontrada"}
+                disabled
+              />
+            )}
+          </div>
+
+          <div>
+            <label for="aspecto">Aspecto:</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input7}
+                id="aspecto"
+                name="aspecto"
+                value={data[0]?.Aspecto}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input7}
+                id="aspecto"
+                name="aspecto"
+                value={"Aspecto não encontrado"}
+                disabled
+              />
+            )}
+          </div>
+        </div>
+
+        <div className={styles.tema}>
+          <div className={styles.tres}>
+            <label for="tema">Tema:</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input8}
+                name="tema"
+                id="tema"
+                value={data[0]?.Tema}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input8}
+                name="tema"
+                id="tema"
+                value={"Tema não encontrado"}
+                disabled
+              />
+            )}
+          </div>
+
+          <div>
+            <label for="urgencia">Urgência:</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input9}
+                ame="urgencia"
+                id="urgencia"
+                value={data[0]?.Urgencia}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input9}
+                ame="urgencia"
+                id="urgencia"
+                value={"Urgência não encontrada"}
+                disabled
+              />
+            )}
+          </div>
+        </div>
+
+        <div className={styles.aluno}>
+          <div className={styles.quat}>
+            <label for="aluno">Estudante(s):</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input10}
+                id="aluno"
+                name="aluno"
+                value={data[0]?.Aluno}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input10}
+                id="aluno"
+                name="aluno"
+                value={"Aluno(a) não encontrada"}
+                disabled
+              />
+            )}
+          </div>
+
+          <div className={styles.cinc}>
+            <label for="turma">Turma:</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input11}
+                id="turma"
+                name="turma"
+                value={data[0]?.Turma}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input11}
+                id="turma"
+                name="turma"
+                value={"Turma não encontrada"}
+                disabled
+              />
+            )}
+          </div>
+
+          <div>
+            <label for="rm">RM:</label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input11}
+                id="rm"
+                name="rm"
+                value={data[0]?.RM}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input11}
+                id="rm"
+                name="rm"
+                value={"RM não encontrado"}
+                disabled
+              />
+            )}
+          </div>
+        </div>
+
+        <div className={styles.resp}>
+          <div className={styles.seis}>
+            <label for="resp">Responsável: </label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input5}
+                id="turma"
+                name="turma"
+                value={data[0]?.Responsavel}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input5}
+                id="turma"
+                name="turma"
+                value={"Responsavel não encontrado(a)"}
+                disabled
+              />
+            )}
+          </div>
+
+          <div className={styles.seis}>
+            <label for="resp">Especialista: </label>
+            {data.length > 0 ? (
+              <input
+                className={styles.input5}
+                id="esp"
+                name="esp"
+                value={data[0]?.Especialista}
+                disabled
+              />
+            ) : (
+              <input
+                className={styles.input5}
+                id="esp"
+                name="esp"
+                value={"Especialista não encontrado(a)"}
+                disabled
+              />
+            )}
+          </div>
+        </div>
+        <div className={styles.mes}>
+          {data.length > 0 ? (
+            <textarea
+              id="message"
+              name="message"
+              value={data[0]?.Descricao}
+              rows="10"
+              cols="110"
+              disabled
+            ></textarea>
+          ) : (
+            <textarea
+              id="message"
+              name="message"
+              value={"Descrição não encontrada"}
+              rows="10"
+              cols="110"
+              disabled
+            ></textarea>
+          )}
+        </div>
+
+        <div className={styles.enc}>
+          <label for="enc">Encaminhamento:</label>
+          {data.length > 0 ? (
+            <input
+              className={styles.input3}
+              id="esp"
+              name="esp"
+              value={data[0]?.Encaminhamento}
+              disabled
+            />
+          ) : (
+            <input
+              className={styles.input3}
+              id="esp"
+              name="esp"
+              value={"Encaminhamento não encontrado"}
+              disabled
+            />
+          )}
+        </div>
+      </form>
+
+      <div className={styles.botoes2}>
+        <SegundoBotaoVisualizar></SegundoBotaoVisualizar>
+      </div>
+      <br></br>
+    </div>
+  );
+};
+
+export default VisualizarOcorrencia;

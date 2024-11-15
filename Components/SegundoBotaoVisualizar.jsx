@@ -8,7 +8,9 @@ function SegundoBotaoVisualizar() {
  return (
         <>
            
-    <Link href="/Paginas/EditarStatus" ><button  className={styles.b1}>Gerar Documento</button></Link>
+    <button
+    className={styles.b2}>Gerar Documento</button>
+    
     <Link href="/Paginas/PaginaInicial" ><button  className={styles.b1}>Voltar</button></Link>
           
        </>
