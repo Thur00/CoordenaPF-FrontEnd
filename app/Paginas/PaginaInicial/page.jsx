@@ -45,7 +45,7 @@ const inicial = () => {
         <div className={styles.boxTodasOcor}>
           {data.length > 0 ? (
             data.map((item) => (
-              <p>
+              <>
                 <Ocorrencia
                   nome={item.Criador}
                   turma={item.Turma}
