@@ -80,8 +80,7 @@ const RedefinirSenha = () => {
         {error && <p className={styles.error}>{error}</p>}
 
         <button className={styles.botao} onClick={ValidaSenha}>
-          {" "}
-          Salvar{" "}
+          Salvar
         </button>
 
         <a
