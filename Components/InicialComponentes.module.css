@@ -24,7 +24,6 @@
   margin-left: 2%;
 }
 
-
 .b1 {
   margin: 2%;
   background-color: #ff1100;
@@ -43,7 +42,7 @@
 }
 
 .b1:hover {
-  background-color: #BC1016;
+  background-color: #bc1016;
 }
 
 .titulo {
@@ -65,7 +64,6 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-
 }
 
 .a {
@@ -131,7 +129,7 @@
 
 .titletematurma {
   font-weight: bold;
-  margin-right: 1rem
+  margin-right: 1rem;
 }
 
 .datastatus {
@@ -141,7 +139,6 @@
   font-weight: bold;
   align-items: center;
 }
-
 
 .urgencia1 {
   border: 2px solid rgb(14, 13, 13);
@@ -204,7 +201,7 @@
   position: relative;
 }
 
-.pesquisa>input {
+.pesquisa > input {
   border: 2px solid #000;
   border-radius: 20px;
   border: none;
@@ -213,7 +210,7 @@
   padding: 10px 14px;
 }
 
-.pesquisa>button {
+.pesquisa > button {
   position: absolute;
   height: fit-content;
   border: none;
@@ -255,7 +252,14 @@
   justify-content: center;
 }
 
-@media only screen and (max-width:800px) {
+@media only screen and (max-width: 800px) {
+  .a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
+  }
+
   .main {
     margin: 1%;
   }
@@ -264,13 +268,11 @@
     font-size: 1rem;
     padding: 5px;
     width: 100%;
-
   }
 
   .h4 {
     font-size: 1.6rem;
     margin-left: 3%;
-
   }
 
   .boxTodasOcor {
@@ -329,5 +331,4 @@
     width: 7.3vh;
     font-size: 0.6rem;
   }
-
 }

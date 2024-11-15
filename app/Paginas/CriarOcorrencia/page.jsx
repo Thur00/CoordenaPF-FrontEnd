@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "@/Components/criaroco.module.css";
 import Link from "next/link";
+import BotaoVoltar from "@/Components/BotaoVoltar";
 
 function criaroco() {
   const [data, setData] = useState("");
@@ -31,7 +32,7 @@ function criaroco() {
         <div className={styles.datatime}>
           <div className={styles.um}>
             <label>Data: </label>
-            <input className={styles.input4} type="date" name="date" />
+            <input className={styles.input4} type="date" name="date" min="2020-01-01"/>
           </div>
 
           <div>
@@ -43,7 +44,7 @@ function criaroco() {
         <div className={styles.init}>
           <div className={styles.dois}>
             <label for="iniciativa">Iniciativa: </label>
-            <select className={styles.input2} id="iniciativa" name="iniciativa">
+            <select className={styles.input2} id="iniciativa" name="iniciativa" >
               <option value="null"></option>
               <option value="fam/resp">Família/Responsáveis</option>
               <option value="profsaude">Profissionais da saúde</option>
@@ -149,13 +150,15 @@ function criaroco() {
         </div>
       </form>
       <div className={styles.divBut}>
-        <Link href="../Paginas/PaginaInicial">
-          <button className={styles.botaovoltar}> Voltar</button>
-        </Link>
+
+      <BotaoVoltar link= "/Paginas/PaginaInicial" />
+
         <Link href="https://quizizz.com/">
           <button className={styles.botaovoltar}> Gerar documento </button>
         </Link>
+
         <button className={styles.botaovoltar}> Salvar</button>
+
       </div>
     </main>
   );
