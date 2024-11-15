@@ -112,7 +112,7 @@ const MeuPerfil = () => {
   return (
     <>
       <div className={styles.body}>
-        <h1 className={styles.tit}> Meu perfil </h1>
+        <h1 className={styles.tit}>Meu perfil</h1>
 
         <div className={styles.input}>
           {data.map((item) => (

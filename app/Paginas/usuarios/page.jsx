@@ -1,17 +1,15 @@
-"use client"
+"use client";
 
 import styles from "@/Components/UsuariosComponentes.module.css";
 import React from "react";
-import Usuarios from "@/Components/UsuariosComponentes";
+import Usuario from "@/Components/UsuariosComponentes";
 import BotaoAdicionarUsuario from "@/Components/BotaoAdicionarUsuario";
 import { useEffect, useState } from "react";
 import BotaoVoltar from "@/Components/BotaoVoltar";
 
 const API_URL = "http://localhost:3001";
 
-
 export default function Usu() {
-
   const [data, setData] = useState([]);
 
   const getUsuarios = async () => {
@@ -22,7 +20,7 @@ export default function Usu() {
       setData(data1);
       setError(null);
     } catch (error) {
-      console.error("Erro na busca usuario", error);
+      console.error("Erro na busca usuário", error);
     }
   };
 
@@ -32,7 +30,6 @@ export default function Usu() {
 
   return (
     <div>
-
       <br></br>
 
       <div className={styles.bt}>
@@ -41,15 +38,21 @@ export default function Usu() {
           <BotaoAdicionarUsuario></BotaoAdicionarUsuario>
           <BotaoVoltar link="/Paginas/MeuPerfilCleide" />
         </div>
-
       </div>
 
-      <div className={styles.caixas}>
-
-        <Usuarios></Usuarios>
-
-      </div>
+      {data.length > 0 ? (
+        data.map((item) => (
+          <Usuario
+            cargo={item.cargo}
+            nome={item.nome}
+            email={item.email}
+            senha={item.senha}
+            cpf={item.cpf}
+          />
+        ))
+      ) : (
+        <p className={styles.p}>Nenhum usuário encontrado</p>
+      )}
     </div>
-
   );
 }
