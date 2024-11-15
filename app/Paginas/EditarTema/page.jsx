@@ -19,7 +19,6 @@ const Tabela = () => {
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
-      setError(null);
     } catch (error) {
       console.error("Erro na busca alunos", error);
     }
@@ -43,7 +42,7 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ Nome_tema: item.tema });  
+    setFormData({ Tema_id: item.id, nome_tema: item.tema });  
     setEditingItem(item);
   };
 
@@ -56,7 +55,7 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Nome_tema: formData.tema }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({ nome_tema: formData.tema }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -77,7 +76,7 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Nome_tema: formData.tema }),
+          body: JSON.stringify({ nome_tema: formData.tema }),
         });
 
         // Atualiza a lista de temas após a edição

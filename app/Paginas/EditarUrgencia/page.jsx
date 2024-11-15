@@ -1,11 +1,10 @@
 "use client";
 
-import {useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Link from "next/link";
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
-
 
 const Tabela = () => {
   const [data, setData] = useState([]);
@@ -13,6 +12,22 @@ const Tabela = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+
+  const getUrgencia = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/urgencias`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setData(data1);
+      setError(null);
+    } catch (error) {
+      console.error("Erro na busca aspectos", error);
+    }
+  };
+
+  useEffect(() => {
+    getUrgencia();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +43,11 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({Urgencia_id: item.urgencia, Cor: item.cor});  
+    setFormData({
+      Urgencia_id: item.urgencia,
+      Tipo_urgencia: item.urgencia,
+      Cor: item.cor,
+    });
     setEditingItem(item);
   };
 
@@ -41,7 +60,10 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Tipo_urgencia: formData.urgencia, Cor: formData.cor }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({
+            tipo_urgencia: formData.urgencia,
+            cor: formData.cor,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -62,7 +84,10 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Tipo_urgencia: formData.urgencia , Cor: formData.cor}),
+          body: JSON.stringify({
+            tipo_urgencia: formData.urgencia,
+            cor: formData.cor,
+          }),
         });
 
         // Atualiza a lista de temas após a edição
@@ -83,12 +108,12 @@ const Tabela = () => {
       }
     }
     setShowForm(false);
-    setFormData({ id: "",  urgencia: "" , cor: ""  });
+    setFormData({ id: "", urgencia: "", cor: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "",  urgencia: "" , cor: "" });
+    setFormData({ id: "", urgencia: "", cor: "" });
   };
 
   return (
@@ -114,15 +139,15 @@ const Tabela = () => {
             <tbody>
               {data.length > 0 ? (
                 data.map((item) => (
-                  <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.urgencia}</td>
-                <td>{item.cor}</td>
+                  <tr key={item.Urgencia_id}>
+                    <td>{item.Urgencia_id}</td>
+                    <td>{item.Tipo_urgencia}</td>
+                    <td>{item.Cor}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">Nenhum urgência encontrado.</td>
+                  <td colSpan="2">Nenhuma urgência encontrado.</td>
                 </tr>
               )}
             </tbody>
@@ -146,7 +171,6 @@ const Tabela = () => {
         Adicionar
       </button>
 
-<br></br>
       {showForm && (
         <div>
           <h3 className={styles.titleinput}>
@@ -160,15 +184,13 @@ const Tabela = () => {
               onChange={handleInputChange}
               placeholder="Urgencia"
             />
-
-<input
-            type="text"
-            name="cor"
-            value={formData.cor}
-            onChange={handleInputChange}
-            placeholder="Cor"
-          />
-          <br></br>
+            <input
+              type="color"
+              name="cor"
+              value={formData.cor}
+              onChange={handleInputChange}
+              placeholder="Cor"
+            />
           </div>
 
           <div className={styles.salecanbutton}>
