@@ -15,25 +15,24 @@ const Tabela = () => {
     Email: "",
     Senha: "",
     CPF: "",
-  });
+   });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
 
-  const getAll = async () => {
+  const getUsuario = async () => {
     try {
       const resposta = await fetch(`${API_URL}/usuarios`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
-      setError(null);
     } catch (error) {
-      console.error("Erro ao buscar usuários", error);
+      console.error("Erro na busca alunos", error);
     }
   };
 
   useEffect(() => {
-    getAll();
+    getUsuario();
   }, []);
 
   const handleInputChange = (e) => {
@@ -44,27 +43,27 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({
+    setFormData({  
       Login_id: "",
       Nome: "",
       Cargo: "",
       Email: "",
       Senha: "",
       CPF: "",
-    });
+     });
   };
 
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({
+    setFormData({  
       Login_id: item.Login_id,
       Nome: item.Nome,
       Cargo: item.Cargo,
       Email: item.Email,
       Senha: item.Senha,
       CPF: item.CPF,
-    });
+    });  
     setEditingItem(item);
   };
 
@@ -77,18 +76,17 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            Login_id: formData.Login_id,
-            Nome: formData.Nome,
-            Cargo: formData.Cargo,
-            Email: formData.Email,
-            Senha: formData.Senha,
-            CPF: formData.CPF,
-          }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({ 
+            nome: formData.Nome,
+            cargo: formData.Cargo,
+            email: formData.Email,
+            senha: formData.Senha,
+            cpf: formData.CPF,
+           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
-        getAll();
+        getUsuario();
 
         // Limpa a seleção e o formulário
         setEditingItem(null);
@@ -105,18 +103,17 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({
-            Login_id: formData.Login_id,
-            Nome: formData.Nome,
-            Cargo: formData.Cargo,
-            Email: formData.Email,
-            Senha: formData.Senha,
-            CPF: formData.CPF,
-          }),
+          body: JSON.stringify({   
+            nome: formData.Nome,
+            cargo: formData.Cargo,
+            email: formData.Email,
+            senha: formData.Senha,
+            cpf: formData.CPF,
+           }),
         });
 
         // Atualiza a lista de temas após a edição
-        getAll();
+        getUsuario();
 
         // Converte a resposta para JSON
         const data = await response.json();
@@ -125,14 +122,13 @@ const Tabela = () => {
         setData((prevData) => [...prevData, data]);
 
         // Limpa os campos de entrada
-        setFormData({
+        setFormData({  
           Login_id: "",
           Nome: "",
           Cargo: "",
           Email: "",
           Senha: "",
-          CPF: "",
-        });
+          CPF: "", });
         setShowForm(false);
       } catch (error) {
         // Loga erros no console
@@ -140,7 +136,7 @@ const Tabela = () => {
       }
     }
     setShowForm(false);
-    setFormData({
+    setFormData({ 
       Login_id: "",
       Nome: "",
       Cargo: "",
@@ -152,14 +148,13 @@ const Tabela = () => {
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({
+    setFormData({  
       Login_id: "",
       Nome: "",
       Cargo: "",
       Email: "",
       Senha: "",
-      CPF: "",
-    });
+      CPF: "",});
   };
 
   return (
@@ -168,14 +163,16 @@ const Tabela = () => {
       <div>
         <div className={styles.div1}>
           <h1 className={styles.h1}>Editar Usuários</h1>
-          <button className={styles.voltar}></button>
+          <button className={styles.voltar}>
+            <Link href="/Paginas/EditarDados">Voltar</Link>
+          </button>
         </div>
         <br></br>
         <div className={styles.div2}>
           <table border="1" className={styles.table}>
             <thead>
               <tr>
-                <th>Login_Id</th>
+              <th>Login_Id</th>
                 <th>NOME</th>
                 <th>CARGO</th>
                 <th>EMAIL</th>
@@ -197,7 +194,7 @@ const Tabela = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">Nenhum usuario encontrado.</td>
+                  <td colSpan="2">Nenhum usuário encontrado.</td>
                 </tr>
               )}
             </tbody>
@@ -207,7 +204,7 @@ const Tabela = () => {
             {data.map((item) => (
               <button
                 className={styles.editarbutton}
-                key={item.Login_Id}
+                key={item.Login_id}
                 onClick={() => handleEdit(item)}
               >
                 Editar
@@ -227,19 +224,10 @@ const Tabela = () => {
             {isEditing ? "Editar" : "Adicionar"}
           </h3>
           <div className={styles.divinput}>
-            <input
-              type="text"
-              name="rm"
-              value={formData.Login_id}
-              onChange={handleInputChange}
-              placeholder="Login_id"
-            />
-
-            <br></br>
 
             <input
               type="text"
-              name="nome"
+              name="Nome"
               value={formData.Nome}
               onChange={handleInputChange}
               placeholder="Nome"
@@ -249,20 +237,20 @@ const Tabela = () => {
 
             <input
               type="text"
-              name="turma"
-              value={formData.Turma}
+              name="Cargo"
+              value={formData.Cargo}
               onChange={handleInputChange}
-              placeholder="Turma"
+              placeholder="Cargo"
             />
 
             <br></br>
 
             <input
               type="text"
-              name="ano"
-              value={formData.Ano}
+              name="Email"
+              value={formData.Email}
               onChange={handleInputChange}
-              placeholder="Ano"
+              placeholder="Email"
             />
             <br></br>
             <input
