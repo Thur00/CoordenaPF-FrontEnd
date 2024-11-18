@@ -33,7 +33,7 @@
 .pesquisa {
     border: 2px solid lightgrey;
     border-radius: 20px;
-    width: 10   0%;
+    width: 15vw;
     height: 8vh;
     margin: 5% 0;
     display: flex;
@@ -41,6 +41,8 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    padding: 0 10px
+    ;
 }
 
 .pesquisa>input {
@@ -106,7 +108,7 @@
     background: none;
     border: none;
     font-size: large;
-    margin-right: 3%;
+margin-right:3%;
 }
 
 .cadeado{
@@ -114,8 +116,10 @@
     margin: 0 5px 0 7px;
 }
 
-.error{
-    font-size: 0.9rem;
+.erro{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
     color: #ff1100;
 }
 
