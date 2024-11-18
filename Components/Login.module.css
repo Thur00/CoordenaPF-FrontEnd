@@ -93,6 +93,7 @@
     color: white;
     transition-duration: 0.4s;
     font-size: large;
+    margin-top: 15%;
 }
 
 .botao:hover {
