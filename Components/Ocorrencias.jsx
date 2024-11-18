@@ -4,7 +4,6 @@ import styles from "@/Components/InicialComponentes.module.css";
 import Link from "next/link";
 import { generateLightAndDarkColors } from "../utils/colorUtils";
 import { CiCircleCheck } from "react-icons/ci";
-import { useEffect } from "react";
 
 function Ocorrencia(props) {
   const { nome, tema, turma, data, urgencia, cor } = props;
