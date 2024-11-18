@@ -27,6 +27,7 @@ export default function TodasOcor() {
       console.error("Erro na busca da ocorrência", error);
     }
   };
+  
 
   useEffect(() => {
     getOcorrencias();

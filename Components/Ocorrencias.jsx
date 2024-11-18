@@ -65,6 +65,7 @@ function Ocorrencia(props) {
     return styles.boxOcor; // padrão
   };
 
+  
   return (
     <>
       <Link className={getUrgencyClass()} href="/Paginas/VisualizarOcorrencia">
