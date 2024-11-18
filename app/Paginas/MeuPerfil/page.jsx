@@ -1,6 +1,4 @@
 "use client";
-import styles from "@/Components/Perfil.module.css";
-import BotaoVoltar from "@/Components/BotaoVoltar";
 import { useEffect, useState } from "react";
 import styles from "@/Components/Perfil.module.css";
 import Link from "next/link";

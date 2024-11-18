@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import styles from "./Modal.module.css";
+import styles from "./ModalNotificacao.module.css";
 
 const Notificacao = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,13 +19,30 @@ const Notificacao = () => {
         if (modal && event.target === modal) {
             closeModal();
         }
+
+       
+            const [data, setData] = useState([]);
+          
+            const getNotificacao = async () => {
+              try {
+                debugger;
+                const resposta = await fetch(`${API_URL}/notificacoes`);
+                const data1 = await resposta.json();
+                console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+                setData(data1);
+              } catch (error) {
+                console.error("Erro na busca", error);
+              }
+            };
+          
+            useEffect(() => {
+                getNotificacao();
+            }, []);
     };
 
+   
     return (
         <>
-            <h2>Modal Example</h2>
-            <button onClick={openModal}>Open Modal</button>
-
             {isOpen && (
 
                 <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
