@@ -70,7 +70,6 @@ a {
   padding: 2vh 2vh;
   margin-top: 100%;
 } */
-
 .footbox {
   background-color: #bc1016; /* Cor de fundo do footer */
   color: white; /* Cor do texto */
@@ -81,7 +80,6 @@ a {
   left: 0; /* Alinha à esquerda */
   right: 0; /* Alinha à direita */
 }
-
 .textBox {
   height: 100%;
   width: 80%;
