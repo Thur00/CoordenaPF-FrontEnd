@@ -78,8 +78,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 2px solid red;
-  background-color: rgba(255, 0, 0, 0.426);
+  border: 2px solid var(--dcolor);
+  background-color: var(--lcolor);
   border-radius: 20px;
   padding: 27px;
   margin: 1% 0;
@@ -88,43 +88,7 @@
 }
 
 .boxOcor:hover {
-  background-color: rgba(255, 0, 0, 0.636);
-}
-
-.boxOcor2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  border: 2px solid rgb(251, 255, 0);
-  background-color: rgba(251, 255, 0, 0.214);
-  border-radius: 20px;
-  padding: 27px;
-  margin: 1% 0;
-  width: 30%;
-  transition-duration: 0.4s;
-}
-
-.boxOcor2:hover {
-  background-color: rgba(251, 255, 0, 0.581);
-}
-
-.boxOcor3 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  border: 2px solid rgb(104, 240, 45);
-  background-color: rgba(103, 240, 45, 0.282);
-  border-radius: 20px;
-  padding: 27px;
-  margin: 1% 0;
-  width: 30%;
-  transition-duration: 0.4s;
-}
-
-.boxOcor3:hover {
-  background-color: rgba(103, 240, 45, 0.63);
+  background-color: var(--ncolor);
 }
 
 .titletematurma {
@@ -146,6 +110,8 @@
   margin-bottom: 15%;
   border-radius: 10px;
   font-size: 90%;
+  display: flex;
+  justify-content: center;
 }
 
 /* .urgencia2 {

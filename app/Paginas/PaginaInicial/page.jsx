@@ -53,6 +53,7 @@ const inicial = () => {
                   data={item.Data}
                   status={item.Status}
                   urgencia={item.Urgencia}
+                  cor={item.Cor}
                 />
               </>
             ))
@@ -73,6 +74,7 @@ const inicial = () => {
                   data={item.Data}
                   status={item.Status}
                   urgencia={item.Urgencia}
+                  cor={item.Cor}
                 />
               </>
             ))
