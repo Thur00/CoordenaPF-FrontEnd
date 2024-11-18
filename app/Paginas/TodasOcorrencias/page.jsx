@@ -203,6 +203,7 @@ export default function TodasOcor() {
         {data.length > 0 ? (
           data.map((item) => (
             <Ocorrencia
+              key={item.Ocorrencia_id}
               nome={item.Criador}
               tema={item.Tema}
               data={item.Data}

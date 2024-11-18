@@ -16,7 +16,7 @@ function criaroco() {
     criador: "",
     dataoc: "",
     hora: "",
-    iniciatica: "",
+    iniciativa: "",
     aspecto: "",
     urgencia: "",
     tema: "",
@@ -32,7 +32,7 @@ function criaroco() {
     try {
       const resposta = await fetch(`${API_URL}/aspectos`);
       const data1 = await resposta.json();
-      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      console.log("Aspectos recebidos :", data1); // Adicione esta linha para verificar os dados
       setDataAsp(data1);
     } catch (error) {
       console.error("Erro na busca de aspecto", error);
@@ -43,7 +43,7 @@ function criaroco() {
     try {
       const resposta = await fetch(`${API_URL}/temas`);
       const data1 = await resposta.json();
-      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      console.log("Temas recebidos:", data1); // Adicione esta linha para verificar os dados
       setDataTem(data1);
     } catch (error) {
       console.error("Erro na busca de tema", error);
@@ -54,7 +54,7 @@ function criaroco() {
     try {
       const resposta = await fetch(`${API_URL}/urgencias`);
       const data1 = await resposta.json();
-      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      console.log("Urgencias recebidos:", data1); // Adicione esta linha para verificar os dados
       setDataUrg(data1);
     } catch (error) {
       console.error("Erro na busca de urgência", error);
@@ -65,7 +65,7 @@ function criaroco() {
     try {
       const resposta = await fetch(`${API_URL}/encaminhamentos`);
       const data1 = await resposta.json();
-      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      console.log("Encaminhamento recebidos:", data1); // Adicione esta linha para verificar os dados
       setDataEnc(data1);
     } catch (error) {
       console.error("Erro na busca de encaminhamento", error);
@@ -93,7 +93,7 @@ function criaroco() {
           Criador: 3,
           Data_ocorrencia: formData.dataoc,
           Hora: formData.hora,
-          Iniciativa: formData.iniciatica,
+          Iniciativa: formData.iniciativa,
           Aspecto: formData.aspecto,
           Urgencia: formData.urgencia,
           Tema: formData.tema,
@@ -102,7 +102,7 @@ function criaroco() {
           Responsavel: formData.responsavel,
           Descricao: formData.descricao,
           Encaminhamento: formData.encaminhamento,
-          Status: formData.status,
+          Status: 2,
         }),
       });
 
@@ -114,7 +114,7 @@ function criaroco() {
         criador: "",
         dataoc: "",
         hora: "",
-        iniciatica: "",
+        iniciativa: "",
         aspecto: "",
         urgencia: "",
         tema: "",
@@ -133,7 +133,7 @@ function criaroco() {
       criador: "",
       dataoc: "",
       hora: "",
-      iniciatica: "",
+      iniciativa: "",
       aspecto: "",
       urgencia: "",
       tema: "",
@@ -146,69 +146,10 @@ function criaroco() {
     });
   };
 
-  const handleDataChange = (e) => {
-    console.log("Data changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleHorarioChange = (e) => {
-    console.log("Horário changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleIniciativaChange = (e) => {
-    console.log("Iniciativa changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleAspectoChange = (e) => {
-    console.log("Aspecto changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleTemaChange = (e) => {
-    console.log("Tema changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleUrgenciaChange = (e) => {
-    console.log("Urgência changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleEstudanteChange = (e) => {
-    console.log("Estudante changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleTurmaChange = (e) => {
-    console.log("Turma changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleRMChange = (e) => {
-    console.log("RM changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleResponsavelChange = (e) => {
-    console.log("Responsável changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleEspecialistaChange = (e) => {
-    console.log("Especialista changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleDescChange = (e) => {
-    console.log("Descrição changed:", e.target.value);
-    setFormData(e.target.value);
-  };
-
-  const handleEncaminhamentoChange = (e) => {
-    console.log("Encaminhamento changed:", e.target.value);
-    setFormData(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log("Data changed:", value);
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
@@ -222,26 +163,40 @@ function criaroco() {
             <input
               className={styles.input4}
               type="date"
-              name="data"
+              name="dataoc"
               min="2020-01-01"
               value={formData.dataoc}
-              onChange={handleDataChange}
+              onChange={handleInputChange}
             />
           </div>
 
           <div>
             <label>Horário: </label>
-            <input className={styles.input} type="time" name="hora" />
+            <input
+              className={styles.input}
+              value={formData.hora}
+              onChange={handleInputChange}
+              type="time"
+              name="hora"
+            />
           </div>
         </div>
 
         <div className={styles.init}>
           <div className={styles.dois}>
             <label for="iniciativa">Iniciativa: </label>
-            <select className={styles.input2} id="iniciativa" name="iniciativa">
+            <select
+              className={styles.input2}
+              value={formData.iniciativa}
+              onChange={handleInputChange}
+              id="iniciativa"
+              name="iniciativa"
+            >
               <option value="null"></option>
-              <option value="fam/resp">Família/Responsáveis</option>
-              <option value="profsaude">Profissionais da saúde</option>
+              <option value="Família/Responsáveis">Família/Responsáveis</option>
+              <option value="Profissionais da saúde">
+                Profissionais da saúde
+              </option>
               <option value="DES">DES</option>
               <option value="CP">CP</option>
               <option value="OE">OE</option>
@@ -251,11 +206,21 @@ function criaroco() {
 
           <div>
             <label for="aspecto">Aspecto: </label>
-            <select className={styles.input7} id="aspecto" name="aspecto">
+            <select
+              className={styles.input7}
+              value={formData.aspecto}
+              onChange={handleInputChange}
+              id="aspecto"
+              name="aspecto"
+            >
               <option value="null"></option>
               {dataAsp.length > 0 ? (
                 dataAsp.map((item) => (
-                  <option key={item.Aspecto_id} value={item.Aspecto_id}>
+                  <option
+                    key={item.Aspecto_id}
+                    value={item.Aspecto_id}
+                    onChange={handleInputChange}
+                  >
                     {item.Nome}
                   </option>
                 ))
@@ -269,11 +234,21 @@ function criaroco() {
         <div className={styles.tema}>
           <div className={styles.tres}>
             <label for="tema">Tema: </label>
-            <select className={styles.input8} name="tema" id="tema">
+            <select
+              className={styles.input8}
+              value={formData.tema}
+              onChange={handleInputChange}
+              name="tema"
+              id="tema"
+            >
               <option value="null"></option>
               {dataTem.length > 0 ? (
                 dataTem.map((item) => (
-                  <option key={item.Tema_id} value={item.Tema_id}>
+                  <option
+                    key={item.Tema_id}
+                    value={item.Tema_id}
+                    onChange={handleInputChange}
+                  >
                     {item.Nome_tema}
                   </option>
                 ))
@@ -285,11 +260,21 @@ function criaroco() {
 
           <div>
             <label for="urgencia">Urgência: </label>
-            <select className={styles.input9} name="urgencia" id="urgencia">
+            <select
+              className={styles.input9}
+              value={formData.urgencia}
+              onChange={handleInputChange}
+              name="urgencia"
+              id="urgencia"
+            >
               <option value="null"></option>
               {dataUrg.length > 0 ? (
                 dataUrg.map((item) => (
-                  <option key={item.Urgencia_id} value={item.Urgencia_id}>
+                  <option
+                    key={item.Urgencia_id}
+                    value={item.Urgencia_id}
+                    onChange={handleInputChange}
+                  >
                     {item.Tipo_urgencia}
                   </option>
                 ))
@@ -316,6 +301,8 @@ function criaroco() {
             <input
               className={styles.input11}
               type="text"
+              value={formData.turma}
+              onChange={handleInputChange}
               id="turma"
               name="turma"
               // disabled
@@ -326,6 +313,8 @@ function criaroco() {
             <label for="rm">RM: </label>
             <input
               type="text"
+              value={formData.rm}
+              onChange={handleInputChange}
               id="rm"
               name="rm"
               // disabled
@@ -339,8 +328,10 @@ function criaroco() {
             <input
               className={styles.input5}
               type="text"
+              value={formData.responsavel}
+              onChange={handleInputChange}
               id="resp"
-              name="resp"
+              name="responsavel"
             />
           </div>
 
@@ -352,7 +343,9 @@ function criaroco() {
 
         <div className={styles.mes}>
           <textarea
-            name="message"
+            value={formData.descricao}
+            onChange={handleInputChange}
+            name="descricao"
             rows="10"
             cols="110"
             placeholder="Descrição da ocorrência"
@@ -361,7 +354,13 @@ function criaroco() {
 
         <div className={styles.enc}>
           <label for="enc">Encaminhamento: </label>
-          <select className={styles.input3} id="enc" name="enc">
+          <select
+            className={styles.input3}
+            value={formData.encaminhamento}
+            onChange={handleInputChange}
+            id="enc"
+            name="encaminhamento"
+          >
             <option value="null"></option>
             {dataEnc.length > 0 ? (
               dataEnc.map((item) => (
