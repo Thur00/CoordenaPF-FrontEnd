@@ -1,95 +1,88 @@
-"use client"
-import styles from "./page.module.css"
-import { IoMdPerson } from "react-icons/io";
-import { PiLockKeyFill } from "react-icons/pi";
-import { FaRegEye } from "react-icons/fa";
-import { FaRegEyeSlash } from "react-icons/fa";
-import React, { useState } from 'react';
-import Link from "next/link";
+'use client'
+import { useState, useEffect } from 'react';
+import style from "@/Components/Login.module.css"
+const SignIn = () => {
+  const [usuario, setUsuario] = useState('');
+  const [senha, setSenha] = useState('');
+  const [msgError, setMsgError] = useState('');
+  const [senhaVisivel, setSenhaVisivel] = useState(false);
+
+  const entrar = () => {
+    // Definindo credenciais fixas
+    const usuarioFixo = 'Coordena';
+    const senhaFixa = '2024';
+
+    // Verificar se os campos estão preenchidos
+    if (!usuario || !senha) {
+      setMsgError('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    // Comparar as credenciais inseridas com as fixas
+    if (usuario === usuarioFixo && senha === senhaFixa) {
+      const token = Math.random().toString(16).substr(2) + Math.random().toString(16).substr(2) + "Amamos_DS_;-)";
+      localStorage.setItem("token", token);
+      localStorage.setItem("userLogado", JSON.stringify({ userCad: usuarioFixo, senhaCad: senhaFixa }));
+      window.location.href = "../Paginas/PaginaInicial"; // Redirecionar após login
+    } else {
+      setMsgError('Usuário ou senha incorretos');
+      setUsuario('');
+      setSenha('');
+    }
+  };
+  return (
+<main className={style.main}>
+    <div className={style.box}>
+    <div className={style.titulobox}>
+    <h1 className={style.texto1}>Coordena</h1>
+    <h1 className={style.texto2}>SESI</h1></div>
+
+  
+        
+
+          {msgError && <div className={style.erro} id="msgError" style={{ color: 'red' }}>{msgError}</div>}    <div className={style.divPesquisa}>
+        <div>
+
+          <div className={style.pesquisa}>
+            <input 
+              type="text"
+              id="usuario"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+              required
+              placeholder='Login'
+            /></div>
+          </div>
+          <div className={style.pesquisa}>
+        
+           <input
+              type={senhaVisivel ? 'text' : 'password'}
+              id="senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+              placeholder='Senha'
+            />
+            <i
+              className={`fa fa-eye${senhaVisivel ? '' : '-slash'}`}
+              aria-hidden="true"
+              onClick={() => setSenhaVisivel(!senhaVisivel)} // Alternar visibilidade da senha
+              style={{ cursor: 'pointer' }}
+            ></i>
+          </div>
+
+          
+            <button className={style.botao} onClick={entrar}>Entrar</button>
+          </div>
+
+          
+            <hr />
+          </div>
+
+          
+         </main>
+  );
+};
 
 
-export default function Login() {
-    const [cpf, setCpf] = useState('');
-    const [senha, setSenha] = useState('');
-    const [error, setError] = useState('');
-    
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const res = await fetch('${API_URL}/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ cpf, senha }),
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-            // Login bem-sucedido, redirecionar ou mostrar mensagem
-            alert(data.message);
-        } else {
-            // Mostrar erro
-            setError(data.message);
-        }
-    };
-
-    const [password, setPassword] = useState('');
-    const [isVisible, setIsVisible] = useState(false);
-
-    const DeixarVisivel = () => {
-        setIsVisible(!isVisible);
-    };
-
-    const isTyping = password.length > 0
-
-    return (
-        <main className={styles.main}>
-
-            <div className={styles.box}>
-                <div className={styles.titulobox}>
-                    <h1 className={styles.texto1}> Coordena </h1>
-                    <h1 className={styles.texto2}>SESI</h1>
-                </div>
-
-                <form className={styles.divPesquisa} onSubmit={handleSubmit}>
-
-                    <div className={styles.pesquisa}>
-                        <IoMdPerson />
-                        <input value={cpf}
-                            onChange={(e) => setCpf(e.target.value)}
-                            required
-                            placeholder="Login" />
-                    </div>
-
-                    <div className={styles.pesquisa}>
-                        <div className={styles.cadeado}><PiLockKeyFill /></div>
-                        <input
-                            type={isVisible ? 'text' : 'password'}
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                            placeholder="Senha"
-                        />
-                        {isTyping && (
-                            <button className={styles.olho} onClick={DeixarVisivel}>
-                                {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
-                            </button>
-                        )}
-                    </div>
-
-
-                    <Link href="./User/RedefinirSenha">Esqueceu sua senha?</Link>
-
-                    <Link href="./Paginas/PaginaInicial" > <button className={styles.botao} type="submit" >Acessar</button> </Link>
-                </form>
-
-                <a className={styles.referencia} href="https://pt.vecteezy.com/vetor-gratis/vermelho" target="blank">Vermelho Vetores por Vecteezy</a>
-
-            </div>
-
-        </main >
-    )
-
-}
-
+export default SignIn;
