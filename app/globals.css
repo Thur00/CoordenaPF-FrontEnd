@@ -75,10 +75,11 @@ a {
   color: white; /* Cor do texto */
   text-align: center; /* Centraliza o texto */
   padding: 1em; /* Espaçamento interno */
-  position: fixed; /* Fixa o footer na tela */
+  position: relative; /* Fixa o footer na tela */
   bottom: 0; /* Posiciona na parte inferior */
   left: 0; /* Alinha à esquerda */
   right: 0; /* Alinha à direita */
+  margin-top: 13%;
 }
 .textBox {
   height: 100%;
