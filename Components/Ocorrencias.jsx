@@ -26,9 +26,9 @@ function Ocorrencia(props) {
       <div
         className={styles.boxOcor}
         style={{
-          "--ncolor": cor,
-          "--lcolor": lighter,
-          "--dcolor": darker,
+          "--ncolor": cor + '7f',
+          "--lcolor": lighter + '7f',
+          "--dcolor": darker + '7f',
         }}
         onClick= {handleClick}
       >

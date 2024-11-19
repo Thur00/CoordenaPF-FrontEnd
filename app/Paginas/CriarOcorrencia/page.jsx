@@ -305,7 +305,7 @@ function criaroco() {
               onChange={handleInputChange}
               id="turma"
               name="turma"
-              // disabled
+            // disabled
             />
           </div>
 
@@ -317,7 +317,7 @@ function criaroco() {
               onChange={handleInputChange}
               id="rm"
               name="rm"
-              // disabled
+            // disabled
             />
           </div>
         </div>
@@ -378,7 +378,7 @@ function criaroco() {
         </div>
 
         <div className={styles.divBut}>
-          <BotaoVoltar link="/Paginas/PaginaInicial" />
+          <Link href="/Paginas/PaginaInicial"><button className={styles.botaovoltar}>Voltar</button></Link>
 
           <Link href="https://quizizz.com/">
             <button className={styles.botaovoltar}> Gerar documento </button>

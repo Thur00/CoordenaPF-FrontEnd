@@ -24,7 +24,9 @@
   color: white;
   transition-duration: 0.4s;
   font-size: large;
-  width: 28vh;
+  width: 35vh;
+  justify-content: space-evenly;
+  display: flex;
 }
 
 .b2 {
