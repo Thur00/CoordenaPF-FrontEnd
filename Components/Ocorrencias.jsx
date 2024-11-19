@@ -4,6 +4,7 @@ import styles from "@/Components/InicialComponentes.module.css";
 import Link from "next/link";
 import { generateLightAndDarkColors } from "../utils/colorUtils";
 import { CiCircleCheck } from "react-icons/ci";
+import { useEffect } from "react";
 
 function Ocorrencia(props) {
   const { nome, tema, turma, data, urgencia, cor } = props;
@@ -15,16 +16,22 @@ function Ocorrencia(props) {
     year: "numeric",
   });
 
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/Paginas/VisualizarOcorrencia?id=${id}`);
+  };
+
   return (
     <>
-      <Link
+      <div
         className={styles.boxOcor}
         style={{
           "--ncolor": cor + '7f',
           "--lcolor": lighter + '7f',
           "--dcolor": darker + '7f',
         }}
-        href="/Paginas/VisualizarOcorrencia"
+        onClick={handleClick (`Paginas/VisualizarOcorrencia`)}
       >
         <div className={styles.a}>
           <div className={styles.titletematurma}>
@@ -42,7 +49,7 @@ function Ocorrencia(props) {
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </>
   );
 }
