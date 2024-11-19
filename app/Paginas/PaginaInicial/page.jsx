@@ -14,10 +14,9 @@ const inicial = () => {
 
   const getOcorrencias = async () => {
     try {
-      debugger;
       const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
-      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      // console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
     } catch (error) {
       console.error("Erro na busca da ocorrência", error);
@@ -43,7 +42,7 @@ const inicial = () => {
         <h2 className={styles.h4}>Notificações</h2>
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-        <div className={styles.boxTodasOcor}>
+        <div  onClick={`Paginas/VisualizarOcorrencia`} className={styles.boxTodasOcor}>
           {data.length > 0 ? (
             data.map((item) => (
               <>
