@@ -190,4 +190,10 @@
   .input5 {
     width: 24.7vw;
   }
+  .divBut{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 100%;
+  }
 }

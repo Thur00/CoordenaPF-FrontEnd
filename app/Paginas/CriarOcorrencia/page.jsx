@@ -378,7 +378,7 @@ function criaroco() {
         </div>
 
         <div className={styles.divBut}>
-          <BotaoVoltar link="/Paginas/PaginaInicial" />
+        <button className={styles.botaovoltar}>  <Link href="/Paginas/PaginaInicial"> Voltar</Link> </button>
 
           <Link href="https://quizizz.com/">
             <button className={styles.botaovoltar}> Gerar documento </button>
