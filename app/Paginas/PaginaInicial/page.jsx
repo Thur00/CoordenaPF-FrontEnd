@@ -5,18 +5,26 @@ import React from "react";
 import Ocorrencia from "@/Components/Ocorrencias";
 import BotaoInicial from "@/Components/BotaoInicial";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 const API_URL = "http://localhost:3001";
 
 const inicial = () => {
   const [data, setData] = useState([]);
+  const router = useRouter();
+  const [id, setId] = useState("");
+
+  const handleClick = () => {
+    router.push(`/Paginas/VisualizarOcorrencia?id=${[id]}`);
+  };
 
   const getOcorrencias = async () => {
     try {
+      debugger;
       const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
-      // console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
     } catch (error) {
       console.error("Erro na busca da ocorrência", error);
@@ -25,7 +33,7 @@ const inicial = () => {
 
   useEffect(() => {
     getOcorrencias();
-  }, []);
+  }, [id]);
 
   return (
     <div>
@@ -42,11 +50,13 @@ const inicial = () => {
         <h2 className={styles.h4}>Notificações</h2>
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-        <div  onClick={`Paginas/VisualizarOcorrencia`} className={styles.boxTodasOcor}>
+        <div onClick={handleClick} className={styles.boxTodasOcor}>
           {data.length > 0 ? (
             data.map((item) => (
               <>
                 <Ocorrencia
+                 key={item.Ocorrencia_id}
+                id= {item.Ocorrencia_id}
                   nome={item.Criador}
                   turma={item.Turma}
                   tema={item.Tema}
@@ -63,11 +73,12 @@ const inicial = () => {
         </div>
         <h2 className={styles.h4}>Andamento:</h2>
 
-        <div className={styles.boxTodasOcor}>
+        <div   className={styles.boxTodasOcor}>
           {data.length > 0 ? (
             data.map((item) => (
               <>
                 <Ocorrencia
+                id= {item.Ocorrencia_id}
                   nome={item.Criador}
                   turma={item.Turma}
                   tema={item.Tema}
