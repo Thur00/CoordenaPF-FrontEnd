@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
-
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
-
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
@@ -13,7 +11,6 @@ const VisualizarOcorrencia = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const getOcorrencia = async () => {
-    debugger;
     try {
       const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
