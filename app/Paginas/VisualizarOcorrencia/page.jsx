@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
-import BotaoVisualizar from "@/Components/BotaoVisuOcorrencia";
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
 
 

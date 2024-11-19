@@ -7,17 +7,12 @@ import BotaoInicial from "@/Components/BotaoInicial";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-
 const API_URL = "http://localhost:3001";
 
 const inicial = () => {
   const [data, setData] = useState([]);
   const router = useRouter();
   const [id, setId] = useState("");
-
-  const handleClick = () => {
-    router.push(`/Paginas/VisualizarOcorrencia?id=${[id]}`);
-  };
 
   const getOcorrencias = async () => {
     try {
