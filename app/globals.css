@@ -57,7 +57,12 @@ a {
 .icon2 {
   font-size: xx-large;
   margin: 10%;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
 }
+
+
 
 /* .footbox {
   height: 10vh;
