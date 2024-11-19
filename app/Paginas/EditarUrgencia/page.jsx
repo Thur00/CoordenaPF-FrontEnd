@@ -142,7 +142,7 @@ const Tabela = () => {
                   <tr key={item.Urgencia_id}>
                     <td>{item.Urgencia_id}</td>
                     <td>{item.Tipo_urgencia}</td>
-                    <td>{item.Cor}</td>
+                    <td><div className={styles.divColor} style={{ backgroundColor: item.Cor }}>{item.Cor}</div></td>
                   </tr>
                 ))
               ) : (
@@ -184,7 +184,11 @@ const Tabela = () => {
               onChange={handleInputChange}
               placeholder="Urgencia"
             />
+
+            <br />
+
             <input
+              className={styles.color}
               type="color"
               name="cor"
               value={formData.cor}

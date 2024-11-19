@@ -7,11 +7,15 @@ import Link from "next/link";
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const Tabela = () => {
-    const [data, setData] = useState([]);
-    const [formData, setFormData] = useState({ id: "", categoria: "", icone: "" });
-    const [isEditing, setIsEditing] = useState(false);
-    const [showForm, setShowForm] = useState(false);
-    const [editingItem, setEditingItem] = useState(null);
+  const [data, setData] = useState([]);
+  const [formData, setFormData] = useState({
+    id: "",
+    categoria: "",
+    icone: "",
+  });
+  const [isEditing, setIsEditing] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
 
   const getStatus = async () => {
     try {
@@ -45,7 +49,7 @@ const Tabela = () => {
     setIsEditing(true);
     setFormData(item);
     setEditingItem(item);
-};
+  };
 
   const handleSave = async () => {
     if (isEditing) {
@@ -56,7 +60,10 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ categoria: formData.categoria, icone: formData.icone }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({
+            categoria: formData.categoria,
+            icone: formData.icone,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -77,20 +84,22 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ categoria: formData.categoria, icone: formData.icone }),
+          body: JSON.stringify({
+            categoria: formData.categoria,
+            icone: formData.icone,
+          }),
         });
 
         // Atualiza a lista de temas após a edição
-        console.log("icone ",formData.icone);
+        console.log("icone ", formData.icone);
         getStatus();
-
 
         // Converte a resposta para JSON
         const data = await response.json();
 
         // Atualiza o estado de 'data' com o novo tema adicionado
         setData((prevData) => [...prevData, data]);
-        console.log('data',data)
+        console.log("data", data);
 
         // Limpa os campos de entrada
         setFormData({ id: "", categoria: "", icone: "" });
@@ -124,9 +133,9 @@ const Tabela = () => {
           <table border="1" className={styles.table}>
             <thead>
               <tr>
-              <th>ID</th>
-              <th>CATEGORIA</th>
-              <th>ICONE</th>
+                <th>ID</th>
+                <th>CATEGORIA</th>
+                <th>ICONE</th>
               </tr>
             </thead>
             <tbody>
@@ -177,14 +186,15 @@ const Tabela = () => {
               onChange={handleInputChange}
               placeholder="Categoria"
             />
-<input
-    type="text"
-    name="icone"
-    value={formData.icone}
-    onChange={handleInputChange}
-    placeholder="Icone"
-/>
-<br></br>
+            <br />
+            <input
+              type="text"
+              name="icone"
+              value={formData.icone}
+              onChange={handleInputChange}
+              placeholder="Icone"
+            />
+            <br />
           </div>
 
           <div className={styles.salecanbutton}>

@@ -64,7 +64,7 @@
 }
 
 .titleinput {
-    margin: 2% 10%;
+  margin: 2% 10%;
 }
 
 .divinput {
@@ -73,7 +73,19 @@
   flex-direction: column;
   margin-left: 10%;
   margin-right: 25%;
-  width: 65%;
+  width: 30%;
+}
+
+.color {
+  width: 100%;
+}
+
+.divColor {
+  width: 20%;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .salecanbutton {
