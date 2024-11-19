@@ -5,6 +5,7 @@ import Link from "next/link";
 import { generateLightAndDarkColors } from "../utils/colorUtils";
 import { CiCircleCheck } from "react-icons/ci";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 function Ocorrencia(props) {
   const { nome, tema, turma, data, urgencia, cor } = props;
@@ -16,12 +17,6 @@ function Ocorrencia(props) {
     year: "numeric",
   });
 
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(`/Paginas/VisualizarOcorrencia?id=${id}`);
-  };
-
   return (
     <>
       <div
@@ -31,7 +26,6 @@ function Ocorrencia(props) {
           "--lcolor": lighter + '7f',
           "--dcolor": darker + '7f',
         }}
-        onClick={handleClick (`Paginas/VisualizarOcorrencia`)}
       >
         <div className={styles.a}>
           <div className={styles.titletematurma}>
