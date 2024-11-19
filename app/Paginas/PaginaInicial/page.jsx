@@ -42,7 +42,7 @@ const inicial = () => {
         <h2 className={styles.h4}>Notificações</h2>
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-        <div  onClick={`Paginas/VisualizarOcorrencia`} className={styles.boxTodasOcor}>
+        <div onClick={`Paginas/VisualizarOcorrencia`} className={styles.boxTodasOcor}>
           {data.length > 0 ? (
             data.map((item) => (
               <>

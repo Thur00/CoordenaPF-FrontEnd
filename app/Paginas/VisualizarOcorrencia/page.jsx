@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
-import BotaoVisualizar from "@/Components/BotaoVisuOcorrencia";
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
 import BotaoVoltar from "@/Components/BotaoVoltar";
 
@@ -14,7 +13,6 @@ const VisualizarOcorrencia = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const getOcorrencia = async () => {
-    debugger;
     try {
       const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
