@@ -9,6 +9,8 @@ function Ocorrencia(props) {
   const { nome, tema, turma, data, urgencia, cor } = props;
   const { lighter, darker } = generateLightAndDarkColors(cor);
 
+  
+
   const formattedDate = new Date(data).toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "2-digit",
