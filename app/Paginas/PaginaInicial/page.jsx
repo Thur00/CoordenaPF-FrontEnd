@@ -6,6 +6,7 @@ import Ocorrencia from "@/Components/Ocorrencias";
 import BotaoInicial from "@/Components/BotaoInicial";
 import { useEffect, useState } from "react";
 
+
 const API_URL = "http://localhost:3001";
 
 const inicial = () => {
