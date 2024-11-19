@@ -1,95 +1,95 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import styles from "./page.module.css"
+import { IoMdPerson } from "react-icons/io";
+import { PiLockKeyFill } from "react-icons/pi";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import React, { useState } from 'react';
+import Link from "next/link";
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+export default function Login() {
+    const [cpf, setCpf] = useState('');
+    const [senha, setSenha] = useState('');
+    const [error, setError] = useState('');
+    
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await fetch('${API_URL}/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ cpf, senha }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            // Login bem-sucedido, redirecionar ou mostrar mensagem
+            alert(data.message);
+        } else {
+            // Mostrar erro
+            setError(data.message);
+        }
+    };
+
+    const [password, setPassword] = useState('');
+    const [isVisible, setIsVisible] = useState(false);
+
+    const DeixarVisivel = () => {
+        setIsVisible(!isVisible);
+    };
+
+    const isTyping = password.length > 0
+
+    return (
+        <main className={styles.main}>
+
+            <div className={styles.box}>
+                <div className={styles.titulobox}>
+                    <h1 className={styles.texto1}> Coordena </h1>
+                    <h1 className={styles.texto2}>SESI</h1>
+                </div>
+
+                <form className={styles.divPesquisa} onSubmit={handleSubmit}>
+
+                    <div className={styles.pesquisa}>
+                        <IoMdPerson />
+                        <input value={cpf}
+                            onChange={(e) => setCpf(e.target.value)}
+                            required
+                            placeholder="Login" />
+                    </div>
+
+                    <div className={styles.pesquisa}>
+                        <div className={styles.cadeado}><PiLockKeyFill /></div>
+                        <input
+                            type={isVisible ? 'text' : 'password'}
+                            value={senha}
+                            onChange={(e) => setSenha(e.target.value)}
+                            placeholder="Senha"
+                        />
+                        {isTyping && (
+                            <button className={styles.olho} onClick={DeixarVisivel}>
+                                {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
+                            </button>
+                        )}
+                    </div>
+
+
+                    <Link href="./User/RedefinirSenha">Esqueceu sua senha?</Link>
+
+                    <Link href="./Paginas/PaginaInicial" > <button className={styles.botao} type="submit" >Acessar</button> </Link>
+                </form>
+
+                <a className={styles.referencia} href="https://pt.vecteezy.com/vetor-gratis/vermelho" target="blank">Vermelho Vetores por Vecteezy</a>
+
+            </div>
+
+        </main >
+    )
+
 }
+

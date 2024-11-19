@@ -1,0 +1,26 @@
+.table {
+    width: 70%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+  }
+  
+  .buttonContainer button {
+    margin: 12px; /* Espaçamento entre os botões */
+  }
+  
+  .flex {
+    display: flex;
+    flex-direction: row;
+  }
