@@ -5,19 +5,33 @@ import { useSearchParams } from "next/navigation";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
 
-
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const VisualizarOcorrencia = () => {
   const [data, setData] = useState({});
+  const [dataStt, setDataStt] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
+  const [formData, setFormData] = useState({
+    dataoc: "",
+    hora: "",
+    iniciativa: "",
+    aspecto: "",
+    urgencia: "",
+    tema: "",
+    rm: "",
+    turma: "",
+    responsavel: "",
+    descricao: "",
+    encaminhamento: "",
+    status: "",
+  });
   const [usuarios, setUsuarios] = useState([]); // Estado para usuários
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
-
   const getOcorrencia = async () => {
-    debugger;
     try {
       const resposta = await fetch(`${API_URL}/ocorrencias/${id}`);
       const data1 = await resposta.json();
@@ -38,12 +52,105 @@ const VisualizarOcorrencia = () => {
       console.error("Erro ao buscar usuários:", error);
     }
   };
+
+  const getStatus = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/status`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setDataStt(data1);
+    } catch (error) {
+      console.error("Erro na busca status", error);
+    }
+  };
+
   useEffect(() => {
     getUsuarios();
+    getStatus();
     if (id) {
       getOcorrencia();
     }
   }, [id]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleEdit = (item) => {
+    setIsEditing(true);
+    setFormData({
+      Data_ocorrencia: formData.dataoc,
+      Hora: formData.hora,
+      Iniciativa: formData.iniciativa,
+      Aspecto: formData.aspecto,
+      Urgencia: formData.urgencia,
+      Tema: formData.tema,
+      Rm_aluno: formData.rm,
+      Turma: formData.turma,
+      Responsavel: formData.responsavel,
+      Descricao: formData.descricao,
+      Encaminhamento: formData.encaminhamento,
+    });
+    setEditingItem(item);
+  };
+
+  const handleSave = async () => {
+    debugger;
+    if (isEditing) {
+      try {
+        // Faz uma requisição PUT para a API de temas para atualizar o item
+        await fetch(`${API_URL}/ocorrencias/${editingItem.Aspecto_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Data_ocorrencia: formData.dataoc,
+            Hora: formData.hora,
+            Iniciativa: formData.iniciativa,
+            Aspecto: formData.aspecto,
+            Urgencia: formData.urgencia,
+            Tema: formData.tema,
+            Rm_aluno: formData.rm,
+            Turma: formData.turma,
+            Responsavel: formData.responsavel,
+            Descricao: formData.descricao,
+            Encaminhamento: formData.encaminhamento,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
+        });
+
+        // Atualiza a lista de temas após a edição
+        getOcorrencia();
+
+        // Limpa a seleção e o formulário
+        setEditingItem(null);
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Erro ao atualizar o aspecto:", error);
+      }
+    } else {
+      try {
+        // Faz uma requisição PUT para a API de temas para atualizar o item
+        await fetch(`${API_URL}/ocorencias/status/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Status: formData.status,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
+        });
+
+        // Atualiza a lista de temas após a edição
+        getOcorrencia();
+      } catch (error) {
+        console.error("Erro ao atualizar o aspecto:", error);
+      }
+    }
+
+    setFormData({ id: "", Nome: "" });
+  };
 
   const formattedDate = new Date(data?.Data).toLocaleDateString("pt-BR", {
     day: "2-digit",
@@ -56,7 +163,6 @@ const VisualizarOcorrencia = () => {
     minute: "2-digit",
   });
 
-
   const openModal = () => {
     setIsOpen(true);
   };
@@ -65,7 +171,6 @@ const VisualizarOcorrencia = () => {
     setIsOpen(false);
   };
 
-
   const handleClickOutside = (event) => {
     const modal = document.getElementById("myModal");
     if (modal && event.target === modal) {
@@ -73,9 +178,9 @@ const VisualizarOcorrencia = () => {
     }
   };
 
-  function enviarNotificacao() {
-    closeModal()
-  }
+  // function enviarNotificacao() {
+  //   closeModal();
+  // }
 
   // const enviarNotificacao = async () => {
   //   if (!selectedUser) {
@@ -106,7 +211,6 @@ const VisualizarOcorrencia = () => {
   //   }
   // };
 
-
   return (
     <div>
       <div className={styles.tudo}>
@@ -114,17 +218,39 @@ const VisualizarOcorrencia = () => {
         <p className={styles.data}>
           Data:
           {formattedDate || "Data não encontrada"}
-
         </p>
         <p className={styles.urgencia1}>
           {data?.Urgencia ? data.Urgencia : "Urgência não encontrada"}
         </p>
-
       </div>
 
       <div className={styles.botoes}>
-        <button className={styles.b1}>Mudar Status</button>
-        <button onClick={openModal} className={styles.b1}>Solicitar</button>
+        <label className={styles.b1}>
+          Alterar Status
+          <select
+            value={formData.status}
+            onChange={handleInputChange}
+            id="status"
+            name="status"
+          >
+            <option value={data.Status_id}>{data.Status}</option>
+            {dataStt.length > 0 ? (
+              dataStt.map((item) => (
+                <option key={item.Status_id} value={item.Status_id}>
+                  {item.Categoria}
+                </option>
+              ))
+            ) : (
+              <option>Nenhum aspecto encontrado </option>
+            )}
+          </select>
+        </label>
+
+        <button onClick={handleSave}>Confirmar</button>
+
+        <button onClick={openModal} className={styles.b1}>
+          Solicitar
+        </button>
       </div>
 
       <form className={styles.form}>
@@ -139,7 +265,6 @@ const VisualizarOcorrencia = () => {
                 value={formattedDate || "Data não encontrada"}
                 disabled
               />
-
             ) : (
               <input
                 className={styles.input4}
@@ -148,7 +273,6 @@ const VisualizarOcorrencia = () => {
                 value={formattedDate || "Data não encontrada"}
                 disabled
               />
-
             )}
           </div>
 
@@ -162,7 +286,6 @@ const VisualizarOcorrencia = () => {
                 value={formattedTime || "Horário não encontrado"}
                 disabled
               />
-
             ) : (
               <input
                 className={styles.input}
@@ -420,8 +543,12 @@ const VisualizarOcorrencia = () => {
         <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
           <div className={styles.modalContent}>
             <div className={styles.headBox}>
-              <div className={styles.titulo}><h2>Solicitar participação nesta ocorrência</h2></div>
-              <span className={styles.close} onClick={closeModal}>&times;</span>
+              <div className={styles.titulo}>
+                <h2>Solicitar participação nesta ocorrência</h2>
+              </div>
+              <span className={styles.close} onClick={closeModal}>
+                &times;
+              </span>
             </div>
 
             <div>
@@ -431,7 +558,7 @@ const VisualizarOcorrencia = () => {
             <div className={styles.email}>
               {usuarios.length > 0 ? (
                 usuarios.map((user, index) => (
-                  <div key={index} >
+                  <div key={index}>
                     <p>{user.Nome} </p>
                     <p> {user.Email}</p>
                   </div>
@@ -440,13 +567,12 @@ const VisualizarOcorrencia = () => {
                 <p>Nenhum usuário encontrado</p>
               )}
             </div>
-
           </div>
-          <button className={styles.confirmar} onClick={closeModal}>Confirmar</button>
+          <button className={styles.confirmar} onClick={closeModal}>
+            Confirmar
+          </button>
         </div>
-
       )}
-
     </div>
   );
 };
