@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import style from "@/Components/Login.module.css"
 const SignIn = () => {
