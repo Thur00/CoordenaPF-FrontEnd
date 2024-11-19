@@ -1,0 +1,195 @@
+.h1 {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    margin-left: 10%;
+    font-size: x-large;
+}
+
+.table {
+    margin-left: 10%;
+    width: 65%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+}
+
+.buttonContainer button {
+    margin: 12px;
+    /* Espaçamento entre os botões */
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.div2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.editarbutton {
+    background-color: #ff1100;
+    border-radius: 10px;
+    border: 2px;
+    width: 200%;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: large;
+    padding: 7%;
+}
+
+.addbutton {
+    display: flex;
+    justify-content: center;
+    background-color: #ff1100;
+    margin-top: 2%;
+    margin-left: 10%;
+    border-radius: 10px;
+    border: 2px;
+    width: 10%;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    padding: 0.5%;
+    font-size: large;
+}
+
+.titleinput {
+    margin: 2% 10%;
+}
+
+.divinput {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 25%;
+    width: 30%;
+}
+
+.salecanbutton {
+    display: flex;
+    justify-content: space-between;
+}
+
+.salvarbutton {
+    background-color: #ff1100;
+    margin-top: 2%;
+    border-radius: 10px;
+    border: 2px;
+    width: 10%;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: large;
+    padding: 0.5%;
+    margin-left: 10%;
+}
+
+.cancelarbutton {
+    background-color: #ff1100;
+    margin-top: 2%;
+    border-radius: 10px;
+    border: 2px;
+    width: 10%;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    padding: 0.5%;
+    font-size: large;
+    margin-right: 25%;
+}
+
+.voltar {
+    background-color: #ff1100;
+    border-radius: 10px;
+    border: 2px;
+    width: 8%;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    padding: 0.5%;
+    font-size: large;
+    margin-left: 68%;
+}
+
+.div1 {
+    display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 800px) {
+    .h1 {
+        font-size: large;
+        margin-top: 2%;
+    }
+
+    .buttonContainer {
+        display: flex;
+        flex-direction: column;
+        margin-top: 55px;
+
+    }
+
+    .table th,
+    .table td {
+        padding: 15px;
+        text-align: left;
+        border: 1px solid #ccc;
+        font-size: small;
+    }
+
+    .editarbutton {
+        width: 100%;
+        font-size: medium;
+        padding: 15%;
+    }
+
+    .div1 {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .div2 {
+        overflow-x: auto;
+        /* Permite rolagem horizontal */
+        -webkit-overflow-scrolling: touch;
+        /* Melhora a rolagem em dispositivos iOS */
+        margin: 20px 0;
+        width: 100%;
+        /* Impede a tabela de ultrapassar o tamanho da tela */
+    }
+
+    .voltar {
+        width: 22%;
+        font-size: medium;
+        margin-left: 39%;
+        padding: 1.5%;
+    }
+
+    .addbutton {
+        width: 22%;
+        font-size: medium;
+        padding: 1.5%;
+    }
+
+    .salvarbutton {
+        width: 22%;
+        font-size: medium;
+        padding: 1.5%;
+    }
+
+    .cancelarbutton {
+        width: 22%;
+        font-size: medium;
+        padding: 1.5%;
+    }
+
+}
