@@ -50,12 +50,11 @@ const inicial = () => {
         <h2 className={styles.h4}>Notificações</h2>
         <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
 
-        <div onClick={handleClick} className={styles.boxTodasOcor}>
+        <div className={styles.boxTodasOcor}>
           {data.length > 0 ? (
             data.map((item) => (
               <>
                 <Ocorrencia
-                 key={item.Ocorrencia_id}
                 id= {item.Ocorrencia_id}
                   nome={item.Criador}
                   turma={item.Turma}
