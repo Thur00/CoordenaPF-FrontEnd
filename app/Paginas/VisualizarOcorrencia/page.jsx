@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
-import BotaoVisualizar from "@/Components/BotaoVisuOcorrencia";
+
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
-import BotaoVoltar from "@/Components/BotaoVoltar";
 
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
@@ -41,25 +40,25 @@ const VisualizarOcorrencia = () => {
   });
 
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
 
-    const handleClickOutside = (event) => {
-        const modal = document.getElementById("myModal");
-        if (modal && event.target === modal) {
-            closeModal();
-        }
-    };
-
-    function enviarNotificacao() {
-        closeModal()
+  const handleClickOutside = (event) => {
+    const modal = document.getElementById("myModal");
+    if (modal && event.target === modal) {
+      closeModal();
     }
+  };
+
+  function enviarNotificacao() {
+    closeModal()
+  }
 
 
   return (
@@ -80,8 +79,30 @@ const VisualizarOcorrencia = () => {
       </div>
 
       <div className={styles.botoes}>
-      <button className={styles.b1}>Mudar Status</button>
-      <button onClick={openModal} className={styles.b1}>Solicitar</button>
+        <label className={styles.b1} for="stat" onClick={handleSave}>Alterar Status
+
+          <select
+            value={formStat.stat}
+            onChange={handleInputChange}
+            id="status"
+            name="status"
+          >
+            <option value="null"></option>
+            {stat.length > 0 ? (
+              stat.map((item) => (
+                <option
+                  key={item.Status_id}
+                  value={item.Status_id}
+                  onChange={handleInputChange}
+                >
+                  {item.Categoria}
+                </option>
+              ))
+            ) : (
+              <option>Nenhum aspecto encontrado </option>
+            )}
+          </select></label>
+        <button onClick={openModal} className={styles.b1}>Solicitar</button>
       </div>
 
       <form className={styles.form}>
@@ -375,31 +396,31 @@ const VisualizarOcorrencia = () => {
       <br></br>
 
       {isOpen && (
-                <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
-                    <div className={styles.modalContent}>
-                        <div className={styles.headBox}>
-                            <div className={styles.titulo}><h2>Solicitar participação nesta ocorrência</h2></div>
-                            <span className={styles.close} onClick={closeModal}>&times;</span>
-                        </div>
+        <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
+          <div className={styles.modalContent}>
+            <div className={styles.headBox}>
+              <div className={styles.titulo}><h2>Solicitar participação nesta ocorrência</h2></div>
+              <span className={styles.close} onClick={closeModal}>&times;</span>
+            </div>
 
 
-                        
-                        <div className={styles.email}>
-                            <div>
 
-                                <h3>Samara</h3>
-                                <p>samara@gmail.com</p>
-                            </div>
-                            <br />
-                            <div>
-                                <h3>Alessandra</h3>
-                                <p>alessandra@gmail.com</p>
-                            </div>
-                        </div>
-                        <button className={styles.confirmar} onClick={enviarNotificacao}>Confirmar</button>
-                    </div>
-                </div>
-            )}
+            <div className={styles.email}>
+              <div>
+
+                <h3>Samara</h3>
+                <p>samara@gmail.com</p>
+              </div>
+              <br />
+              <div>
+                <h3>Alessandra</h3>
+                <p>alessandra@gmail.com</p>
+              </div>
+            </div>
+            <button className={styles.confirmar} onClick={enviarNotificacao}>Confirmar</button>
+          </div>
+        </div>
+      )}
 
     </div>
   );
