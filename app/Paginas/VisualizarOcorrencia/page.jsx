@@ -4,26 +4,42 @@ import { useEffect, useState } from "react";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
 
+
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const VisualizarOcorrencia = () => {
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [ocorrencias, setOcorrencias] = useState([]); // Estado para ocorrências
+  const [usuarios, setUsuarios] = useState([]); // Estado para usuários
 
   const getOcorrencia = async () => {
     try {
       const resposta = await fetch(`${API_URL}/ocorrencias`);
-      const data1 = await resposta.json();
-      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
-      setData(data1);
+      const data = await resposta.json();
+      console.log("Ocorrências recebidas:", data);
+      setOcorrencias(data);
     } catch (error) {
-      console.error("Erro na vizualização da ocorrência", error);
+      console.error("Erro ao buscar ocorrências:", error);
     }
   };
 
+  const getUsuarios = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/usuarios`);
+      const data = await resposta.json();
+      console.log("Usuários recebidos:", data);
+      setUsuarios(data);
+    } catch (error) {
+      console.error("Erro ao buscar usuários:", error);
+    }
+  };
   useEffect(() => {
     getOcorrencia();
+    getUsuarios();
   }, []);
+
+
 
   const formattedDate = new Date(data[0]?.Data).toLocaleDateString("pt-BR", {
     day: "2-digit",
@@ -57,6 +73,35 @@ const VisualizarOcorrencia = () => {
     closeModal()
   }
 
+  // const enviarNotificacao = async () => {
+  //   if (!selectedUser) {
+  //     alert("Por favor, selecione um usuário para notificar.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const resposta = await fetch(`${API_URL}/notificacoes`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         userId: selectedUser.id, // ID do usuário selecionado
+  //         ocorrenciaId: ocorrencias[0]?.id, // ID da ocorrência (ajuste conforme necessário)
+  //         mensagem: `Você foi solicitado para a ocorrência: ${ocorrencias[0]?.Tema}`,
+  //       }),
+  //     });
+  //  if (resposta.ok) {
+  //       alert("Notificação enviada com sucesso!");
+  //       closeModal();
+  //     } else {
+  //       alert("Erro ao enviar notificação.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Erro ao enviar notificação:", error);
+  //   }
+  // };
+
 
   return (
     <div>
@@ -76,29 +121,7 @@ const VisualizarOcorrencia = () => {
       </div>
 
       <div className={styles.botoes}>
-        <label className={styles.b1} for="stat" onClick={handleSave}>Alterar Status
-
-          <select
-            value={formStat.stat}
-            onChange={handleInputChange}
-            id="status"
-            name="status"
-          >
-            <option value="null"></option>
-            {stat.length > 0 ? (
-              stat.map((item) => (
-                <option
-                  key={item.Status_id}
-                  value={item.Status_id}
-                  onChange={handleInputChange}
-                >
-                  {item.Categoria}
-                </option>
-              ))
-            ) : (
-              <option>Nenhum aspecto encontrado </option>
-            )}
-          </select></label>
+        <button className={styles.b1}>Mudar Status</button>
         <button onClick={openModal} className={styles.b1}>Solicitar</button>
       </div>
 
@@ -400,23 +423,27 @@ const VisualizarOcorrencia = () => {
               <span className={styles.close} onClick={closeModal}>&times;</span>
             </div>
 
-
+            <div>
+              <h1 className={styles.subtitulo}>Selecione o usuário:</h1>
+            </div>
 
             <div className={styles.email}>
-              <div>
-
-                <h3>Samara</h3>
-                <p>samara@gmail.com</p>
-              </div>
-              <br />
-              <div>
-                <h3>Alessandra</h3>
-                <p>alessandra@gmail.com</p>
-              </div>
+              {usuarios.length > 0 ? (
+                usuarios.map((user, index) => (
+                  <div key={index} >
+                    <p>{user.Nome} </p>
+                    <p> {user.Email}</p>
+                  </div>
+                ))
+              ) : (
+                <p>Nenhum usuário encontrado</p>
+              )}
             </div>
-            <button className={styles.confirmar} onClick={enviarNotificacao}>Confirmar</button>
+
           </div>
+          <button className={styles.confirmar} onClick={closeModal}>Confirmar</button>
         </div>
+
       )}
 
     </div>

@@ -6,6 +6,8 @@ import { IoPersonSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import styles from "@/Components/ModalNotificacao.module.css"
 
+const API_URL = "http://localhost:3001";
+
 function Header(props) {
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState([]);
@@ -73,9 +75,9 @@ function Header(props) {
                         <div className={styles.content}>
                         {data.length > 0 ? (
                                 data.map((item) => (
-                                    <div className={styles.notificacao}><p>teste</p></div>
+                                    <div className={styles.notificacao}><p>{item.Criador_Nome} convidou {item.Solicitado_Nome} para esta notificação</p></div>
                                 ))
-                            ) : (<p>teste2</p>)
+                            ) : (<p>Nenhuma notificação encontrada</p>)
                             }
                         </div>
                     </div>

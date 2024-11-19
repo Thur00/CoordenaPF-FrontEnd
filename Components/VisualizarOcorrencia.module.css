@@ -24,9 +24,7 @@
   color: white;
   transition-duration: 0.4s;
   font-size: large;
-  width: 35vh;
-  justify-content: space-evenly;
-  display: flex;
+  width: 28vh;
 }
 
 .b2 {
@@ -62,8 +60,16 @@
   padding: 1%;
   margin-top: 2%;
   margin-left: 2%;
-  font-size: 150%;
+  font-size: 120%;
 }
+
+.subtitulo {
+  padding: 1%;
+  margin-top: 1%;
+  margin-left: 2%;
+  font-size: 120%;
+}
+
 
 .titulo2 {
   padding: 1%;
@@ -191,7 +197,7 @@
   height: 100%;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-  
+
 }
 
 .modal ::-webkit-scrollbar {
@@ -243,7 +249,8 @@
   text-decoration: none;
   cursor: pointer;
 }
-.headBox{
+
+.headBox {
   width: 100%;
   display: flex;
   align-items: center;
@@ -251,7 +258,7 @@
 }
 
 
-.confirmar{
+.confirmar {
   margin-top: 40%;
   margin-left: 80%;
   background-color: red;
@@ -262,7 +269,7 @@
   height: 5%
 }
 
-.email{
+.email {
   margin-top: 15%;
 }
 
@@ -415,16 +422,13 @@
     height: auto;
     margin: 0px;
     border-radius: 0;
-}
+  }
 
-
-.modal {
+  .modal {
     padding-top: 45px;
-}
+  }
 
-.close {
+  .close {
     font-size: 24px;
+  }
 }
-}
-
-
