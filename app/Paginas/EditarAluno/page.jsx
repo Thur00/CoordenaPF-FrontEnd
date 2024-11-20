@@ -143,7 +143,7 @@ const Tabela = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">Nenhum aluno encontrado.</td>
+                  <td colSpan="4">Nenhum aluno encontrado.</td>
                 </tr>
               )}
             </tbody>
