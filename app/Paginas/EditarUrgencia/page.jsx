@@ -147,7 +147,7 @@ const Tabela = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">Nenhuma urgência encontrado.</td>
+                  <td colSpan="3">Nenhuma urgência encontrado.</td>
                 </tr>
               )}
             </tbody>
