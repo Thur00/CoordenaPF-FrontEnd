@@ -1,64 +1,215 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import styles from "@/Components/VisualizarOcorrencia.module.css";
 import SegundoBotaoVisualizar from "@/Components/SegundoBotaoVisualizar";
-import BotaoVoltar from "@/Components/BotaoVoltar";
-
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const VisualizarOcorrencia = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [dataStt, setDataStt] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
+  const [formData, setFormData] = useState({
+    dataoc: "",
+    hora: "",
+    iniciativa: "",
+    aspecto: "",
+    urgencia: "",
+    tema: "",
+    rm: "",
+    turma: "",
+    responsavel: "",
+    descricao: "",
+    encaminhamento: "",
+    status: "",
+  });
+  const [usuarios, setUsuarios] = useState([]); // Estado para usuários
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
   const getOcorrencia = async () => {
     try {
-      const resposta = await fetch(`${API_URL}/ocorrencias`);
+      const resposta = await fetch(`${API_URL}/ocorrencias/${id}`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
     } catch (error) {
-      console.error("Erro na vizualização da ocorrência", error);
+      console.error("Erro ao buscar ocorrências:", error);
+    }
+  };
+
+  const getUsuarios = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/usuarios`);
+      const data = await resposta.json();
+      console.log("Usuários recebidos:", data);
+      setUsuarios(data);
+    } catch (error) {
+      console.error("Erro ao buscar usuários:", error);
+    }
+  };
+
+  const getStatus = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/status`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setDataStt(data1);
+    } catch (error) {
+      console.error("Erro na busca status", error);
     }
   };
 
   useEffect(() => {
-    getOcorrencia();
-  }, []);
+    getUsuarios();
+    getStatus();
+    if (id) {
+      getOcorrencia();
+    }
+  }, [id]);
 
-  const formattedDate = new Date(data[0]?.Data).toLocaleDateString("pt-BR", {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleEdit = (item) => {
+    setIsEditing(true);
+    setFormData({
+      Data_ocorrencia: formData.dataoc,
+      Hora: formData.hora,
+      Iniciativa: formData.iniciativa,
+      Aspecto: formData.aspecto,
+      Urgencia: formData.urgencia,
+      Tema: formData.tema,
+      Rm_aluno: formData.rm,
+      Turma: formData.turma,
+      Responsavel: formData.responsavel,
+      Descricao: formData.descricao,
+      Encaminhamento: formData.encaminhamento,
+    });
+    setEditingItem(item);
+  };
+
+  const handleSave = async () => {
+    debugger;
+    if (isEditing) {
+      try {
+        // Faz uma requisição PUT para a API de temas para atualizar o item
+        await fetch(`${API_URL}/ocorrencias/${editingItem.Aspecto_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Data_ocorrencia: formData.dataoc,
+            Hora: formData.hora,
+            Iniciativa: formData.iniciativa,
+            Aspecto: formData.aspecto,
+            Urgencia: formData.urgencia,
+            Tema: formData.tema,
+            Rm_aluno: formData.rm,
+            Turma: formData.turma,
+            Responsavel: formData.responsavel,
+            Descricao: formData.descricao,
+            Encaminhamento: formData.encaminhamento,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
+        });
+
+        // Atualiza a lista de temas após a edição
+        getOcorrencia();
+
+        // Limpa a seleção e o formulário
+        setEditingItem(null);
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Erro ao atualizar o aspecto:", error);
+      }
+    } else {
+      try {
+        // Faz uma requisição PUT para a API de temas para atualizar o item
+        await fetch(`${API_URL}/ocorencias/status/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Status: formData.status,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
+        });
+
+        // Atualiza a lista de temas após a edição
+        getOcorrencia();
+      } catch (error) {
+        console.error("Erro ao atualizar o aspecto:", error);
+      }
+    }
+
+    setFormData({ id: "", Nome: "" });
+  };
+
+  const formattedDate = new Date(data?.Data).toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
 
-  const formattedTime = new Date(data[0]?.Data).toLocaleTimeString("pt-BR", {
+  const formattedTime = new Date(data?.Data).toLocaleTimeString("pt-BR", {
     hour: "2-digit",
     minute: "2-digit",
   });
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
-
-
-    const handleClickOutside = (event) => {
-        const modal = document.getElementById("myModal");
-        if (modal && event.target === modal) {
-            closeModal();
-        }
-    };
-
-    function enviarNotificacao() {
-        closeModal()
+  const handleClickOutside = (event) => {
+    const modal = document.getElementById("myModal");
+    if (modal && event.target === modal) {
+      closeModal();
     }
+  };
 
+  // function enviarNotificacao() {
+  //   closeModal();
+  // }
+
+  // const enviarNotificacao = async () => {
+  //   if (!selectedUser) {
+  //     alert("Por favor, selecione um usuário para notificar.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const resposta = await fetch(`${API_URL}/notificacoes`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         userId: selectedUser.id, // ID do usuário selecionado
+  //         ocorrenciaId: ocorrencias[0]?.id, // ID da ocorrência (ajuste conforme necessário)
+  //         mensagem: `Você foi solicitado para a ocorrência: ${ocorrencias[0]?.Tema}`,
+  //       }),
+  //     });
+  //  if (resposta.ok) {
+  //       alert("Notificação enviada com sucesso!");
+  //       closeModal();
+  //     } else {
+  //       alert("Erro ao enviar notificação.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Erro ao enviar notificação:", error);
+  //   }
+  // };
 
   return (
     <div>
@@ -66,20 +217,40 @@ const VisualizarOcorrencia = () => {
         <h1>Ocorrência</h1>
         <p className={styles.data}>
           Data:
-          {data.length > 0 ? formattedDate : <span>Data não encontrada</span>}
+          {formattedDate || "Data não encontrada"}
         </p>
         <p className={styles.urgencia1}>
-          {data.length > 0 ? (
-            data[0]?.Urgencia
-          ) : (
-            <span>Urgencia não encontrada</span>
-          )}
+          {data?.Urgencia ? data.Urgencia : "Urgência não encontrada"}
         </p>
       </div>
 
       <div className={styles.botoes}>
-      <button className={styles.b1}>Mudar Status</button>
-      <button onClick={openModal} className={styles.b1}>Solicitar</button>
+        <label className={styles.b1}>
+          Alterar Status
+          <select
+            value={formData.status}
+            onChange={handleInputChange}
+            id="status"
+            name="status"
+          >
+            <option value={data.Status_id}>{data.Status}</option>
+            {dataStt.length > 0 ? (
+              dataStt.map((item) => (
+                <option key={item.Status_id} value={item.Status_id}>
+                  {item.Categoria}
+                </option>
+              ))
+            ) : (
+              <option>Nenhum aspecto encontrado </option>
+            )}
+          </select>
+        </label>
+
+        <button onClick={handleSave}>Confirmar</button>
+
+        <button onClick={openModal} className={styles.b1}>
+          Solicitar
+        </button>
       </div>
 
       <form className={styles.form}>
@@ -91,7 +262,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input4}
                 type="text"
                 name="date"
-                value={formattedDate}
+                value={formattedDate || "Data não encontrada"}
                 disabled
               />
             ) : (
@@ -99,7 +270,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input4}
                 type="text"
                 name="date"
-                value={"Data não encontrada"}
+                value={formattedDate || "Data não encontrada"}
                 disabled
               />
             )}
@@ -112,7 +283,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input}
                 type="text"
                 name="hora"
-                value={formattedTime}
+                value={formattedTime || "Horário não encontrado"}
                 disabled
               />
             ) : (
@@ -120,7 +291,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input}
                 type="text"
                 name="hora"
-                value={"Hora não encontrado"}
+                value={formattedTime || "Horário não encontrado"}
                 disabled
               />
             )}
@@ -135,7 +306,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input2}
                 type="text"
                 name="iniciativa"
-                value={data[0]?.Iniciativa}
+                value={data?.Iniciativa || "Iniciativa não encontrada"}
                 disabled
               />
             ) : (
@@ -143,7 +314,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input2}
                 type="text"
                 name="iniciativa"
-                value={"Iniciativa não encontrada"}
+                value={data?.Iniciativa || "Iniciativa não encontrada"}
                 disabled
               />
             )}
@@ -156,7 +327,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input7}
                 id="aspecto"
                 name="aspecto"
-                value={data[0]?.Aspecto}
+                value={data?.Aspecto || "Aspecto não encontrado"}
                 disabled
               />
             ) : (
@@ -164,7 +335,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input7}
                 id="aspecto"
                 name="aspecto"
-                value={"Aspecto não encontrado"}
+                value={data?.Aspecto || "Aspecto não encontrado"}
                 disabled
               />
             )}
@@ -179,7 +350,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input8}
                 name="tema"
                 id="tema"
-                value={data[0]?.Tema}
+                value={data?.Tema || "Tema não encontrado"}
                 disabled
               />
             ) : (
@@ -187,7 +358,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input8}
                 name="tema"
                 id="tema"
-                value={"Tema não encontrado"}
+                value={data?.Tema || "Tema não encontrado"}
                 disabled
               />
             )}
@@ -200,7 +371,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input9}
                 ame="urgencia"
                 id="urgencia"
-                value={data[0]?.Urgencia}
+                value={data?.Urgencia || "Urgência não encontrada"}
                 disabled
               />
             ) : (
@@ -208,7 +379,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input9}
                 ame="urgencia"
                 id="urgencia"
-                value={"Urgência não encontrada"}
+                value={data?.Urgencia || "Urgência não encontrada"}
                 disabled
               />
             )}
@@ -223,7 +394,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input10}
                 id="aluno"
                 name="aluno"
-                value={data[0]?.Aluno}
+                value={data?.Aluno || "Aluno(a) não encontrado"}
                 disabled
               />
             ) : (
@@ -231,7 +402,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input10}
                 id="aluno"
                 name="aluno"
-                value={"Aluno(a) não encontrada"}
+                value={data?.Aluno || "Aluno(a) não encontrado"}
                 disabled
               />
             )}
@@ -244,7 +415,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input11}
                 id="turma"
                 name="turma"
-                value={data[0]?.Turma}
+                value={data?.Turma || "Turma não encontrada"}
                 disabled
               />
             ) : (
@@ -252,7 +423,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input11}
                 id="turma"
                 name="turma"
-                value={"Turma não encontrada"}
+                value={data?.Turma || "Turma não encontrada"}
                 disabled
               />
             )}
@@ -265,7 +436,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input11}
                 id="rm"
                 name="rm"
-                value={data[0]?.RM}
+                value={data?.RM || "RM não encontrado"}
                 disabled
               />
             ) : (
@@ -273,7 +444,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input11}
                 id="rm"
                 name="rm"
-                value={"RM não encontrado"}
+                value={data?.RM || "RM não encontrado"}
                 disabled
               />
             )}
@@ -288,7 +459,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input5}
                 id="turma"
                 name="turma"
-                value={data[0]?.Responsavel}
+                value={data?.Responsavel || "Responsável não encontrado"}
                 disabled
               />
             ) : (
@@ -296,7 +467,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input5}
                 id="turma"
                 name="turma"
-                value={"Responsavel não encontrado(a)"}
+                value={data?.Responsavel || "Responsável não encontrado"}
                 disabled
               />
             )}
@@ -309,7 +480,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input5}
                 id="esp"
                 name="esp"
-                value={data[0]?.Especialista}
+                value={data?.Especialista || "Especialista não encontrado"}
                 disabled
               />
             ) : (
@@ -317,7 +488,7 @@ const VisualizarOcorrencia = () => {
                 className={styles.input5}
                 id="esp"
                 name="esp"
-                value={"Especialista não encontrado(a)"}
+                value={data?.Especialista || "Especialista não encontrado"}
                 disabled
               />
             )}
@@ -326,21 +497,17 @@ const VisualizarOcorrencia = () => {
         <div className={styles.mes}>
           {data.length > 0 ? (
             <textarea
-              id="message"
-              name="message"
-              value={data[0]?.Descricao}
+              value={data?.Descricao || "Descrição não encontrada"}
+              disabled
               rows="10"
               cols="110"
-              disabled
             ></textarea>
           ) : (
             <textarea
-              id="message"
-              name="message"
-              value={"Descrição não encontrada"}
+              value={data?.Descricao || "Descrição não encontrada"}
+              disabled
               rows="10"
               cols="110"
-              disabled
             ></textarea>
           )}
         </div>
@@ -352,7 +519,7 @@ const VisualizarOcorrencia = () => {
               className={styles.input3}
               id="esp"
               name="esp"
-              value={data[0]?.Encaminhamento}
+              value={data?.Encaminhamento || "Encaminhamento não encontrado"}
               disabled
             />
           ) : (
@@ -360,7 +527,7 @@ const VisualizarOcorrencia = () => {
               className={styles.input3}
               id="esp"
               name="esp"
-              value={"Encaminhamento não encontrado"}
+              value={data?.Encaminhamento || "Encaminhamento não encontrado"}
               disabled
             />
           )}
@@ -373,32 +540,39 @@ const VisualizarOcorrencia = () => {
       <br></br>
 
       {isOpen && (
-                <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
-                    <div className={styles.modalContent}>
-                        <div className={styles.headBox}>
-                            <div className={styles.titulo}><h2>Solicitar participação nesta ocorrência</h2></div>
-                            <span className={styles.close} onClick={closeModal}>&times;</span>
-                        </div>
+        <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
+          <div className={styles.modalContent}>
+            <div className={styles.headBox}>
+              <div className={styles.titulo}>
+                <h2>Solicitar participação nesta ocorrência</h2>
+              </div>
+              <span className={styles.close} onClick={closeModal}>
+                &times;
+              </span>
+            </div>
 
+            <div>
+              <h1 className={styles.subtitulo}>Selecione o usuário:</h1>
+            </div>
 
-                        
-                        <div className={styles.email}>
-                            <div>
-
-                                <h3>Samara</h3>
-                                <p>samara@gmail.com</p>
-                            </div>
-                            <br />
-                            <div>
-                                <h3>Alessandra</h3>
-                                <p>alessandra@gmail.com</p>
-                            </div>
-                        </div>
-                        <button className={styles.confirmar} onClick={enviarNotificacao}>Confirmar</button>
-                    </div>
-                </div>
-            )}
-
+            <div className={styles.email}>
+              {usuarios.length > 0 ? (
+                usuarios.map((user, index) => (
+                  <div key={index}>
+                    <p>{user.Nome} </p>
+                    <p> {user.Email}</p>
+                  </div>
+                ))
+              ) : (
+                <p>Nenhum usuário encontrado</p>
+              )}
+            </div>
+          </div>
+          <button className={styles.confirmar} onClick={closeModal}>
+            Confirmar
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,13 +9,20 @@ import Ocorrencia from "@/Components/Ocorrencias";
 const API_URL = "http://localhost:3001";
 
 export default function TodasOcor() {
-  const [data, setData] = useState([]);
-  const [RM, setRM] = useState(false);
-  const [nome, setNome] = useState(false);
-  const [tema, setTema] = useState(false);
-  const [date, setDate] = useState(false);
-  const [status, setStatus] = useState(false);
-  const [urgencia, setUrgencia] = useState(false);
+  const [id, setId] = useState("");
+  const [data, setData] = useState([]); // Dados recebidos da API
+  const [filteredData, setFilteredData] = useState([]); // Dados filtrados
+  const [activeFilter, setActiveFilter] = useState(""); // Filtro ativo
+  const [filterValues, setFilterValues] = useState({
+    rm: "",
+    nome: "",
+    tema: "",
+    turma: "",
+    inicio: "",
+    conclusao: "",
+    status: "",
+    urgencia: "",
+  });
 
   const getOcorrencias = async () => {
     try {
@@ -23,6 +30,7 @@ export default function TodasOcor() {
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
+      setFilteredData(data1);
     } catch (error) {
       console.error("Erro na busca da ocorrência", error);
     }
@@ -33,58 +41,72 @@ export default function TodasOcor() {
     getOcorrencias();
   }, []);
 
-  function EscondePesquisa(param) {
-    switch (param) {
-      case "rm":
-        setRM(true);
-        setNome(false);
-        setTema(false);
-        setDate(false);
-        setStatus(false);
-        setUrgencia(false);
-        break;
-      case "nome":
-        setRM(false);
-        setNome(true);
-        setTema(false);
-        setDate(false);
-        setStatus(false);
-        setUrgencia(false);
-        break;
-      case "tema":
-        setRM(false);
-        setNome(false);
-        setTema(true);
-        setDate(false);
-        setStatus(false);
-        setUrgencia(false);
-        break;
-      case "date":
-        setRM(false);
-        setNome(false);
-        setTema(false);
-        setDate(true);
-        setStatus(false);
-        setUrgencia(false);
-        break;
-      case "status":
-        setRM(false);
-        setNome(false);
-        setTema(false);
-        setDate(false);
-        setStatus(true);
-        setUrgencia(false);
-        break;
-      case "urgencia":
-        setRM(false);
-        setNome(false);
-        setTema(false);
-        setDate(false);
-        setStatus(false);
-        setUrgencia(true);
-        break;
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilterValues((prevValues) => ({ ...prevValues, [name]: value }));
+  };
+
+  const applyFilters = () => {
+    let filtered = data;
+
+    if (filterValues.rm) {
+      filtered = filtered.filter((item) =>
+        item.RM.toString().includes(filterValues.rm)
+      );
     }
-  }
+
+    if (filterValues.nome) {
+      filtered = filtered.filter((item) =>
+        item.Aluno.toLowerCase().includes(filterValues.nome.toLowerCase())
+      );
+    }
+
+    if (filterValues.tema) {
+      filtered = filtered.filter((item) =>
+        item.Tema.toLowerCase().includes(filterValues.tema.toLowerCase())
+      );
+    }
+
+    if (filterValues.inicio) {
+      filtered = filtered.filter(
+        (item) => new Date(item.Data) >= new Date(filterValues.inicio)
+      );
+    }
+
+    if (filterValues.conclusao) {
+      filtered = filtered.filter(
+        (item) => new Date(item.Data) <= new Date(filterValues.conclusao)
+      );
+    }
+
+    if (filterValues.status) {
+      filtered = filtered.filter((item) =>
+        item.Status.toLowerCase().includes(filterValues.status.toLowerCase())
+      );
+    }
+
+    if (filterValues.urgencia) {
+      filtered = filtered.filter(
+        (item) => item.Urgencia === filterValues.urgencia
+      );
+    }
+
+    setFilteredData(filtered);
+  };
+
+  const resetFilters = () => {
+    setFilterValues({
+      rm: "",
+      nome: "",
+      tema: "",
+      turma: "",
+      inicio: "",
+      conclusao: "",
+      status: "",
+      urgencia: "",
+    });
+    setFilteredData(data);
+  };
 
   return (
     <main className={styles.main}>
@@ -96,117 +118,157 @@ export default function TodasOcor() {
       <br></br>
 
       <div className={styles.pesquisafiltro}>
+        {/* Botões de filtro */}
         <button
           className={styles.butfiltro}
-          onClick={() => EscondePesquisa("rm")}
+          onClick={() => setActiveFilter("rm")}
         >
           RM
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => EscondePesquisa("nome")}
+          onClick={() => setActiveFilter("nome")}
         >
           NOME
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => EscondePesquisa("tema")}
+          onClick={() => setActiveFilter("tema")}
         >
           TEMA
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => EscondePesquisa("date")}
+          onClick={() => setActiveFilter("date")}
         >
           DATA
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => EscondePesquisa("status")}
+          onClick={() => setActiveFilter("status")}
         >
           STATUS
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => EscondePesquisa("urgencia")}
+          onClick={() => setActiveFilter("urgencia")}
         >
           URGÊNCIA
         </button>
 
-        {RM && (
+        {/* Campos de filtro */}
+        {activeFilter === "rm" && (
           <div className={styles.pesquisa}>
-            <input type="number" placeholder="Busque por RM" />
-            <button>
+            <input
+              type="number"
+              name="rm"
+              placeholder="Busque por RM"
+              value={filterValues.rm}
+              onChange={handleFilterChange}
+            />
+            <button onClick={applyFilters}>
               <IoSearch />
             </button>
           </div>
         )}
 
-        {nome && (
+        {activeFilter === "nome" && (
           <div className={styles.pesquisa}>
-            <input type="text" placeholder="Busque por nome de aluno" />
-            <button>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Busque por nome"
+              value={filterValues.nome}
+              onChange={handleFilterChange}
+            />
+            <button onClick={applyFilters}>
               <IoSearch />
             </button>
           </div>
         )}
 
-        {tema && (
+        {activeFilter === "tema" && (
           <div className={styles.pesquisa}>
-            <input type="text" placeholder="Busque por tema" />
-            <button>
+            <input
+              type="text"
+              name="tema"
+              placeholder="Busque por tema"
+              value={filterValues.tema}
+              onChange={handleFilterChange}
+            />
+            <button onClick={applyFilters}>
               <IoSearch />
             </button>
           </div>
         )}
 
-        {date && (
+        {activeFilter === "date" && (
           <div className={styles.pesquisadata}>
             <p className={styles.textodata}> Início: </p>
-            <input type="date" />
-            <button>
+            <input
+              type="date"
+              name="inicio"
+              value={filterValues.inicio}
+              onChange={handleFilterChange}
+            />
+            <p className={styles.textodata}> Conclusão: </p>
+            <input
+              type="date"
+              name="conclusao"
+              value={filterValues.conclusao}
+              onChange={handleFilterChange}
+            />
+            <button onClick={applyFilters}>
               <IoSearch />
             </button>
           </div>
         )}
 
-        <br></br>
-
-        {date && (
-          <div className={styles.pesquisadata}>
-            <p className={styles.textodata}> Concusão: </p>
-            <input type="date" />
-            <button>
-              <IoSearch />
-            </button>
-          </div>
-        )}
-
-        {status && (
+        {activeFilter === "status" && (
           <div className={styles.pesquisa}>
-            <input type="text" placeholder="Busque por status" />
-            <button>
+            <input
+              type="text"
+              name="status"
+              placeholder="Busque por status"
+              value={filterValues.status}
+              onChange={handleFilterChange}
+            />
+            <button onClick={applyFilters}>
               <IoSearch />
             </button>
           </div>
         )}
 
-        {urgencia && (
+        {activeFilter === "urgencia" && (
           <div className={styles.pesquisa}>
-            <input type="text" placeholder="Busque por urgência" />
-            <button>
+            <input
+              type="text"
+              name="urgencia"
+              placeholder="Busque por urgência"
+              value={filterValues.urgencia}
+              onChange={handleFilterChange}
+            />
+            <button onClick={applyFilters}>
               <IoSearch />
             </button>
           </div>
         )}
+
+        {/* Botão para resetar os filtros */}
+        <button className={styles.butfiltro} onClick={resetFilters}>
+          Limpar Filtros
+        </button>
       </div>
+      
       <div className={styles.boxTodasOcor}>
-        {data.length > 0 ? (
-          data.map((item) => (
+        {filteredData.length > 0 ? (
+          filteredData.map((item) => (
             <Ocorrencia
               key={item.Ocorrencia_id}
+              id={item.Ocorrencia_id} // Adicionando o ID para navegação
               nome={item.Criador}
               tema={item.Tema}
+              turma={item.Turma}
               data={item.Data}
               status={item.Status}
               urgencia={item.Urgencia}
