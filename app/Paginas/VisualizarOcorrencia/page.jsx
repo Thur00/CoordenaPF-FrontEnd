@@ -11,6 +11,7 @@ const VisualizarOcorrencia = () => {
   const [data, setData] = useState({});
   const [dataStt, setDataStt] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [formData, setFormData] = useState({
@@ -28,8 +29,23 @@ const VisualizarOcorrencia = () => {
     status: "",
   });
   const [usuarios, setUsuarios] = useState([]); // Estado para usuários
+  const [criador, setCriador] = useState({}); // Estado para criado da notificação
+  const [solicitado, setSolicitado] = useState({}); // Estado para soliiicitad da notificação
+  // const [formNoti, setFormNoti] = useState({
+  //   ocorrencia: "",
+  //   criador: "",
+  //   solicitado: "",
+  //   data_envio: "",
+  // });
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+
+  const currentDate = new Date().toLocaleDateString();
+  console.log("data: ", currentDate);
+
+  const setarCriador = (item) => {
+    setCriador(item);
+  };
 
   const getOcorrencia = async () => {
     try {
@@ -96,7 +112,6 @@ const VisualizarOcorrencia = () => {
   };
 
   const handleSave = async () => {
-    debugger;
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
@@ -132,18 +147,23 @@ const VisualizarOcorrencia = () => {
     } else {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/ocorencias/status/${id}`, {
+        await fetch(`${API_URL}/ocorrencias/status/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            Status: formData.status,
+            status: formData.status,
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
         getOcorrencia();
+        // Converte a resposta para JSON
+        const data = await response.json();
+
+        // Atualiza o estado de 'data' com o novo tema adicionado
+        setData((prevData) => [...prevData, data]);
       } catch (error) {
         console.error("Erro ao atualizar o aspecto:", error);
       }
@@ -169,6 +189,13 @@ const VisualizarOcorrencia = () => {
 
   const closeModal = () => {
     setIsOpen(false);
+    setIsOpen2(false);
+  };
+
+  const nextModal = () => {
+    setIsOpen(false);
+    setIsOpen2(true);
+    console.log(criador);
   };
 
   const handleClickOutside = (event) => {
@@ -182,34 +209,39 @@ const VisualizarOcorrencia = () => {
   //   closeModal();
   // }
 
-  // const enviarNotificacao = async () => {
-  //   if (!selectedUser) {
-  //     alert("Por favor, selecione um usuário para notificar.");
-  //     return;
-  //   }
-
-  //   try {
-  //     const resposta = await fetch(`${API_URL}/notificacoes`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         userId: selectedUser.id, // ID do usuário selecionado
-  //         ocorrenciaId: ocorrencias[0]?.id, // ID da ocorrência (ajuste conforme necessário)
-  //         mensagem: `Você foi solicitado para a ocorrência: ${ocorrencias[0]?.Tema}`,
-  //       }),
-  //     });
-  //  if (resposta.ok) {
-  //       alert("Notificação enviada com sucesso!");
-  //       closeModal();
-  //     } else {
-  //       alert("Erro ao enviar notificação.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Erro ao enviar notificação:", error);
-  //   }
-  // };
+  const enviarNotificacao = async () => {
+    if (!criador || !solicitado) {
+      alert("Por favor, selecione um usuário para notificar.");
+      return;
+    }
+    if (criador != solicitado) {
+      try {
+        const resposta = await fetch(`${API_URL}/notificacoes`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Cod_ocorrencia: data[0]?.id,
+            Criador: criador.id,
+            Solicitado: solicitado.id,
+            Data_envio: currentDate,
+          }),
+        });
+        if (resposta.ok) {
+          alert("Notificação enviada com sucesso!");
+          closeModal();
+        } else {
+          alert("Erro ao enviar notificação.");
+        }
+      } catch (error) {
+        console.error("Erro ao enviar notificação:", error);
+      }
+    } else {
+      alert("Você não pode notificar o próprio criador da ocorrência.");
+      return;
+    }
+  };
 
   return (
     <div>
@@ -225,7 +257,7 @@ const VisualizarOcorrencia = () => {
       </div>
 
       <div className={styles.botoes}>
-        <label className={styles.b1}>
+        <label className={styles.b3}>
           Alterar Status
           <select
             value={formData.status}
@@ -244,11 +276,9 @@ const VisualizarOcorrencia = () => {
               <option>Nenhum aspecto encontrado </option>
             )}
           </select>
+          <button onClick={handleSave}>Confirmar</button>
         </label>
-
-        <button onClick={handleSave}>Confirmar</button>
-
-        <button onClick={openModal} className={styles.b1}>
+        <button onClick={openModal} className={styles.b3}>
           Solicitar
         </button>
       </div>
@@ -300,7 +330,7 @@ const VisualizarOcorrencia = () => {
 
         <div className={styles.init}>
           <div className={styles.dois}>
-            <label for="iniciativa">Iniciativa:</label>
+            <label htmlFor="iniciativa">Iniciativa:</label>
             {data.length > 0 ? (
               <input
                 className={styles.input2}
@@ -321,7 +351,7 @@ const VisualizarOcorrencia = () => {
           </div>
 
           <div>
-            <label for="aspecto">Aspecto:</label>
+            <label htmlFor="aspecto">Aspecto:</label>
             {data.length > 0 ? (
               <input
                 className={styles.input7}
@@ -344,7 +374,7 @@ const VisualizarOcorrencia = () => {
 
         <div className={styles.tema}>
           <div className={styles.tres}>
-            <label for="tema">Tema:</label>
+            <label htmlFor="tema">Tema:</label>
             {data.length > 0 ? (
               <input
                 className={styles.input8}
@@ -365,7 +395,7 @@ const VisualizarOcorrencia = () => {
           </div>
 
           <div>
-            <label for="urgencia">Urgência:</label>
+            <label htmlFor="urgencia">Urgência:</label>
             {data.length > 0 ? (
               <input
                 className={styles.input9}
@@ -388,7 +418,7 @@ const VisualizarOcorrencia = () => {
 
         <div className={styles.aluno}>
           <div className={styles.quat}>
-            <label for="aluno">Estudante(s):</label>
+            <label htmlFor="aluno">Estudante(s):</label>
             {data.length > 0 ? (
               <input
                 className={styles.input10}
@@ -409,7 +439,7 @@ const VisualizarOcorrencia = () => {
           </div>
 
           <div className={styles.cinc}>
-            <label for="turma">Turma:</label>
+            <label htmlFor="turma">Turma:</label>
             {data.length > 0 ? (
               <input
                 className={styles.input11}
@@ -430,7 +460,7 @@ const VisualizarOcorrencia = () => {
           </div>
 
           <div>
-            <label for="rm">RM:</label>
+            <label htmlFor="rm">RM:</label>
             {data.length > 0 ? (
               <input
                 className={styles.input11}
@@ -453,7 +483,7 @@ const VisualizarOcorrencia = () => {
 
         <div className={styles.resp}>
           <div className={styles.seis}>
-            <label for="resp">Responsável: </label>
+            <label htmlFor="resp">Responsável: </label>
             {data.length > 0 ? (
               <input
                 className={styles.input5}
@@ -474,7 +504,7 @@ const VisualizarOcorrencia = () => {
           </div>
 
           <div className={styles.seis}>
-            <label for="resp">Especialista: </label>
+            <label htmlFor="resp">Especialista: </label>
             {data.length > 0 ? (
               <input
                 className={styles.input5}
@@ -513,7 +543,7 @@ const VisualizarOcorrencia = () => {
         </div>
 
         <div className={styles.enc}>
-          <label for="enc">Encaminhamento:</label>
+          <label htmlFor="enc">Encaminhamento:</label>
           {data.length > 0 ? (
             <input
               className={styles.input3}
@@ -550,16 +580,20 @@ const VisualizarOcorrencia = () => {
                 &times;
               </span>
             </div>
-
             <div>
-              <h1 className={styles.subtitulo}>Selecione o usuário:</h1>
+              <h1 className={styles.subtitulo}>
+                Quem deseja enviar a solitação?
+              </h1>
             </div>
-
-            <div className={styles.email}>
+            <div className={styles.content}>
               {usuarios.length > 0 ? (
-                usuarios.map((user, index) => (
-                  <div key={index}>
-                    <p>{user.Nome} </p>
+                usuarios.map((user) => (
+                  <div
+                    className={styles.email}
+                    onClick={setarCriador}
+                    key={user.Login_id}
+                  >
+                    <p>{user.Nome}</p>
                     <p> {user.Email}</p>
                   </div>
                 ))
@@ -567,10 +601,59 @@ const VisualizarOcorrencia = () => {
                 <p>Nenhum usuário encontrado</p>
               )}
             </div>
+
+            <button
+              className={styles.confirmar}
+              onClick={nextModal}
+              disabled={!criador}
+            >
+              Confirmar
+            </button>
           </div>
-          <button className={styles.confirmar} onClick={closeModal}>
-            Confirmar
-          </button>
+        </div>
+      )}
+
+      {isOpen2 && (
+        <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
+          <div className={styles.modalContent}>
+            <div className={styles.headBox}>
+              <div className={styles.titulo}>
+                <h2>Solicitar participação nesta ocorrência</h2>
+              </div>
+              <span className={styles.close} onClick={closeModal}>
+                &times;
+              </span>
+            </div>
+            <div>
+              <h1 className={styles.subtitulo}>
+                Para quem deseja enviar a solitação?
+              </h1>
+            </div>
+            <div className={styles.content}>
+              {usuarios.length > 0 ? (
+                usuarios.map((user) => (
+                  <div
+                    className={styles.email}
+                    onClick={setSolicitado(user)}
+                    key={user.Login_id}
+                  >
+                    <p>{user.Nome}</p>
+                    <p>{user.Email}</p>
+                  </div>
+                ))
+              ) : (
+                <p>Nenhum usuário encontrado</p>
+              )}
+            </div>
+
+            <button
+              className={styles.confirmar}
+              onClick={enviarNotificacao}
+              disabled={!solicitado}
+            >
+              Confirmar
+            </button>
+          </div>
         </div>
       )}
     </div>

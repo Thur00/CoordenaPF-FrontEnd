@@ -22,7 +22,6 @@ function Header(props) {
 
   const getNotificacao = async () => {
     try {
-      debugger;
       const resposta = await fetch(`${API_URL}/notificacoes`);
       const data1 = await resposta.json();
       console.log("Dados recebidos Noticacao:", data1); // Adicione esta linha para verificar os dados
@@ -43,7 +42,10 @@ function Header(props) {
           <FaHouseChimney />
         </Link>
 
-        <h1 className="tit">Coordena SESI</h1>
+        <Link href="/Paginas/PaginaInicial">
+          <h1 className="tit">Sistema GO</h1>
+        </Link>
+
         <div>
           <button className="icon2" onClick={openModal}>
             <FaBell />
@@ -60,7 +62,7 @@ function Header(props) {
           <div className={styles.modalContent}>
             <div className={styles.headBox}>
               <div className={styles.titulo}>
-                <h1>Notificação</h1>
+                <h1>Notificações</h1>
               </div>
               <span className={styles.close} onClick={closeModal}>
                 &times;
