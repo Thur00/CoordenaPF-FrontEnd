@@ -44,9 +44,9 @@ const Tabela = () => {
     setShowForm(true);
     setIsEditing(true);
     setFormData({
-      Urgencia_id: item.urgencia,
-      Tipo_urgencia: item.urgencia,
-      Cor: item.cor,
+      id: item.Urgencia_id,
+      urgencia: item.Tipo_urgencia,
+      cor: item.Cor,
     });
     setEditingItem(item);
   };
