@@ -5,12 +5,15 @@ import { FaBell } from "react-icons/fa";
 import { IoPersonSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import styles from "@/Components/ModalNotificacao.module.css";
+import { useRouter } from "next/navigation";
+import emitter from "@/utils/eventMitter";
 
 const API_URL = "http://localhost:3001";
 
-function Header(props) {
+function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const router = useRouter();
 
   const openModal = () => {
     setIsOpen(true);
@@ -18,6 +21,13 @@ function Header(props) {
 
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  const handleClickOutside = (event) => {
+    const modal = document.getElementById("myModal");
+    if (modal && event.target === modal) {
+      closeModal();
+    }
   };
 
   const getNotificacao = async () => {
@@ -33,7 +43,27 @@ function Header(props) {
 
   useEffect(() => {
     getNotificacao();
+
+    emitter.on("novaNotificacao", getNotificacao);
+
+    // Limpeza do evento ao desmontar o componente
+    return () => {
+      emitter.off("novaNotificacao", getNotificacao);
+    };
   }, []);
+
+  const handleClick = (id) => {
+    router.push(`/Paginas/VisualizarOcorrencia?id=${id}`);
+    closeModal();
+  };
+
+  const formattedDate = (date) => {
+    return new Date(date).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  };
 
   return (
     <main>
@@ -58,7 +88,7 @@ function Header(props) {
       </div>
 
       {isOpen && (
-        <div id="myModal" className={styles.modal}>
+        <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
           <div className={styles.modalContent}>
             <div className={styles.headBox}>
               <div className={styles.titulo}>
@@ -71,10 +101,14 @@ function Header(props) {
             <div className={styles.content}>
               {data.length > 0 ? (
                 data.map((item) => (
-                  <div className={styles.notificacao}>
+                  <div
+                    className={styles.notificacao}
+                    onClick={() => handleClick(item.Cod_ocorrencia)}
+                  >
                     <p>
-                      {item.Criador_Nome} convidou {item.Solicitado_Nome} para
-                      esta notificação
+                      {item.Criador_Nome} convidou {item.Solicitado_Nome} para a
+                      ocorrência {item.Cod_ocorrencia}, do dia{" "}
+                      {formattedDate(item.Data_envio)}, classificada como {item.Urgencia_Tipo}. Clique para visualizar.
                     </p>
                   </div>
                 ))

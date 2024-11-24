@@ -16,7 +16,6 @@ const inicial = () => {
 
   const getOcorrencias = async () => {
     try {
-      debugger;
       const resposta = await fetch(`${API_URL}/ocorrencias`);
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados

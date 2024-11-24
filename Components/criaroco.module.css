@@ -5,6 +5,7 @@
   width: 50%;
   flex-wrap: wrap;
 }
+
 .main {
   width: 100%;
   display: flex;
@@ -90,10 +91,10 @@
 }
 
 .divBut {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 5% 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5% 0 0;
 }
 
 .botaovoltar {
@@ -190,7 +191,7 @@
   .input5 {
     width: 24.7vw;
   }
-  .divBut{
+  .divBut {
     display: flex;
     flex-direction: column;
     width: 100%;
