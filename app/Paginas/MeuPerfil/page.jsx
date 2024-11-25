@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "@/Components/AdicionarUsu.module.css"; // Importando o CSS
+import styles from "@/Components/Usuarios.module.css"; // Importando o CSS
 import Link from "next/link";
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
