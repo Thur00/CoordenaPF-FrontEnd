@@ -7,8 +7,8 @@ import styles from "@/Components/EditarDados.module.css";
 function EditarDados() {
   return (
     <div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <h1 className={styles.title}>Editar Dados</h1>
       <div className={styles.divbutton}>
         <Link className={styles.button} href="/Paginas/EditarAluno">
@@ -35,7 +35,7 @@ function EditarDados() {
           Editar Encaminhamento
         </Link>
       </div>
-      <br></br>
+      <br />
     </div>
   );
 }

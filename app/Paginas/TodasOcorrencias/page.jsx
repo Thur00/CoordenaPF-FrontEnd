@@ -115,7 +115,7 @@ export default function TodasOcor() {
         <BotaoVoltar link="/Paginas/PaginaInicial" />
       </div>
 
-      <br></br>
+      <br />
 
       <div className={styles.pesquisafiltro}>
         {/* Botões de filtro */}

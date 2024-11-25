@@ -19,7 +19,6 @@ const Tabela = () => {
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
-      setError(null);
     } catch (error) {
       console.error("Erro na busca aspectos", error);
     }
@@ -108,7 +107,7 @@ const Tabela = () => {
 
   return (
     <div>
-      <br></br>
+      <br />
       <div>
         <div className={styles.div1}>
           <h1 className={styles.h1}>Editar Aspecto</h1>
@@ -116,7 +115,7 @@ const Tabela = () => {
             <Link href="/Paginas/EditarDados">Voltar</Link>
           </button>
         </div>
-        <br></br>
+        <br />
         <div className={styles.div2}>
           <table border="1" className={styles.table}>
             <thead>

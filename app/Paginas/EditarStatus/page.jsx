@@ -91,7 +91,6 @@ const Tabela = () => {
       const data = await resposta.json();
       console.log("Dados recebidos:", data); // Adicione esta linha para verificar os dados
       setData(data);
-      setError(null);
     } catch (error) {
       console.error("Erro na busca", error);
     }
@@ -109,7 +108,8 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", categoria: "", icone: "" });
+    setFormData({ id: "", categoria: "" });
+    setSelectedIcon(null); // Atualiza o estado do ícone selecionado
   };
 
   const handleEdit = (item) => {
@@ -201,9 +201,12 @@ const Tabela = () => {
       icone: icon.id,
     });
     setIsOpen(false); // Fecha a lista
+    console.log("teste icon ", icon);
   };
 
   const viewIcon = (id) => {
+    console.log("data  ", data);
+    console.log("icone ", data[id]?.Icone);
     switch (data[id]?.Icone) {
       case 1:
         return <LuClock4 />;
@@ -246,7 +249,7 @@ const Tabela = () => {
 
   return (
     <div>
-      <br></br>
+      <br />
       <div>
         <div className={styles.div1}>
           <h1 className={styles.h1}>Editar Status</h1>
@@ -254,7 +257,7 @@ const Tabela = () => {
             <Link href="/Paginas/EditarDados">Voltar</Link>
           </button>
         </div>
-        <br></br>
+        <br />
         <div className={styles.div2}>
           <table border="1" className={styles.table}>
             <thead>

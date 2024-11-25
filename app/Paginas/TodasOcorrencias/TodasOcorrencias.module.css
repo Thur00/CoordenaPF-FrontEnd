@@ -26,60 +26,6 @@
   border-radius: 20px;
 }
 
-.boxOcor {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid red;
-  background-color: rgba(255, 0, 0, 0.426);
-  border-radius: 20px;
-  padding: 27px;
-  margin: 1% 0;
-  width: 30%;
-  transition-duration: 0.4s;
-}
-
-.boxOcor:hover {
-  background-color: rgba(255, 0, 0, 0.636);
-}
-
-.boxOcor2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  border: 2px solid rgb(251, 255, 0);
-  background-color: rgba(251, 255, 0, 0.214);
-  border-radius: 20px;
-  padding: 27px;
-  margin: 1% 0;
-  width: 30%;
-  transition-duration: 0.4s;
-}
-
-.boxOcor2:hover {
-  background-color: rgba(251, 255, 0, 0.581);
-}
-
-.boxOcor3 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  border: 2px solid rgb(104, 240, 45);
-  background-color: rgba(103, 240, 45, 0.282);
-  border-radius: 20px;
-  padding: 27px;
-  margin: 1% 0;
-  width: 30%;
-  transition-duration: 0.4s;
-}
-
-.boxOcor3:hover {
-  background-color: rgba(103, 240, 45, 0.63);
-}
-
 .titletematurma {
   font-weight: bold;
   margin-right: 1rem;
@@ -91,30 +37,6 @@
   justify-content: space-between;
   font-weight: bold;
   align-items: center;
-}
-
-.urgencia1 {
-  border: 2px solid red;
-  padding: 5px;
-  margin-bottom: 5%;
-  border-radius: 10px;
-}
-
-.urgencia2 {
-  border: 2px solid rgb(251, 255, 0);
-  padding: 5px;
-  margin-bottom: 5%;
-  border-radius: 10px;
-  text-align: center;
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
-.urgencia3 {
-  border: 2px solid rgb(104, 240, 45);
-  padding: 5px;
-  margin-bottom: 5%;
-  border-radius: 10px;
 }
 
 .icons {
@@ -182,6 +104,7 @@
 
 .butfiltro {
   padding: 10px 0;
+  border: 2px solid #000;
   border-radius: 10px;
   width: 15vh;
   background-color: #fff;

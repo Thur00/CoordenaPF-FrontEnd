@@ -18,7 +18,6 @@ export default function Usu() {
       const data1 = await resposta.json();
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
-      setError(null);
     } catch (error) {
       console.error("Erro na busca usuário", error);
     }
@@ -30,7 +29,7 @@ export default function Usu() {
 
   return (
     <div>
-      <br></br>
+      <br />
 
       <div className={styles.bt}>
         <h1 className={styles.h1}>Usuário</h1>

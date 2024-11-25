@@ -44,14 +44,14 @@ const inicial = () => {
 
   return (
     <div>
-      <br></br>
+      <br />
 
       <div className={styles.bt}>
         <BotaoInicial></BotaoInicial>
       </div>
 
-      <br></br>
-      <br></br>
+      <br />
+      <br />
 
       <div className={styles.tudo}>
         <h2 className={styles.h4}>Bem-Vindo(a)</h2>

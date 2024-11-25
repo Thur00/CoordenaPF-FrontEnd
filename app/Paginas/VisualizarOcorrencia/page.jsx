@@ -1044,12 +1044,6 @@ const VisualizarOcorrencia = () => {
                 Cancelar
               </button>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
           </div>
         </main>
       )}
