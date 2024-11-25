@@ -23,6 +23,7 @@ function criaroco() {
     rm: "",
     turma: "",
     responsavel: "",
+    especialista: "",
     descricao: "",
     encaminhamento: "",
     status: "",
@@ -82,6 +83,7 @@ function criaroco() {
   const handleSave = async () => {
     try {
       console.log("DAta2: " + formData.dataoc);
+      console.log("ESpecialista: " + formData.especialista);
       // Faz uma requisição POST para a API de temas
       const response = await fetch(`${API_URL}/ocorrencias`, {
         method: "POST",
@@ -100,6 +102,7 @@ function criaroco() {
           Rm_aluno: formData.rm,
           Turma: formData.turma,
           Responsavel: formData.responsavel,
+          Especialista: formData.especialista,
           Descricao: formData.descricao,
           Encaminhamento: formData.encaminhamento,
           Status: 2,
@@ -121,10 +124,12 @@ function criaroco() {
         rm: "",
         turma: "",
         responsavel: "",
+        especialista: "",
         descricao: "",
         encaminhamento: "",
         status: "",
       });
+      window.location.href = "/Paginas/TodasOcorrencias";
     } catch (error) {
       // Loga erros no console
       console.error("Erro ao criar ocorrencia:", error);
@@ -140,6 +145,7 @@ function criaroco() {
       rm: "",
       turma: "",
       responsavel: "",
+      especialista: "",
       descricao: "",
       encaminhamento: "",
       status: "",
@@ -200,7 +206,6 @@ function criaroco() {
               <option value="DES">DES</option>
               <option value="CP">CP</option>
               <option value="OE">OE</option>
-              <option value="CP">CP</option>
             </select>
           </div>
 
@@ -337,7 +342,7 @@ function criaroco() {
 
           <div>
             <label for="esp">Especialista: </label>
-            <input className={styles.input6} type="text" id="esp" name="esp" />
+            <input className={styles.input6} type="text" value={formData.especialista} onChange={handleInputChange} id="esp" name="especialista" />
           </div>
         </div>
 

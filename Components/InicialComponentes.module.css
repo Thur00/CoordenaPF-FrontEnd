@@ -105,7 +105,7 @@
 }
 
 .urgencia1 {
-  border: 2px solid rgb(14, 13, 13);
+  border: 2px solid var(--dcolor);;
   padding: 5px;
   margin-bottom: 15%;
   border-radius: 10px;
@@ -150,8 +150,8 @@
 }
 
 .icons {
-  font-size: xx-large;
-  font-weight: bolder;
+  font-size: 2rem;
+  margin: 0 5%;
 }
 
 .pesquisa {

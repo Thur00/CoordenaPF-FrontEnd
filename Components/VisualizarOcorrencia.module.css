@@ -40,6 +40,42 @@
   width: 28vh;
 }
 
+.b3 {
+  margin: 2%;
+  background-color: #ff1100;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: medium;
+  width: 50vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.b3 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.b3 > div > select {
+  border: none;
+  margin: 0 10px;
+}
+
+.b3 > div > button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-decoration: underline;
+}
+
 .b1:hover {
   background-color: #bc1016;
 }
@@ -47,6 +83,7 @@
 .botoes {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   margin: 2%;
 }
 
@@ -57,19 +94,17 @@
 }
 
 .titulo {
-  padding: 1%;
-  margin-top: 2%;
+  padding-left: 1%;
   margin-left: 2%;
   font-size: 120%;
+  font-weight: bold;
 }
 
 .subtitulo {
   padding: 1%;
-  margin-top: 1%;
-  margin-left: 2%;
+  margin: 4% 0 4% 2%;
   font-size: 120%;
 }
-
 
 .titulo2 {
   padding: 1%;
@@ -191,13 +226,12 @@
 .modal {
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 60px;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-
 }
 
 .modal ::-webkit-scrollbar {
@@ -206,34 +240,31 @@
 
 /* Modal Content */
 .modalContent {
+  position: relative;
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   border-radius: 20px;
   width: 30%;
-  height: 80%;
+  height: 70vh;
+
   overflow: auto;
 }
 
-.titulo {
-  font-weight: bold;
-  margin-bottom: 15px;
-  position: sticky;
-  top: 0;
-  padding-top: 10px;
-  z-index: 2;
+.content {
+  overflow: auto;
+  height: 58%;
 }
 
 .notificacao {
   padding: 20px 0;
-  border-bottom: 1px solid #000
+  border-bottom: 1px solid #000;
 }
 
 .notificacao:last-child {
   border-bottom: none;
 }
-
 
 /* The Close Button */
 .close {
@@ -257,23 +288,36 @@
   justify-content: space-between;
 }
 
+.notiButton {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
 .confirmar {
-  margin-top: 40%;
-  margin-left: 80%;
+  margin-top: 2%;
+  padding: 5px 10px;
   background-color: red;
   color: #fefefe;
-  border: 0px solid;
+  border: none;
   border-radius: 5px;
-  width: 20%;
-  height: 5%
 }
 
 .email {
-  margin-top: 15%;
+  padding: 10px 0;
+  border-bottom: 1px solid #000;
+}
+
+.email:last-child {
+  border-bottom: none;
 }
 
 @media only screen and (max-width: 800px) {
+  .tudo {
+    flex-direction: column;
+  }
+
   .main {
     margin: 1%;
   }
@@ -282,6 +326,23 @@
     font-size: 1rem;
     padding: 5px;
     width: 100%;
+  }
+
+  .b3 {
+    flex-direction: column;
+    height: 70px;
+    padding: 10px;
+  }
+  
+  .b3 > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .b3 > div > select {
+    margin: 0 5px 0 0;
   }
 
   .h4 {
@@ -326,7 +387,7 @@
   .titulo {
     text-align: center;
     font-size: 1rem;
-    margin-right: 55%;
+    margin-right: 20%;
   }
 
   .pesquisafiltro {
@@ -417,11 +478,19 @@
     width: 24.7vw;
   }
 
+  .modal {
+    background-color: transparent;
+  }
+
   .modalContent {
     width: 100%;
-    height: auto;
+    height: 87%;
     margin: 0px;
     border-radius: 0;
+  }
+
+  .content {
+    height: max-content;
   }
 
   .modal {

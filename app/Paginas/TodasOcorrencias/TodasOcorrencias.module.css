@@ -1,285 +1,255 @@
-.titulo{
-    padding: 1%;
-    margin-top: 2%;
-    margin-left: 2%;
+.titulo {
+  padding: 1%;
+  margin-top: 2%;
+  margin-left: 2%;
 }
 
-.divtitulo{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 3%;
+.divtitulo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 3%;
 }
 
-.boxTodasOcor{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap:wrap;
+.boxTodasOcor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
-.a{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 20px;
+.a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
 }
 
-.boxOcor{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid red;
-    background-color: rgba(255, 0, 0, 0.426);
-    border-radius: 20px;
-    padding: 27px;
-    margin: 1% 0;
-    width: 30%;
-    transition-duration: 0.4s;
+.boxOcor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.426);
+  border-radius: 20px;
+  padding: 27px;
+  margin: 1% 0;
+  width: 30%;
+  transition-duration: 0.4s;
 }
 
-.boxOcor:hover{
-    background-color: rgba(255, 0, 0, 0.636);
+.boxOcor:hover {
+  background-color: rgba(255, 0, 0, 0.636);
 }
 
-.boxOcor2{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    border: 2px solid rgb(251, 255, 0);
-    background-color: rgba(251, 255, 0, 0.214);
-    border-radius: 20px;
-    padding: 27px;
-    margin: 1% 0;
-    width: 30%;
-    transition-duration: 0.4s;
+.boxOcor2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 2px solid rgb(251, 255, 0);
+  background-color: rgba(251, 255, 0, 0.214);
+  border-radius: 20px;
+  padding: 27px;
+  margin: 1% 0;
+  width: 30%;
+  transition-duration: 0.4s;
 }
 
-.boxOcor2:hover{
-    background-color: rgba(251, 255, 0, 0.581);
+.boxOcor2:hover {
+  background-color: rgba(251, 255, 0, 0.581);
 }
 
-.boxOcor3{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    border: 2px solid rgb(104, 240, 45);
-    background-color: rgba(103, 240, 45, 0.282);
-    border-radius: 20px;
-    padding: 27px;
-    margin: 1% 0;
-    width: 30%;
-    transition-duration: 0.4s;
+.boxOcor3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 2px solid rgb(104, 240, 45);
+  background-color: rgba(103, 240, 45, 0.282);
+  border-radius: 20px;
+  padding: 27px;
+  margin: 1% 0;
+  width: 30%;
+  transition-duration: 0.4s;
 }
 
-.boxOcor3:hover{
-    background-color: rgba(103, 240, 45, 0.63);
+.boxOcor3:hover {
+  background-color: rgba(103, 240, 45, 0.63);
 }
 
-.titletematurma{
-    font-weight: bold;  
-    margin-right: 1rem
+.titletematurma {
+  font-weight: bold;
+  margin-right: 1rem;
 }
 
-.datastatus{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-weight: bold;
-    align-items: center;
+.datastatus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  align-items: center;
 }
 
-.urgencia1{
-    border: 2px solid red;
-    padding: 5px;
-    margin-bottom: 5%;
-    border-radius: 10px;
+.urgencia1 {
+  border: 2px solid red;
+  padding: 5px;
+  margin-bottom: 5%;
+  border-radius: 10px;
 }
 
-.urgencia2{
-    border: 2px solid rgb(251, 255, 0);
-    padding: 5px;
-    margin-bottom: 5%;
-    border-radius: 10px;
-    text-align: center;
-    padding-left: 25px;
-    padding-right: 25px;
+.urgencia2 {
+  border: 2px solid rgb(251, 255, 0);
+  padding: 5px;
+  margin-bottom: 5%;
+  border-radius: 10px;
+  text-align: center;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
-.urgencia3{
-    border: 2px solid rgb(104, 240, 45);
-    padding: 5px;
-    margin-bottom: 5%;
-    border-radius: 10px;
+.urgencia3 {
+  border: 2px solid rgb(104, 240, 45);
+  padding: 5px;
+  margin-bottom: 5%;
+  border-radius: 10px;
 }
 
-.icons{
-    font-size: xx-large;
-    font-weight: bolder;
+.icons {
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
 .pesquisa {
-    border: 2px solid #000;
-    border-radius: 20px;
-    width: 40%;
-    margin-bottom: 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+  border: 2px solid #000;
+  border-radius: 20px;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  padding-right: 20px;
 }
 
-.pesquisa>input {
-    border: 2px solid #000;
-    border-radius: 20px;
-    border: none;
+.pesquisa > input {
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 14px;
+}
+
+.pesquisa > input[type="date"] {
+  width: 50%;
+}
+
+.pesquisa > input:focus {
+  outline: none;
+}
+
+.pesquisa > p {
+  margin-left: 2%;
+}
+
+.pesquisa > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: fit-content;
+  border: none;
+  background-color: transparent;
+  right: 6px;
+  font-size: larger;
+}
+
+.pesquisafiltro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 2%;
+}
+
+.filtro {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.butfiltro {
+  padding: 10px 0;
+  border-radius: 10px;
+  width: 15vh;
+  background-color: #fff;
+  transition-duration: 0.4s;
+}
+
+.butfiltro:hover {
+  background-color: #e0e0e0;
+}
+
+@media only screen and (max-width: 800px) {
+  .main {
+    margin: 1%;
+  }
+
+  .boxTodasOcor {
+    flex-direction: column;
+  }
+
+  .boxOcor {
+    width: 98%;
+    margin: 1%;
+    margin-bottom: 2%;
+  }
+
+  .boxOcor2 {
+    width: 98%;
+    margin: 1%;
+    margin-bottom: 2%;
+  }
+
+  .boxOcor3 {
+    width: 98%;
+    margin: 1%;
+    margin-bottom: 2%;
+  }
+
+  .urgencia1 {
+    font-size: 0.7rem;
+  }
+
+  .urgencia2 {
+    font-size: 0.7rem;
+  }
+
+  .urgencia3 {
+    font-size: 0.7rem;
+  }
+
+  .titulo {
+    text-align: center;
+    font-size: 26px;
+  }
+
+  .pesquisafiltro {
+    flex-direction: column;
+  }
+
+  .pesquisa {
     width: 100%;
-    height: 100%;
-    padding: 10px 14px;
-}
+  }
 
-.pesquisa>button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    height: fit-content;
-    border: none;
-    background-color: transparent;
-    right: 6px;
-    font-size: larger;
-}
-
-.pesquisadata {
-    border: 2px solid #000;
-    border-radius: 20px;
-    width: 20%;
-    margin-bottom: 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    margin-right: 1%;
-}
-
-.textodata{
-    margin-left: 2%;
-}
-
-.pesquisadata>input {
-    border: 2px solid #000;
-    border-radius: 20px;
-    border: none;
-    width: 100%;
-    height: 100%;
-    padding: 10px 14px;
-}
-
-.pesquisadata>button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    height: fit-content;
-    border: none;
-    background-color: transparent;
-    right: 6px;
-    font-size: larger;
-}
-
-.pesquisafiltro{
-    display: flex;
-    flex-direction: row;
-    align-items:flex-start;
-    justify-content:flex-start;
-    margin-left: 3%;
-}
-
-.filtro{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.butfiltro{
-    padding: 10px;
-    border-radius: 10px;
-    margin-right: 2%;
+  .butfiltro {
+    padding: 5px;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
     margin-bottom: 3%;
-    width: 15vh;
-    background-color: #fff;
-    transition-duration: 0.4s;
-}
-
-.butfiltro:hover{
-    background-color: #e0e0e0;
-}
-
-@media only screen and (max-width:800px) {
-    .main{
-        margin: 1%;
-    }
-
-    .boxTodasOcor{
-        flex-direction: column;
-    }
-
-    .boxOcor{
-        width: 98%;
-        margin: 1%;
-        margin-bottom: 2%;
-    }
-
-    .boxOcor2{
-        width: 98%;
-        margin: 1%;
-        margin-bottom: 2%;
-    }
-
-    .boxOcor3{
-        width: 98%;
-        margin: 1%;
-        margin-bottom: 2%;
-    }
-
-    .urgencia1{
-        font-size: 0.7rem;
-    }
-
-    .urgencia2{
-        font-size: 0.7rem;
-    }
-
-    .urgencia3{
-        font-size: 0.7rem;
-    }
-
-    .titulo{
-        text-align: center;
-        font-size: 26px;
-    }
-
-    .pesquisafiltro{
-        flex-direction: column;
-    }
-
-    .pesquisa {
-        width: 100%;
-    }
-
-    .butfiltro{
-        padding: 5px;
-        margin-left: 0.5%;
-        margin-right: 0.5%;
-        margin-bottom: 3%;
-        width: 7.3vh;
-        font-size: 0.6rem;
-    }
-
+    width: 7.3vh;
+    font-size: 0.6rem;
+  }
 }
