@@ -12,7 +12,7 @@ const Tabela = () => {
     rm: "",
     nome: "",
     turma: "",
-    ano: ""
+    ano: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -47,7 +47,12 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ RM: item.rm, Nome: item.nome, Turma: item.turma, Ano: item.ano });
+    setFormData({
+      rm: item.RM,
+      nome: item.Nome,
+      turma: item.Turma,
+      ano: item.Ano,
+    });
     setEditingItem(item);
   };
 
@@ -60,7 +65,12 @@ const Tabela = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ rm: formData.rm, turma: formData.turma, nome: formData.nome, ano: formData.ano }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({
+            rm: formData.rm,
+            turma: formData.turma,
+            nome: formData.nome,
+            ano: formData.ano,
+          }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
         // Atualiza a lista de temas após a edição
@@ -81,7 +91,12 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ rm: formData.rm, turma: formData.turma, nome: formData.nome, ano: formData.ano }),
+          body: JSON.stringify({
+            rm: formData.rm,
+            turma: formData.turma,
+            nome: formData.nome,
+            ano: formData.ano,
+          }),
         });
 
         // Atualiza a lista de temas após a edição
@@ -191,7 +206,7 @@ const Tabela = () => {
               placeholder="Nome"
             />
 
-              <br></br>
+            <br></br>
 
             <input
               type="text"
@@ -201,7 +216,7 @@ const Tabela = () => {
               placeholder="Turma"
             />
 
-              <br></br>
+            <br></br>
 
             <input
               type="text"

@@ -42,7 +42,7 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ Tema_id: item.id, nome_tema: item.tema });  
+    setFormData({ id: item.Tema_id, tema: item.Nome_tema });  
     setEditingItem(item);
   };
 

@@ -36,13 +36,16 @@ const Tabela = () => {
   const handleAdd = () => {
     setShowForm(true);
     setIsEditing(false);
-    setFormData({ id: "", encaminhamento:"" });
+    setFormData({ id: "", encaminhamento: "" });
   };
 
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ Encaminhamento_id: item.encaminhamento });
+    setFormData({
+      id: item.Encaminhamento_id,
+      encaminhamento: item.Nome_encaminhamento,
+    });
     setEditingItem(item);
   };
 
@@ -50,13 +53,18 @@ const Tabela = () => {
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/encaminhamentos/${editingItem.Encaminhamento_id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ Nome_encaminhamento: formData.encaminhamento }), // Ajuste aqui o objeto para corresponder ao que a API espera
-        });
+        await fetch(
+          `${API_URL}/encaminhamentos/${editingItem.Encaminhamento_id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              Nome_encaminhamento: formData.encaminhamento,
+            }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          }
+        );
 
         // Atualiza a lista de temas após a edição
         getEncaminhamento();
@@ -76,7 +84,9 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ Nome_encaminhamento: formData.encaminhamento }),
+          body: JSON.stringify({
+            Nome_encaminhamento: formData.encaminhamento,
+          }),
         });
 
         // Atualiza a lista de temas após a edição
@@ -89,7 +99,7 @@ const Tabela = () => {
         setData((prevData) => [...prevData, data]);
 
         // Limpa os campos de entrada
-        setFormData({ id: "", encaminhamento :"" });
+        setFormData({ id: "", encaminhamento: "" });
         setShowForm(false);
       } catch (error) {
         // Loga erros no console
@@ -97,12 +107,12 @@ const Tabela = () => {
       }
     }
     setShowForm(false);
-    setFormData({ id: "", encaminhamento :"" });
+    setFormData({ id: "", encaminhamento: "" });
   };
 
   const handleCancel = () => {
     setShowForm(false);
-    setFormData({ id: "", encaminhamento :"" });
+    setFormData({ id: "", encaminhamento: "" });
   };
 
   return (
