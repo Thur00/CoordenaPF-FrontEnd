@@ -5,8 +5,23 @@ import { generateLightAndDarkColors } from "../utils/colorUtils";
 import { CiCircleCheck } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 
+import { LuClock4 } from "react-icons/lu";
+import {
+  FaClockRotateLeft,
+  FaRegCirclePause,
+  FaRotateLeft,
+  FaRegCircleCheck,
+  FaCheck,
+  FaExclamation,
+  FaPause,
+  FaHourglassEnd,
+  FaRegHourglass,
+} from "react-icons/fa6";
+import { IoAlertCircleOutline } from "react-icons/io5";
+import { MdNearbyError } from "react-icons/md";
+
 function Ocorrencia(props) {
-  const { nome, tema, turma, data, urgencia, cor, id } = props;
+  const { nome, tema, turma, data, status, urgencia, cor, id } = props;
   const { lighter, darker } = generateLightAndDarkColors(cor);
   const router = useRouter();
 
@@ -28,6 +43,47 @@ function Ocorrencia(props) {
 
   const handleClick = () => {
     router.push(`/Paginas/VisualizarOcorrencia?id=${id}`);
+  };
+
+  const viewIcon = () => {
+    switch (status) {
+      case 1:
+        return <LuClock4 className={styles.icons} />;
+        break;
+      case 2:
+        return <FaClockRotateLeft className={styles.icons} />;
+        break;
+      case 3:
+        return <FaRegCirclePause className={styles.icons} />;
+        break;
+      case 4:
+        return <FaRotateLeft className={styles.icons} />;
+        break;
+      case 5:
+        return <FaRegCircleCheck className={styles.icons} />;
+        break;
+      case 6:
+        return <FaCheck className={styles.icons} />;
+        break;
+      case 7:
+        return <FaExclamation className={styles.icons} />;
+        break;
+      case 8:
+        return <FaPause className={styles.icons} />;
+        break;
+      case 9:
+        return <FaHourglassEnd className={styles.icons} />;
+        break;
+      case 10:
+        return <FaRegHourglass className={styles.icons} />;
+        break;
+      case 11:
+        return <IoAlertCircleOutline className={styles.icons} />;
+        break;
+      default:
+        return <MdNearbyError className={styles.icons} />;
+        break;
+    }
   };
 
   return (
@@ -53,7 +109,7 @@ function Ocorrencia(props) {
             </div>
             <div className={styles.datastatus}>
               <p>{viewDate()} </p>
-              <CiCircleCheck className={styles.icons} />
+              {viewIcon()}
             </div>
           </div>
         </div>

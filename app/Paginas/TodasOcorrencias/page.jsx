@@ -311,7 +311,7 @@ export default function TodasOcor() {
               tema={item.Tema}
               turma={item.Turma}
               data={item.Data}
-              status={item.Status}
+              status={item.Icone}
               urgencia={item.Urgencia}
               cor={item.Cor}
             />

@@ -70,7 +70,7 @@ const inicial = () => {
                   turma={item.Turma}
                   tema={item.Tema}
                   data={item.Data}
-                  status={item.Status}
+                  status={item.Icone}
                   urgencia={item.Urgencia}
                   cor={item.Cor}
                 />
@@ -93,7 +93,7 @@ const inicial = () => {
                   turma={item.Turma}
                   tema={item.Tema}
                   data={item.Data}
-                  status={item.Status}
+                  status={item.Icone}
                   urgencia={item.Urgencia}
                   cor={item.Cor}
                 />
