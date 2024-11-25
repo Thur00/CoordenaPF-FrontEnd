@@ -8,10 +8,15 @@ const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const Tabela = () => {
   const [data, setData] = useState([]);
-  const [formData, setFormData] = useState({ id: "", urgencia: "", cor: "" });
+  const [formData, setFormData] = useState({
+    id: "",
+    urgencia: "",
+    cor: ""
+  });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   const getUrgencia = async () => {
     try {
@@ -20,7 +25,7 @@ const Tabela = () => {
       console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
     } catch (error) {
-      console.error("Erro na busca aspectos", error);
+      console.error("Erro ao buscar urgências", error);
     }
   };
 
@@ -51,19 +56,33 @@ const Tabela = () => {
   };
 
   const handleSave = async () => {
+    if (!formData.urgencia || !formData.cor) {
+      setMensagemErro("As informações não podem estar vazias.");
+      setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+      return; // Retorna para não prosseguir com a requisição
+    }
+
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/urgencias/${editingItem.Urgencia_id}`, {
+        const response = await fetch(`${API_URL}/urgencias/${editingItem.Urgencia_id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            urgencia_id: formData.id,
             tipo_urgencia: formData.urgencia,
             cor: formData.cor,
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
+        console.log(response);
+
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Urgência: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
 
         // Atualiza a lista de temas após a edição
         getUrgencia();
@@ -72,7 +91,8 @@ const Tabela = () => {
         setEditingItem(null);
         setIsEditing(false);
       } catch (error) {
-        console.error("Erro ao atualizar o urgência:", error);
+        setMensagemErro("Erro ao atualizar urgência: " + error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
       }
     } else {
       try {
@@ -84,10 +104,17 @@ const Tabela = () => {
           },
           // Envia o corpo da requisição em formato JSON
           body: JSON.stringify({
+            urgencia_id: formData.id,
             tipo_urgencia: formData.urgencia,
             cor: formData.cor,
           }),
         });
+
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Urgência: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
 
         // Atualiza a lista de temas após a edição
         getUrgencia();
@@ -102,8 +129,8 @@ const Tabela = () => {
         setFormData({ id: "", urgencia: "", cor: "" });
         setShowForm(false);
       } catch (error) {
-        // Loga erros no console
-        console.error("Erro ao adicionar urgencia:", error);
+        setMensagemErro("Erro ao adicionar urgência: " + error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
       }
     }
     setShowForm(false);
@@ -117,6 +144,9 @@ const Tabela = () => {
 
   return (
     <div>
+    {mensagemErro && (
+        <div className={styles.notificacaoErro}>{mensagemErro}</div>
+      )}
       <br />
       <div>
         <div className={styles.div1}>
