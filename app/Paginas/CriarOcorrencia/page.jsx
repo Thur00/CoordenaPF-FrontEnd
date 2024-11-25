@@ -105,7 +105,7 @@ function criaroco() {
           Especialista: formData.especialista,
           Descricao: formData.descricao,
           Encaminhamento: formData.encaminhamento,
-          Status: 2,
+          Status: 1,
         }),
       });
 
@@ -310,7 +310,7 @@ function criaroco() {
               onChange={handleInputChange}
               id="turma"
               name="turma"
-            // disabled
+              // disabled
             />
           </div>
 
@@ -322,7 +322,7 @@ function criaroco() {
               onChange={handleInputChange}
               id="rm"
               name="rm"
-            // disabled
+              // disabled
             />
           </div>
         </div>
@@ -342,7 +342,14 @@ function criaroco() {
 
           <div>
             <label for="esp">Especialista: </label>
-            <input className={styles.input6} type="text" value={formData.especialista} onChange={handleInputChange} id="esp" name="especialista" />
+            <input
+              className={styles.input6}
+              type="text"
+              value={formData.especialista}
+              onChange={handleInputChange}
+              id="esp"
+              name="especialista"
+            />
           </div>
         </div>
 
@@ -383,10 +390,8 @@ function criaroco() {
         </div>
 
         <div className={styles.divBut}>
-          <Link href="/Paginas/PaginaInicial"><button className={styles.botaovoltar}>Voltar</button></Link>
-
-          <Link href="https://quizizz.com/">
-            <button className={styles.botaovoltar}> Gerar documento </button>
+          <Link href="/Paginas/PaginaInicial">
+            <button className={styles.botaovoltar}>Voltar</button>
           </Link>
           <button className={styles.botaovoltar} onClick={handleSave}>
             Salvar

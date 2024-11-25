@@ -316,9 +316,43 @@ const VisualizarOcorrencia = () => {
     }
   };
 
-  // function enviarNotificacao() {
-  //   closeModal();
-  // }
+  const gerarPDF = () => {
+    const tabela = document.getElementById("tabelas");
+    const novaJanela = window.open("", "", "width=800,height=600");
+
+    novaJanela.document.write(
+      `<html><head><title>Ocorrência ${id} PDF</title>`
+    );
+    novaJanela.document.write(`<style>
+        @page {
+          size: landscape; 
+        }
+          
+        .tudo,
+        .botoes,
+        .botoes2 {
+          display: none;
+        }
+
+        .input,
+        .input2,
+        .input3,
+        .input4,
+        .input5,
+        .input6,
+        .input7,
+        .imput8,
+        .input9 {
+          border: none;
+          borderbottom: 2px solid #000      
+        }
+      </style>`);
+    novaJanela.document.write("</head><body>");
+    novaJanela.document.write(tabela.outerHTML);
+    novaJanela.document.write("</body></html>");
+    novaJanela.document.close();
+    novaJanela.print();
+  };
 
   const enviarNotificacao = async () => {
     if (!solicitado) {
@@ -692,12 +726,14 @@ const VisualizarOcorrencia = () => {
 
           <div className={styles.botoes2}>
             <Link href="/Paginas/PaginaInicial">
-              <button className={styles.b1}>Voltar</button>
+              <button className={styles.b2}>Voltar</button>
             </Link>
             <button className={styles.b2} onClick={handleEdit}>
               Editar
             </button>
-            <button className={styles.b2}>Gerar Documento</button>
+            <button className={styles.b2} onClick={gerarPDF}>
+              Gerar Documento
+            </button>
           </div>
           <br />
 

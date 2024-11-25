@@ -16,9 +16,7 @@
 .b1 {
   margin: 2%;
   background-color: #ff1100;
-  padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 10px 30px;
   border-radius: 15px;
   border: none;
   color: white;
@@ -29,9 +27,7 @@
 
 .b2 {
   background-color: #ff1100;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 5px;
+  padding: 10px 15px;
   border-radius: 15px;
   border: none;
   color: white;
@@ -305,8 +301,12 @@
 }
 
 .email {
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 1px solid #000;
+}
+
+.email:hover {
+  background-color: #0000000d;
 }
 
 .email:last-child {
@@ -333,7 +333,7 @@
     height: 70px;
     padding: 10px;
   }
-  
+
   .b3 > div {
     display: flex;
     flex-direction: row;
