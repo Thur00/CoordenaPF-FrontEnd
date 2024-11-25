@@ -206,7 +206,6 @@ function criaroco() {
               <option value="DES">DES</option>
               <option value="CP">CP</option>
               <option value="OE">OE</option>
-              <option value="CP">CP</option>
             </select>
           </div>
 

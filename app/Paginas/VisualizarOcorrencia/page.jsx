@@ -21,15 +21,18 @@ const VisualizarOcorrencia = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [formData, setFormData] = useState({
+    criador: "",
     dataoc: "",
     hora: "",
     iniciativa: "",
     aspecto: "",
     urgencia: "",
     tema: "",
+    aluno: "",
     rm: "",
     turma: "",
     responsavel: "",
+    especialista: "",
     descricao: "",
     encaminhamento: "",
     status: "",
@@ -37,20 +40,8 @@ const VisualizarOcorrencia = () => {
   const [usuarios, setUsuarios] = useState([]); // Estado para usuários
   const [criador, setCriador] = useState(null); // Estado para criado da notificação
   const [solicitado, setSolicitado] = useState(null); // Estado para soliiicitad da notificação
-  // const [formNoti, setFormNoti] = useState({
-  //   ocorrencia: "",
-  //   criador: "",
-  //   solicitado: "",
-  //   data_envio: "",
-  // });
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-
-  const currentDate = new Date().toLocaleDateString("en-US");
-
-  const setarCriador = (item) => {
-    setCriador(item);
-  };
 
   const getOcorrencia = async () => {
     try {
@@ -146,39 +137,60 @@ const VisualizarOcorrencia = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleEdit = (item) => {
-    console.log("Iniciando edição para o item:", item);
+  const handleEdit = () => {
+    console.log("Iniciando edição para o item:", id);
+
     setIsEditing(true);
+
+    console.log("teste horaaa", data.Hora);
+    console.log("teste data", data.Data);
+
+    const formatDate = (isoString) => {
+      return new Date(isoString).toISOString().split("T")[0];
+    };
+
+    const formatTime = (isoString) => {
+      return new Date(isoString).toISOString().split("T")[1].slice(0, 5);
+    };
+
     setFormData({
-      dataoc: item.Data_ocorrencia || "", // Use as propriedades corretas
-      hora: item.Hora || "",
-      iniciativa: item.Iniciativa || "",
-      aspecto: item.Aspecto || "",
-      urgencia: item.Urgencia || "",
-      tema: item.Tema || "",
-      rm: item.Rm_aluno || "",
-      turma: item.Turma || "",
-      responsavel: item.Responsavel || "",
-      descricao: item.Descricao || "",
-      encaminhamento: item.Encaminhamento || "",
-      status: item.Status || "",
+      criador: data.Login_id,
+      dataoc: formatDate(data.Data), // Define a data formatada
+      hora: formatTime(data.Hora), // Hora formatada para o input
+      iniciativa: data.Iniciativa,
+      aspecto: data.Aspecto_id,
+      urgencia: data.Urgencia_id,
+      tema: data.Tema_id,
+      aluno: data.Aluno,
+      rm: data.RM,
+      turma: data.Turma,
+      responsavel: data.Responsavel,
+      especialista: data.Especialista
+        ? data.Especialista
+        : "Nenhum especialista presente",
+      descricao: data.Descricao,
+      encaminhamento: data.Encaminhamento_id,
+      status: data.Status_id,
     });
-    setEditingItem(item);
+    setEditingItem(data);
   };
 
   const handleCancelEdit = (item) => {
     console.log("Parando edição para o item:", item);
     setIsEditing(false);
     setFormData({
+      criador: "",
       dataoc: "",
       hora: "",
       iniciativa: "",
       aspecto: "",
       urgencia: "",
       tema: "",
+      aluno: "",
       rm: "",
       turma: "",
       responsavel: "",
+      especialista: "",
       descricao: "",
       encaminhamento: "",
       status: "",
@@ -190,12 +202,13 @@ const VisualizarOcorrencia = () => {
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/ocorrencias/${editingItem.Aspecto_id}`, {
+        await fetch(`${API_URL}/ocorrencias/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            Criador: formData.criador,
             Data_ocorrencia: formData.dataoc,
             Hora: formData.hora,
             Iniciativa: formData.iniciativa,
@@ -205,8 +218,11 @@ const VisualizarOcorrencia = () => {
             Rm_aluno: formData.rm,
             Turma: formData.turma,
             Responsavel: formData.responsavel,
+            Especialista: formData.especialista,
             Descricao: formData.descricao,
             Encaminhamento: formData.encaminhamento,
+            status: formData.status,
+            Status: formData.status,
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
@@ -247,16 +263,29 @@ const VisualizarOcorrencia = () => {
     setFormData({ id: "", Nome: "" });
   };
 
-  const formattedDate = new Date(data?.Data).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
+  const currentDate = new Date().toLocaleDateString("en-US");
 
-  const formattedTime = new Date(data?.Data).toLocaleTimeString("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  const formattedDate = () => {
+    if (data?.Data) {
+      return new Date(data.Data).toISOString().split("T")[0];
+    } else return "";
+  };
+
+  const viewDate = () => {
+    if (data?.Data) {
+      const dateStr = formattedDate(); // Retorna uma string no formato aaaa-mm-dd
+      const [year, month, day] = dateStr.split("-"); // Desestrutura a string
+      return `${day}/${month}/${year}`; // Retorna no formato dd/mm/aaaa
+    } else {
+      return "Data não encontrada";
+    }
+  };
+
+  const formattedTime = () => {
+    if (data?.Data) {
+      return new Date(data.Hora).toISOString().split("T")[1].slice(0, 5);
+    } else return "";
+  };
 
   const openModal = () => {
     setIsOpen(true);
@@ -340,7 +369,7 @@ const VisualizarOcorrencia = () => {
             <h1>Ocorrência</h1>
             <p className={styles.data}>
               Data:
-              {formattedDate || "Data não encontrada"}
+              {viewDate() || "Data não encontrada"}
             </p>
             <p className={styles.urgencia1}>
               {data?.Urgencia ? data.Urgencia : "Urgência não encontrada"}
@@ -383,17 +412,17 @@ const VisualizarOcorrencia = () => {
                 {data.length > 0 ? (
                   <input
                     className={styles.input4}
-                    type="text"
+                    type="date"
                     name="date"
-                    value={formattedDate || "Data não encontrada"}
+                    value={formattedDate() || "Data não encontrada"}
                     disabled
                   />
                 ) : (
                   <input
                     className={styles.input4}
-                    type="text"
+                    type="date"
                     name="date"
-                    value={formattedDate || "Data não encontrada"}
+                    value={formattedDate() || "Data não encontrada"}
                     disabled
                   />
                 )}
@@ -404,17 +433,17 @@ const VisualizarOcorrencia = () => {
                 {data.length > 0 ? (
                   <input
                     className={styles.input}
-                    type="text"
+                    type="time"
                     name="hora"
-                    value={formattedTime || "Horário não encontrado"}
+                    value={formattedTime() || "Horário não encontrado"}
                     disabled
                   />
                 ) : (
                   <input
                     className={styles.input}
-                    type="text"
+                    type="time"
                     name="hora"
-                    value={formattedTime || "Horário não encontrado"}
+                    value={formattedTime() || "Horário não encontrado"}
                     disabled
                   />
                 )}
@@ -817,7 +846,6 @@ const VisualizarOcorrencia = () => {
                   <option value="DES">DES</option>
                   <option value="CP">CP</option>
                   <option value="OE">OE</option>
-                  <option value="CP">CP</option>
                 </select>
               </div>
 
@@ -830,7 +858,7 @@ const VisualizarOcorrencia = () => {
                   id="aspecto"
                   name="aspecto"
                 >
-                  <option value="null"></option>
+                  <option value={data.Aspecto_id}>{data.Aspecto}</option>
                   {dataAsp.length > 0 ? (
                     dataAsp.map((item) => (
                       <option
@@ -858,7 +886,7 @@ const VisualizarOcorrencia = () => {
                   name="tema"
                   id="tema"
                 >
-                  <option value="null"></option>
+                  <option value={data.Tema_id}>{data.Tema}</option>
                   {dataTem.length > 0 ? (
                     dataTem.map((item) => (
                       <option
@@ -884,7 +912,7 @@ const VisualizarOcorrencia = () => {
                   name="urgencia"
                   id="urgencia"
                 >
-                  <option value="null"></option>
+                  <option value={data.Urgencia_id}>{data.Urgencia}</option>
                   {dataUrg.length > 0 ? (
                     dataUrg.map((item) => (
                       <option
@@ -907,9 +935,11 @@ const VisualizarOcorrencia = () => {
                 <label htmlFor="aluno">Estudante(s): </label>
                 <input
                   className={stylEdit.input10}
+                  value={formData.aluno}
                   type="text"
                   id="aluno"
                   name="aluno"
+                  disabled
                 />
               </div>
 
@@ -985,7 +1015,9 @@ const VisualizarOcorrencia = () => {
                 id="enc"
                 name="encaminhamento"
               >
-                <option value="null"></option>
+                <option value={data.Encaminhamento_id}>
+                  {data.Encaminhamento}
+                </option>
                 {dataEnc.length > 0 ? (
                   dataEnc.map((item) => (
                     <option
@@ -996,7 +1028,7 @@ const VisualizarOcorrencia = () => {
                     </option>
                   ))
                 ) : (
-                  <option>Nenhuma urgencia encontrada </option>
+                  <option>Nenhum encaminhamento encontrada </option>
                 )}
               </select>
             </div>
@@ -1011,13 +1043,13 @@ const VisualizarOcorrencia = () => {
               >
                 Cancelar
               </button>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </main>
       )}

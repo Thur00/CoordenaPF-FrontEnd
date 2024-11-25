@@ -107,7 +107,10 @@
   color: white;
   transition-duration: 0.4s;
   font-size: large;
-  height: 5vh;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .botaovoltar:hover {

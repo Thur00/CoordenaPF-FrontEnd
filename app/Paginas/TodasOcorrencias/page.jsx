@@ -120,37 +120,79 @@ export default function TodasOcor() {
         {/* Botões de filtro */}
         <button
           className={styles.butfiltro}
-          onClick={() => setActiveFilter("rm")}
+          onClick={
+            activeFilter === "rm"
+              ? () => {
+                  setFilterValues({ rm: "" });
+                  applyFilters();
+                }
+              : () => setActiveFilter("rm")
+          }
         >
           RM
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => setActiveFilter("nome")}
+          onClick={
+            activeFilter === "nome"
+              ? () => {
+                  setFilterValues({ nome: "" });
+                  applyFilters();
+                }
+              : () => setActiveFilter("nome")
+          }
         >
           NOME
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => setActiveFilter("tema")}
+          onClick={
+            activeFilter === "tema"
+              ? () => {
+                  setFilterValues({ tema: "" });
+                  applyFilters();
+                }
+              : () => setActiveFilter("tema")
+          }
         >
           TEMA
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => setActiveFilter("date")}
+          onClick={
+            activeFilter === "date"
+              ? () => {
+                  setFilterValues({ date: "" });
+                  applyFilters();
+                }
+              : () => setActiveFilter("date")
+          }
         >
           DATA
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => setActiveFilter("status")}
+          onClick={
+            activeFilter === "status"
+              ? () => {
+                  setFilterValues({ status: "" });
+                  applyFilters();
+                }
+              : () => setActiveFilter("status")
+          }
         >
           STATUS
         </button>
         <button
           className={styles.butfiltro}
-          onClick={() => setActiveFilter("urgencia")}
+          onClick={
+            activeFilter === "urgencia"
+              ? () => {
+                  setFilterValues({ urgencia: "" });
+                  applyFilters();
+                }
+              : () => setActiveFilter("urgencia")
+          }
         >
           URGÊNCIA
         </button>
@@ -202,15 +244,15 @@ export default function TodasOcor() {
         )}
 
         {activeFilter === "date" && (
-          <div className={styles.pesquisadata}>
-            <p className={styles.textodata}> Início: </p>
+          <div className={styles.pesquisa}>
+            <p>Início:</p>
             <input
               type="date"
               name="inicio"
               value={filterValues.inicio}
               onChange={handleFilterChange}
             />
-            <p className={styles.textodata}> Conclusão: </p>
+            <p>Conclusão:</p>
             <input
               type="date"
               name="conclusao"
@@ -258,7 +300,7 @@ export default function TodasOcor() {
           Limpar Filtros
         </button>
       </div>
-      
+
       <div className={styles.boxTodasOcor}>
         {filteredData.length > 0 ? (
           filteredData.map((item) => (

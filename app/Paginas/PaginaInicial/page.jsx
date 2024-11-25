@@ -11,6 +11,7 @@ const API_URL = "http://localhost:3001";
 
 const inicial = () => {
   const [data, setData] = useState([]);
+  const [sts, setSts] = useState([]);
   const router = useRouter();
   const [id, setId] = useState("");
 
@@ -25,8 +26,20 @@ const inicial = () => {
     }
   };
 
+  const getStatus = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/status`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data); // Adicione esta linha para verificar os dados
+      setSts(data1);
+    } catch (error) {
+      console.error("Erro na busca", error);
+    }
+  };
+
   useEffect(() => {
     getOcorrencias();
+    getStatus();
   }, [id]);
 
   return (
@@ -41,15 +54,18 @@ const inicial = () => {
       <br></br>
 
       <div className={styles.tudo}>
-        <h2 className={styles.h4}>Notificações</h2>
-        <h1 className={styles.titulo}>Você foi mencionado recentemente:</h1>
+        <h2 className={styles.h4}>Bem-Vindo(a)</h2>
+        <h1 className={styles.titulo}>Criado recentemente:</h1>
 
         <div className={styles.boxTodasOcor}>
           {data.length > 0 ? (
-            data.map((item) => (
-              <>
+            [...data]
+              .reverse()
+              .slice(0, 3)
+              .map((item) => (
                 <Ocorrencia
-                id= {item.Ocorrencia_id}
+                  key={item.Ocorrencia_id}
+                  id={item.Ocorrencia_id}
                   nome={item.Criador}
                   turma={item.Turma}
                   tema={item.Tema}
@@ -58,20 +74,21 @@ const inicial = () => {
                   urgencia={item.Urgencia}
                   cor={item.Cor}
                 />
-              </>
-            ))
+              ))
           ) : (
             <p>Nenhuma ocorrência encontrada</p>
           )}
         </div>
-        <h2 className={styles.h4}>Andamento:</h2>
+        <h2 className={styles.titulo}>Andamento:</h2>
 
-        <div   className={styles.boxTodasOcor}>
+        <div className={styles.boxTodasOcor}>
           {data.length > 0 ? (
-            data.map((item) => (
-              <>
+            [...data]
+              .filter((item) => item.Status == sts[1]?.Categoria)
+              .map((item) => (
                 <Ocorrencia
-                id= {item.Ocorrencia_id}
+                  key={item.Ocorrencia_id}
+                  id={item.Ocorrencia_id}
                   nome={item.Criador}
                   turma={item.Turma}
                   tema={item.Tema}
@@ -80,8 +97,7 @@ const inicial = () => {
                   urgencia={item.Urgencia}
                   cor={item.Cor}
                 />
-              </>
-            ))
+              ))
           ) : (
             <p>Nenhuma ocorrência encontrada</p>
           )}

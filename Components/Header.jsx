@@ -100,15 +100,22 @@ function Header() {
             </div>
             <div className={styles.content}>
               {data.length > 0 ? (
-                data.map((item) => (
+                [...data].reverse().map((item) => (
                   <div
+                    key={item.Cod_ocorrencia}
                     className={styles.notificacao}
                     onClick={() => handleClick(item.Cod_ocorrencia)}
                   >
                     <p>
                       {item.Criador_Nome} convidou {item.Solicitado_Nome} para a
                       ocorrência {item.Cod_ocorrencia}, do dia{" "}
-                      {formattedDate(item.Data_envio)}, classificada como {item.Urgencia_Tipo}. Clique para visualizar.
+                      {formattedDate(item.Data_envio)}, classificada como{" "}
+                      <span
+                        style={{ borderBottom: "5px solid " + item.Cor + "7f" }}
+                      >
+                        {item.Urgencia_Tipo}
+                      </span>
+                      . Clique para visualizar.
                     </p>
                   </div>
                 ))

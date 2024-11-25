@@ -105,7 +105,7 @@
 }
 
 .urgencia1 {
-  border: 2px solid rgb(14, 13, 13);
+  border: 2px solid var(--dcolor);;
   padding: 5px;
   margin-bottom: 15%;
   border-radius: 10px;
