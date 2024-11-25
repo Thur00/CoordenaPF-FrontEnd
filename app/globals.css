@@ -42,7 +42,7 @@ a {
   justify-content: space-between;
   height: 7vh;
   align-items: center;
-  
+  z-index: 3;
 }
 
 .Header div {
@@ -80,6 +80,7 @@ a {
   bottom: 0; /* Posiciona na parte inferior */
   left: 0; /* Alinha à esquerda */
   right: 0; /* Alinha à direita */
+  z-index: 3;
 }
 
 .textBox {

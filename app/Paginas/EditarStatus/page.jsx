@@ -4,7 +4,73 @@ import { useState, useEffect } from "react";
 import styles from "@/Components/Adicionar.module.css"; // Importando o CSS
 import Link from "next/link";
 
+import { LuClock4 } from "react-icons/lu";
+import {
+  FaClockRotateLeft,
+  FaRegCirclePause,
+  FaRotateLeft,
+  FaRegCircleCheck,
+  FaCheck,
+  FaExclamation,
+  FaPause,
+  FaHourglassEnd,
+  FaRegHourglass,
+} from "react-icons/fa6";
+import { IoAlertCircleOutline } from "react-icons/io5";
+import { MdNearbyError } from "react-icons/md";
+
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
+
+const Icons = [
+  {
+    id: 1,
+    icone: <LuClock4 />,
+  },
+  {
+    id: 2,
+    icone: <FaClockRotateLeft />,
+  },
+  {
+    id: 3,
+    icone: <FaRegCirclePause />,
+  },
+  {
+    id: 4,
+    icone: <FaRotateLeft />,
+  },
+  {
+    id: 5,
+    icone: <FaRegCircleCheck />,
+  },
+  {
+    id: 6,
+    icone: <FaCheck />,
+  },
+  {
+    id: 7,
+    icone: <FaExclamation />,
+  },
+  {
+    id: 8,
+    icone: <FaPause />,
+  },
+  {
+    id: 9,
+    icone: <FaHourglassEnd />,
+  },
+  {
+    id: 10,
+    icone: <FaRegHourglass />,
+  },
+  {
+    id: 11,
+    icone: <IoAlertCircleOutline />,
+  },
+  {
+    id: 12,
+    icone: <MdNearbyError />,
+  },
+];
 
 const Tabela = () => {
   const [data, setData] = useState([]);
@@ -16,6 +82,8 @@ const Tabela = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [selectedIcon, setSelectedIcon] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const getStatus = async () => {
     try {
@@ -47,8 +115,16 @@ const Tabela = () => {
   const handleEdit = (item) => {
     setShowForm(true);
     setIsEditing(true);
-    setFormData({ id: item.Status_id, categoria: item.Categoria, icone: item.Icone });
+    setFormData({
+      id: item.Status_id,
+      categoria: item.Categoria,
+      icone: item.Icone,
+    });
     setEditingItem(item);
+
+    // Encontrar o ícone correspondente no array Icons
+    const iconToSelect = Icons.find((icon) => icon.id === item.Icone);
+    setSelectedIcon(iconToSelect); // Atualiza o estado do ícone selecionado
   };
 
   const handleSave = async () => {
@@ -118,6 +194,56 @@ const Tabela = () => {
     setFormData({ id: "", categoria: "", icone: "" });
   };
 
+  const handleIconClick = (icon) => {
+    setSelectedIcon(icon);
+    setFormData({
+      ...formData,
+      icone: icon.id,
+    });
+    setIsOpen(false); // Fecha a lista
+  };
+
+  const viewIcon = (id) => {
+    switch (data[id]?.Icone) {
+      case 1:
+        return <LuClock4 />;
+        break;
+      case 2:
+        return <FaClockRotateLeft />;
+        break;
+      case 3:
+        return <FaRegCirclePause />;
+        break;
+      case 4:
+        return <FaRotateLeft />;
+        break;
+      case 5:
+        return <FaRegCircleCheck />;
+        break;
+      case 6:
+        return <FaCheck />;
+        break;
+      case 7:
+        return <FaExclamation />;
+        break;
+      case 8:
+        return <FaPause />;
+        break;
+      case 9:
+        return <FaHourglassEnd />;
+        break;
+      case 10:
+        return <FaRegHourglass />;
+        break;
+      case 11:
+        return <IoAlertCircleOutline />;
+        break;
+      default:
+        return <MdNearbyError />;
+        break;
+    }
+  };
+
   return (
     <div>
       <br></br>
@@ -140,11 +266,11 @@ const Tabela = () => {
             </thead>
             <tbody>
               {data.length > 0 ? (
-                data.map((item) => (
+                data.map((item, index) => (
                   <tr key={item.Status_id}>
                     <td>{item.Status_id}</td>
                     <td>{item.Categoria}</td>
-                    <td>{item.Icone}</td>
+                    <td>{viewIcon(index)}</td>
                   </tr>
                 ))
               ) : (
@@ -187,13 +313,29 @@ const Tabela = () => {
               placeholder="Categoria"
             />
             <br />
-            <input
-              type="text"
-              name="icone"
-              value={formData.icone}
-              onChange={handleInputChange}
-              placeholder="Icone"
-            />
+
+            <div className={styles.selectContainer}>
+              <div
+                className={styles.selectedIcon}
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {selectedIcon ? selectedIcon.icone : "Selecione um ícone"}
+              </div>
+              {isOpen && (
+                <div className={styles.iconList}>
+                  {[...Icons].slice(0, -1).map((icon) => (
+                    <div
+                      key={icon.id}
+                      className={styles.iconItem}
+                      onClick={() => handleIconClick(icon)}
+                    >
+                      {icon.icone}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <br />
           </div>
 
