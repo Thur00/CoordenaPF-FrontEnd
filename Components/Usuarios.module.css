@@ -4,6 +4,19 @@
     font-size: x-large;
 }
 
+.notificacaoErro {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #8a1007;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+  }
+
 .table {
     margin-left: 10%;
     width: 65%;
