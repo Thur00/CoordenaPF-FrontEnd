@@ -1,99 +1,127 @@
 .modal {
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-    overflow: auto;
+  position: fixed;
+  z-index: 1;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: auto;
 }
 .modal ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 /* Modal Content */
 .modalContent {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 20px;
-    width: 30%;
-    height: 80%;
-    margin-right: 130px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 20px;
+  width: 35%;
+  height: 95%;
+  margin-right: 80px;
 }
 
 .content {
-    overflow: auto;
-    height: 82%;
+  overflow: auto;
+  height: 82%;
 }
 
 .headBox {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .titulo {
-    font-weight: bold;
-    margin-bottom: 15px;
-    top: 0;
-    padding-top: 10px;
-    z-index: 2;
+  font-weight: bold;
+  margin-bottom: 15px;
+  top: 0;
+  padding-top: 10px;
+  z-index: 2;
+}
+
+.filter {
+  transition-duration: 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2%;
+}
+
+.filter > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.filter > div > select {
+  border: none;
+  margin-right: 10px;
+}
+
+.filter > div > button {
+  padding: 5px 10px;
+  background-color: red;
+  color: #fefefe;
+  border: none;
+  border-radius: 5px;
 }
 
 .notificacao {
-    padding: 20px 0;
-    border-bottom: 1px solid #000
+  padding: 20px 0;
+  border-bottom: 1px solid #000;
+  cursor: pointer;
 }
 
 .notificacao:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
+.notificacao:hover {
+  background-color: #0000000d;
+}
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {
+  .modalContent {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+  }
 
+  .modal {
+    padding-top: 45px;
+  }
 
-    .modalContent {
-        width: 100%;
-        height: auto;
-        margin: 0px;
-        border-radius: 0;
-        overflow: hidden;
-        position: relative;
-    }
-
-
-    .modal {
-        padding-top: 45px;
-    }
-
-    .close {
-        font-size: 24px;
-    }
-    .headBox {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+  .close {
+    font-size: 24px;
+  }
+  .headBox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

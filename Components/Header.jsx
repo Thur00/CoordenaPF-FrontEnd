@@ -13,6 +13,10 @@ const API_URL = "http://localhost:3001";
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [usuario, setUsuario] = useState([]);
+  const [filteredData, setFilteredData] = useState([]); // Dados filtrados
+  const [filterValue, setFilterValue] = useState({ id: "" });
+
   const router = useRouter();
 
   const openModal = () => {
@@ -36,13 +40,26 @@ function Header() {
       const data1 = await resposta.json();
       console.log("Dados recebidos Noticacao:", data1); // Adicione esta linha para verificar os dados
       setData(data1);
+      setFilteredData(data1);
     } catch (error) {
       console.error("Erro na busca de notificações", error);
     }
   };
 
+  const getUsuarios = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/usuarios`);
+      const data1 = await resposta.json();
+      console.log("Dados recebidos:", data1); // Adicione esta linha para verificar os dados
+      setUsuario(data1);
+    } catch (error) {
+      console.error("Erro na busca status", error);
+    }
+  };
+
   useEffect(() => {
     getNotificacao();
+    getUsuarios();
 
     emitter.on("novaNotificacao", getNotificacao);
 
@@ -51,6 +68,11 @@ function Header() {
       emitter.off("novaNotificacao", getNotificacao);
     };
   }, []);
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilterValue((prevValues) => ({ ...prevValues, [name]: value }));
+  };
 
   const handleClick = (id) => {
     router.push(`/Paginas/VisualizarOcorrencia?id=${id}`);
@@ -63,6 +85,21 @@ function Header() {
       month: "2-digit",
       year: "numeric",
     });
+  };
+
+  const applyFilter = () => {
+    let filtered = data;
+
+    console.log("filterValue", filterValue);
+    console.log("filtered", filtered);
+
+    if (filterValue.id) {
+      filtered = filtered.filter((item) =>
+        item.Solicitado_Id.toString().includes(filterValue.id)
+      );
+    }
+
+    setFilteredData(filtered);
   };
 
   return (
@@ -99,10 +136,34 @@ function Header() {
               </span>
             </div>
             <div className={styles.content}>
-              {data.length > 0 ? (
-                [...data].reverse().map((item) => (
+              <label className={styles.filter}>
+                Notificações enviadas para:
+                <div>
+                  <select
+                    value={filterValue.id}
+                    onChange={handleFilterChange}
+                    id="usuarios"
+                    name="id"
+                  >
+                    <option value="">Todos</option>
+                    {usuario.length > 0 ? (
+                      usuario.map((item) => (
+                        <option key={item.Login_id} value={item.Login_id}>
+                          {item.Nome}
+                        </option>
+                      ))
+                    ) : (
+                      <option>Nenhum usuário encontrado</option>
+                    )}
+                  </select>
+                  <button onClick={applyFilter}>Filtrar</button>
+                </div>
+              </label>
+
+              {filteredData.length > 0 ? (
+                [...filteredData].reverse().map((item) => (
                   <div
-                    key={item.Cod_ocorrencia}
+                    key={item.Notificacao_id}
                     className={styles.notificacao}
                     onClick={() => handleClick(item.Cod_ocorrencia)}
                   >
