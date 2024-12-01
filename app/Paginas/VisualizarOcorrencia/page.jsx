@@ -505,7 +505,29 @@ const VisualizarOcorrencia = () => {
                   />
                 )}
               </div>
+              <div className={styles.seis}>
+              <label htmlFor="resp">Nome: </label>
+              {data.length > 0 ? (
+                <input
+                  className={styles.input5}
+                  id="esp"
+                  name="esp"
+                  value={data?.Especialista || "Especialista não presente"}
+                  disabled
+                />
+              ) : (
+                <input
+                  className={styles.input5}
+                  id="esp"
+                  name="esp"
+                  value={data?.Especialista || "Especialista não presente"}
+                  disabled
+                />
+              )}
+            </div>
+            </div>
 
+            <div className={styles.tema}>
               <div>
                 <label htmlFor="aspecto">Aspecto:</label>
                 {data.length > 0 ? (
@@ -526,9 +548,6 @@ const VisualizarOcorrencia = () => {
                   />
                 )}
               </div>
-            </div>
-
-            <div className={styles.tema}>
               <div className={styles.tres}>
                 <label htmlFor="tema">Tema:</label>
                 {data.length > 0 ? (
@@ -658,27 +677,26 @@ const VisualizarOcorrencia = () => {
                   />
                 )}
               </div>
-
-              <div className={styles.seis}>
-                <label htmlFor="resp">Especialista: </label>
-                {data.length > 0 ? (
-                  <input
-                    className={styles.input5}
-                    id="esp"
-                    name="esp"
-                    value={data?.Especialista || "Especialista não presente"}
-                    disabled
-                  />
-                ) : (
-                  <input
-                    className={styles.input5}
-                    id="esp"
-                    name="esp"
-                    value={data?.Especialista || "Especialista não presente"}
-                    disabled
-                  />
-                )}
-              </div>
+            </div>
+            <div className={styles.seis}>
+              <label htmlFor="resp">Especialista: </label>
+              {data.length > 0 ? (
+                <input
+                  className={styles.input5}
+                  id="esp"
+                  name="esp"
+                  value={data?.Especialista || "Especialista não presente"}
+                  disabled
+                />
+              ) : (
+                <input
+                  className={styles.input5}
+                  id="esp"
+                  name="esp"
+                  value={data?.Especialista || "Especialista não presente"}
+                  disabled
+                />
+              )}
             </div>
             <div className={styles.mes}>
               {data.length > 0 ? (

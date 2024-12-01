@@ -11,7 +11,8 @@ const SignIn = () => {
 
   const entrar = () => {
     // Definindo credenciais fixas
-    const { usuarioFixo, senhaFixa } = Acesso();
+    const usuarioFixo = "Coordena";
+    const senhaFixa = "2024";
 
     // Verificar se os campos estão preenchidos
     if (!usuario || !senha) {

@@ -6,7 +6,7 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x:hidden;
+  overflow-x: hidden;
   margin: 0;
 }
 
@@ -56,13 +56,11 @@ a {
 
 .icon2 {
   font-size: xx-large;
-  margin:  0 10%;
+  margin: 0 10%;
   background-color: transparent;
   border: none;
   color: #ffffff;
 }
-
-
 
 /* .footbox {
   height: 10vh;
@@ -143,24 +141,21 @@ a {
   }
 
   .footbox {
-    
     background-color: #bc1016;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     padding: 2vh 2vh;
-   margin-top: 10%;
+    margin-top: 10%;
     height: 13vh;
     width: 100%;
-
   }
 
   .Header div {
     width: 20%;
   }
 
- 
   .textBox {
     height: 100%;
     width: 100%;

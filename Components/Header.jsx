@@ -103,8 +103,8 @@ function Header() {
   };
 
   return (
-    <main>
-      <div className="Header">
+    <>
+      <header className="Header">
         <Link className="icon" href="/Paginas/PaginaInicial">
           <FaHouseChimney />
         </Link>
@@ -122,7 +122,7 @@ function Header() {
             <IoPersonSharp />
           </Link>
         </div>
-      </div>
+      </header>
 
       {isOpen && (
         <div id="myModal" className={styles.modal} onClick={handleClickOutside}>
@@ -187,7 +187,7 @@ function Header() {
           </div>
         </div>
       )}
-    </main>
+    </>
   );
 }
 export default Header;
