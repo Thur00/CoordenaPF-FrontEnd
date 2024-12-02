@@ -13,6 +13,7 @@ const Tabela = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
 
+  const [mensagemErro, setMensagemErro] = useState("");
   const getEncaminhamento = async () => {
     try {
       const resposta = await fetch(`${API_URL}/encaminhamentos`);
@@ -50,10 +51,16 @@ const Tabela = () => {
   };
 
   const handleSave = async () => {
+    if (!formData.encaminhamento ||
+       !formData.encaminhamento) {
+      setMensagemErro("As informações não podem estar vazias.");
+      setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+      return; // Retorna para não prosseguir com a requisição
+    }
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(
+        const response =  await fetch(
           `${API_URL}/encaminhamentos/${editingItem.Encaminhamento_id}`,
           {
             method: "PUT",
@@ -61,10 +68,17 @@ const Tabela = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              Nome_encaminhamento: formData.encaminhamento,
+              id: formData.id, Nome_encaminhamento: formData.encaminhamento,
             }), // Ajuste aqui o objeto para corresponder ao que a API espera
           }
+          
         );
+        console.log(response);
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Aluno: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
 
         // Atualiza a lista de temas após a edição
         getEncaminhamento();
@@ -84,10 +98,16 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({
-            Nome_encaminhamento: formData.encaminhamento,
+          body: JSON.stringify({ id: formData.id, Nome_encaminhamento: formData.encaminhamento,
           }),
+          
         });
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Aspecto ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
+
 
         // Atualiza a lista de temas após a edição
         getEncaminhamento();
@@ -117,6 +137,9 @@ const Tabela = () => {
 
   return (
     <div>
+      {mensagemErro && (
+        <div className={styles.notificacaoErro}>{mensagemErro}</div>
+      )}
       <br />
       <div>
         <div className={styles.div1}>

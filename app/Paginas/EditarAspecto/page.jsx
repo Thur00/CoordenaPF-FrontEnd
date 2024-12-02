@@ -12,6 +12,7 @@ const Tabela = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   const getAspectos = async () => {
     try {
@@ -47,16 +48,30 @@ const Tabela = () => {
   };
 
   const handleSave = async () => {
+    if (!formData.Nome || !formData.Nome ) {
+      setMensagemErro("As informações não podem estar vazias.");
+      setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+      return; // Retorna para não prosseguir com a requisição
+    }
+
     if (isEditing) {
-      try {
+      try { 
         // Faz uma requisição PUT para a API de temas para atualizar o item
-        await fetch(`${API_URL}/aspectos/${editingItem.Aspecto_id}`, {
+        const response = await fetch(`${API_URL}/aspectos/${editingItem.Aspecto_id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ nome: formData.Nome }), // Ajuste aqui o objeto para corresponder ao que a API espera
+          body: JSON.stringify({id: formData.id, nome: formData.Nome }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
+
+        console.log(response);
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Aluno: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        } 
+
 
         // Atualiza a lista de temas após a edição
         getAspectos();
@@ -66,6 +81,7 @@ const Tabela = () => {
         setIsEditing(false);
       } catch (error) {
         console.error("Erro ao atualizar o aspecto:", error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
       }
     } else {
       try {
@@ -76,8 +92,14 @@ const Tabela = () => {
             "Content-Type": "application/json",
           },
           // Envia o corpo da requisição em formato JSON
-          body: JSON.stringify({ nome: formData.Nome }),
+          body: JSON.stringify({ id: formData.id, nome: formData.Nome }),
         });
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Aspecto ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
+
 
         // Atualiza a lista de temas após a edição
         getAspectos();
@@ -92,10 +114,13 @@ const Tabela = () => {
         setFormData({ id: "", Nome: "" });
         setShowForm(false);
       } catch (error) {
-        // Loga erros no console
-        console.error("Erro ao adicionar tema:", error);
+        setMensagemErro("Erro ao adicionar aluno: " + error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+      
       }
+      
     }
+
     setShowForm(false);
     setFormData({ id: "", Nome: "" });
   };
@@ -107,6 +132,9 @@ const Tabela = () => {
 
   return (
     <div>
+      {mensagemErro && (
+        <div className={styles.notificacaoErro}>{mensagemErro}</div>
+      )}
       <br />
       <div>
         <div className={styles.div1}>
