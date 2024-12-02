@@ -12,6 +12,8 @@ const Tabela = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [mensagemErro, setMensagemErro] = useState("");
+
 
   const getTema = async () => {
     try {
@@ -47,6 +49,12 @@ const Tabela = () => {
   };
 
   const handleSave = async () => {
+    if ( !formData.Nome_tema) {
+      setMensagemErro("As informações não podem estar vazias.");
+      setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+      return; // Retorna para não prosseguir com a requisição
+    }
+
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
@@ -65,8 +73,11 @@ const Tabela = () => {
         setEditingItem(null);
         setIsEditing(false);
       } catch (error) {
-        console.error("Erro ao atualizar o tema:", error);
+        setMensagemErro("Erro ao atualizar  tema: " + error);
+        setTimeout(() => setMensagemErro(""), 3000);
       }
+
+
     } else {
       try {
         // Faz uma requisição POST para a API de temas
@@ -78,6 +89,14 @@ const Tabela = () => {
           // Envia o corpo da requisição em formato JSON
           body: JSON.stringify({ nome_tema: formData.tema }),
         });
+
+
+
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Tema: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
 
         // Atualiza a lista de temas após a edição
         getTema();
@@ -93,7 +112,8 @@ const Tabela = () => {
         setShowForm(false);
       } catch (error) {
         // Loga erros no console
-        console.error("Erro ao adicionar tema:", error);
+        setMensagemErro("Erro ao atualizar  aluno: " + error);
+        setTimeout(() => setMensagemErro(""), 3000);
       }
     }
     setShowForm(false);
@@ -107,6 +127,9 @@ const Tabela = () => {
 
   return (
     <div>
+    {mensagemErro && (
+        <div className={styles.notificacaoErro}>{mensagemErro}</div>
+      )}
       <br />
       <div>
         <div className={styles.div1}>
