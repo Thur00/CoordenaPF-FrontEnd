@@ -84,6 +84,7 @@ const Tabela = () => {
   const [editingItem, setEditingItem] = useState(null);
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   const getStatus = async () => {
     try {
@@ -128,6 +129,11 @@ const Tabela = () => {
   };
 
   const handleSave = async () => {
+    if ( !formData.categoria || !formData.icone) {
+      setMensagemErro("As informações não podem estar vazias.");
+      setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+      return; // Retorna para não prosseguir com a requisição
+    }
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
@@ -139,8 +145,16 @@ const Tabela = () => {
           body: JSON.stringify({
             categoria: formData.categoria,
             icone: formData.icone,
+            
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
+        console.log(response);
+
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Status: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
 
         // Atualiza a lista de temas após a edição
         getStatus();
@@ -149,7 +163,8 @@ const Tabela = () => {
         setEditingItem(null);
         setIsEditing(false);
       } catch (error) {
-        console.error("Erro ao atualizar o status:", error);
+        setMensagemErro("Erro ao atualizar  Status: " + error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
       }
     } else {
       try {
@@ -166,8 +181,13 @@ const Tabela = () => {
           }),
         });
 
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Status: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
+
         // Atualiza a lista de temas após a edição
-        console.log("icone ", formData.icone);
         getStatus();
 
         // Converte a resposta para JSON
@@ -175,19 +195,19 @@ const Tabela = () => {
 
         // Atualiza o estado de 'data' com o novo tema adicionado
         setData((prevData) => [...prevData, data]);
-        console.log("data", data);
 
         // Limpa os campos de entrada
-        setFormData({ id: "", categoria: "", icone: "" });
+        setFormData({ id: "", categoria: "", icone: ""});
         setShowForm(false);
       } catch (error) {
-        // Loga erros no console
-        console.error("Erro ao adicionar status:", error);
+        setMensagemErro("Erro ao adicionar Status: " + error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
       }
     }
     setShowForm(false);
-    setFormData({ id: "", categoria: "", icone: "" });
+    setFormData({ id: "", categoria: "", icone: ""});
   };
+
 
   const handleCancel = () => {
     setShowForm(false);
@@ -249,6 +269,9 @@ const Tabela = () => {
 
   return (
     <div>
+       {mensagemErro && (
+        <div className={styles.notificacaoErro}>{mensagemErro}</div>
+      )}
       <br />
       <div>
         <div className={styles.div1}>
