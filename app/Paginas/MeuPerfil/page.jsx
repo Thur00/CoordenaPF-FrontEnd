@@ -18,6 +18,8 @@ const Tabela = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [mensagemErro, setMensagemErro] = useState("");
+
 
   const getUsuario = async () => {
     try {
@@ -65,6 +67,12 @@ const Tabela = () => {
   };
 
   const handleSave = async () => {
+    if (!formData.Login_id || !formData.Nome || !formData.Cargo || !formData.Email || !formData.CPF) {
+      setMensagemErro("As informações não podem estar vazias.");
+      setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+      return; // Retorna para não prosseguir com a requisição
+    }
+
     if (isEditing) {
       try {
         // Faz uma requisição PUT para a API de temas para atualizar o item
@@ -80,6 +88,13 @@ const Tabela = () => {
             cpf: formData.CPF,
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
+        console.log(response);
+
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Usuário: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
 
         // Atualiza a lista de temas após a edição
         getUsuario();
@@ -89,6 +104,7 @@ const Tabela = () => {
         setIsEditing(false);
       } catch (error) {
         console.error("Erro ao atualizar o usuário:", error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
       }
     } else {
       try {
@@ -106,6 +122,13 @@ const Tabela = () => {
             cpf: formData.CPF,
           }),
         });
+
+        if (!response.ok) {
+          const errorMessage = `Erro ao buscar Usário: ${response.status}`;
+          setMensagemErro(errorMessage);
+          setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
+        }
+
 
         // Atualiza a lista de temas após a edição
         getUsuario();
@@ -126,8 +149,8 @@ const Tabela = () => {
         });
         setShowForm(false);
       } catch (error) {
-        // Loga erros no console
-        console.error("Erro ao adicionar usuario:", error);
+        setMensagemErro("Erro ao adicionar usuário: " + error);
+        setTimeout(() => setMensagemErro(""), 3000); // Limpa a mensagem de erro após 3 segundos
       }
     }
     setShowForm(false);
@@ -153,6 +176,9 @@ const Tabela = () => {
 
   return (
     <div>
+        {mensagemErro && (
+        <div className={styles.notificacaoErro}>{mensagemErro}</div>
+      )}
       <br />
       <div>
         <div className={styles.div1}>
