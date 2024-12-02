@@ -2,42 +2,70 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import style from "@/Components/Login.module.css";
-import Acesso from "@/utils/Credenciais";
+const API_URL = "http://localhost:3001"; // Adicione a URL da API
+
 const SignIn = () => {
-  const [usuario, setUsuario] = useState("");
-  const [senha, setSenha] = useState("");
   const [msgError, setMsgError] = useState("");
   const [senhaVisivel, setSenhaVisivel] = useState(false);
+  const [formData, setFormData] = useState({
+    usuario: "",
+    senha: "",
+  });
 
-  const entrar = () => {
-    // Definindo credenciais fixas
-    const usuarioFixo = "Coordena";
-    const senhaFixa = "2024";
-
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const entrar = (resposta) => {
     // Verificar se os campos estão preenchidos
-    if (!usuario || !senha) {
+    if (!formData.usuario || !formData.senha) {
       setMsgError("Por favor, preencha todos os campos.");
       return;
     }
 
     // Comparar as credenciais inseridas com as fixas
-    if (usuario === usuarioFixo && senha === senhaFixa) {
-      const token =
-        Math.random().toString(16).substr(2) +
-        Math.random().toString(16).substr(2) +
-        "Amamos_DS_;-)";
-      localStorage.setItem("token", token);
+    if (resposta === "VALIDO") {
       localStorage.setItem(
         "userLogado",
-        JSON.stringify({ userCad: usuarioFixo, senhaCad: senhaFixa })
+        JSON.stringify({ userCad: formData.usuario, senhaCad: formData.senha })
       );
       window.location.href = "../Paginas/PaginaInicial"; // Redirecionar após login
     } else {
       setMsgError("Usuário ou senha incorretos");
-      setUsuario("");
-      setSenha("");
+     
     }
   };
+
+  const login = async () => {
+    if (!usuario || !senha) {
+      setMsgError("Por favor, preencha todos os campos.");
+      return;
+    }
+
+   try{
+      // Faz uma requisição PUT para a API de temas para atualizar o item
+      const response = await fetch(`${API_URL}/usuarios/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cpf: formData.usuario,
+          senha: formData.senha,
+        }), // Ajuste aqui o objeto para corresponder ao que a API espera
+      });
+
+      const data = await response.json()
+
+      entrar(data.message)
+
+    } catch (error) {
+      console.error("Erro ao realizar login:", error);
+        setMsgError("Usuário ou senha incorretos");
+      
+      }
+    }
+
   return (
     <main className={style.main}>
       <div className={style.box}>
@@ -56,8 +84,9 @@ const SignIn = () => {
               <input
                 type="text"
                 id="usuario"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
+                name="usuario"
+                value={formData.usuario}
+                onChange={handleInputChange}
                 required
                 placeholder="Login"
               />
@@ -67,8 +96,9 @@ const SignIn = () => {
             <input
               type={senhaVisivel ? "text" : "password"}
               id="senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
+              name="senha"
+              value={formData.senha}
+              onChange={handleInputChange}
               required
               placeholder="Senha"
             />
@@ -80,7 +110,7 @@ const SignIn = () => {
             ></i>
           </div>
 
-          <button className={style.botao} onClick={entrar}>
+          <button className={style.botao} onClick={login}>
             Entrar
           </button>
         </div>
@@ -88,6 +118,6 @@ const SignIn = () => {
       </div>
     </main>
   );
-};
+}
 
 export default SignIn;
