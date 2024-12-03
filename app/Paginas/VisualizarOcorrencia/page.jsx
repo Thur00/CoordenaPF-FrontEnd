@@ -894,6 +894,7 @@ const VisualizarOcorrencia = () => {
 
                 <div className={styles.mes}>
                   <textarea
+                  className={styles.mensagem}
                     value={formMen.mensagem}
                     onChange={handleMessageChange}
                     name="mensagem"

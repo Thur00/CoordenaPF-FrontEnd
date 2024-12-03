@@ -4,8 +4,33 @@ import { useEffect, useState } from "react";
 import styles from "@/Components/criaroco.module.css";
 import Link from "next/link";
 import BotaoVoltar from "@/Components/BotaoVoltar";
+import jwt from "jsonwebtoken";
+
+const API_SECRET = "FazoELE"; // Use a mesma chave secreta
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
+
+const getUserInfo = () => {
+  const userLogado = JSON.parse(localStorage.getItem("userLogado"));
+  if (userLogado) {
+    return userLogado;
+  } else {
+    return null;
+  }
+
+  //   const token = localStorage.getItem("token");
+
+  //   if (token) {
+  //     try {
+  //       const decoded = jwt.verify(token, API_SECRET);
+  //       return decoded; // Retorna as informações do usuário
+  //     } catch (error) {
+  //       console.error("Token inválido:", error);
+  //       return null; // Ou tratar o erro de alguma forma
+  //     }
+  //   }
+  //   return null; // Nenhum token encontrado
+};
 
 function criaroco() {
   const [dataAsp, setDataAsp] = useState([]);
@@ -28,6 +53,10 @@ function criaroco() {
     encaminhamento: "",
     status: "",
   });
+
+  // const userInfo = getUserInfo();
+
+  const user = getUserInfo();
 
   const getAspecto = async () => {
     try {
@@ -92,7 +121,7 @@ function criaroco() {
         },
         // Envia o corpo da requisição em formato JSON
         body: JSON.stringify({
-          Criador: 3,
+          Criador: user.Login_id,
           Data_ocorrencia: formData.dataoc,
           Hora: formData.hora,
           Iniciativa: formData.iniciativa,
