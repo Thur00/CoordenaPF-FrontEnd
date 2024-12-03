@@ -132,13 +132,13 @@ margin-right:3%;
     .box {
         margin-left: 10%;
         margin-right: 10%;
-        width: 70%;
+        width: 75%;
         height: 55vh;
         background-color: white;
     }
 
-    .divPesquisa {
-        width: 80%;
+    .pesquisa {
+        width: 60vw;
     }
 
 }
