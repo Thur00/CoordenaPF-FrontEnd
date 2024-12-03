@@ -110,7 +110,7 @@
 }
 
 .urgencia1 {
-  border: 2px solid red;
+  border: 2px solid #ff1100;
   padding: 5px;
   border-radius: 10px;
   padding: 10px;
@@ -294,7 +294,7 @@
 .confirmar {
   margin-top: 2%;
   padding: 5px 10px;
-  background-color: red;
+  background-color: #ff1100;
   color: #fefefe;
   border: none;
   border-radius: 5px;
@@ -311,6 +311,16 @@
 
 .email:last-child {
   border-bottom: none;
+}
+
+.mensagem {
+  border: 3px solid #ff1100;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.mensagem:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 800px) {
