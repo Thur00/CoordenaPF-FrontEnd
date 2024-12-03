@@ -22,6 +22,7 @@ export default function TodasOcor() {
     conclusao: "",
     status: "",
     urgencia: "",
+    criador: "",
   });
 
   const getOcorrencias = async () => {
@@ -35,7 +36,6 @@ export default function TodasOcor() {
       console.error("Erro na busca da ocorrência", error);
     }
   };
-  
 
   useEffect(() => {
     getOcorrencias();
@@ -91,6 +91,12 @@ export default function TodasOcor() {
       );
     }
 
+    if (filterValues.criador) {
+      filtered = filtered.filter((item) =>
+        item.Criador.toLowerCase().includes(filterValues.criador.toLowerCase())
+      );
+    }
+
     setFilteredData(filtered);
   };
 
@@ -104,6 +110,7 @@ export default function TodasOcor() {
       conclusao: "",
       status: "",
       urgencia: "",
+      criador: "",
     });
     setFilteredData(data);
   };
@@ -124,9 +131,9 @@ export default function TodasOcor() {
           onClick={
             activeFilter === "rm"
               ? () => {
-                  setFilterValues({ rm: "" });
-                  applyFilters();
-                }
+                setFilterValues({ rm: "" });
+                applyFilters();
+              }
               : () => setActiveFilter("rm")
           }
         >
@@ -137,9 +144,9 @@ export default function TodasOcor() {
           onClick={
             activeFilter === "nome"
               ? () => {
-                  setFilterValues({ nome: "" });
-                  applyFilters();
-                }
+                setFilterValues({ nome: "" });
+                applyFilters();
+              }
               : () => setActiveFilter("nome")
           }
         >
@@ -150,9 +157,9 @@ export default function TodasOcor() {
           onClick={
             activeFilter === "tema"
               ? () => {
-                  setFilterValues({ tema: "" });
-                  applyFilters();
-                }
+                setFilterValues({ tema: "" });
+                applyFilters();
+              }
               : () => setActiveFilter("tema")
           }
         >
@@ -163,9 +170,9 @@ export default function TodasOcor() {
           onClick={
             activeFilter === "date"
               ? () => {
-                  setFilterValues({ date: "" });
-                  applyFilters();
-                }
+                setFilterValues({ date: "" });
+                applyFilters();
+              }
               : () => setActiveFilter("date")
           }
         >
@@ -176,9 +183,9 @@ export default function TodasOcor() {
           onClick={
             activeFilter === "status"
               ? () => {
-                  setFilterValues({ status: "" });
-                  applyFilters();
-                }
+                setFilterValues({ status: "" });
+                applyFilters();
+              }
               : () => setActiveFilter("status")
           }
         >
@@ -189,13 +196,26 @@ export default function TodasOcor() {
           onClick={
             activeFilter === "urgencia"
               ? () => {
-                  setFilterValues({ urgencia: "" });
-                  applyFilters();
-                }
+                setFilterValues({ urgencia: "" });
+                applyFilters();
+              }
               : () => setActiveFilter("urgencia")
           }
         >
           URGÊNCIA
+        </button>
+        <button
+          className={styles.butfiltro}
+          onClick={
+            activeFilter === "criador"
+              ? () => {
+                setFilterValues({ criador: "" });
+                applyFilters();
+              }
+              : () => setActiveFilter("criador")
+          }
+        >
+          CRIADOR
         </button>
 
         {/* Campos de filtro */}
@@ -288,6 +308,21 @@ export default function TodasOcor() {
               name="urgencia"
               placeholder="Busque por urgência"
               value={filterValues.urgencia}
+              onChange={handleFilterChange}
+            />
+            <button onClick={applyFilters}>
+              <IoSearch />
+            </button>
+          </div>
+        )}
+
+        {activeFilter === "criador" && (
+          <div className={styles.pesquisa}>
+            <input
+              type="text"
+              name="criador"
+              placeholder="Busque por criador"
+              value={filterValues.criador}
               onChange={handleFilterChange}
             />
             <button onClick={applyFilters}>
