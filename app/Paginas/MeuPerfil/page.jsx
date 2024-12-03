@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "@/Components/Usuarios.module.css"; // Importando o CSS
 import Link from "next/link";
+import { IoExitOutline } from "react-icons/io5";
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
@@ -14,8 +15,8 @@ const Tabela = () => {
     Cargo: "",
     Email: "",
     CPF: "",
-    Senha :"",
-    Autoridade:"",
+    Senha: "",
+    Autoridade: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -50,8 +51,8 @@ const Tabela = () => {
       Cargo: "",
       Email: "",
       CPF: "",
-      Senha :"",
-      Autoridade:""
+      Senha: "",
+      Autoridade: "",
     });
   };
 
@@ -65,7 +66,7 @@ const Tabela = () => {
       Email: item.Email,
       CPF: item.CPF,
       Senha: item.Senha,
-      Autoridade: item.Autoridade
+      Autoridade: item.Autoridade,
     });
     setEditingItem(item);
   };
@@ -85,7 +86,7 @@ const Tabela = () => {
             email: formData.Email,
             cpf: formData.CPF,
             senha: formData.Senha,
-            autoridade: formData.Autoridade
+            autoridade: formData.Autoridade,
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
@@ -113,7 +114,7 @@ const Tabela = () => {
             email: formData.Email,
             cpf: formData.CPF,
             senha: formData.Senha,
-            autoridade: formData.Autoridade
+            autoridade: formData.Autoridade,
           }),
         });
 
@@ -134,7 +135,7 @@ const Tabela = () => {
           Email: "",
           CPF: "",
           Senha: "",
-        Autoridade:""
+          Autoridade: "",
         });
         setShowForm(false);
       } catch (error) {
@@ -149,8 +150,8 @@ const Tabela = () => {
       Cargo: "",
       Email: "",
       CPF: "",
-      Senha:"",
-      Autoridade:""
+      Senha: "",
+      Autoridade: "",
     });
   };
 
@@ -163,8 +164,14 @@ const Tabela = () => {
       Email: "",
       CPF: "",
       Senha: "",
-      Autoridade:""
+      Autoridade: "",
     });
+  };
+
+  const Sair = () => {
+    localStorage.removeItem("userLogado");
+
+    window.location.href = "../"; // Redirecionar após login
   };
 
   return (
@@ -176,6 +183,9 @@ const Tabela = () => {
           <button className={styles.voltar}>
             <Link href="/Paginas/EditarDados">Voltar</Link>
           </button>
+          <div className={styles.icone} onClick={Sair}>
+            <IoExitOutline />
+          </div>
         </div>
         <br />
         <div className={styles.div2}>
@@ -188,7 +198,6 @@ const Tabela = () => {
                 <th>EMAIL</th>
                 <th>CPF</th>
                 <th>AUTORIDADE</th>
-             
               </tr>
             </thead>
             <tbody>
@@ -201,13 +210,11 @@ const Tabela = () => {
                     <td>{item.Email}</td>
                     <td>{item.CPF}</td>
                     <td>{item.Autoridade}</td>
-                  
-
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5">Nenhum usuário encontrado.</td>
+                  <td colSpan="6">Nenhum usuário encontrado.</td>
                 </tr>
               )}
             </tbody>
@@ -273,7 +280,7 @@ const Tabela = () => {
               placeholder="CPF"
             />
 
-<br />
+            <br />
             <input
               type="text"
               name="Senha"
@@ -282,15 +289,17 @@ const Tabela = () => {
               placeholder="Senha"
             />
 
-            
-<br />
-            <input
-              type="text"
-              name="Autoridade"
+            <br />
+            <select
               value={formData.Autoridade}
               onChange={handleInputChange}
-              placeholder="Autoridade"
-            />
+              id="usuarios"
+              name="Autoridade"
+            >
+              <option value="" placeholder="Autoridade"></option>
+              <option value="Administrador">Administrador</option>
+              <option value="Usuário">Usuário</option>              
+            </select>
           </div>
 
           <div className={styles.salecanbutton}>

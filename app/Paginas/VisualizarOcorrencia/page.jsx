@@ -9,6 +9,15 @@ import Link from "next/link";
 
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
+const getUserInfo = () => {
+  const userLogado = JSON.parse(localStorage.getItem("userLogado"));
+  if (userLogado) {
+    return userLogado;
+  } else {
+    return null;
+  }
+};
+
 const VisualizarOcorrencia = () => {
   const [data, setData] = useState({});
   const [dataStt, setDataStt] = useState([]);
@@ -18,7 +27,6 @@ const VisualizarOcorrencia = () => {
   const [dataEnc, setDataEnc] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
-  const [isOpen3, setIsOpen3] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [formData, setFormData] = useState({
@@ -26,6 +34,7 @@ const VisualizarOcorrencia = () => {
     dataoc: "",
     hora: "",
     iniciativa: "",
+    nome_iniciativa: "",
     aspecto: "",
     urgencia: "",
     tema: "",
@@ -46,6 +55,8 @@ const VisualizarOcorrencia = () => {
   const [solicitado, setSolicitado] = useState(null); // Estado para soliiicitad da notificação
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+
+  const user = getUserInfo();
 
   const getOcorrencia = async () => {
     try {
@@ -167,6 +178,7 @@ const VisualizarOcorrencia = () => {
       dataoc: formatDate(data.Data), // Define a data formatada
       hora: formatTime(data.Hora), // Hora formatada para o input
       iniciativa: data.Iniciativa,
+      nome_iniciativa: data.Nome_iniciativa,
       aspecto: data.Aspecto_id,
       urgencia: data.Urgencia_id,
       tema: data.Tema_id,
@@ -192,6 +204,7 @@ const VisualizarOcorrencia = () => {
       dataoc: "",
       hora: "",
       iniciativa: "",
+      nome_iniciativa: "",
       aspecto: "",
       urgencia: "",
       tema: "",
@@ -221,6 +234,7 @@ const VisualizarOcorrencia = () => {
             Data_ocorrencia: formData.dataoc,
             Hora: formData.hora,
             Iniciativa: formData.iniciativa,
+            Nome_iniciativa: formData.nome_iniciativa,
             Aspecto: formData.aspecto,
             Urgencia: formData.urgencia,
             Tema: formData.tema,
@@ -298,25 +312,24 @@ const VisualizarOcorrencia = () => {
 
   const openModal = () => {
     setIsOpen(true);
+    setCriador(user);
   };
 
   const closeModal = () => {
     setIsOpen(false);
     setIsOpen2(false);
-    setIsOpen3(false);
     setCriador(null);
     setSolicitado(null);
   };
 
   const nextModal = () => {
-    if (criador) {
-      if (isOpen) {
+    if (solicitado) {
+      if (criador.Login_id !== solicitado.Login_id) {
         setIsOpen(false);
         setIsOpen2(true);
-      }
-      if (isOpen2) {
-        setIsOpen2(false);
-        setIsOpen3(true);
+      } else {
+        alert("Você não pode notificar o próprio criador da ocorrência.");
+        return;
       }
     } else {
       alert("Por favor, selecione um usuário para continuar.");
@@ -375,13 +388,13 @@ const VisualizarOcorrencia = () => {
       alert("Por favor, selecione um usuário para notificar.");
       return;
     }
-  
+
     // Verifica se a mensagem foi preenchida
     if (!formMen.mensagem) {
       alert("Por favor, preencha a mensagem.");
       return;
     }
-  
+
     // Se chegou aqui, significa que a validação passou. Vamos processar a notificação.
     if (criador !== solicitado) {
       try {
@@ -399,7 +412,7 @@ const VisualizarOcorrencia = () => {
             Mensagem: formMen.mensagem, // Mensagem preenchida
           }),
         });
-  
+
         // Verifica se a resposta foi bem-sucedida
         if (resposta.ok) {
           alert("Notificação enviada com sucesso!");
@@ -419,7 +432,6 @@ const VisualizarOcorrencia = () => {
       return;
     }
   };
-  
 
   return (
     <div>
@@ -531,29 +543,6 @@ const VisualizarOcorrencia = () => {
                   />
                 )}
               </div>
-              <div className={styles.seis}>
-                <label htmlFor="resp">Nome: </label>
-                {data.length > 0 ? (
-                  <input
-                    className={styles.input5}
-                    id="esp"
-                    name="esp"
-                    value={data?.Especialista || "Especialista não presente"}
-                    disabled
-                  />
-                ) : (
-                  <input
-                    className={styles.input5}
-                    id="esp"
-                    name="esp"
-                    value={data?.Especialista || "Especialista não presente"}
-                    disabled
-                  />
-                )}
-              </div>
-            </div>
-
-            <div className={styles.tema}>
               <div>
                 <label htmlFor="aspecto">Aspecto:</label>
                 {data.length > 0 ? (
@@ -570,6 +559,29 @@ const VisualizarOcorrencia = () => {
                     id="aspecto"
                     name="aspecto"
                     value={data?.Aspecto || "Aspecto não encontrado"}
+                    disabled
+                  />
+                )}
+              </div>
+            </div>
+
+            <div className={styles.tema}>
+              <div className={styles.seis}>
+                <label htmlFor="resp">Nome (iniciativa): </label>
+                {data.length > 0 ? (
+                  <input
+                    className={styles.input8}
+                    name="tema"
+                    id="tema"
+                    value={data?.Nome_iniciativa || "Nome do iniciador não encontrado"}
+                    disabled
+                  />
+                ) : (
+                  <input
+                    className={styles.input8}
+                    name="tema"
+                    id="tema"
+                    value={data?.Nome_iniciativa || "Nome do iniciador não encontrado"}
                     disabled
                   />
                 )}
@@ -703,26 +715,26 @@ const VisualizarOcorrencia = () => {
                   />
                 )}
               </div>
-            </div>
-            <div className={styles.seis}>
-              <label htmlFor="resp">Especialista: </label>
-              {data.length > 0 ? (
-                <input
-                  className={styles.input5}
-                  id="esp"
-                  name="esp"
-                  value={data?.Especialista || "Especialista não presente"}
-                  disabled
-                />
-              ) : (
-                <input
-                  className={styles.input5}
-                  id="esp"
-                  name="esp"
-                  value={data?.Especialista || "Especialista não presente"}
-                  disabled
-                />
-              )}
+              <div className={styles.seis}>
+                <label htmlFor="resp">Especialista: </label>
+                {data.length > 0 ? (
+                  <input
+                    className={styles.input5}
+                    id="esp"
+                    name="esp"
+                    value={data?.Especialista || "Especialista não presente"}
+                    disabled
+                  />
+                ) : (
+                  <input
+                    className={styles.input5}
+                    id="esp"
+                    name="esp"
+                    value={data?.Especialista || "Especialista não presente"}
+                    disabled
+                  />
+                )}
+              </div>
             </div>
             <div className={styles.mes}>
               {data.length > 0 ? (
@@ -798,51 +810,6 @@ const VisualizarOcorrencia = () => {
                 </div>
                 <div>
                   <h1 className={styles.subtitulo}>
-                    Quem deseja enviar a solitação?
-                  </h1>
-                </div>
-                <div className={styles.content}>
-                  {usuarios.length > 0 ? (
-                    usuarios.map((user) => (
-                      <div
-                        className={styles.email}
-                        onClick={() => setCriador(user)}
-                        key={user.Login_id}
-                      >
-                        <p>{user.Nome}</p>
-                        <p> {user.Email}</p>
-                      </div>
-                    ))
-                  ) : (
-                    <p>Nenhum usuário encontrado</p>
-                  )}
-                </div>
-                <div className={styles.notiButton}>
-                  <button className={styles.confirmar} onClick={nextModal}>
-                    Continuar
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {isOpen2 && (
-            <div
-              id="myModal"
-              className={styles.modal}
-              onClick={handleClickOutside}
-            >
-              <div className={styles.modalContent}>
-                <div className={styles.headBox}>
-                  <div className={styles.titulo}>
-                    <h2>Solicitar participação nesta ocorrência</h2>
-                  </div>
-                  <span className={styles.close} onClick={closeModal}>
-                    &times;
-                  </span>
-                </div>
-                <div>
-                  <h1 className={styles.subtitulo}>
                     Para quem deseja enviar a solitação?
                   </h1>
                 </div>
@@ -871,7 +838,7 @@ const VisualizarOcorrencia = () => {
             </div>
           )}
 
-          {isOpen3 && (
+          {isOpen2 && (
             <div
               id="myModal"
               className={styles.modal}
@@ -887,14 +854,12 @@ const VisualizarOcorrencia = () => {
                   </span>
                 </div>
                 <div>
-                  <h1 className={styles.subtitulo}>
-                    Escreva uma mensagem
-                  </h1>
+                  <h1 className={styles.subtitulo}>Escreva uma mensagem</h1>
                 </div>
 
                 <div className={styles.mes}>
                   <textarea
-                  className={styles.mensagem}
+                    className={styles.mensagem}
                     value={formMen.mensagem}
                     onChange={handleMessageChange}
                     name="mensagem"
@@ -999,6 +964,16 @@ const VisualizarOcorrencia = () => {
             </div>
 
             <div className={stylEdit.tema}>
+              <div className={styles.seis}>
+                <label htmlFor="resp">Nome (iniciativa): </label>
+                <input
+                  type="text"
+                  value={formData.nome_iniciativa}
+                  onChange={handleInputChange}
+                  id="resp"
+                  name="nome_iniciativa"
+                />
+              </div>
               <div className={stylEdit.tres}>
                 <label htmlFor="tema">Tema: </label>
                 <select

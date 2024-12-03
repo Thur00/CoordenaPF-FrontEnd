@@ -10,17 +10,29 @@ import emitter from "@/utils/eventMitter";
 
 const API_URL = "http://localhost:3001";
 
+const getUserInfo = () => {
+  const userLogado = JSON.parse(localStorage.getItem("userLogado"));
+  if (userLogado) {
+    return userLogado;
+  } else {
+    return null;
+  }
+};
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
   const [usuario, setUsuario] = useState([]);
+
+  const user = getUserInfo();
   const [filteredData, setFilteredData] = useState([]); // Dados filtrados
-  const [filterValue, setFilterValue] = useState({ id: "" });
+  const [filterValue, setFilterValue] = useState({ id: user.Login_id });
 
   const router = useRouter();
 
   const openModal = () => {
     setIsOpen(true);
+    applyFilter();
   };
 
   const closeModal = () => {
@@ -79,12 +91,20 @@ function Header() {
     closeModal();
   };
 
-  const formattedDate = (date) => {
-    return new Date(date).toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
+  const formattedDate = (data) => {
+    if (data) {
+      return new Date(data).toISOString().split("T")[0];
+    } else return "";
+  };
+
+  const viewDate = (data) => {
+    if (data) {
+      const dateStr = formattedDate(data); // Retorna uma string no formato aaaa-mm-dd
+      const [year, month, day] = dateStr.split("-"); // Desestrutura a string
+      return `${day}/${month}/${year}`; // Retorna no formato dd/mm/aaaa
+    } else {
+      return "Data não encontrada";
+    }
   };
 
   const applyFilter = () => {
@@ -101,6 +121,8 @@ function Header() {
 
     setFilteredData(filtered);
   };
+
+  const admin = user.Autoridade === "Administrador";
 
   return (
     <>
@@ -136,30 +158,31 @@ function Header() {
               </span>
             </div>
             <div className={styles.content}>
-              <label className={styles.filter}>
-                Notificações enviadas para:
-                <div>
-                  <select
-                    value={filterValue.id}
-                    onChange={handleFilterChange}
-                    id="usuarios"
-                    name="id"
-                  >
-                    <option value="">Todos</option>
-                    {usuario.length > 0 ? (
-                      usuario.map((item) => (
-                        <option key={item.Login_id} value={item.Login_id}>
-                          {item.Nome}
-                        </option>
-                      ))
-                    ) : (
-                      <option>Nenhum usuário encontrado</option>
-                    )}
-                  </select>
-                  <button onClick={applyFilter}>Filtrar</button>
-                </div>
-              </label>
-
+              {admin && (
+                <label className={styles.filter}>
+                  Notificações enviadas para:
+                  <div>
+                    <select
+                      value={filterValue.id}
+                      onChange={handleFilterChange}
+                      id="usuarios"
+                      name="id"
+                    >
+                      <option value="">Todos</option>
+                      {usuario.length > 0 ? (
+                        usuario.map((item) => (
+                          <option key={item.Login_id} value={item.Login_id}>
+                            {item.Nome}
+                          </option>
+                        ))
+                      ) : (
+                        <option>Nenhum usuário encontrado</option>
+                      )}
+                    </select>
+                    <button onClick={applyFilter}>Filtrar</button>
+                  </div>
+                </label>
+              )}
               {filteredData.length > 0 ? (
                 [...filteredData].reverse().map((item) => (
                   <div
@@ -170,7 +193,7 @@ function Header() {
                     <p>
                       {item.Criador_Nome} convidou {item.Solicitado_Nome} para a
                       ocorrência {item.Cod_ocorrencia}, do dia{" "}
-                      {formattedDate(item.Data_envio)}, classificada como{" "}
+                      {viewDate(item.Data_envio)}. "{item.Mensagem}".
                       <span
                         style={{ borderBottom: "5px solid " + item.Cor + "7f" }}
                       >

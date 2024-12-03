@@ -42,6 +42,7 @@ function criaroco() {
     dataoc: "",
     hora: "",
     iniciativa: "",
+    nome_iniciativa: "",
     aspecto: "",
     urgencia: "",
     tema: "",
@@ -125,6 +126,7 @@ function criaroco() {
           Data_ocorrencia: formData.dataoc,
           Hora: formData.hora,
           Iniciativa: formData.iniciativa,
+          Nome_iniciativa: formData.nome_iniciativa,
           Aspecto: formData.aspecto,
           Urgencia: formData.urgencia,
           Tema: formData.tema,
@@ -147,6 +149,7 @@ function criaroco() {
         dataoc: "",
         hora: "",
         iniciativa: "",
+        nome_iniciativa: "",
         aspecto: "",
         urgencia: "",
         tema: "",
@@ -168,6 +171,7 @@ function criaroco() {
       dataoc: "",
       hora: "",
       iniciativa: "",
+      nome_iniciativa: "",
       aspecto: "",
       urgencia: "",
       tema: "",
@@ -219,7 +223,7 @@ function criaroco() {
 
         <div className={styles.init}>
           <div className={styles.dois}>
-            <label for="iniciativa">Iniciativa: </label>
+            <label htmlFor="iniciativa">Iniciativa: </label>
             <select
               className={styles.input2}
               value={formData.iniciativa}
@@ -235,23 +239,11 @@ function criaroco() {
               <option value="DES">DES</option>
               <option value="CP">CP</option>
               <option value="OE">OE</option>
+              <option value="Professor(a)">Professor(a)</option>
             </select>
           </div>
-          <div className={styles.seis}>
-            <label for="resp">Nome: </label>
-            <input
-              type="text"
-              value={formData.responsavel}
-              onChange={handleInputChange}
-              id="resp"
-              name="responsavel"
-            />
-          </div>
-        </div>
-
-        <div className={styles.tema}>
           <div>
-            <label for="aspecto">Aspecto: </label>
+            <label htmlFor="aspecto">Aspecto: </label>
             <select
               className={styles.input7}
               value={formData.aspecto}
@@ -275,8 +267,22 @@ function criaroco() {
               )}
             </select>
           </div>
+        </div>
+
+        <div className={styles.tema}>
+          <div className={styles.seis}>
+            <label htmlFor="resp">Nome (iniciativa): </label>
+            <input
+              type="text"
+              value={formData.nome_iniciativa}
+              onChange={handleInputChange}
+              id="resp"
+              name="nome_iniciativa"
+            />
+          </div>
+
           <div className={styles.tres}>
-            <label for="tema">Tema: </label>
+            <label htmlFor="tema">Tema: </label>
             <select
               className={styles.input8}
               value={formData.tema}
@@ -302,7 +308,7 @@ function criaroco() {
           </div>
 
           <div>
-            <label for="urgencia">Urgência: </label>
+            <label htmlFor="urgencia">Urgência: </label>
             <select
               className={styles.input9}
               value={formData.urgencia}
@@ -330,7 +336,7 @@ function criaroco() {
 
         <div className={styles.aluno}>
           <div className={styles.quat}>
-            <label for="aluno">Estudante(s): </label>
+            <label htmlFor="aluno">Estudante(s): </label>
             <input
               className={styles.input10}
               type="text"
@@ -340,7 +346,7 @@ function criaroco() {
           </div>
 
           <div className={styles.cinc}>
-            <label for="turma">Turma: </label>
+            <label htmlFor="turma">Turma: </label>
             <input
               className={styles.input11}
               type="text"
@@ -353,7 +359,7 @@ function criaroco() {
           </div>
 
           <div>
-            <label for="rm">RM: </label>
+            <label htmlFor="rm">RM: </label>
             <input
               type="text"
               value={formData.rm}
@@ -367,7 +373,7 @@ function criaroco() {
 
         <div className={styles.resp}>
           <div className={styles.seis}>
-            <label for="resp">Responsável: </label>
+            <label htmlFor="resp">Responsável: </label>
             <input
               className={styles.input5}
               type="text"
@@ -377,17 +383,17 @@ function criaroco() {
               name="responsavel"
             />
           </div>
-        </div>
-        <div>
-          <label for="esp">Especialista: </label>
-          <input
-            className={styles.input6}
-            type="text"
-            value={formData.especialista}
-            onChange={handleInputChange}
-            id="esp"
-            name="especialista"
-          />
+          <div>
+            <label htmlFor="esp">Especialista: </label>
+            <input
+              className={styles.input6}
+              type="text"
+              value={formData.especialista}
+              onChange={handleInputChange}
+              id="esp"
+              name="especialista"
+            />
+          </div>
         </div>
 
         <div className={styles.mes}>
@@ -402,7 +408,7 @@ function criaroco() {
         </div>
 
         <div className={styles.enc}>
-          <label for="enc">Encaminhamento: </label>
+          <label htmlFor="enc">Encaminhamento: </label>
           <select
             className={styles.input3}
             value={formData.encaminhamento}

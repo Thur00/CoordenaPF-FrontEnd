@@ -42,7 +42,6 @@ const SignIn = () => {
 
       console.log(data.usuario);
       console.log(data.status);
-      console.log(API_SECRET);
 
 
       if (data.status == "VALIDO") {
@@ -54,7 +53,8 @@ const SignIn = () => {
 
         // Redirecionar para a página inicial
 
-        localStorage.setItem("UserLogado", data.usuario);
+        localStorage.setItem("userLogado", JSON.stringify(data.usuario) );
+
 
         window.location.href = "../Paginas/PaginaInicial"; // Redirecionar após login
       } else {
