@@ -18,6 +18,7 @@ const VisualizarOcorrencia = () => {
   const [dataEnc, setDataEnc] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
+  const [isOpen3, setIsOpen3] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [formData, setFormData] = useState({
@@ -36,6 +37,9 @@ const VisualizarOcorrencia = () => {
     descricao: "",
     encaminhamento: "",
     status: "",
+  });
+  const [formMen, setFormMen] = useState({
+    mensagem: "",
   });
   const [usuarios, setUsuarios] = useState([]); // Estado para usuários
   const [criador, setCriador] = useState(null); // Estado para criado da notificação
@@ -135,6 +139,11 @@ const VisualizarOcorrencia = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleMessageChange = (e) => {
+    const { name, value } = e.target;
+    setFormMen({ ...formMen, [name]: value });
   };
 
   const handleEdit = () => {
@@ -294,15 +303,21 @@ const VisualizarOcorrencia = () => {
   const closeModal = () => {
     setIsOpen(false);
     setIsOpen2(false);
+    setIsOpen3(false);
     setCriador(null);
     setSolicitado(null);
   };
 
   const nextModal = () => {
     if (criador) {
-      console.log("Craidor: ", criador.Login_id);
-      setIsOpen(false);
-      setIsOpen2(true);
+      if (isOpen) {
+        setIsOpen(false);
+        setIsOpen2(true);
+      }
+      if (isOpen2) {
+        setIsOpen2(false);
+        setIsOpen3(true);
+      }
     } else {
       alert("Por favor, selecione um usuário para continuar.");
       return;
@@ -355,45 +370,56 @@ const VisualizarOcorrencia = () => {
   };
 
   const enviarNotificacao = async () => {
+    // Verifica se o usuário foi selecionado
     if (!solicitado) {
       alert("Por favor, selecione um usuário para notificar.");
       return;
-    } else {
-      console.log("Craidor: ", criador.Login_id);
-      console.log("Solicitado: ", solicitado.Login_id);
-      console.log("Ocorrecnia ID: ", data.Ocorrencia_id);
-
-      if (criador != solicitado) {
-        try {
-          const resposta = await fetch(`${API_URL}/notificacoes`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              Cod_ocorrencia: data.Ocorrencia_id,
-              Criador: criador.Login_id,
-              Solicitado: solicitado.Login_id,
-              Data_envio: currentDate,
-            }),
-          });
-          if (resposta.ok) {
-            alert("Notificação enviada com sucesso!");
-            // Emitindo um evento para notificar que uma nova notificação foi criada
-            emitter.emit("novaNotificacao");
-            closeModal();
-          } else {
-            alert("Erro ao enviar notificação.");
-          }
-        } catch (error) {
-          console.error("Erro ao enviar notificação:", error);
+    }
+  
+    // Verifica se a mensagem foi preenchida
+    if (!formMen.mensagem) {
+      alert("Por favor, preencha a mensagem.");
+      return;
+    }
+  
+    // Se chegou aqui, significa que a validação passou. Vamos processar a notificação.
+    if (criador !== solicitado) {
+      try {
+        // Envio da notificação
+        const resposta = await fetch(`${API_URL}/notificacoes`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Cod_ocorrencia: data.Ocorrencia_id,
+            Criador: criador.Login_id,
+            Solicitado: solicitado.Login_id,
+            Data_envio: currentDate,
+            Mensagem: formMen.mensagem, // Mensagem preenchida
+          }),
+        });
+  
+        // Verifica se a resposta foi bem-sucedida
+        if (resposta.ok) {
+          alert("Notificação enviada com sucesso!");
+          emitter.emit("novaNotificacao"); // Emitindo evento de nova notificação
+          closeModal();
+        } else {
+          alert("Erro ao enviar notificação.");
         }
-      } else {
-        alert("Você não pode notificar o próprio criador da ocorrência.");
-        return;
+      } catch (error) {
+        console.error("Erro ao enviar notificação:", error);
+        alert("Erro ao tentar enviar a notificação.");
       }
+      // Limpa o campo de mensagem após o envio bem-sucedido
+      setFormMen({ mensagem: "" });
+    } else {
+      alert("Você não pode notificar o próprio criador da ocorrência.");
+      return;
     }
   };
+  
 
   return (
     <div>
@@ -506,25 +532,25 @@ const VisualizarOcorrencia = () => {
                 )}
               </div>
               <div className={styles.seis}>
-              <label htmlFor="resp">Nome: </label>
-              {data.length > 0 ? (
-                <input
-                  className={styles.input5}
-                  id="esp"
-                  name="esp"
-                  value={data?.Especialista || "Especialista não presente"}
-                  disabled
-                />
-              ) : (
-                <input
-                  className={styles.input5}
-                  id="esp"
-                  name="esp"
-                  value={data?.Especialista || "Especialista não presente"}
-                  disabled
-                />
-              )}
-            </div>
+                <label htmlFor="resp">Nome: </label>
+                {data.length > 0 ? (
+                  <input
+                    className={styles.input5}
+                    id="esp"
+                    name="esp"
+                    value={data?.Especialista || "Especialista não presente"}
+                    disabled
+                  />
+                ) : (
+                  <input
+                    className={styles.input5}
+                    id="esp"
+                    name="esp"
+                    value={data?.Especialista || "Especialista não presente"}
+                    disabled
+                  />
+                )}
+              </div>
             </div>
 
             <div className={styles.tema}>
@@ -835,6 +861,47 @@ const VisualizarOcorrencia = () => {
                   ) : (
                     <p>Nenhum usuário encontrado</p>
                   )}
+                </div>
+                <div className={styles.notiButton}>
+                  <button className={styles.confirmar} onClick={nextModal}>
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {isOpen3 && (
+            <div
+              id="myModal"
+              className={styles.modal}
+              onClick={handleClickOutside}
+            >
+              <div className={styles.modalContent}>
+                <div className={styles.headBox}>
+                  <div className={styles.titulo}>
+                    <h2>Digite uma mensagem</h2>
+                  </div>
+                  <span className={styles.close} onClick={closeModal}>
+                    &times;
+                  </span>
+                </div>
+                <div>
+                  <h1 className={styles.subtitulo}>
+                    Escreva uma mensagem
+                  </h1>
+                </div>
+
+                <div className={styles.mes}>
+                  <textarea
+                    value={formMen.mensagem}
+                    onChange={handleMessageChange}
+                    name="mensagem"
+                    rows="10"
+                    cols="110"
+                    placeholder="Digite aqui"
+                    required
+                  />
                 </div>
                 <div className={styles.notiButton}>
                   <button
