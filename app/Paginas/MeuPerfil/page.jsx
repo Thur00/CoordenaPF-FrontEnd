@@ -15,6 +15,7 @@ const Tabela = () => {
     Email: "",
     CPF: "",
     Senha :"",
+    Autoridade:"",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -50,6 +51,7 @@ const Tabela = () => {
       Email: "",
       CPF: "",
       Senha :"",
+      Autoridade:""
     });
   };
 
@@ -63,6 +65,7 @@ const Tabela = () => {
       Email: item.Email,
       CPF: item.CPF,
       Senha: item.Senha,
+      Autoridade: item.Autoridade
     });
     setEditingItem(item);
   };
@@ -81,7 +84,8 @@ const Tabela = () => {
             cargo: formData.Cargo,
             email: formData.Email,
             cpf: formData.CPF,
-            senha: formData.Senha
+            senha: formData.Senha,
+            autoridade: formData.Autoridade
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
@@ -108,7 +112,8 @@ const Tabela = () => {
             cargo: formData.Cargo,
             email: formData.Email,
             cpf: formData.CPF,
-            senha: formData.Senha
+            senha: formData.Senha,
+            autoridade: formData.Autoridade
           }),
         });
 
@@ -129,6 +134,7 @@ const Tabela = () => {
           Email: "",
           CPF: "",
           Senha: "",
+        Autoridade:""
         });
         setShowForm(false);
       } catch (error) {
@@ -143,7 +149,8 @@ const Tabela = () => {
       Cargo: "",
       Email: "",
       CPF: "",
-      Senha:""
+      Senha:"",
+      Autoridade:""
     });
   };
 
@@ -155,7 +162,8 @@ const Tabela = () => {
       Cargo: "",
       Email: "",
       CPF: "",
-      Senha: ""
+      Senha: "",
+      Autoridade:""
     });
   };
 
@@ -179,6 +187,7 @@ const Tabela = () => {
                 <th>CARGO</th>
                 <th>EMAIL</th>
                 <th>CPF</th>
+                <th>AUTORIDADE</th>
              
               </tr>
             </thead>
@@ -191,6 +200,7 @@ const Tabela = () => {
                     <td>{item.Cargo}</td>
                     <td>{item.Email}</td>
                     <td>{item.CPF}</td>
+                    <td>{item.Autoridade}</td>
                   
 
                   </tr>
@@ -270,6 +280,16 @@ const Tabela = () => {
               value={formData.Senha}
               onChange={handleInputChange}
               placeholder="Senha"
+            />
+
+            
+<br />
+            <input
+              type="text"
+              name="Autoridade"
+              value={formData.Autoridade}
+              onChange={handleInputChange}
+              placeholder="Autoridade"
             />
           </div>
 
