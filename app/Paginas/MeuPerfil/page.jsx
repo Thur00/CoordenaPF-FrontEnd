@@ -14,6 +14,7 @@ const Tabela = () => {
     Cargo: "",
     Email: "",
     CPF: "",
+    Senha :"",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -48,6 +49,7 @@ const Tabela = () => {
       Cargo: "",
       Email: "",
       CPF: "",
+      Senha :"",
     });
   };
 
@@ -60,6 +62,7 @@ const Tabela = () => {
       Cargo: item.Cargo,
       Email: item.Email,
       CPF: item.CPF,
+      Senha: item.Senha,
     });
     setEditingItem(item);
   };
@@ -78,6 +81,7 @@ const Tabela = () => {
             cargo: formData.Cargo,
             email: formData.Email,
             cpf: formData.CPF,
+            senha: formData.Senha
           }), // Ajuste aqui o objeto para corresponder ao que a API espera
         });
 
@@ -104,6 +108,7 @@ const Tabela = () => {
             cargo: formData.Cargo,
             email: formData.Email,
             cpf: formData.CPF,
+            senha: formData.Senha
           }),
         });
 
@@ -123,6 +128,7 @@ const Tabela = () => {
           Cargo: "",
           Email: "",
           CPF: "",
+          Senha: "",
         });
         setShowForm(false);
       } catch (error) {
@@ -137,6 +143,7 @@ const Tabela = () => {
       Cargo: "",
       Email: "",
       CPF: "",
+      Senha:""
     });
   };
 
@@ -148,6 +155,7 @@ const Tabela = () => {
       Cargo: "",
       Email: "",
       CPF: "",
+      Senha: ""
     });
   };
 
@@ -171,6 +179,7 @@ const Tabela = () => {
                 <th>CARGO</th>
                 <th>EMAIL</th>
                 <th>CPF</th>
+             
               </tr>
             </thead>
             <tbody>
@@ -182,6 +191,8 @@ const Tabela = () => {
                     <td>{item.Cargo}</td>
                     <td>{item.Email}</td>
                     <td>{item.CPF}</td>
+                  
+
                   </tr>
                 ))
               ) : (
@@ -250,6 +261,15 @@ const Tabela = () => {
               value={formData.CPF}
               onChange={handleInputChange}
               placeholder="CPF"
+            />
+
+<br />
+            <input
+              type="text"
+              name="Senha"
+              value={formData.Senha}
+              onChange={handleInputChange}
+              placeholder="Senha"
             />
           </div>
 
