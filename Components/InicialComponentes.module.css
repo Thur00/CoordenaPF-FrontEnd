@@ -230,13 +230,17 @@
     margin: 1%;
   }
   .b1 {
-    font-size: 1rem;
-    padding: 5px;
-    width: 100%;
+    font-size: 1.2rem;
+    padding: 7px;
+    width: 130%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+    align-items: center;
   }
 
   .h4 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     margin-left: 3%;
   }
 
@@ -275,9 +279,8 @@
   }
 
   .titulo {
-    text-align: center;
-    font-size: 1rem;
-    margin-right: 55%;
+    font-size: 1.3rem;
+
   }
 
   .pesquisafiltro {
@@ -285,7 +288,7 @@
   }
 
   .pesquisa {
-    width: 100%;
+    width: 80%;
   }
 
   .butfiltro {
@@ -295,5 +298,12 @@
     margin-bottom: 3%;
     width: 7.3vh;
     font-size: 0.6rem;
+  }
+
+  .divizona {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
   }
 }

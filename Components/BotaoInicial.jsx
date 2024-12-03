@@ -9,6 +9,7 @@ import { CgFileDocument } from "react-icons/cg";
 function BotaoInicial() {
     return (
         <>
+        <div className={styles.divizona}>
             <Link href="/Paginas/CriarOcorrencia" >
                 <button className={styles.b1}> <CgAdd className={styles.icon}> </CgAdd> Criar ocorrência </button>
             </Link>
@@ -20,6 +21,7 @@ function BotaoInicial() {
             <Link href="/Paginas/EditarDados">
                 <button className={styles.b1}><CgAdd className={styles.icon}></CgAdd>Editar Dados </button>
             </Link>
+            </div>
         </>
     )
 }
