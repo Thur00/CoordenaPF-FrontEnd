@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jsonwebtoken": "^9.0.2",
     "mitt": "^3.0.1",
     "next": "14.2.11",
     "react": "^18",

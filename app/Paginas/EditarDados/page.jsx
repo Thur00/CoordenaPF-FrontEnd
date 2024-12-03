@@ -34,10 +34,6 @@ function EditarDados() {
         <Link className={styles.button} href="/Paginas/EditarEncaminhamento">
           Editar Encaminhamento
         </Link>
-
-        <Link className={styles.button} href="/Paginas/EditarAcesso">
-          Editar Acesso
-        </Link>
       </div>
       <br />
     </div>
