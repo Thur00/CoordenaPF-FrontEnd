@@ -2,7 +2,7 @@
 
 import jwt from 'jsonwebtoken';
 import { useState, useEffect } from "react";
-import style from "@/Components/Login.module.css";
+import style from "../Components/Login.module.css";
 const API_URL = "http://localhost:3001"; // Adicione a URL da API
 
 const API_SECRET = 'FazoELE'; 
@@ -74,7 +74,7 @@ const SignIn = () => {
           <h1 className={style.texto2}>GO</h1>
         </div>
         {msgError && (
-          <div className={style.erro} id="msgError" style={{ color: "red" }}>
+          <div className={style.erro} id="msgError">
             {msgError}
           </div>
         )}
